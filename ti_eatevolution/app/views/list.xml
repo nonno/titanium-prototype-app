@@ -1,21 +1,17 @@
 <Alloy>
 	<!-- This view wraps all of the child views/lists etc. Creates a base layout, vertically aligned. -->
-	<Window id="wrapper" class="vgroup">
-		<View id="backButtonContainer" class="backButtonContainer" platform="ios">
-			<Button class="backButton" title="Indietro" onClick="closeWindow" />
-		</View>
-		
+	<Window id="wrapper" class="vgroup" title="Elenco">
 		<!-- Menu Item to open the bookmarks view -->
 		<Menu id="menu" platform="android">
 			<!-- 
 				Adding the SearchView to the ActionBar via the Menu feature. Leveraging the standard Android Resource for the search
 				icon. Uses shared onChange function with iOS to update listView search text.
 			-->
-			<!--MenuItem showAsAction="Ti.Android.SHOW_AS_ACTION_IF_ROOM" title="Cerca" icon="Ti.Android.R.drawable.ic_menu_search">
+			<MenuItem showAsAction="Ti.Android.SHOW_AS_ACTION_IF_ROOM" title="Cerca" icon="Ti.Android.R.drawable.ic_menu_search">
 				<ActionView>
 					<SearchView ns="Ti.UI.Android" id="searchBar" platform="android" onChange="onSearchChange" />
 				</ActionView>
-			</MenuItem-->
+			</MenuItem>
 			
 			<!-- Android Menu item for accessing the Bookmarks view -->
 			<MenuItem id="bookmarkBtn" title="Preferiti" icon="/images/ic_action_action_bookmark.png" onClick="onBookmarkClick" showAsAction="Ti.Android.SHOW_AS_ACTION_IF_ROOM"/>

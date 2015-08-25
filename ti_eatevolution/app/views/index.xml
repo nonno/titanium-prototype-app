@@ -1,16 +1,4 @@
 <Alloy>
 	<TabGroup id="tabGroup">
-		<Tab id="listTab" title="Elenco">
-			<Require id="listController" src="list" />
-		</Tab>
-		<Tab id="mapTab" title="Mappa">
-			<Require id="mapController" src="map" />
-		</Tab>
-		<Tab id="joinTab" title="Adesioni">
-			<Require id="joinController" src="join" />
-		</Tab>
-		<Tab id="infoTab" title="Chi siamo">
-			<Require id="infoController" src="info" />
-		</Tab>
 	</TabGroup>
 </Alloy>

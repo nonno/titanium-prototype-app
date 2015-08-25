@@ -4,7 +4,7 @@ var _args = arguments[0] || {},
 	locali = null,
 	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
 
-var init, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus, onSearchCancel, title;
+var init, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus, onSearchCancel, title, currentTab;
 
 title = (_args.title || "").toLowerCase();
 
@@ -122,13 +122,13 @@ onItemClick = function(e){
 	
 	var item = $.listView.sections[e.sectionIndex].items[e.itemIndex];
 	
-	Alloy.Globals.Navigator.open("profile", item.properties.user);
+	currentTab.open(Alloy.createController("profile", item.properties.user).getView());
 };
 
 onBookmarkClick = function(e){
 	Ti.Analytics.featureEvent(Ti.Platform.osname+"."+title+".favorites.clicked");
 	
-	Alloy.Globals.Navigator.open("list", {restrictToFavorites:true, title:"Preferiti", displayHomeAsUp:true});
+	currentTab.open(Alloy.createController("list", {restrictToFavorites:true, title:"Preferiti", displayHomeAsUp:true}).getView());
 };
 
 if (OS_IOS){
@@ -172,14 +172,12 @@ $.wrapper.addEventListener("open", function(){
 	}
 });
 
-function closeWindow(){
-	$.wrapper.close();
-}
-
 Ti.App.addEventListener("refresh-data", function(e){
 	init();
 });
 
 init();
 
-exports.backButtonContainer = $.backButtonContainer;
+exports.setTab = function(tab){
+	currentTab = tab;
+};

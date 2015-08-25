@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container">
+	<Window class="container" title="Adesione">
 		<Label text="Informazioni varie per adesione"></Label>
 	</Window>
 </Alloy>

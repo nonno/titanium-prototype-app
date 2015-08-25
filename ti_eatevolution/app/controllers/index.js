@@ -1,26 +1,19 @@
-Alloy.Globals.Navigator = {
-	open: function(controller, payload){
-		var newController = Alloy.createController(controller, payload || {});
-		var win = newController.getView();
-		
-		if (OS_IOS && newController.backButtonContainer){
-			newController.backButtonContainer.visible = true;
-			newController.backButtonContainer.height = Ti.UI.SIZE;
-		}
-		
-		if (payload.displayHomeAsUp){
-			win.addEventListener('open',function(evt){
-				var activity=win.activity;
-				if (activity){
-					activity.actionBar.displayHomeAsUp=payload.displayHomeAsUp;
-					activity.actionBar.onHomeIconItemSelected=function(){
-						evt.source.close();
-					};
-				}
-			});
-		}
-		win.open();
+var addTab = function(controllerName, title, icon){
+	var controller = Alloy.createController(controllerName);
+	var tab = Ti.UI.createTab({
+		'title' : title,
+		'icon' : icon,
+		'window' : controller.getView()
+	});
+	if (controller.setTab){
+		controller.setTab(tab);
 	}
+	$.tabGroup.addTab(tab);
 };
+
+addTab('list', 'Elenco', 'images/dark_home.png');
+addTab('map', 'Mappa', 'images/dark_globe.png');
+addTab('join', 'Adesioni', 'images/dark_link.png');
+addTab('info', 'Chi siamo', 'images/dark_info.png');
 
 $.tabGroup.open();

@@ -98,4 +98,6 @@ $.profile.addEventListener("postlayout", function(e){
 	});
 });
 
-exports.backButtonContainer = $.backButtonContainer;
+exports.setTab = function(tab){
+	currentTab = tab;
+};

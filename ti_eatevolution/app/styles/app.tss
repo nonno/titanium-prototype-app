@@ -343,13 +343,4 @@
 
 '.no-touch':{
 	touchEnabled:false
-},
-
-'.backButtonContainer[platform=ios]':{
-	visible: false,
-	height: "0dp",
-	width: Ti.UI.SIZE,
-	left: "0dp"
-},
-'.backButton[platform=ios]':{
 }
