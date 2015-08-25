@@ -1,0 +1,53 @@
+<Alloy>
+	<!-- Main Container of the View, title of the Window is pulled from the title property on the main view-->
+	<Window class="container vgroup" opacity="0.0" title="">
+		<ActionBar platfor="android" displayHomeAsUp="true" onHomeIconItemSelected="closeWindow" />
+		
+		<!-- 
+			Profile Page
+			- A ScrollView that an end user can swipe to show more information about the user.
+			- Information View, shows phone, email, IM
+			- About View, a blurb of text about the user
+			- MapView shows an annotation of where the user is located
+		-->
+		<ScrollView id="contactInfo" class='vgroup top'>
+			<!--  Map View Leverages the Map Module, allowing for v2 of Google Maps and latest codebase unifying Google v2 and IOS -->
+			<Module id="mapview" module="ti.map" method="createView" platform="android,ios,windows" class='no-touch top' />
+			
+			<!-- User Information -->
+			<View class="vgroup top size">
+				<Label id="nome" class='h3 red top-buffer no-touch' ></Label>
+				<Label id="indirizzo" class='h5 gray no-touch' ></Label>
+				<Button id="addFavoriteBtn" class="h4 span-width top-buffer" onClick="toggleFavorite" textid="bookmarkBtn">+ Aggiungi ai preferiti</Button>
+			</View>
+			
+			<!-- User Actions --->
+			<View class="hgroup top-buffer size">
+				<Label id="callBtn" class="icon icon-btn icon-phone"  onClick="callContact" />
+				<Label id="emailBtn" class="icon icon-btn icon-email" onClick="emailContact" />
+			</View>
+			
+			<View class='separator' />
+			
+			<!-- Contact Information -->
+		 	<View class='buffer vgroup size'>
+				<View class='hgroup size left-buffer top-buffer'>
+					<Label class="h3 icon icon-phone icon-small red left top" />
+					<Label id="telefono" class="h6 gray left-buffer"></Label>
+				</View>
+				<View class='hgroup size left-buffer top-buffer'>
+					<Label class="h3 icon icon-email icon-small red left top" />
+					<Label id="email" class="h6 gray left-buffer"></Label>
+				</View>
+				<View class='hgroup size left-buffer top-buffer'>
+					<Label class="h3 icon icon-message icon-small red left top" />
+					<Label id="web" class="h6 gray left-buffer right-buffer"></Label>
+				</View>
+				<View class='hgroup size left-buffer top-buffer'>
+					<Label class="h3 icon icon-calendar icon-small red left top" />
+					<Label id="apertura" class="h6 gray left-buffer right-buffer"></Label>
+				</View>
+			</View>
+		</ScrollView>
+	</Window>
+</Alloy>

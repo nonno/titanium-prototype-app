@@ -1,0 +1,7 @@
+task("pre:compile",function(event,logger){
+    /*COMPILA GLI ASSETS*/
+    var sys = require('sys')
+    var exec = require('child_process').exec;
+    function puts(error, stdout, stderr) { logger.info("ASSETS GENERATI") }
+    exec("cd assets_src && ./convert.sh", puts);
+});

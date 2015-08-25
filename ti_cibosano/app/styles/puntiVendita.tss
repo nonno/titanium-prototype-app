@@ -1,0 +1,93 @@
+"Window":{
+    layout: "vertical",
+    backgroundColor: "white",
+   	modal: false,
+    fullscreen: true,
+    navBarHidden:true
+},
+"#titleBar":{
+    height: '44dp',
+    backgroundImage: "/images/bg_barra.png"
+},
+"#titleLabel":{
+    color: 'white',
+    font: {fontWeight: 'bold'}
+},
+"#backButton":{
+    left: 0,
+    width: '78dp',
+    height: '44dp',
+    backgroundImage: "/images/btn_back.png"
+},
+".container[formFactor=tablet]": {
+    backgroundColor: "white",
+    layout : "horizontal"
+},
+".container[formFactor=handheld]": {
+    backgroundColor: "white"
+},
+"#listaPuntiVenditaContainer[formFactor=handheld]":{
+    layout : "vertical",
+    width : Ti.UI.FILL,
+    height : Ti.UI.FILL
+},
+"#listaPuntiVenditaContainer[formFactor=tablet]":{
+    layout : "vertical",
+    width : Ti.UI.FILL,
+    height : Ti.UI.FILL
+},
+"#barraPuntiVendita[formFactor=tablet]":{
+    top: '-8dp',
+    borderRadius: '8dp',
+    height: '52dp',
+    width : Ti.UI.FILL,
+    backgroundColor: '#f11f25'
+},
+"#barraPuntiVendita[formFactor=handheld]":{
+    top : "-8dp",
+    borderRadius: "8dp",
+    height: '52dp',
+    width : Ti.UI.FILL,
+    backgroundColor: '#f11f25'
+},
+"#search[platform=ios]": {
+    height: '44dp',
+    right: '164dp',
+    top: '8dp',
+    left: '12dp',
+    backgroundImage: '/images/rosso_coal.png'
+},
+"#search[platform=android]": { 
+    height: '38dp',
+    right: '186dp',
+    top: '11dp',
+    left: '12dp',
+    backgroundColor: 'white',
+    color: 'black',
+    borderRadius: 4
+    
+},
+'#buttonBar':{
+    height: '44dp',
+    width: Ti.UI.SIZE,
+    top: '8dp',
+    right: '16dp',
+    layout : "horizontal",
+},
+'#overlay':{
+    top: '44dp',
+    width: Ti.UI.FILL,
+    height: Ti.UI.FILL,
+    visible: false
+},
+'#mappaPuntiVendita':{
+    visible: false
+},
+'#listaButton':{
+    top: '6dp',
+    image: '/images/btn_elenco_on.png'
+},
+'#mappaButton':{
+    top: '6dp',
+    image: '/images/btn_mappa_off.png'
+}

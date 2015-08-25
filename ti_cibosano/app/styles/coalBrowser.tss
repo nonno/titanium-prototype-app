@@ -1,0 +1,20 @@
+"Window":{
+    layout: "vertical",
+    modal: false,
+    fullscreen: true,
+    navBarHidden:true
+},
+"#titleBar":{
+    height: '44dp',
+    backgroundImage: "/images/bg_barra.png"
+},
+"#titleLabel":{
+    color: 'white',
+    font: {fontWeight: 'bold'}
+},
+"#backButton":{
+    left: 0,
+    width: '78dp',
+    height: '44dp',
+    backgroundImage: "/images/btn_back.png"
+}

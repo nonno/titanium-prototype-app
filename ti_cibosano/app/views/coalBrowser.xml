@@ -1,0 +1,10 @@
+<Alloy>
+    <Window>
+        <View id="titleBar">
+            <Button id="backButton"></Button>
+            <Label id="titleLabel"></Label>
+        </View>
+        <WebView id="content">
+        </WebView>
+    </Window>
+</Alloy>

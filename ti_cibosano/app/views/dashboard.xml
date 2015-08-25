@@ -1,0 +1,23 @@
+<Alloy>
+    <Window>
+    	<ProgressIndicator ns="Ti.UI.Android" platform="android" id="progressIndicator"
+         message="Caricamento..." cancelable="false"
+         location="Ti.UI.Android.PROGRESS_INDICATOR_DIALOG" />
+        <ScrollView>
+            <View class="container">
+                <View id="LogoContainer">
+                    <ImageView id="Sfondo" image="/images/img_bg.png" />
+                    <ImageView id="Logo" image="/images/logo_payoff.png" />
+                </View>
+                <View class="row">
+                    <View class="blocco">
+                        <!--ImageView class="bgItem" image="/images/bg_item_puntivendita.png"></ImageView-->
+                        <ImageView id="PuntiVendita" class="item" image="/images/item_puntivendita.png"></ImageView>
+                    </View>
+                </View>
+                <View id="bottomSpacer">
+                </View>
+            </View>
+        </ScrollView>
+    </Window>
+</Alloy>

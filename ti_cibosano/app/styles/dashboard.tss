@@ -1,0 +1,161 @@
+"Window": {
+    navBarHidden: "true",
+    fullscreen: "true",
+    exitOnClose: "true"
+},
+".container": {
+    top: 0,
+    backgroundColor: "white",
+    layout : "vertical"
+},
+"ScrollView":{
+    height: '100%'
+},
+"#LogoContainer[formFactor=tablet]":{
+    left: '2.5%',
+    height: Ti.UI.SIZE,
+},
+"#Logo[formFactor=tablet]":{
+    left: 0,
+    top: '22dp'
+},
+"#Sfondo[formFactor=tablet]":{
+    right: 0,
+    top: 0
+},
+".row[formFactor=tablet]":{
+    layout: "horizontal",
+    width: Ti.UI.FILL,
+    height: '23.5%',
+    top: '10dp'
+},
+".blocco[formFactor=tablet]":{
+    height: Ti.UI.FILL,
+    width: '30%',
+    left: '2.5%',
+},
+".item[formFactor=tablet]":{
+    height: '174dp',
+    width: '400dp',
+    right: 0,
+    borderWidth: "2dp",
+    borderColor: "#e8e8e8"
+},
+".bgItem[formFactor=tablet]":{
+    height: '174dp',
+    width: '348dp',
+    left: 0,
+    borderWidth: "2dp",
+    borderColor: "#e8e8e8"
+},
+"ScrollView[formFactor=handheld]":{
+    height: '100%',
+    width : Ti.UI.FILL
+},
+"#LogoContainer[formFactor=handheld]":{
+    left: 0,
+    width: '100%',
+    height: Ti.UI.SIZE,
+},
+"#Logo[formFactor=handheld]":{
+    left: 0,
+    top: '22dp',
+    width: '100%'
+},
+"#Sfondo[formFactor=handheld]":{
+    right: 0,
+    top: 0,
+    width: Ti.UI.FILL
+},
+".row[formFactor=handheld]":{
+    layout : "vertical",
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+},
+".blocco[formFactor=handheld]":{
+    width: "75%",
+    height: Ti.UI.SIZE,
+    top: '12dp'
+},
+".item[formFactor=handheld]":{
+    top: 0,
+    right: 0,
+    width : Ti.UI.SIZE,
+    borderWidth: "2dp",
+    borderColor: "#e8e8e8"
+},
+".bgItem[formFactor=handheld]":{
+    width: Ti.UI.SIZE,
+    top : 0,
+    left: 0,
+    borderWidth: "2dp",
+    borderColor: "#e8e8e8"
+},
+"#Facebook[formFactor=handheld]":{
+    width: '50dp',
+    height: '50dp',
+    bottom :'50dp',
+    right: 0
+},
+"#Youtube[formFactor=handheld]":{
+    width: '50dp',
+    height: '50dp',
+    right: '50dp',
+    bottom: 0
+},
+// "#Home[formFactor=handheld]":{
+    // width: '60dp',
+    // height: '60dp',
+    // right: 0,
+    // bottom: 0,
+// },
+"#Instagram[formFactor=handheld]":{
+    width: '50dp',
+    height: '50dp',
+    right: 0,
+    bottom: 0,
+},
+"#SocialButtons[formFactor=handheld]":{
+    width: '100dp',
+    height: '100dp',
+    right: 0,
+    bottom: 0,
+},
+"#Facebook":{
+    width: '87dp',
+    height: '87dp',
+    bottom :'87dp',
+    right: 0
+},
+"#Youtube":{
+    width: '87dp',
+    height: '87dp',
+    right: '87dp',
+    bottom: 0
+},
+// "#Home":{
+    // width: '87dp',
+    // height: '87dp',
+    // right: 0,
+    // bottom: 0,
+// },
+"#Instagram":{
+    width: '87dp',
+    height: '87dp',
+    right: 0,
+    bottom: 0,
+},
+"#SocialButtons":{
+    width: '174dp',
+    height: '174dp',
+    right: 0,
+},
+"#bottomSpacer[formFactor=handheld]": {
+    height: "22dp",
+    backgroundColor: "white",
+},
+"#bottomSpacer[formFactor=tablet]": {
+    height: "0",
+    backgroundColor: "white",
+    visible: false
+}

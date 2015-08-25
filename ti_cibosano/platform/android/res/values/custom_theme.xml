@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Titanium" parent="Theme.AppCompat.Fullscreen">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+    <style name="Theme.MyTheme" parent="@style/Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:editTextStyle">@style/editText</item>
+    </style>
+    <style name="editText" parent="@android:style/Widget.EditText">
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+</resources>

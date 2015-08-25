@@ -1,0 +1,30 @@
+<Alloy>
+    <Window layout="vertical">
+    	<ProgressIndicator ns="Ti.UI.Android" platform="android" id="progressIndicator"
+         message="Caricamento..." cancelable="false"
+         location="Ti.UI.Android.PROGRESS_INDICATOR_DIALOG" />
+        <View id="titleBar">
+            <Button id="backButton"></Button>
+            <Label id="titleLabel">Punti Vendita</Label>
+        </View>
+        <View id="content">
+            <View id="mainContainer" class="container">
+                <View id="listaPuntiVenditaContainer">
+                    <View id="barraPuntiVendita">
+                        <SearchBar platform="ios" id="search"></SearchBar>
+                        <TextField platform="android" id="search"></TextField>
+                        <View id="buttonBar">
+                            <ImageView id="listaButton"></ImageView>
+                            <ImageView id="mappaButton"></ImageView>
+                        </View>
+                    </View>
+                    <View>
+                        <View id="listaPuntiVendita"></View>
+                        <View id="mappaPuntiVendita"></View>
+                    </View>
+                </View>
+            </View>
+            <View id="overlay"></View>
+        </View>
+    </Window>
+</Alloy>

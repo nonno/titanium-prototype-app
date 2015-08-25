@@ -1,0 +1,112 @@
+{"locali":[
+  {
+    "id": "1",
+    "nome": "Bar David",
+    "tipo": "bar",
+    "email": "bardavid@gmail.com",
+    "tel": "+3907311234567",
+    "lat": 43.576483,
+    "lon": 13.2049407,
+    "web": ""
+  },
+  {
+    "id": "2",
+    "nome": "La lanterna da Ciro",
+    "tipo": "ris",
+    "email": "ciro@tiscali.it",
+    "tel": "+3907317654321",
+    "lat": 43.57389,
+    "lon": 13.20847,
+    "web": ""
+  },
+  {
+    "id": "3",
+    "nome": "Vintora",
+    "tipo": "ris",
+    "email": "vintora@live.com",
+    "tel": "3386543219",
+    "lat": 43.5768942,
+    "lon": 13.2053786,
+    "web": ""
+  },
+  {
+    "id": "4",
+    "nome": "Hostaria dietro le quinte",
+    "tipo": "ris",
+    "email": "",
+    "tel": "",
+    "lat": 43.5221582,
+    "lon": 13.2440216,
+    "web": ""
+  },
+  {
+    "id": "5",
+    "nome": "La Rincrocca",
+    "tipo": "ris",
+    "email": "",
+    "tel": "",
+    "lat": 43.5242159,
+    "lon": 13.2468762,
+    "web": ""
+  },
+  {
+    "id": "6",
+    "nome": "Biffi",
+    "tipo": "tc",
+    "email": "",
+    "tel": "",
+    "lat": 43.5350029,
+    "lon": 13.2646836,
+    "web": ""
+  },
+  {
+    "id": "7",
+    "nome": "Orange",
+    "tipo": "ris",
+    "email": "",
+    "tel": "",
+    "lat": 43.5259664,
+    "lon": 13.2469179,
+    "web": ""
+  },
+  {
+    "id": "8",
+    "nome": "Pulcinella",
+    "tipo": "ris",
+    "email": "",
+    "tel": "",
+    "lat": 43.7384631,
+    "lon": 13.1883439,
+    "web": ""
+  },
+  {
+    "id": "9",
+    "nome": "La cantina de Mauretto",
+    "tipo": "ris",
+    "email": "",
+    "tel": "+39 071 948865",
+    "lat": 43.5893708,
+    "lon": 13.361612,
+    "web": "http://www.ristorantelacantinademauretto.com/"
+  },
+  {
+    "id": "10",
+    "nome": "Ristorante Tabano",
+    "tipo": "ris",
+    "email": "",
+    "tel": "+39 0731 215973",
+    "lat": 43.5243064,
+    "lon": 13.2039685,
+    "web": "http://www.tabanoristorante.com"
+  },
+  {
+    "id": "11",
+    "nome": "Ristorante pizzeria Gatto Matto",
+    "tipo": "ris",
+    "email": "",
+    "tel": "+39 0731 214388",
+    "lat": 43.52307,
+    "lon": 13.24268,
+    "web": "http://www.osteriagattomatto.it"
+  }
+]}
