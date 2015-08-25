@@ -97,3 +97,5 @@ $.profile.addEventListener("postlayout", function(e){
 		curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT
 	});
 });
+
+exports.backButtonContainer = $.backButtonContainer;

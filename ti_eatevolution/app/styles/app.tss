@@ -1,24 +1,19 @@
 'Label[platform=android]': {
-   color: '#000' // all platforms except Android default to black 
+	color: '#000' // all platforms except Android default to black 
 },
-
 'Window': {
-    backgroundColor: '#fff', // white background instead of default transparent
-    titleAttributes:  {
-        color: "#C41230"
-   }
+	backgroundColor: '#fff', // white background instead of default transparent
+	titleAttributes: {
+		color: "#C41230"
+	}
 },
-
 'Window[platform=android]': {
-    modal: false, // make android windows all heavyweight
-    navBarHidden: true,
-    fullscreen: true,
+	modal: false, // make android windows all heavyweight
+	navBarHidden: true
 },
-
 'TextField': {
-    borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED // common default style
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED // common default style
 },
-
 "ImageView":{
 	preventDefaultImage: true
 }
@@ -348,4 +343,13 @@
 
 '.no-touch':{
 	touchEnabled:false
+},
+
+'.backButtonContainer[platform=ios]':{
+	visible: false,
+	height: "0dp",
+	width: Ti.UI.SIZE,
+	left: "0dp"
+},
+'.backButton[platform=ios]':{
 }

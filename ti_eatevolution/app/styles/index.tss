@@ -1,3 +1,18 @@
 ".container":{
-	backgroundColor:"#fff"
+},
+"TabGroup": {
+},
+"Tab": {
+},
+"#listTab[platform=ios]": {
+	icon:"images/dark_home.png"
+},
+"#mapTab[platform=ios]": {
+	icon:"images/dark_globe.png"
+},
+"#joinTab[platform=ios]": {
+	icon:"images/dark_link.png"
+},
+"#infoTab[platform=ios]": {
+	icon:"images/dark_info.png"
 }

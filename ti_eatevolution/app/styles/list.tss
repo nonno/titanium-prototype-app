@@ -5,7 +5,7 @@
 	height: 100,
 	width: Ti.UI.FILL
 },
-".wrapper": {
+"#wrapper": {
 	backgroundColor:"#fff",
 	orientationModes: [Ti.UI.PORTRAIT,Ti.UI.LANDSCAPE_LEFT,Ti.UI.LANDSCAPE_RIGHT,Ti.UI.UPSIDE_PORTRAIT],
 	exitOnClose: true,
@@ -19,19 +19,9 @@
 	extendEdges: Titanium.UI.EXTEND_EDGE_TOP
 },
 
-".wrapper[platform=ios]":{
+"#wrapper[platform=ios]":{
 	navTintColor: "#ae331f"
-}
-
-".logo":{
-	text: "\ue601", // Unicode for Appcelerator Logo icon font
-	color: "#C41230",
-	font:{
-		fontFamily:"icomoon",
-		fontSize:36
-	}
 },
-
 ".favorite":{
 	font:{
 		fontSize: 25,
@@ -78,8 +68,7 @@
 	left: 0,
 	borderRadius: 35,
 	opacity: 0.6
-}
-
+},
 ".search":{ 
 	backgroundColor: "#fff",
 	borderWidth:0,

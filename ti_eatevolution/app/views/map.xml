@@ -1,0 +1,5 @@
+<Alloy>
+	<Window class="container">
+		<Label text="Visualizzazione su mappa"></Label>
+	</Window>
+</Alloy>
