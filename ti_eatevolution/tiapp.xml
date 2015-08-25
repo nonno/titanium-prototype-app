@@ -90,6 +90,7 @@
     <module platform="commonjs">ti.cloud</module>
   </modules>
   <deployment-targets>
+    <target device="mobileweb">false</target>
     <target device="windows">true</target>
     <target device="android">true</target>
     <target device="ipad">false</target>
@@ -99,22 +100,6 @@
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>
-  <guid>d3ba4579-4814-4fb5-9000-16966cced5e6</guid>
-  <property name="appc-app-id" type="string">55daea459879a31c478ff098</property>
-  <property name="acs-authbase-url-development" type="string">https://secure-identity.cloud.appcelerator.com</property>
-  <property name="acs-base-url-development" type="string">https://api.cloud.appcelerator.com</property>
-  <property name="acs-oauth-secret-development" type="string">SNfZNtuaVBzM7ezLVnEoBBYrjK88xrGG</property>
-  <property name="acs-oauth-key-development" type="string">rpr0ChhEwo3uoH01Lo6X7F4qd7st0ToY</property>
-  <property name="acs-api-key-development" type="string">0pBw3BF5m4Rx1lC6iCq0GjIL7f4u4Y0A</property>
-  <property name="acs-username-development" type="string">appc_app_user_dev</property>
-  <property name="acs-password-development" type="string">RIHbg6cJdiyuC2sQ2e</property>
-  <property name="acs-authbase-url-production" type="string">https://secure-identity.cloud.appcelerator.com</property>
-  <property name="acs-base-url-production" type="string">https://api.cloud.appcelerator.com</property>
-  <property name="acs-oauth-secret-production" type="string">Tq1FYw8tDNRzxYZ8KzMxbWGELi66ALW9</property>
-  <property name="acs-oauth-key-production" type="string">33akpzna4nlKYGtoz3r3r1A7Xb35Sh7V</property>
-  <property name="acs-api-key-production" type="string">MGCoGl5JNe1GPSwESwuhHbaLyigwGMk4</property>
-  <property name="acs-username-production" type="string">appc_app_user</property>
-  <property name="acs-password-production" type="string">yZgOnBjAxaRZ0dsVFC</property>
-  <property name="appc-org-id" type="string">100002483</property>
-  <property name="appc-creator-user-id" type="string">19434108-2a37-4528-a2aa-876617b44433</property>
+  <guid>4f96a075-1f7c-42bc-9777-16966cced5e6</guid>
+  <property name="appc-app-id" type="string">55dc30ec8b8f5c5d44cc6f7d</property>
 </ti:app>
