@@ -25,10 +25,10 @@
 		<SearchBar id="searchBar" platform="ios" class="search" onBookmark="onBookmarkClick" onFocus="onSearchFocus" onCancel="onSearchCancel"  onChange="onSearchChange" />
 		
 		<!-- This listView leverages two ListItem templates to denote regular contacts and those that are bookmarked. -->
-		<ListView id="listView" defaultItemTemplate="userTemplate" onItemclick="onItemClick">
+		<ListView id="listView" defaultItemTemplate="defaultTemplate" onItemclick="onItemClick">
 			<Templates>
 				<!-- UserTemplate - this is the default ListItem template -->
-				<ItemTemplate id="userTemplate" name="userTemplate" class="template">
+				<ItemTemplate id="defaultTemplate" name="defaultTemplate" class="template">
 					<View class="left-buffer">
 						<ImageView id="userPhoto" bindId="userPhoto" class="avatar" />
 						<View platform="android" class="smoothAvatarBorderRadius" />

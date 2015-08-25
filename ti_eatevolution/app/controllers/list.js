@@ -16,7 +16,7 @@ onSearchChange = function(e){
 };
 
 preprocessForListView = function(rawData) {
-	if (_args.restrictToFavorites) {
+	if ($.listView.defaultItemTemplate === 'favoriteTemplate') {
 		rawData = _.filter(rawData, function(item){
 			return $FM.exists(item.id);
 		});
@@ -26,7 +26,7 @@ preprocessForListView = function(rawData) {
 		var isFavorite = $FM.exists(item.id);
 		
 		return {
-			template: isFavorite ? "favoriteTemplate" : "userTemplate",
+			template: isFavorite ? "favoriteTemplate" : "defaultTemplate",
 			properties: {
 				searchableText: item.nome + ' ' + item.email,
 				user: item,
@@ -111,10 +111,6 @@ init = function(){
 	if (_args.title){
 		$.wrapper.title = _args.title;
 	}
-	
-	if (_args.restrictToFavorites){
-		OS_IOS && ($.searchBar.showBookmark = false);
-	}
 };
 
 onItemClick = function(e){
@@ -128,7 +124,13 @@ onItemClick = function(e){
 onBookmarkClick = function(e){
 	Ti.Analytics.featureEvent(Ti.Platform.osname+"."+title+".favorites.clicked");
 	
-	currentTab.open(Alloy.createController("list", {restrictToFavorites:true, title:"Preferiti", displayHomeAsUp:true}).getView());
+	if ($.listView.defaultItemTemplate === 'defaultTemplate'){
+		$.listView.defaultItemTemplate = 'favoriteTemplate';
+	} else if ($.listView.defaultItemTemplate === 'favoriteTemplate') {
+		$.listView.defaultItemTemplate = 'defaultTemplate';
+	}
+	
+	init();
 };
 
 if (OS_IOS){
@@ -138,10 +140,8 @@ if (OS_IOS){
 	};
 	
 	onSearchCancel = function(e){
-		if (!_args.restrictToFavorites){
-			$.searchBar.showBookmark = true;
-			$.searchBar.showCancel = false;
-		}
+		$.searchBar.showBookmark = true;
+		$.searchBar.showCancel = false;
 		$.searchBar.blur();
 	};
 	
@@ -163,7 +163,7 @@ if (OS_IOS){
 }
 
 $.wrapper.addEventListener("open", function(){
-	if (OS_ANDROID && _args.restrictToFavorites){
+	if (OS_ANDROID && $.listView.defaultItemTemplate === 'favoriteTemplate'){
 		var activity = $.wrapper.getActivity();
 		activity.onCreateOptionsMenu = function(e) {
 			e.menu.clear();
