@@ -11,9 +11,9 @@ var addTab = function(controllerName, title, icon){
 	$.tabGroup.addTab(tab);
 };
 
-addTab('list', 'Elenco', 'images/dark_home.png');
-addTab('map', 'Mappa', 'images/dark_globe.png');
-addTab('join', 'Adesioni', 'images/dark_link.png');
-addTab('info', 'Chi siamo', 'images/dark_info.png');
+addTab('list', L('lblListTab'), 'images/dark_home.png');
+addTab('map', L('lblMapTab'), 'images/dark_globe.png');
+addTab('join', L('lblJoinTab'), 'images/dark_link.png');
+addTab('info', L('lblInfoTab'), 'images/dark_info.png');
 
 $.tabGroup.open();

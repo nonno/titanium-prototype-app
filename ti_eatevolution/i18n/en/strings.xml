@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="lblYes">Yes</string>
+	<string name="lblNo">No</string>
+	<string name="lblSearch">Search</string>
+	<string name="lblListTab">List</string>
+	<string name="lblMapTab">Map</string>
+	<string name="lblJoinTab">Join</string>
+	<string name="lblInfoTab">About</string>
+	<string name="lblDetailsTitle">Details</string>
+	<string name="lblFavorite">Favorite</string>
+	<string name="lblFavorites">Favorites</string>
+	<string name="lblAddToFavorites">Add to favorites</string>
+	<string name="lblRemoveFromFavorites">Remove from favorites</string>
+	
+	<string name="msgConfirmCall">You are calling %s at %s, do you confirm?</string>
+</resources>

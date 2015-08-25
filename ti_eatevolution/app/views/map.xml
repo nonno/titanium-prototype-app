@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" title="Mappa">
+	<Window class="container" title="L('lblMapTab')">
 		<Label text="Visualizzazione su mappa"></Label>
 	</Window>
 </Alloy>

@@ -72,7 +72,6 @@
 	borderWidth:0,
 	borderColor:"#fff",
 	tintColor: "#C41230",
-	hintText: "Cerca",
 	barColor: "#fff",
 	showBookmark:true
 },

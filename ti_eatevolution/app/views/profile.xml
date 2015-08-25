@@ -1,6 +1,6 @@
 <Alloy>
 	<!-- Main Container of the View, title of the Window is pulled from the title property on the main view-->
-	<Window class="container vgroup" opacity="0.0" title="Dettaglio">
+	<Window class="container vgroup" opacity="0.0" title="L('lblDetailsTitle')">
 		<ActionBar platform="android" displayHomeAsUp="true" onHomeIconItemSelected="closeWindow" />
 		
 		<!-- 
@@ -18,7 +18,7 @@
 			<View class="vgroup top size">
 				<Label id="nome" class='h3 red top-buffer no-touch' ></Label>
 				<Label id="indirizzo" class='h5 gray no-touch' ></Label>
-				<Button id="addFavoriteBtn" class="h4 span-width top-buffer" onClick="toggleFavorite" textid="bookmarkBtn">+ Aggiungi ai preferiti</Button>
+				<Button id="addFavoriteBtn" class="h4 span-width top-buffer" onClick="toggleFavorite" textid="bookmarkBtn" title="L('lblAddToFavorites')"></Button>
 			</View>
 			
 			<!-- User Actions --->

@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" title="Chi siamo">
+	<Window class="container" title="L('lblInfoTab')">
 		<Label text="Informazioni sull'associazione"></Label>
 	</Window>
 </Alloy>

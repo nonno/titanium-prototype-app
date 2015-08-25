@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" title="Adesione">
+	<Window class="container" title="L('lblJoinTab')">
 		<Label text="Informazioni varie per adesione"></Label>
 	</Window>
 </Alloy>

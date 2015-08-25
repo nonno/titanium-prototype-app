@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="lblYes">Sì</string>
+	<string name="lblNo">No</string>
+	<string name="lblSearch">Cerca</string>
+	<string name="lblListTab">Elenco</string>
+	<string name="lblMapTab">Mappa</string>
+	<string name="lblJoinTab">Come aderire</string>
+	<string name="lblInfoTab">Chi siamo</string>
+	<string name="lblDetailsTitle">Dettagli</string>
+	<string name="lblFavorite">Preferito</string>
+	<string name="lblFavorites">Preferiti</string>
+	<string name="lblAddToFavorites">Aggiungi ai preferiti</string>
+	<string name="lblRemoveFromFavorites">Rimuovi dai preferiti</string>
+	
+	<string name="msgConfirmCall">Sicuro di voler chiamare %s al %s?</string>
+</resources>

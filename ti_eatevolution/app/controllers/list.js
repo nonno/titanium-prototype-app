@@ -31,7 +31,7 @@ preprocessForListView = function(rawData) {
 				searchableText: item.nome + ' ' + item.email,
 				user: item,
 				editActions: [
-					{title: isFavorite ? "- Preferito" : "+ Preferito", color: isFavorite ? "#C41230" : "#038BC8" }
+					{title: isFavorite ? ("- " + L('lblFavorite')) : ("+ " + L('lblFavorite')), color: isFavorite ? "#C41230" : "#038BC8" }
 				],
 				canEdit:true
 			},
@@ -150,7 +150,7 @@ if (OS_IOS){
 		var row = e.section.getItemAt(e.itemIndex);
 		var id = row.properties.user.id;
 		
-		if (e.action === "+ Preferito") {
+		if (e.action === ("+ " + L('lblFavorite'))) {
 			$FM.add(id);
 		} else {
 			$FM.remove(id);

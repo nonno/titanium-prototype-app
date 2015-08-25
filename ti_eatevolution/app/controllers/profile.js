@@ -31,7 +31,7 @@ if (!OS_ANDROID){
 
 // Check that the contact is not already a favorite, and update the favorites button
 // title as required.
-$FM.exists(_args.id) && $.addFavoriteBtn.setTitle("- Rimuovi dai preferiti");
+$FM.exists(_args.id) && $.addFavoriteBtn.setTitle(L('lblRemoveFromFavorites'));
 
 Ti.Analytics.featureEvent(Ti.Platform.osname+".profile.viewed");
 
@@ -53,8 +53,8 @@ function callContact(){
 	
 	var dialog = Ti.UI.createAlertDialog({
 		cancel: 0,
-		buttonNames: ['No', 'Sì'],
-		message: "Sicuro di voler chiamare " + _args.firstName + " al " + _args.phone
+		buttonNames: [L('lblNo'), L('lblYes')],
+		message: String.format(L('msgConfirmCall'), _args.firstName, _args.phone)
 	});
 	
 	dialog.addEventListener('click', function(e){
@@ -75,12 +75,12 @@ function toggleFavorite(){
 		Ti.Analytics.featureEvent(Ti.Platform.osname+".profile.addToFavorites.clicked");
 	
 		$FM.add(_args.id);
-		$.addFavoriteBtn.setTitle("- Rimuovi dai preferiti");
+		$.addFavoriteBtn.setTitle(L('lblRemoveFromFavorites'));
 	} else {
 		Ti.Analytics.featureEvent(Ti.Platform.osname+".profile.removeFromFavorites.clicked");
 		
 		$FM.remove(_args.id);
-		$.addFavoriteBtn.setTitle("+ Aggiungi ai preferiti"); 
+		$.addFavoriteBtn.setTitle(L('lblAddToFavorites')); 
 	}
 	
 	Ti.App.fireEvent("refresh-data");
