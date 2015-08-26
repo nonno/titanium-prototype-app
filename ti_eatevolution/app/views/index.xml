@@ -1,4 +1,4 @@
 <Alloy>
-	<TabGroup id="tabGroup">
+	<TabGroup id="tabGroup" onOpen="onTabGroupOpen">
 	</TabGroup>
 </Alloy>

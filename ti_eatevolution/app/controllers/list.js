@@ -11,7 +11,6 @@ title = (_args.title || "").toLowerCase();
 Ti.Analytics.featureEvent(Ti.Platform.osname+"."+title+".viewed");
 
 onSearchChange = function(e){
-	Ti.API.info(e);
 	$.listView.searchText = e.source.value;
 };
 
@@ -181,3 +180,5 @@ init();
 exports.setTab = function(tab){
 	currentTab = tab;
 };
+exports.onSearchChange = onSearchChange;
+exports.onBookmarkClick = onBookmarkClick;
