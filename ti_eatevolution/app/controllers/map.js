@@ -1,7 +1,7 @@
 var args = arguments[0] || {},
 	Map = require('ti.map');
 
-var file, locali, mapView, listener, currentTab;
+var file, locali, mapView, listener, currentTab, centerMapOnCurrentPosition;
 
 file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json");
 locali = JSON.parse(file.read().text).locali;
@@ -48,6 +48,31 @@ listener = function(event) {
 };
 mapView.addEventListener('click', listener);
 
+centerMapOnCurrentPosition = function(){
+	Ti.Geolocation.getCurrentPosition(function(e){
+		var coords;
+		
+		if (e.success && e.coords) {
+			Ti.API.debug("Current position: ");
+			coords = e.coords;
+		} else if (Ti.Geolocation.lastGeolocation){
+			Ti.API.debug("Last position: ");
+			coords = Ti.Geolocation.lastGeolocation;
+		}
+		
+		if (coords){
+			Ti.API.debug(JSON.stringify(coords));
+			
+			mapView.setRegion({
+				'latitude' : coords.latitude,
+				'longitude' : coords.longitude,
+				'latitudeDelta' : 1,
+				'longitudeDelta' : 1,
+			});
+		}
+	});
+};
+centerMapOnCurrentPosition();
 
 exports.setTab = function(tab){
 	currentTab = tab;
