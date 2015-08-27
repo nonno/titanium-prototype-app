@@ -49,6 +49,11 @@
             </array>
           </dict>
         </array>
+        <key>NSLocationAlwaysUsageDescription</key>
+        <string>
+            Location is necessary for showing what there is around you on the map,
+            and for ordering by distance.
+        </string>
       </dict>
     </plist>
   </ios>
