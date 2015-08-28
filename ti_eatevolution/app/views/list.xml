@@ -13,6 +13,7 @@
 							<Label id="nome" bindId="nome" class="title" />
 							<Label id="indirizzo" bindId="indirizzo" class="subtitle" />
 							<Label id="telefono" bindId="telefono" class="subtitle" />
+							<Label id="distanza" bindId="distanza" class="subtitle" />
 						</View>
 						<View class="gray-line bottom"/>
 					</View>
@@ -27,6 +28,7 @@
 							<Label id="nome" bindId="nome" class="title" />
 							<Label id="indirizzo" bindId="indirizzo" class="subtitle" />
 							<Label id="telefono" bindId="telefono" class="subtitle" />
+							<Label id="distanza" bindId="distanza" class="subtitle" />
 						</View>
 						<Label class="favorite" />
 						<View class="gray-line bottom"/>

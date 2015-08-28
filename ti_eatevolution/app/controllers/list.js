@@ -1,10 +1,12 @@
 var _args = arguments[0] || {},
 	App = Alloy.Globals.App, // reference to the APP singleton object
 	$FM = require('favoritesmgr'),  // FavoritesManager object (see lib/utilities.js)
+	geoUtils = require("GeoUtils"),
 	locali = null,
 	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
 
-var init, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus, onSearchCancel, title, currentTab;
+var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
+	onSearchCancel, title, currentTab, formatDistance, calculateDistances, init;
 
 title = (_args.title || "").toLowerCase();
 
@@ -35,34 +37,53 @@ preprocessForListView = function(rawData) {
 				canEdit:true
 			},
 			nome: {text: item.nome},
+			indirizzo: {text: item.ind},
 			telefono: {text: item.tel},
-			indirizzo: {text: item.ind}
+			distanza: {text: formatDistance(item.distanza)}
 		};
 	});
 };
 
-init = function(){
-	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json"); 
+populateList = function(params){
+	params = params || {};
+	params.orderByDistance = params.orderByDistance || false;
 	
-	locali = JSON.parse(file.read().text).locali;
+	var indexes, sections, groups, section;
 	
-	locali = _.sortBy(locali, function(item){
-		return item.nome;
-	});
-	
-	if (locali) {
+	if (!locali) {
+		return;
+	}
+	if (params.orderByDistance){
+		Ti.API.debug('Ordering by distance');
+		
+		locali = _.sortBy(locali, function(item){
+			return item.distanza;
+		});
+		
+		section = Ti.UI.createListSection();
+		section.items = preprocessForListView(locali);
+		
+		$.listView.sections = [section];
+	} else {
+		Ti.API.debug('Ordering by name');
+		
+		locali = _.sortBy(locali, function(item){
+			return item.nome;
+		});
+		
 		indexes = [];
-		var sections = [];
+		sections = [];
+		groups = null;
 		
 		// Group the data by first letter of last name to make it easier to create sections.
-		var groups  = _.groupBy(locali, function(item){
-		 	return item.nome.charAt(0);
+		groups  = _.groupBy(locali, function(item){
+			return item.nome.charAt(0);
 		});
 
 		_.each(groups, function(group){
 			var dataToAdd = preprocessForListView(group);
-
-			if(dataToAdd.length < 1) return;
+			
+			if (dataToAdd.length < 1) return;
 			
 			indexes.push({
 				index: indexes.length,
@@ -85,7 +106,7 @@ init = function(){
 			});
 			sectionHeader.add(sectionLabel);
 
-			var section = Ti.UI.createListSection({
+			section = Ti.UI.createListSection({
 				headerView: sectionHeader
 			});
 			section.items = dataToAdd;
@@ -105,10 +126,6 @@ init = function(){
 				}
 			});
 		}
-	}
-	
-	if (_args.title){
-		$.wrapper.title = _args.title;
 	}
 };
 
@@ -130,6 +147,39 @@ onBookmarkClick = function(e){
 	}
 	
 	init();
+};
+
+calculateDistances = function(e) {
+	if (e.success) {
+		locali = _.map(locali, function(locale) {
+			locale.distanza = geoUtils.calculateDistance({'latitude' : locale.lat, 'longitude' : locale.lon}, e.coords);
+			return locale;
+		});
+		return true;
+	}
+	return false;
+}; 
+
+formatDistance = function(distance) {
+	if (distance == undefined || !_.isNumber(distance) || _.isNaN(distance) || (distance == Number.POSITIVE_INFINITY)) {
+		return '';
+	}
+	if (distance > 9) {
+		return Math.round(distance) + ' km';
+	}
+	return Math.round(distance * 10) / 10 + ' km';
+};
+
+init = function(){
+	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json");
+	
+	locali = JSON.parse(file.read().text).locali;
+	
+	Ti.Geolocation.getCurrentPosition(function(e) {
+		var distancesCalculated = calculateDistances(e);
+		
+		populateList({'orderByDistance' : distancesCalculated});
+	});
 };
 
 if (OS_IOS){
@@ -175,6 +225,9 @@ Ti.App.addEventListener("refresh-data", function(e){
 	init();
 });
 
+if (_args.title){
+	$.wrapper.title = _args.title;
+}
 init();
 
 exports.setTab = function(tab){
