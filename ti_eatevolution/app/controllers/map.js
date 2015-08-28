@@ -9,7 +9,6 @@ locali = JSON.parse(file.read().text).locali;
 mapView = Map.createView({
 	mapType : Map.NORMAL_TYPE,
 	region : {
-		// TODO user position
 		latitude : 43.0977,
 		longitude : 12.3838,
 		latitudeDelta : 2,
@@ -32,13 +31,14 @@ mapView.annotations = _.map(locali, function(locale) {
 		locale : locale
 	});
 	if (OS_IOS) {
-		annotation.rightButton = Ti.UI.iPhone.SystemButtonStyle.BAR;
+		annotation.rightButton = Ti.UI.iPhone.SystemButton.INFO_LIGHT;
 	}
 	return annotation;
 }); 
 
 listener = function(event) {
 	if (event.clicksource == 'rightButton') {
+		// FIXME titanium bug https://jira.appcelerator.org/browse/TIMOB-19215
 		currentTab.open(Alloy.createController("profile", event.annotation.locale).getView());
 	} else {
 		if (event.clicksource != 'pin' && OS_ANDROID) {

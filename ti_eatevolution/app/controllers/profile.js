@@ -8,9 +8,8 @@ $.telefono.text = _args.tel;
 $.email.text = _args.email;
 $.web.text = _args.web;
 
-var lat = OS_ANDROID ? _args.lat+0.75 : _args.lat;
 $.mapview.setRegion({
-	latitude: lat || 43.425505,
+	latitude: _args.lat || 43.425505,
 	longitude: _args.lon || 11.8668486,
 	latitudeDelta:2,
 	longitudeDelta:2,
@@ -18,16 +17,11 @@ $.mapview.setRegion({
 	tilt:45
 });
 
-// FIXME android bug with sdk 4.1
-if (!OS_ANDROID){
-	var mapAnnotation = Map.createAnnotation({
-		latitude: lat || 43.425505,
-		longitude: _args.lon || 11.8668486,
-		customView: Alloy.createController("annotation", {image: _args.photo}).getView(),
-		animate:true
-	});
-	$.mapview.addAnnotation(mapAnnotation);
-}
+var mapAnnotation = Map.createAnnotation({
+	latitude: _args.lat || 43.425505,
+	longitude: _args.lon || 11.8668486
+});
+$.mapview.addAnnotation(mapAnnotation);
 
 // Check that the contact is not already a favorite, and update the favorites button
 // title as required.

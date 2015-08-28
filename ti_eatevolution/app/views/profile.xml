@@ -40,7 +40,7 @@
 					<Label id="email" class="h6 gray left-buffer"></Label>
 				</View>
 				<View class='hgroup size left-buffer top-buffer'>
-					<Label class="h3 icon icon-message icon-small red left top" />
+					<Label class="h3 icon icon-cloud icon-small red left top" />
 					<Label id="web" class="h6 gray left-buffer right-buffer"></Label>
 				</View>
 				<View class='hgroup size left-buffer top-buffer'>
