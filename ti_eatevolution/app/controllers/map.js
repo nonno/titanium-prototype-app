@@ -60,9 +60,14 @@ centerMapOnCurrentPosition = function(){
 			coords = Ti.Geolocation.lastGeolocation;
 		}
 		
+		if (ENV_DEV && OS_IOS){
+			coords = {
+				latitude : 43.0977,
+				longitude : 12.3838
+			};
+		}
+		
 		if (coords){
-			Ti.API.debug(JSON.stringify(coords));
-			
 			mapView.setRegion({
 				'latitude' : coords.latitude,
 				'longitude' : coords.longitude,

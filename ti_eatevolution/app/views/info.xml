@@ -1,5 +1,30 @@
 <Alloy>
-	<Window class="container" title="L('lblInfoTab')">
-		<Label text="Informazioni sull'associazione"></Label>
+	<Window title="L('lblInfoTab')">
+		<ScrollView id="mainContainer" class='vgroup buffer'>
+			<Label text="L('lblCompanyInfo')" class="h6 left-buffer right-buffer" />
+			
+		 	<View class='buffer vgroup size'>
+				<View class='hgroup size left-buffer top-buffer'>
+					<Label class="h3 icon icon-small red left top" />
+					<Label id="address" class="h6 gray left-buffer"></Label>
+				</View>
+				<View class='hgroup size left-buffer top-buffer' onClick="call">
+					<Label class="h3 icon icon-phone icon-small red left top" />
+					<Label id="phone" class="h6 gray left-buffer"></Label>
+				</View>
+				<View class='hgroup size left-buffer top-buffer'>
+					<Label class="h3 icon icon-small red left top" />
+					<Label id="taxCode" class="h6 gray left-buffer right-buffer"></Label>
+				</View>
+				<View class='hgroup size left-buffer top-buffer' onClick="email">
+					<Label class="h3 icon icon-email icon-small red left top" />
+					<Label id="email" class="h6 gray left-buffer right-buffer"></Label>
+				</View>
+				<View class='hgroup size left-buffer top-buffer' onClick="web">
+					<Label class="h3 icon icon-cloud icon-small red left top" />
+					<Label id="web" class="h6 gray left-buffer right-buffer"></Label>
+				</View>
+			</View>
+		</ScrollView>
 	</Window>
 </Alloy>

@@ -1,5 +1,7 @@
 <Alloy>
-	<Window class="container" title="L('lblJoinTab')">
-		<Label text="Informazioni varie per adesione"></Label>
+	<Window title="L('lblJoinTab')">
+		<ScrollView id="mainContainer" class='vgroup buffer'>
+			<Label text="L('lblJoinInfo')" class="h6 left-buffer right-buffer" />
+		</ScrollView>
 	</Window>
 </Alloy>

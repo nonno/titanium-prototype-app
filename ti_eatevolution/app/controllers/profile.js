@@ -45,23 +45,11 @@ function emailContact() {
 function callContact(){
 	Ti.Analytics.featureEvent(Ti.Platform.osname+".profile.callContactButton.clicked");
 	
-	var dialog = Ti.UI.createAlertDialog({
-		cancel: 0,
-		buttonNames: [L('lblNo'), L('lblYes')],
-		message: String.format(L('msgConfirmCall'), _args.firstName, _args.phone)
-	});
-	
-	dialog.addEventListener('click', function(e){
-		if (e.index !== e.source.cancel){
-			if (ENV_DEV){
-				Ti.Platform.openURL("tel:+393381540774");
-			} else if (ENV_PRODUCTION){
-				Ti.Platform.openURL("tel:"+_args.phone);
-			}
-		}
-	});
-	
-	dialog.show();
+	if (ENV_DEV){
+		Ti.Platform.openURL("tel:+393381540774");
+	} else if (ENV_PRODUCTION){
+		Ti.Platform.openURL("tel:"+_args.phone);
+	}
 };
 
 function toggleFavorite(){

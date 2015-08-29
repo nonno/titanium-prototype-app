@@ -343,4 +343,41 @@
 
 '.no-touch':{
 	touchEnabled:false
+},
+
+/**
+ * 	Action Button Styles
+ *  These styles represent unicode character codes for the icon fonts
+ *  being used to represent the icons on the profile view
+ */
+".icon-phone":{
+	text: "\uf095"
+},
+".icon-email":{
+	text:"\uf0e0"
+},
+".icon-cloud":{
+	text:"\uf0c3"
+},
+".icon-calendar":{
+	text: "\uf073"
+},
+".icon-btn":{
+	height: 60,
+	width: 60,
+	color: "#C41230",
+	borderRadius: 30,
+	borderWidth: 2,
+	borderColor: "#C41230",
+	backgroundColor: "#33C41230",
+	textAlign: "center",
+	font:{
+		fontSize: 24
+	},
+	left:"10%"
+},
+'.icon-small':{
+	font:{
+		fontSize:18
+	}
 }

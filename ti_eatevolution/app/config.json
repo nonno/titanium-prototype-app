@@ -1,11 +1,20 @@
 {
-  "global": {},
-  "env:development": {},
-  "env:test": {},
-  "env:production": {},
-  "os:mobileweb": {},
-  "os:ios": {},
-  "os:android": {},
-  "os:blackberry": {},
-  "dependencies": {}
+	"global": {
+		"companyReferences": {
+			"address": "Via Rossini, 51 - 60035 Jesi (AN)",
+			"phone": "+39 0731 720322",
+			"mobilePhone": "+39 380 6468882",
+			"taxCode": "92034660420",
+			"email": "info@nutrizionistisenzafrontiere.org",
+			"web": "http://www.nutrizionistisenzafrontiere.org"
+		}
+	},
+	"env:development": {},
+	"env:test": {},
+	"env:production": {},
+	"os:mobileweb": {},
+	"os:ios": {},
+	"os:android": {},
+	"os:blackberry": {},
+	"dependencies": {}
 }
