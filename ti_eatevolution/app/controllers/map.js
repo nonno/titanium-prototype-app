@@ -19,7 +19,7 @@ mapView = Map.createView({
 	regionFit : true,
 	userLocation : true
 });
-$.map.add(mapView);
+$.mapContainer.add(mapView);
 
 mapView.annotations = _.map(locali, function(locale) {
 	var latitude = OS_IOS ? locale.lat : parseFloat(locale.lat);

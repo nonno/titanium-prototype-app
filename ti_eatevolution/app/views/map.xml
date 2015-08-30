@@ -1,4 +1,9 @@
 <Alloy>
 	<Window class="container" title="L('lblMapTab')">
+		<View id="mapContainer">
+		</View>
+		
+		<View id="advContainer">
+		</View>
 	</Window>
 </Alloy>

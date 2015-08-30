@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="wrapper" class="vgroup" title="L('lblListTab')">
+	<Window id="wrapper" title="L('lblListTab')">
 		<SearchBar id="searchBar" platform="ios" class="search" hintText="L('lblSearch')" onBookmark="onBookmarkClick" onFocus="onSearchFocus" onCancel="onSearchCancel"  onChange="onSearchChange" />
 		
 		<ListView id="listView" defaultItemTemplate="defaultTemplate" onItemclick="onItemClick">
@@ -36,5 +36,8 @@
 				</ItemTemplate>	
 			</Templates>
 		</ListView>
+		
+		<View id="advContainer">
+		</View>
 	</Window>
 </Alloy>

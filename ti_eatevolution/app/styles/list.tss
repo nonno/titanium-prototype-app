@@ -75,11 +75,25 @@
 	barColor: "#fff",
 	showBookmark:true
 },
+"#searchBar[platform=ios]": {
+	top:"0dp",
+	height:"50dp",
+	width:Ti.UI.FILL
+},
 "#searchBar[platform=android,windows]":{
 	height: 40,
 	left: 10,
 	width: "76%"
 },
 "#listView":{
+	top:"50dp",
+	bottom:"40dp",
+	width:Ti.UI.FILL,
 	tintColor: "#666"
+},
+"#advContainer": {
+	bottom: "0dp",
+	height: "40dp",
+	width: Ti.UI.FILL,
+	backgroundColor: "#000"
 }

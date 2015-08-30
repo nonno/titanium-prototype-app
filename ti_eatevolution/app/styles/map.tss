@@ -1,4 +1,11 @@
-
-".container" : {
-  
+"#mapContainer": {
+	top: "0dp",
+	bottom: "40dp",
+	width: Ti.UI.FILL
+},
+"#advContainer": {
+	bottom: "0dp",
+	height: "40dp",
+	width: Ti.UI.FILL,
+	backgroundColor: "#000"
 }
