@@ -1,5 +1,8 @@
 {
 	"global": {
+		"gui": {
+			"advertisementBannerHeight": "50dp"
+		},
 		"companyReferences": {
 			"address": "Via Rossini, 51 - 60035 Jesi (AN)",
 			"phone": "+39 0731 720322",

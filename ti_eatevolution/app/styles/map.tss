@@ -1,11 +1,11 @@
 "#mapContainer": {
 	top: "0dp",
-	bottom: "40dp",
+	bottom: Alloy.CFG.gui.advertisementBannerHeight,
 	width: Ti.UI.FILL
 },
 "#advContainer": {
 	bottom: "0dp",
-	height: "40dp",
+	height: Alloy.CFG.gui.advertisementBannerHeight,
 	width: Ti.UI.FILL,
 	backgroundColor: "#000"
 }

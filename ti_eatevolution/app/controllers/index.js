@@ -18,6 +18,21 @@ var mapController = addTab('map', L('lblMapTab'), 'images/dark_globe.png');
 var joinController = addTab('join', L('lblJoinTab'), 'images/dark_link.png');
 var infoController = addTab('info', L('lblInfoTab'), 'images/dark_info.png');
 
+
+// checking of connection for showing/hiding advertisement
+listController.showAdvertisement(Ti.Network.online);
+mapController.showAdvertisement(Ti.Network.online);
+
+var connectivityChange = function(e){
+	if (e.online){
+		Ti.API.debug(e.networkTypeName);
+	}
+	listController.showAdvertisement(e.online);
+	mapController.showAdvertisement(e.online);
+};
+Ti.Network.addEventListener('change', connectivityChange);
+
+
 // necessary for customizing android actionbar changing tab
 function onTabGroupOpen(e){
 	if (OS_ANDROID){

@@ -79,6 +79,15 @@ centerMapOnCurrentPosition = function(){
 };
 centerMapOnCurrentPosition();
 
+exports.showAdvertisement = function(show){
+	if (show){
+		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
+		$.mapContainer.bottom = Alloy.CFG.gui.advertisementBannerHeight;
+	} else {
+		$.mapContainer.bottom = "0dp";
+		$.advContainer.height = "0dp";
+	}
+};
 exports.setTab = function(tab){
 	currentTab = tab;
 };

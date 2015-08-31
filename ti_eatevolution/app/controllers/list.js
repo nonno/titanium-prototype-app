@@ -233,5 +233,14 @@ init();
 exports.setTab = function(tab){
 	currentTab = tab;
 };
+exports.showAdvertisement = function(show){
+	if (show){
+		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
+		$.listView.bottom = Alloy.CFG.gui.advertisementBannerHeight;
+	} else {
+		$.listView.bottom = "0dp";
+		$.advContainer.height = "0dp";
+	}
+};
 exports.onSearchChange = onSearchChange;
 exports.onBookmarkClick = onBookmarkClick;

@@ -86,14 +86,16 @@
 	width: "76%"
 },
 "#listView":{
-	top:"50dp",
-	bottom:"40dp",
+	bottom: Alloy.CFG.gui.advertisementBannerHeight,
 	width:Ti.UI.FILL,
 	tintColor: "#666"
 },
+"#listView[platform=ios]":{
+	top:"50dp"
+},
 "#advContainer": {
 	bottom: "0dp",
-	height: "40dp",
+	height: Alloy.CFG.gui.advertisementBannerHeight,
 	width: Ti.UI.FILL,
 	backgroundColor: "#000"
 }
