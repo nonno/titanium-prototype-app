@@ -1,10 +1,12 @@
 var args = arguments[0] || {},
+	$FM = require('favoritesmgr'),
 	Repository = require("Repository"),
 	Map = require('ti.map');
 
-var file, locali, mapView, listener, currentTab, centerMapOnCurrentPosition;
+var file, locali, mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap, onlyFavourites;
 
 locali = Repository.getLocali();
+onlyFavourites = false;
 
 mapView = Map.createView({
 	mapType : Map.NORMAL_TYPE,
@@ -21,20 +23,35 @@ mapView = Map.createView({
 });
 $.mapContainer.add(mapView);
 
-mapView.annotations = _.map(locali, function(locale) {
-	var latitude = OS_IOS ? locale.lat : parseFloat(locale.lat);
-	var longitude = OS_IOS ? locale.lon : parseFloat(locale.lon);
-	var annotation = Map.createAnnotation({
-		latitude : latitude,
-		longitude : longitude,
-		title : locale.nome,
-		locale : locale
-	});
-	if (OS_IOS) {
-		annotation.rightButton = Ti.UI.iPhone.SystemButton.INFO_LIGHT;
+populateMap = function(params){
+	params = params || {};
+	params.onlyFavourites = params.onlyFavourites || false;
+	
+	var data;
+	
+	if (params.onlyFavourites) {
+		data = _.filter(locali, function(item){
+			return $FM.exists(item.id);
+		});
+	} else {
+		data = locali;
 	}
-	return annotation;
-}); 
+	
+	mapView.annotations = _.map(data, function(locale) {
+		var latitude = OS_IOS ? locale.lat : parseFloat(locale.lat);
+		var longitude = OS_IOS ? locale.lon : parseFloat(locale.lon);
+		var annotation = Map.createAnnotation({
+			latitude : latitude,
+			longitude : longitude,
+			title : locale.nome,
+			locale : locale
+		});
+		if (OS_IOS) {
+			annotation.rightButton = Ti.UI.iPhone.SystemButton.INFO_LIGHT;
+		}
+		return annotation;
+	});
+};
 
 listener = function(event) {
 	if (event.clicksource == 'rightButton') {
@@ -47,6 +64,12 @@ listener = function(event) {
 	}
 };
 mapView.addEventListener('click', listener);
+
+onBookmarkClick = function(e){
+	onlyFavourites = !onlyFavourites;
+
+	populateMap({'onlyFavourites' : onlyFavourites});
+};
 
 centerMapOnCurrentPosition = function(){
 	Ti.Geolocation.getCurrentPosition(function(e){
@@ -77,7 +100,11 @@ centerMapOnCurrentPosition = function(){
 		}
 	});
 };
+
+
 centerMapOnCurrentPosition();
+
+populateMap();
 
 exports.showAdvertisement = function(show){
 	if (show){
@@ -91,3 +118,4 @@ exports.showAdvertisement = function(show){
 exports.setTab = function(tab){
 	currentTab = tab;
 };
+exports.onBookmarkClick = onBookmarkClick;

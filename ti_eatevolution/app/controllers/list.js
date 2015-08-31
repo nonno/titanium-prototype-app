@@ -1,6 +1,6 @@
 var _args = arguments[0] || {},
 	App = Alloy.Globals.App, // reference to the APP singleton object
-	$FM = require('favoritesmgr'),  // FavoritesManager object (see lib/utilities.js)
+	$FM = require('favoritesmgr'),
 	GeoUtils = require("GeoUtils"),
 	Repository = require("Repository"),
 	locali = null,

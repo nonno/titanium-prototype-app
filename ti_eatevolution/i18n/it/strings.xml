@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<string name="lblCompanyName">Nutrionisti senza frontiere</string>
-	<string name="lblCampaignName">Eat evolution</string>
+	<string name="lblCampaignName">Eat Evolution</string>
 	<string name="lblYes">Sì</string>
 	<string name="lblNo">No</string>
 	<string name="lblSearch">Cerca</string>
