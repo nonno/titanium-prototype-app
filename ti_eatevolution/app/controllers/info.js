@@ -2,7 +2,6 @@ var args = arguments[0] || {};
 
 $.address.text = Alloy.CFG.companyReferences.address;
 $.phone.text = Alloy.CFG.companyReferences.phone + " - " + Alloy.CFG.companyReferences.mobilePhone;
-$.taxCode.text = Alloy.CFG.companyReferences.taxCode;
 $.email.text = Alloy.CFG.companyReferences.email;
 $.web.text = Alloy.CFG.companyReferences.web;
 
