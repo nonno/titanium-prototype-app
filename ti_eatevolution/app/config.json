@@ -1,7 +1,7 @@
 {
 	"global": {
 		"gui": {
-			"advertisementBannerHeight": "50dp"
+			"advertisementBannerHeight": "50"
 		},
 		"companyReferences": {
 			"address": "Via Rossini, 51 - 60035 Jesi (AN)",

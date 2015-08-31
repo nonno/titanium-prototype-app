@@ -1,10 +1,10 @@
 var args = arguments[0] || {},
+	Repository = require("Repository"),
 	Map = require('ti.map');
 
 var file, locali, mapView, listener, currentTab, centerMapOnCurrentPosition;
 
-file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json");
-locali = JSON.parse(file.read().text).locali;
+locali = Repository.getLocali();
 
 mapView = Map.createView({
 	mapType : Map.NORMAL_TYPE,

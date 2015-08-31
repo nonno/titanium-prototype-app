@@ -1,7 +1,8 @@
 var _args = arguments[0] || {},
 	App = Alloy.Globals.App, // reference to the APP singleton object
 	$FM = require('favoritesmgr'),  // FavoritesManager object (see lib/utilities.js)
-	geoUtils = require("GeoUtils"),
+	GeoUtils = require("GeoUtils"),
+	Repository = require("Repository"),
 	locali = null,
 	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
 
@@ -152,7 +153,7 @@ onBookmarkClick = function(e){
 calculateDistances = function(e) {
 	if (e.success) {
 		locali = _.map(locali, function(locale) {
-			locale.distanza = geoUtils.calculateDistance({'latitude' : locale.lat, 'longitude' : locale.lon}, e.coords);
+			locale.distanza = GeoUtils.calculateDistance({'latitude' : locale.lat, 'longitude' : locale.lon}, e.coords);
 			return locale;
 		});
 		return true;
@@ -171,9 +172,7 @@ formatDistance = function(distance) {
 };
 
 init = function(){
-	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json");
-	
-	locali = JSON.parse(file.read().text).locali;
+	locali = locali = Repository.getLocali();
 	
 	Ti.Geolocation.getCurrentPosition(function(e) {
 		var distancesCalculated = calculateDistances(e);
