@@ -1,7 +1,11 @@
 <Alloy>
 	<Window title="L('lblJoinTab')">
 		<ScrollView id="mainContainer" class='vgroup buffer'>
-			<Label text="L('lblJoinInfo')" class="h6 left-buffer right-buffer" />
+			<View class="top size">
+				<Label id="title" class='h3 red top-buffer no-touch' text="L('lblCampaignName')" />
+			</View>
+			
+			<Label text="L('lblJoinInfo')" class="h6 left-buffer right-buffer top-buffer" />
 		</ScrollView>
 	</Window>
 </Alloy>

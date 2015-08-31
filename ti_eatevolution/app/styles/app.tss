@@ -350,6 +350,9 @@
  *  These styles represent unicode character codes for the icon fonts
  *  being used to represent the icons on the profile view
  */
+".icon-home":{
+	text: "\uf015"
+},
 ".icon-phone":{
 	text: "\uf095"
 },

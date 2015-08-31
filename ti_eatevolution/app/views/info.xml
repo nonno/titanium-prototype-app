@@ -1,20 +1,20 @@
 <Alloy>
 	<Window title="L('lblInfoTab')">
 		<ScrollView id="mainContainer" class='vgroup buffer'>
-			<Label text="L('lblCompanyInfo')" class="h6 left-buffer right-buffer" />
+			<View class="top size">
+				<Label id="title" class='h3 red top-buffer no-touch' text="L('lblCompanyName')" />
+			</View>
+			
+			<Label text="L('lblCompanyInfo')" class="h6 left-buffer right-buffer top-buffer" />
 			
 		 	<View class='buffer vgroup size'>
 				<View class='hgroup size left-buffer top-buffer'>
-					<Label class="h3 icon icon-small red left top" />
+					<Label class="h3 icon icon-home icon-small red left top" />
 					<Label id="address" class="h6 gray left-buffer"></Label>
 				</View>
 				<View class='hgroup size left-buffer top-buffer' onClick="call">
 					<Label class="h3 icon icon-phone icon-small red left top" />
 					<Label id="phone" class="h6 gray left-buffer"></Label>
-				</View>
-				<View class='hgroup size left-buffer top-buffer'>
-					<Label class="h3 icon icon-small red left top" />
-					<Label id="taxCode" class="h6 gray left-buffer right-buffer"></Label>
 				</View>
 				<View class='hgroup size left-buffer top-buffer' onClick="email">
 					<Label class="h3 icon icon-email icon-small red left top" />
