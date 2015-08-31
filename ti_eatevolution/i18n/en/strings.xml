@@ -16,6 +16,16 @@
 	<string name="lblRemoveFromFavorites">Remove from favorites</string>
 	<string name="lblInfoEmailSubject">Info request</string>
 	
+	<string name="lblTipoRis">Restaurant</string>
+	<string name="lblTipoGel">Ice-cream parlour</string>
+	<string name="lblTipoPas">Patisserie</string>
+	<string name="lblTipoFor">Bakery</string>
+	<string name="lblTipoAg">Service station</string>
+	<string name="lblTipoBar">Café</string>
+	<string name="lblTipoTc">Dining hall</string>
+	<string name="lblTipoRos">Fry shop</string>
+	<string name="lblTipoFf">Fast-food</string>
+	
 	<string name="lblCompanyInfo">
 blabla
 bla

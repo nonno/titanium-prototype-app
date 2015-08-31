@@ -1,8 +1,10 @@
 var _args = arguments[0] || {},
 	Map = require('ti.map'),  // Reference to the MAP API
-	$FM = require('favoritesmgr');	  // FavoritesManager helper class for managing favorites
+	Repository = require('Repository'),
+	$FM = require('favoritesmgr');  // FavoritesManager helper class for managing favorites
 
 $.nome.text = _args.nome;
+$.tipo.text = Repository.tipoToString(_args.tipo);
 $.indirizzo.text = _args.ind;
 $.telefono.text = _args.tel;
 $.email.text = _args.email;

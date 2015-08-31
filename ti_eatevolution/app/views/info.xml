@@ -5,9 +5,11 @@
 				<Label id="title" class='h3 red top-buffer no-touch' text="L('lblCompanyName')" />
 			</View>
 			
-			<Label text="L('lblCompanyInfo')" class="h6 left-buffer right-buffer top-buffer" />
+			<Label text="L('lblCompanyInfo')" class="h6 left-buffer right-buffer top-buffer size" />
 			
-		 	<View class='buffer vgroup size'>
+			<View class='separator' />
+			
+			<View class='buffer vgroup size'>
 				<View class='hgroup size left-buffer top-buffer'>
 					<Label class="h3 icon icon-home icon-small red left top" />
 					<Label id="address" class="h6 gray left-buffer"></Label>

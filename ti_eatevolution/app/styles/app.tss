@@ -345,6 +345,13 @@
 	touchEnabled:false
 },
 
+'.separator':{
+	top:25,
+	height: 1,
+	width: "90%",
+	backgroundColor:"#acacac"
+},
+
 /**
  * 	Action Button Styles
  *  These styles represent unicode character codes for the icon fonts

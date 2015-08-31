@@ -14,10 +14,4 @@
 ".container":{
 	backgroundColor: "#fff",
 	theme: "nutrizionisti"
-},
-'.separator':{
-	top:25,
-	height: 1,
-	width: "90%",
-	backgroundColor:"#acacac"
 }

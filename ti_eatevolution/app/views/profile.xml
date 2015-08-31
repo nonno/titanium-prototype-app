@@ -14,10 +14,11 @@
 			<!--  Map View Leverages the Map Module, allowing for v2 of Google Maps and latest codebase unifying Google v2 and IOS -->
 			<Module id="mapview" module="ti.map" method="createView" platform="android,ios,windows" class='no-touch top' />
 			
-			<!-- User Information -->
+			<!-- Information -->
 			<View class="vgroup top size">
-				<Label id="nome" class='h3 red top-buffer no-touch' ></Label>
-				<Label id="indirizzo" class='h5 gray no-touch' ></Label>
+				<Label id="nome" class="h3 red top-buffer no-touch" />
+				<Label id="tipo" class="h5 gray no-touch" />
+				<Label id="indirizzo" class="h5 gray no-touch" />
 				<Button id="addFavoriteBtn" class="h4 span-width top-buffer" onClick="toggleFavorite" textid="bookmarkBtn" title="L('lblAddToFavorites')"></Button>
 			</View>
 			
