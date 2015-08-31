@@ -65,7 +65,14 @@ function onTabGroupOpen(e){
 						icon : '/images/ic_action_action_bookmark.png'
 					});
 					item.addEventListener('click', listController.onBookmarkClick);
-					
+					break;
+				case 1:
+					item = e.menu.add({
+						title : L('lblFavorites'),
+						showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
+						icon : '/images/ic_action_action_bookmark.png'
+					});
+					item.addEventListener('click', mapController.onBookmarkClick);
 					break;
 			}
 		};
