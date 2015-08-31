@@ -1,4 +1,7 @@
-var addTab = function(controllerName, title, icon){
+var listController, mapController, joinController, infoController,
+	addTab, connectivityChange;
+
+addTab = function(controllerName, title, icon){
 	var controller = Alloy.createController(controllerName);
 	var tab = Ti.UI.createTab({
 		'title' : title,
@@ -13,17 +16,23 @@ var addTab = function(controllerName, title, icon){
 	return controller;
 };
 
-var listController = addTab('list', L('lblListTab'), 'images/dark_home.png');
-var mapController = addTab('map', L('lblMapTab'), 'images/dark_globe.png');
-var joinController = addTab('join', L('lblJoinTab'), 'images/dark_link.png');
-var infoController = addTab('info', L('lblInfoTab'), 'images/dark_info.png');
-
+if (OS_ANDROID){
+	listController = addTab('list', "", 'images/light_home.png');
+	mapController = addTab('map', "", 'images/light_globe.png');
+	joinController = addTab('join', "", 'images/light_link.png');
+	infoController = addTab('info', "", 'images/light_info.png');
+} else {
+	listController = addTab('list', L('lblListTab'), 'images/dark_home.png');
+	mapController = addTab('map', L('lblMapTab'), 'images/dark_globe.png');
+	joinController = addTab('join', L('lblJoinTab'), 'images/dark_link.png');
+	infoController = addTab('info', L('lblInfoTab'), 'images/dark_info.png');
+}
 
 // checking of connection for showing/hiding advertisement
 listController.showAdvertisement(Ti.Network.online);
 mapController.showAdvertisement(Ti.Network.online);
 
-var connectivityChange = function(e){
+connectivityChange = function(e){
 	if (e.online){
 		Ti.API.debug(e.networkTypeName);
 	}
