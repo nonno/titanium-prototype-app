@@ -13,9 +13,9 @@ $.web.text = _args.web;
 $.mapview.setRegion({
 	latitude: _args.lat || 43.425505,
 	longitude: _args.lon || 11.8668486,
-	latitudeDelta:2,
-	longitudeDelta:2,
-	zoom:5,
+	latitudeDelta:0.1,
+	longitudeDelta:0.1,
+	zoom:10,
 	tilt:45
 });
 
