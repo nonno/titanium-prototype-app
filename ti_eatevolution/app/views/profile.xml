@@ -32,19 +32,19 @@
 			
 			<!-- Contact Information -->
 		 	<View class='buffer vgroup size'>
-				<View class='hgroup size left-buffer top-buffer'>
+				<View id="telefonoContainer" class='hgroup size left-buffer top-buffer'>
 					<Label class="h3 icon icon-phone icon-small red left top" />
 					<Label id="telefono" class="h6 gray left-buffer"></Label>
 				</View>
-				<View class='hgroup size left-buffer top-buffer'>
+				<View id="emailContainer" class='hgroup size left-buffer top-buffer'>
 					<Label class="h3 icon icon-email icon-small red left top" />
 					<Label id="email" class="h6 gray left-buffer"></Label>
 				</View>
-				<View class='hgroup size left-buffer top-buffer'>
+				<View id="webContainer" class='hgroup size left-buffer top-buffer'>
 					<Label class="h3 icon icon-cloud icon-small red left top" />
 					<Label id="web" class="h6 gray left-buffer right-buffer"></Label>
 				</View>
-				<View class='hgroup size left-buffer top-buffer'>
+				<View id="aperturaContainer" class='hgroup size left-buffer top-buffer'>
 					<Label class="h3 icon icon-calendar icon-small red left top" />
 					<Label id="apertura" class="h6 gray left-buffer right-buffer"></Label>
 				</View>

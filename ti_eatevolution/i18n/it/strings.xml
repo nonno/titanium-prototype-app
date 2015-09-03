@@ -15,6 +15,8 @@
 	<string name="lblAddToFavorites">Aggiungi ai preferiti</string>
 	<string name="lblRemoveFromFavorites">Rimuovi dai preferiti</string>
 	<string name="lblInfoEmailSubject">Richiesta informazioni</string>
+	<string name="lblTodayOpen">Oggi aperto</string>
+	<string name="lblTodayClose">Oggi chiuso</string>
 	
 	<string name="lblTipoRis">Ristorante</string>
 	<string name="lblTipoGel">Gelateria</string>

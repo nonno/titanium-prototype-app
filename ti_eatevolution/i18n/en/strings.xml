@@ -15,6 +15,8 @@
 	<string name="lblAddToFavorites">Add to favorites</string>
 	<string name="lblRemoveFromFavorites">Remove from favorites</string>
 	<string name="lblInfoEmailSubject">Info request</string>
+	<string name="lblTodayOpen">Today open</string>
+	<string name="lblTodayClose">Today close</string>
 	
 	<string name="lblTipoRis">Restaurant</string>
 	<string name="lblTipoGel">Ice-cream parlour</string>
