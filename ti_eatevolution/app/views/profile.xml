@@ -1,6 +1,6 @@
 <Alloy>
 	<!-- Main Container of the View, title of the Window is pulled from the title property on the main view-->
-	<Window class="container vgroup" opacity="0.0" title="L('lblDetailsTitle')">
+	<Window class="container" opacity="0.0" title="L('lblDetailsTitle')">
 		<ActionBar platform="android" displayHomeAsUp="true" onHomeIconItemSelected="closeWindow" />
 		
 		<!-- 
@@ -50,5 +50,8 @@
 				</View>
 			</View>
 		</ScrollView>
+		
+		<View id="advContainer">
+		</View>
 	</Window>
 </Alloy>

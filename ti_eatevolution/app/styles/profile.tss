@@ -14,4 +14,15 @@
 ".container":{
 	backgroundColor: "#fff",
 	theme: "nutrizionisti"
+},
+"#contactInfo": {
+	top: "0dp",
+	bottom: Alloy.CFG.gui.advertisementBannerHeight,
+	width: Ti.UI.FILL
+},
+"#advContainer": {
+	bottom: "0dp",
+	height: Alloy.CFG.gui.advertisementBannerHeight,
+	width: Ti.UI.FILL,
+	backgroundColor: "#000"
 }

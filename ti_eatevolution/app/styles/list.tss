@@ -12,8 +12,6 @@
 	titleAttributes: {
 	},
 	hideShadow: true,
-	borderColor: "#fff",
-	borderWidth: 1,
 	translucent: true,
 	extendEdges: Titanium.UI.EXTEND_EDGE_TOP
 },
