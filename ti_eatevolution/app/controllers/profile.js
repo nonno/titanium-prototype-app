@@ -5,7 +5,7 @@ var locale = arguments[0] || {},
 
 $.nome.text = locale.nome;
 $.tipo.text = Repository.tipoToString(locale.tipo);
-$.indirizzo.text = locale.ind;
+$.indirizzo.text = Repository.addressToString(locale);
 $.telefono.text = locale.tel;
 
 if (locale.email){

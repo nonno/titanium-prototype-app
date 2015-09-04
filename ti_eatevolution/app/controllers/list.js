@@ -38,7 +38,7 @@ preprocessForListView = function(rawData) {
 				canEdit:true
 			},
 			nome: {text: item.nome},
-			indirizzo: {text: item.ind},
+			indirizzo: {text: Repository.addressToString(item)},
 			telefono: {text: item.tel},
 			distanza: {text: formatDistance(item.distanza)}
 		};

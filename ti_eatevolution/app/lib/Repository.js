@@ -1,6 +1,6 @@
 var DateUtils = require('DateUtils');
 
-var getLocali, tipoToString, getLocaleTodayTimetable, isLocaleTodayOpen;
+var getLocali, tipoToString, addressToString, getLocaleTodayTimetable, isLocaleTodayOpen;
 
 getLocali = function(){
 	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json");
@@ -10,6 +10,27 @@ getLocali = function(){
 
 tipoToString = function(tipo){
 	return L('lblTipo' + tipo.substring(0,1).toUpperCase() + tipo.substring(1));
+};
+
+addressToString = function(locale){
+	var addressComp, address;
+	
+	addressComp = [];
+	if (locale.ind){
+		addressComp.push(locale.ind);
+	}
+	if (locale.cap){
+		addressComp.push(locale.cap);
+	}
+	if (locale.loc){
+		addressComp.push(locale.loc);
+	}
+	address = addressComp.join(", ");
+	
+	if (locale.prov){
+		address += " (" + locale.prov + ")";
+	}
+	return address;
 };
 
 getLocaleTodayTimetable = function(locale){
@@ -46,5 +67,6 @@ isLocaleTodayOpen = function(locale){
 
 exports.getLocali = getLocali;
 exports.tipoToString = tipoToString;
+exports.addressToString = addressToString;
 exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
