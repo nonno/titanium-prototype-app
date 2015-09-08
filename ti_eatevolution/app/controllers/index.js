@@ -1,46 +1,62 @@
-var listController, mapController, joinController, infoController,
-	addTab, connectivityChange;
+var listController, mapController, joinController, infoController, init;
 
-addTab = function(controllerName, title, icon){
-	var controller = Alloy.createController(controllerName);
-	var tab = Ti.UI.createTab({
-		'title' : title,
-		'icon' : icon,
-		'window' : controller.getView()
+var launch = true;
+if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
+	launch = false;
+	Ti.App.addEventListener("testsExecutionComplete", function testsExecutionComplete() {
+		Ti.App.removeEventListener("testsExecutionComplete", testsExecutionComplete);
+		init();
 	});
-	if (controller.setTab){
-		controller.setTab(tab);
-	}
-	$.tabGroup.addTab(tab);
-	
-	return controller;
-};
-
-if (OS_ANDROID){
-	listController = addTab('list', "", 'images/light_home.png');
-	mapController = addTab('map', "", 'images/light_globe.png');
-	joinController = addTab('join', "", 'images/light_link.png');
-	infoController = addTab('info', "", 'images/light_info.png');
-} else {
-	listController = addTab('list', L('lblListTab'), 'images/dark_home.png');
-	mapController = addTab('map', L('lblMapTab'), 'images/dark_globe.png');
-	joinController = addTab('join', L('lblJoinTab'), 'images/dark_link.png');
-	infoController = addTab('info', L('lblInfoTab'), 'images/dark_info.png');
+}
+if (launch) {
+	init();
 }
 
-// checking of connection for showing/hiding advertisement
-listController.showAdvertisement(Ti.Network.online);
-mapController.showAdvertisement(Ti.Network.online);
-
-connectivityChange = function(e){
-	if (e.online){
-		Ti.API.debug(e.networkTypeName);
+init = function(){
+	var addTab, connectivityChange;
+	
+	addTab = function(controllerName, title, icon){
+		var controller = Alloy.createController(controllerName);
+		var tab = Ti.UI.createTab({
+			'title' : title,
+			'icon' : icon,
+			'window' : controller.getView()
+		});
+		if (controller.setTab){
+			controller.setTab(tab);
+		}
+		$.tabGroup.addTab(tab);
+		
+		return controller;
+	};
+	
+	if (OS_ANDROID){
+		listController = addTab('list', "", 'images/light_home.png');
+		mapController = addTab('map', "", 'images/light_globe.png');
+		joinController = addTab('join', "", 'images/light_link.png');
+		infoController = addTab('info', "", 'images/light_info.png');
+	} else {
+		listController = addTab('list', L('lblListTab'), 'images/dark_home.png');
+		mapController = addTab('map', L('lblMapTab'), 'images/dark_globe.png');
+		joinController = addTab('join', L('lblJoinTab'), 'images/dark_link.png');
+		infoController = addTab('info', L('lblInfoTab'), 'images/dark_info.png');
 	}
-	listController.showAdvertisement(e.online);
-	mapController.showAdvertisement(e.online);
+	
+	// checking of connection for showing/hiding advertisement
+	listController.showAdvertisement(Ti.Network.online);
+	mapController.showAdvertisement(Ti.Network.online);
+	
+	connectivityChange = function(e){
+		if (e.online){
+			Ti.API.debug(e.networkTypeName);
+		}
+		listController.showAdvertisement(e.online);
+		mapController.showAdvertisement(e.online);
+	};
+	Ti.Network.addEventListener('change', connectivityChange);
+	
+	$.tabGroup.open();
 };
-Ti.Network.addEventListener('change', connectivityChange);
-
 
 // necessary for customizing android actionbar changing tab
 function onTabGroupOpen(e){
@@ -94,5 +110,3 @@ function onTabGroupOpen(e){
 		});
 	}
 };
-
-$.tabGroup.open();

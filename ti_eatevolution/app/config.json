@@ -12,7 +12,9 @@
 			"web": "http://www.nutrizionistisenzafrontiere.org"
 		}
 	},
-	"env:development": {},
+	"env:development": {
+		"runTests": true
+	},
 	"env:test": {},
 	"env:production": {},
 	"os:mobileweb": {},

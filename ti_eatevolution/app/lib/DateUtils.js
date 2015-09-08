@@ -16,6 +16,8 @@ getTimeInterval = function(obj){
 	
 	if (obj.da.indexOf('0000') > -1){
 		timeInterval += obj.da.replace('0000', currentYear);
+	} else {
+		timeInterval += obj.da;
 	}
 	if (obj.da.indexOf('T') > -1){
 		timeInterval += ':00+00:00';
@@ -27,6 +29,8 @@ getTimeInterval = function(obj){
 	
 	if (obj.a.indexOf('0000') > -1){
 		timeInterval += obj.a.replace('0000', currentYear);
+	} else {
+		timeInterval += obj.a;
 	}
 	if (obj.a.indexOf('T') > -1){
 		timeInterval += ':00+00:00';
