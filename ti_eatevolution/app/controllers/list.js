@@ -11,8 +11,6 @@ var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchC
 
 title = (_args.title || "").toLowerCase();
 
-Ti.Analytics.featureEvent(Ti.Platform.osname+"."+title+".viewed");
-
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
 };
@@ -31,7 +29,7 @@ preprocessForListView = function(rawData) {
 			template: isFavorite ? "favoriteTemplate" : "defaultTemplate",
 			properties: {
 				searchableText: item.nome + ' ' + item.email,
-				user: item,
+				locale: item,
 				editActions: [
 					{title: isFavorite ? ("- " + L('lblFavorite')) : ("+ " + L('lblFavorite')), color: isFavorite ? "#C41230" : "#038BC8" }
 				],
@@ -131,16 +129,14 @@ populateList = function(params){
 };
 
 onItemClick = function(e){
-	Ti.Analytics.featureEvent(Ti.Platform.osname+"."+title+".contact.clicked");
-	
 	var item = $.listView.sections[e.sectionIndex].items[e.itemIndex];
 	
-	currentTab.open(Alloy.createController("profile", item.properties.user).getView());
+	Alloy.Globals.featureEvent({category:'list', action:'profile', label:item.properties.locale.id});
+	
+	currentTab.open(Alloy.createController("profile", item.properties.locale).getView());
 };
 
 onBookmarkClick = function(e){
-	Ti.Analytics.featureEvent(Ti.Platform.osname+"."+title+".favorites.clicked");
-	
 	if ($.listView.defaultItemTemplate === 'defaultTemplate'){
 		$.listView.defaultItemTemplate = 'favoriteTemplate';
 	} else if ($.listView.defaultItemTemplate === 'favoriteTemplate') {
@@ -196,7 +192,7 @@ if (OS_IOS){
 	// FIXME - Add Comments
 	function onRowAction(e){
 		var row = e.section.getItemAt(e.itemIndex);
-		var id = row.properties.user.id;
+		var id = row.properties.locale.id;
 		
 		if (e.action === ("+ " + L('lblFavorite'))) {
 			$FM.add(id);

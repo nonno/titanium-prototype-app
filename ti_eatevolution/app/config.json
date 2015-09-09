@@ -10,7 +10,8 @@
 			"taxCode": "92034660420",
 			"email": "info@nutrizionistisenzafrontiere.org",
 			"web": "http://www.nutrizionistisenzafrontiere.org"
-		}
+		},
+		"gaTrackingId": "UA-63543213-2"
 	},
 	"env:development": {
 		"runTests": true
