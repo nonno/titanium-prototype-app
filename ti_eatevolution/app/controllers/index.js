@@ -1,4 +1,4 @@
-var listController, mapController, joinController, infoController, init;
+var listController, mapController, joinController, infoController;
 
 var launch = true;
 if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
@@ -12,7 +12,7 @@ if (launch) {
 	init();
 }
 
-init = function(){
+function init(){
 	var addTab, connectivityChange;
 	
 	addTab = function(controllerName, title, icon){
@@ -56,7 +56,7 @@ init = function(){
 	Ti.Network.addEventListener('change', connectivityChange);
 	
 	$.tabGroup.open();
-};
+}
 
 // necessary for customizing android actionbar changing tab
 function onTabGroupOpen(e){
