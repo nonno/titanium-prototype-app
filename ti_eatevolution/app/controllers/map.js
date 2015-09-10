@@ -57,7 +57,6 @@ listener = function(event) {
 	if (event.clicksource == 'rightButton') {
 		Alloy.Globals.featureEvent({category:'map', action:'profile', label:event.annotation.locale.id});
 		
-		// FIXME titanium bug https://jira.appcelerator.org/browse/TIMOB-19215
 		currentTab.open(Alloy.createController("profile", event.annotation.locale).getView());
 	} else {
 		if (event.clicksource != 'pin' && OS_ANDROID) {
