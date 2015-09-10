@@ -29,7 +29,11 @@
 		[{"da":"06:00","a":"15:00"}]
 	]}
 	],
-	"piatti":[]
+	"cibi":[
+		{"des":"Panino vegetariano gluten-free","tipo":"pan","cat":["veget","gf"],"imgDetail":null,"imgThumb":null},
+		{"des":"Panino vegano","tipo":"pan","cat":["vegan","lf"],"imgDetail":null,"imgThumb":null},
+		{"des":"Insalata vegana","tipo":"ins","cat":["vegan","lf"],"imgDetail":null,"imgThumb":null}
+	]
 },
 {
 	"id":16,
@@ -61,7 +65,9 @@
 		[{"da":"12:00","a":"24:00"}]
 	]}
 	],
-	"piatti":[]
+	"cibi":[
+		{"des":"Insalatona vegana","tipo":"ins","cat":["vegan","lf"],"imgDetail":null,"imgThumb":null}
+	]
 },
 {
 	"id":17,
@@ -102,7 +108,7 @@
 		[{"da":"12:00","a":"16:00"},{"da":"19:00","a":"24:00"}]
 	]}
 	],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":18,
@@ -124,7 +130,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":19,
@@ -146,7 +152,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":20,
@@ -178,7 +184,10 @@
 		[{"da":"09:00","a":"13:00"},{"da":"15:00","a":"24:00"}]
 	]}
 	],
-	"piatti":[]
+	"cibi":[
+		{"des":"Gelato senza lattosio","tipo":"gel","cat":["lf"],"imgDetail":null,"imgThumb":null},
+		{"des":"Gelato senza glutine","tipo":"gel","cat":["gf"],"imgDetail":null,"imgThumb":null}
+	]
 },
 {
 	"id":0,
@@ -200,7 +209,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":1,
@@ -222,7 +231,7 @@
 	"sedere":false,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":2,
@@ -244,7 +253,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":3,
@@ -266,7 +275,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":4,
@@ -288,7 +297,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":5,
@@ -310,7 +319,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":6,
@@ -332,7 +341,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":7,
@@ -354,7 +363,7 @@
 	"sedere":false,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":8,
@@ -376,7 +385,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":9,
@@ -398,7 +407,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":10,
@@ -420,7 +429,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":11,
@@ -442,7 +451,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":12,
@@ -464,7 +473,7 @@
 	"sedere":true,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":13,
@@ -486,7 +495,7 @@
 	"sedere":false,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 },
 {
 	"id":14,
@@ -508,6 +517,6 @@
 	"sedere":false,
 	"chiuso":[],
 	"aperto":[],
-	"piatti":[]
+	"cibi":[]
 }
 ]}

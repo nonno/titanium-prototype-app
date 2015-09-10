@@ -1,6 +1,7 @@
 var DateUtils = require('DateUtils');
 
-var getLocali, tipoToString, addressToString, getLocaleTodayTimetable, isLocaleTodayOpen;
+var getLocali, tipoToString, addressToString, getLocaleTodayTimetable, isLocaleTodayOpen,
+	getFoodTypes, getFoodCategories;
 
 getLocali = function(){
 	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json");
@@ -33,21 +34,28 @@ addressToString = function(locale){
 	return address;
 };
 
-getLocaleTodayTimetable = function(locale){
+getLocaleTodayTimetable = function(locale, now){
+	now = now || new Date();
+	
+	if (!locale || !locale.aperto || !locale.aperto.length){
+		return [];
+	}
+	
 	var now, dayOfWeek, i, opening;
 	
-	var now = new Date();
 	dayOfWeek = (now.getDay() + 6) % 7;
 	
 	for (i in locale.aperto){
 		opening = locale.aperto[i];
 		
-		if (DateUtils.isDateIncluded(opening, now) && opening.gg[dayOfWeek].length > 0){
-			return opening.gg[dayOfWeek];
+		if (DateUtils.isDateIncluded(opening, now)){
+			if (opening.gg.length > dayOfWeek && opening.gg[dayOfWeek].length > 0){
+				return opening.gg[dayOfWeek];
+			}
 		}
 	}
 	
-	return null;
+	return [];
 };
 
 isLocaleTodayOpen = function(locale){
@@ -65,8 +73,36 @@ isLocaleTodayOpen = function(locale){
 	return Boolean(timetable) && (timetable.length > 0);
 };
 
+getFoodTypes = function(locale){
+	if (!locale || !locale.cibi || !locale.cibi.length){
+		return [];
+	}
+	
+	return _.uniq(_.reduce(locale.cibi, function(memo, cibo){
+		if (cibo.tipo){
+			memo.push(cibo.tipo);
+		}
+		return memo;
+	}, []));
+};
+
+getFoodCategories = function(locale){
+	if (!locale || !locale.cibi || !locale.cibi.length){
+		return [];
+	}
+	
+	return _.uniq(_.reduce(locale.cibi, function(memo, cibo){
+		if (cibo.cat && cibo.cat.length){
+			memo = memo.concat(cibo.cat);
+		}
+		return memo;
+	}, []));
+};
+
 exports.getLocali = getLocali;
 exports.tipoToString = tipoToString;
 exports.addressToString = addressToString;
 exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
+exports.getFoodTypes = getFoodTypes;
+exports.getFoodCategories = getFoodCategories;
