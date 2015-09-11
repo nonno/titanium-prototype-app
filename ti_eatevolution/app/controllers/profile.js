@@ -6,20 +6,25 @@ var locale = arguments[0] || {},
 Alloy.Globals.analyticsEvent({action:'profile-open', label:locale.id});
 
 $.nome.text = locale.nome;
-$.tipo.text = Repository.tipoToString(locale.tipo);
+$.tipo.text = L('locale.tipo.' + locale.tipo);
 $.indirizzo.text = Repository.addressToString(locale);
-$.telefono.text = locale.tel;
+
+if (locale.tel){
+	$.telefono.text = locale.tel;
+} else {
+	hideInfoContainer($.telefonoContainer);
+}
 
 if (locale.email){
 	$.email.text = locale.email;
 } else {
-	hideContactInfo($.emailContainer);
+	hideInfoContainer($.emailContainer);
 }
 
 if (locale.web){
 	$.web.text = locale.web;
 } else {
-	hideContactInfo($.webContainer);
+	hideInfoContainer($.webContainer);
 }
 
 (function(){
@@ -30,7 +35,7 @@ if (locale.web){
 		if (todayOpen){
 			todayTimetable = Repository.getLocaleTodayTimetable(locale);
 			
-			aperturaText= L('lblTodayOpen') + ' ' + _.reduce(todayTimetable, function(memo, time){
+			aperturaText= L('lblTodayOpen') + ' ' + todayTimetable.reduce(function(memo, time){
 				memo += memo.length > 0 ? ', ' : '';
 				return memo + time.da + '-' + time.a;
 			}, '');
@@ -39,9 +44,28 @@ if (locale.web){
 		}
 		$.apertura.text = aperturaText;
 	} else {
-		hideContactInfo($.aperturaContainer);
+		hideInfoContainer($.aperturaContainer);
 	}
 }());
+
+$.tipiCibiValue.text = Repository.getFoodTypes(locale).map(function(tipo){
+	return L('cibo.tipo.' + tipo);
+}).sort().join(', ').toLowerCase();
+
+$.catCibiValue.text = Repository.getFoodCategories(locale).map(function(cat){
+	return L('cibo.cat.' + cat);
+}).sort().join(', ').toLowerCase();
+
+if (!$.tipiCibiValue.text){
+	hideInfoContainer($.tipiCibiContainer);
+}
+if (!$.catCibiValue.text){
+	hideInfoContainer($.catCibiContainer);
+}
+if (!$.tipiCibiValue.text && !$.catCibiValue.text){
+	hideInfoContainer($.infoCibiContainer);
+	hideInfoContainer($.infoCibiSeparator);
+}
 
 $.mapview.setRegion({
 	latitude: locale.lat || 43.425505,
@@ -101,7 +125,7 @@ function toggleFavorite(){
 	Ti.App.fireEvent("refresh-data");
 };
 
-function hideContactInfo(container){
+function hideInfoContainer(container){
 	container.visible = false;
 	container.height = 0;
 	container.width = 0;

@@ -17,16 +17,31 @@
 	<string name="lblInfoEmailSubject">Info request</string>
 	<string name="lblTodayOpen">Today open</string>
 	<string name="lblTodayClose">Today close</string>
+	<string name="lblFoodTypes">You can find</string>
+	<string name="lblFoodCategories">For your needs</string>
 	
-	<string name="lblTipoRis">Restaurant</string>
-	<string name="lblTipoGel">Ice-cream parlour</string>
-	<string name="lblTipoPas">Patisserie</string>
-	<string name="lblTipoFor">Bakery</string>
-	<string name="lblTipoAg">Service station</string>
-	<string name="lblTipoBar">Café</string>
-	<string name="lblTipoTc">Dining hall</string>
-	<string name="lblTipoRos">Fry shop</string>
-	<string name="lblTipoFf">Fast-food</string>
+	<string name="locale.tipo.ris">Restaurant</string>
+	<string name="locale.tipo.gel">Ice-cream parlour</string>
+	<string name="locale.tipo.pas">Patisserie</string>
+	<string name="locale.tipo.for">Bakery</string>
+	<string name="locale.tipo.ag">Service station</string>
+	<string name="locale.tipo.bar">Café</string>
+	<string name="locale.tipo.tc">Dining hall</string>
+	<string name="locale.tipo.ros">Fry shop</string>
+	<string name="locale.tipo.ff">Fast-food</string>
+	
+	<string name="cibo.tipo.dol">Desserts</string>
+	<string name="cibo.tipo.gel">Ice-creams</string>
+	<string name="cibo.tipo.ins">Salads</string>
+	<string name="cibo.tipo.pan">Sandwitches</string>
+	<string name="cibo.tipo.pp">First courses</string>
+	<string name="cibo.tipo.sp">Main courses</string>
+	
+	<string name="cibo.cat.gf">Gluten free</string>
+	<string name="cibo.cat.lf">Lactose free</string>
+	<string name="cibo.cat.pm">Maternity</string>
+	<string name="cibo.cat.vegan">Vegan</string>
+	<string name="cibo.cat.veget">Vegetarian</string>
 	
 	<string name="lblCompanyInfo">
 blabla

@@ -40,6 +40,14 @@
 	right: 10,
 	bottom: 10
 },
+".hbuffer":{
+	left: 10,
+	right: 10
+},
+".vbuffer":{
+	top: 10,
+	bottom: 10
+},
 
 ".top-buffer":{
 	top: 10
@@ -61,6 +69,10 @@
 	height: Ti.UI.FILL,
 	width: Ti.UI.FILL
 },
+".hfill":{
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL
+},
 
 ".span-width":{
 	width: "100%",
@@ -75,6 +87,9 @@
 ".size":{
 	height: Ti.UI.SIZE,
 	width: Ti.UI.SIZE
+},
+".vsize":{
+	height: Ti.UI.SIZE
 },
 
 ".bottom":{

@@ -15,10 +15,10 @@
 			<Module id="mapview" module="ti.map" method="createView" platform="android,ios,windows" enableZoomControls="true" class="top" />
 			
 			<!-- Information -->
-			<View class="vgroup top size">
+			<View class="vgroup top size buffer">
 				<Label id="nome" class="h3 red top-buffer no-touch" />
 				<Label id="tipo" class="h5 gray no-touch" />
-				<Label id="indirizzo" class="h5 gray no-touch" />
+				<Label id="indirizzo" class="h5 gray no-touch size" />
 				<Button id="addFavoriteBtn" class="h4 span-width top-buffer" onClick="toggleFavorite" textid="bookmarkBtn" title="L('lblAddToFavorites')"></Button>
 			</View>
 			
@@ -29,6 +29,19 @@
 			</View>
 			
 			<View class='separator' />
+			
+			<View id="infoCibiContainer" class="vgroup top size hbuffer">
+				<View id="tipiCibiContainer" class="vgroup vbuffer hfill vsize">
+					<Label id="tipiCibiLabel" class="h4 red" text="L('lblFoodTypes')" />
+					<Label id="tipiCibiValue" class="h5 gray size" /> 
+				</View>
+				<View id="catCibiContainer" class="vgroup hfill vsize">
+					<Label id="catCibiLabel" class="h4 red" text="L('lblFoodCategories')" />
+					<Label id="catCibiValue" class="h5 gray size" />
+				</View>
+			</View>
+			
+			<View id="infoCibiSeparator" class='separator' />
 			
 			<!-- Contact Information -->
 		 	<View class='buffer vgroup size'>

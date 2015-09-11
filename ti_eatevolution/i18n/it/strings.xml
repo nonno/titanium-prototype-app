@@ -17,16 +17,31 @@
 	<string name="lblInfoEmailSubject">Richiesta informazioni</string>
 	<string name="lblTodayOpen">Oggi aperto</string>
 	<string name="lblTodayClose">Oggi chiuso</string>
+	<string name="lblFoodTypes">Potete trovare</string>
+	<string name="lblFoodCategories">Per le vostre esigenze</string>
 	
-	<string name="lblTipoRis">Ristorante</string>
-	<string name="lblTipoGel">Gelateria</string>
-	<string name="lblTipoPas">Pasticceria</string>
-	<string name="lblTipoFor">Forno</string>
-	<string name="lblTipoAg">Autogrill</string>
-	<string name="lblTipoBar">Bar</string>
-	<string name="lblTipoTc">Tavola calda</string>
-	<string name="lblTipoRos">Rosticceria</string>
-	<string name="lblTipoFf">Fast-food</string>
+	<string name="locale.tipo.ris">Ristorante</string>
+	<string name="locale.tipo.gel">Gelateria</string>
+	<string name="locale.tipo.pas">Pasticceria</string>
+	<string name="locale.tipo.for">Forno</string>
+	<string name="locale.tipo.ag">Autogrill</string>
+	<string name="locale.tipo.bar">Bar</string>
+	<string name="locale.tipo.tc">Tavola calda</string>
+	<string name="locale.tipo.ros">Rosticceria</string>
+	<string name="locale.tipo.ff">Fast-food</string>
+	
+	<string name="cibo.tipo.dol">Dolci</string>
+	<string name="cibo.tipo.gel">Gelati</string>
+	<string name="cibo.tipo.ins">Insalate</string>
+	<string name="cibo.tipo.pan">Panini</string>
+	<string name="cibo.tipo.pp">Primi piatti</string>
+	<string name="cibo.tipo.sp">Secondi piatti</string>
+	
+	<string name="cibo.cat.gf">Senza glutine</string>
+	<string name="cibo.cat.lf">Senza lattosio</string>
+	<string name="cibo.cat.pm">Premaman</string>
+	<string name="cibo.cat.vegan">Vegana</string>
+	<string name="cibo.cat.veget">Vegetariana</string>
 	
 	<string name="lblCompanyInfo">
 Nutrizionisti senza frontiere è un'associazione che si occupa esclusivamente di alimentazione e nutrizione.

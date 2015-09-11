@@ -1,16 +1,12 @@
 var DateUtils = require('DateUtils');
 
-var getLocali, tipoToString, addressToString, getLocaleTodayTimetable, isLocaleTodayOpen,
+var getLocali, addressToString, getLocaleTodayTimetable, isLocaleTodayOpen,
 	getFoodTypes, getFoodCategories;
 
 getLocali = function(){
 	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json");
 	
 	return JSON.parse(file.read().text).locali;
-};
-
-tipoToString = function(tipo){
-	return L('lblTipo' + tipo.substring(0,1).toUpperCase() + tipo.substring(1));
 };
 
 addressToString = function(locale){
@@ -78,7 +74,7 @@ getFoodTypes = function(locale){
 		return [];
 	}
 	
-	return _.uniq(_.reduce(locale.cibi, function(memo, cibo){
+	return _.uniq(locale.cibi.reduce(function(memo, cibo){
 		if (cibo.tipo){
 			memo.push(cibo.tipo);
 		}
@@ -91,7 +87,7 @@ getFoodCategories = function(locale){
 		return [];
 	}
 	
-	return _.uniq(_.reduce(locale.cibi, function(memo, cibo){
+	return _.uniq(locale.cibi.reduce(function(memo, cibo){
 		if (cibo.cat && cibo.cat.length){
 			memo = memo.concat(cibo.cat);
 		}
@@ -100,7 +96,6 @@ getFoodCategories = function(locale){
 };
 
 exports.getLocali = getLocali;
-exports.tipoToString = tipoToString;
 exports.addressToString = addressToString;
 exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
