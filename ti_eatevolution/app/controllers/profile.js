@@ -80,8 +80,8 @@ function callContact(){
 	
 	if (ENV_DEV){
 		Ti.Platform.openURL("tel:+393381540774");
-	} else if (ENV_PRODUCTION){
-		Ti.Platform.openURL("tel:"+locale.phone);
+	} else {
+		Ti.Platform.openURL("tel:"+locale.tel);
 	}
 };
 
