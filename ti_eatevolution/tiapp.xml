@@ -93,7 +93,6 @@
     <module platform="android">ti.map</module>
     <module platform="iphone">ti.map</module>
     <module platform="commonjs">ti.cloud</module>
-    <module platform="android">ti.ga</module>
     <module platform="iphone">ti.ga</module>
   </modules>
   <deployment-targets>

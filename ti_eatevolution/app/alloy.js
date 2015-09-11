@@ -1,10 +1,12 @@
-var googleAnalytics = require('ti.ga');
-googleAnalytics.setDispatchInterval(30);
-
-Alloy.Globals.trackerGA = googleAnalytics.createTracker({
-	trackingId: Alloy.CFG.gaTrackingId,
-	useSecure: true
-});
+if (OS_IOS){
+	var googleAnalytics = require('ti.ga');
+	googleAnalytics.setDispatchInterval(30);
+	
+	Alloy.Globals.trackerGA = googleAnalytics.createTracker({
+		trackingId: Alloy.CFG.gaTrackingId,
+		useSecure: true
+	});
+}
 
 Alloy.Globals.featureEvent = function(params){
 	params = params || {};
@@ -33,7 +35,10 @@ Alloy.Globals.featureEvent = function(params){
 	
 	Ti.API.debug('Feature event: ' + eventString);
 	Ti.Analytics.featureEvent(eventString);
-	Alloy.Globals.trackerGA.addEvent(eventProperties);
+	
+	if (Alloy.Globals.trackerGA){
+		Alloy.Globals.trackerGA.addEvent(eventProperties);
+	}
 };
 
 if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
