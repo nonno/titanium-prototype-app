@@ -55,12 +55,12 @@ populateMap = function(params){
 
 listener = function(event) {
 	if (event.clicksource == 'rightButton') {
-		Alloy.Globals.featureEvent({category:'map', action:'profile', label:event.annotation.locale.id});
+		Alloy.Globals.analyticsEvent({action:'map-open_profile', label:event.annotation.locale.id});
 		
 		currentTab.open(Alloy.createController("profile", event.annotation.locale).getView());
 	} else {
 		if (event.clicksource != 'pin' && OS_ANDROID) {
-			Alloy.Globals.featureEvent({category:'map', action:'profile', label:event.annotation.locale.id});
+			Alloy.Globals.analyticsEvent({action:'map-open_profile', label:event.annotation.locale.id});
 			
 			currentTab.open(Alloy.createController("profile", event.annotation.locale).getView());
 		}

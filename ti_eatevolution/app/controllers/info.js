@@ -6,7 +6,7 @@ $.email.text = Alloy.CFG.companyReferences.email;
 $.web.text = Alloy.CFG.companyReferences.web;
 
 function email() {
-	Alloy.Globals.featureEvent({category:'info', action:'email'});
+	Alloy.Globals.analyticsEvent({action:'info-email'});
 	
 	if (OS_IOS && Ti.Platform.model === "Simulator"){
 		alert("Simulator does not support sending emails. Use a device instead");
@@ -20,7 +20,7 @@ function email() {
 };
 
 function call(){
-	Alloy.Globals.featureEvent({category:'info', action:'call'});
+	Alloy.Globals.analyticsEvent({action:'info-call'});
 	
 	if (ENV_DEV){
 		Ti.Platform.openURL("tel:+393381540774");
@@ -30,7 +30,7 @@ function call(){
 };
 
 function web(){
-	Alloy.Globals.featureEvent({category:'info', action:'web'});
+	Alloy.Globals.analyticsEvent({action:'info-web'});
 	
 	Ti.Platform.openURL(Alloy.CFG.companyReferences.web);
 };

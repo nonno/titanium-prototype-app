@@ -1,4 +1,4 @@
-if (OS_IOS){
+if (OS_IOS){ // FIXME problem with ti.ga and ti.map
 	var googleAnalytics = require('ti.ga');
 	googleAnalytics.setDispatchInterval(30);
 	
@@ -8,36 +8,32 @@ if (OS_IOS){
 	});
 }
 
-Alloy.Globals.featureEvent = function(params){
+Alloy.Globals.analyticsShowView = function(viewName){
+	if (Alloy.Globals.trackerGA){
+		Alloy.Globals.trackerGA.addScreenView(viewName);
+	}
+};
+Alloy.Globals.analyticsEvent = function(params){
 	params = params || {};
-	params.category = params.category || '';
 	params.action = params.action || '';
 	params.label = params.label;
 	params.value = params.value || 1;
 	
-	var eventValues, eventString, eventProperties;
+	var category, eventString;
 	
-	eventValues = [params.category, params.action];
-	if (params.label){
-		eventValues.push(params.label);
-	}
-	
-	eventString = eventValues.join('.');
-	
-	eventProperties = {
-		category: "" + params.category,
-		action: "" + params.action,
-		value: params.value
-	};
-	if (params.label){
-		eventProperties.label = "" + params.label;
-	}
+	category = Ti.Platform.osname;
+	eventString = [category, params.action].join('-');
 	
 	Ti.API.debug('Feature event: ' + eventString);
 	Ti.Analytics.featureEvent(eventString);
 	
 	if (Alloy.Globals.trackerGA){
-		Alloy.Globals.trackerGA.addEvent(eventProperties);
+		Alloy.Globals.trackerGA.addEvent({
+			category: category,
+			action: params.action,
+			label: params.label,
+			value: params.value
+		});
 	}
 };
 

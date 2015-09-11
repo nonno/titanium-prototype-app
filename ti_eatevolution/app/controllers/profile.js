@@ -3,7 +3,7 @@ var locale = arguments[0] || {},
 	Repository = require('Repository'),
 	$FM = require('favoritesmgr');
 
-Alloy.Globals.featureEvent({category:'profile', action:'open', label:locale.id});
+Alloy.Globals.analyticsEvent({action:'profile-open', label:locale.id});
 
 $.nome.text = locale.nome;
 $.tipo.text = Repository.tipoToString(locale.tipo);
@@ -63,7 +63,7 @@ $.mapview.addAnnotation(mapAnnotation);
 $FM.exists(locale.id) && $.addFavoriteBtn.setTitle(L('lblRemoveFromFavorites'));
 
 function emailContact() {
-	Alloy.Globals.featureEvent({category:'profile', action:'email', label:locale.id});
+	Alloy.Globals.analyticsEvent({action:'profile-email', label:locale.id});
 	
 	if (OS_IOS && Ti.Platform.model === "Simulator"){
 		alert("Simulator does not support sending emails. Use a device instead");
@@ -76,7 +76,7 @@ function emailContact() {
 };
 
 function callContact(){
-	Alloy.Globals.featureEvent({category:'profile', action:'call', label:locale.id});
+	Alloy.Globals.analyticsEvent({action:'profile-call', label:locale.id});
 	
 	if (ENV_DEV){
 		Ti.Platform.openURL("tel:+393381540774");
@@ -87,12 +87,12 @@ function callContact(){
 
 function toggleFavorite(){
 	if(!$FM.exists(locale.id)){
-		Alloy.Globals.featureEvent({category:'profile', action:'add-favorite', label:locale.id});
+		Alloy.Globals.analyticsEvent({action:'profile-add_favorite', label:locale.id});
 	
 		$FM.add(locale.id);
 		$.addFavoriteBtn.setTitle(L('lblRemoveFromFavorites'));
 	} else {
-		Alloy.Globals.featureEvent({category:'profile', action:'remove-favorite', label:locale.id});
+		Alloy.Globals.analyticsEvent({action:'profile-remove_favorite', label:locale.id});
 		
 		$FM.remove(locale.id);
 		$.addFavoriteBtn.setTitle(L('lblAddToFavorites')); 

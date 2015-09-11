@@ -131,7 +131,7 @@ populateList = function(params){
 onItemClick = function(e){
 	var item = $.listView.sections[e.sectionIndex].items[e.itemIndex];
 	
-	Alloy.Globals.featureEvent({category:'list', action:'profile', label:item.properties.locale.id});
+	Alloy.Globals.analyticsEvent({action:'list-open_profile', label:item.properties.locale.id});
 	
 	currentTab.open(Alloy.createController("profile", item.properties.locale).getView());
 };
@@ -189,14 +189,15 @@ if (OS_IOS){
 		$.searchBar.blur();
 	};
 	
-	// FIXME - Add Comments
 	function onRowAction(e){
 		var row = e.section.getItemAt(e.itemIndex);
 		var id = row.properties.locale.id;
 		
-		if (e.action === ("+ " + L('lblFavorite'))) {
+		if (e.action === ("+ " + L('lblFavorite'))){
+			Alloy.Globals.analyticsEvent({action:'list-add_favorite', label:id});
 			$FM.add(id);
 		} else {
+			Alloy.Globals.analyticsEvent({action:'list-remove_favorite', label:id});
 			$FM.remove(id);
 		}
 		
