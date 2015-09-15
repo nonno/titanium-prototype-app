@@ -1,8 +1,5 @@
 if (OS_IOS){ // FIXME problem with ti.ga and ti.map
-	var googleAnalytics = require('ti.ga');
-	googleAnalytics.setDispatchInterval(30);
-	
-	Alloy.Globals.trackerGA = googleAnalytics.createTracker({
+	Alloy.Globals.trackerGA = require('ti.ga').createTracker({
 		trackingId: Alloy.CFG.gaTrackingId,
 		useSecure: true
 	});

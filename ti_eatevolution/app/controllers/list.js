@@ -24,6 +24,7 @@ preprocessForListView = function(rawData) {
 	
 	return _.map(rawData, function(item) {
 		var isFavorite = $FM.exists(item.id);
+		var tipoData = Repository.tipiLocali[item.tipo];
 		
 		return {
 			template: isFavorite ? "favoriteTemplate" : "defaultTemplate",
@@ -35,6 +36,7 @@ preprocessForListView = function(rawData) {
 				],
 				canEdit:true
 			},
+			tipo: {text: tipoData.icon, color: tipoData.color},
 			nome: {text: item.nome},
 			indirizzo: {text: Repository.addressToString(item)},
 			telefono: {text: item.tel},

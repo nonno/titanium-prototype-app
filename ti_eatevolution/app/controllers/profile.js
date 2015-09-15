@@ -1,12 +1,13 @@
 var locale = arguments[0] || {},
 	Map = require('ti.map'),
 	Repository = require('Repository'),
-	$FM = require('favoritesmgr');
+	$FM = require('favoritesmgr'),
+	tipoData = Repository.tipiLocali[locale.tipo];
 
 Alloy.Globals.analyticsEvent({action:'profile-open', label:locale.id});
 
 $.nome.text = locale.nome;
-$.tipo.text = L('locale.tipo.' + locale.tipo);
+$.tipo.text = L(tipoData.text);
 $.indirizzo.text = Repository.addressToString(locale);
 
 if (locale.tel){

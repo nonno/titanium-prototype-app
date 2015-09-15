@@ -7,8 +7,7 @@
 				<!-- defaultTemplate - this is the default ListItem template -->
 				<ItemTemplate id="defaultTemplate" name="defaultTemplate" class="template">
 					<View class="left-buffer">
-						<ImageView id="userPhoto" bindId="userPhoto" class="avatar" />
-						<View platform="android" class="smoothAvatarBorderRadius" />
+						<Label id="tipo" bindId="tipo" class="thumbTipo" />
 						<View class="vgroup left size">
 							<Label id="nome" bindId="nome" class="title" />
 							<Label id="indirizzo" bindId="indirizzo" class="subtitle" />
@@ -22,8 +21,7 @@
 				<!-- favoriteTemplate - this is the ListItem template for contacts that have been bookmarked -->
 				<ItemTemplate id="favoriteTemplate" name="favoriteTemplate" class="template">
 					<View class="left-buffer">
-						<ImageView id="userPhoto" bindId="userPhoto" class="avatar" />
-						<View platform="android" class="smoothAvatarBorderRadius" />
+						<Label id="tipo" bindId="tipo" class="thumbTipo" />
 						<View class="vgroup left size">
 							<Label id="nome" bindId="nome" class="title" />
 							<Label id="indirizzo" bindId="indirizzo" class="subtitle" />

@@ -1,7 +1,19 @@
 var DateUtils = require('DateUtils');
 
-var getLocali, addressToString, getLocaleTodayTimetable, isLocaleTodayOpen,
+var tipiLocali, getLocali, addressToString, getLocaleTodayTimetable, isLocaleTodayOpen,
 	getFoodTypes, getFoodCategories;
+
+tipiLocali = {
+	'ris': {'text':'locale.tipo.ris','icon':'\ue008','color':'red'},
+	'gel': {'text':'locale.tipo.gel','icon':'\ue010','color':'cyan'},
+	'pas': {'text':'locale.tipo.pas','icon':'\ue01c','color':'purple'},
+	'for': {'text':'locale.tipo.for','icon':'\ue003','color':'brown'},
+	'bar': {'text':'locale.tipo.bar','icon':'\ue004','color':'maroon'},
+	'tc': {'text':'locale.tipo.tc','icon':'\ue017','color':'olive'},
+	'ag': {'text':'locale.tipo.ag','icon':'\ue017','color':'olive'},
+	'ros': {'text':'locale.tipo.ros','icon':'\ue014','color':'pink'},
+	'ff': {'text':'locale.tipo.ff','icon':'\ue00e','color':'orange'}
+};
 
 getLocali = function(){
 	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json");
@@ -101,3 +113,4 @@ exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
 exports.getFoodTypes = getFoodTypes;
 exports.getFoodCategories = getFoodCategories;
+exports.tipiLocali = tipiLocali;
