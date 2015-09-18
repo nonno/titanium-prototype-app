@@ -16,7 +16,7 @@ tipiLocali = {
 };
 
 getLocali = function(){
-	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "userData/data.json");
+	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "data/locali.json");
 	
 	return JSON.parse(file.read().text).locali;
 };
