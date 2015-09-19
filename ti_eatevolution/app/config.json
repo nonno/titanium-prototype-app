@@ -11,6 +11,8 @@
 			"email": "info@nutrizionistisenzafrontiere.org",
 			"web": "http://www.nutrizionistisenzafrontiere.org"
 		},
+		"dataUrl": "https://dl.dropboxusercontent.com/u/18816030/EatEvolution/data.json",
+		"syncronizationInterval": "10",
 		"gaTrackingId": "UA-63543213-2"
 	},
 	"env:development": {

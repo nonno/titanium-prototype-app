@@ -5,6 +5,9 @@ if (OS_IOS){ // FIXME problem with ti.ga and ti.map
 	});
 }
 
+Alloy.Globals.Data = {};
+Alloy.Globals.Data.locali = {};
+
 Alloy.Globals.analyticsShowView = function(viewName){
 	if (Alloy.Globals.trackerGA){
 		Alloy.Globals.trackerGA.addScreenView(viewName);

@@ -3,9 +3,8 @@ var args = arguments[0] || {},
 	Repository = require("Repository"),
 	Map = require('ti.map');
 
-var file, locali, mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap, onlyFavourites;
+var file, mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap, onlyFavourites;
 
-locali = Repository.getLocali();
 onlyFavourites = false;
 
 mapView = Map.createView({
@@ -27,17 +26,19 @@ populateMap = function(params){
 	params = params || {};
 	params.onlyFavourites = params.onlyFavourites || false;
 	
+	Ti.API.debug("map.populateMap");
+	
 	var data;
 	
 	if (params.onlyFavourites) {
-		data = _.filter(locali, function(item){
+		data = Alloy.Globals.Data.locali.filter(function(item){
 			return $FM.exists(item.id);
 		});
 	} else {
-		data = locali;
+		data = Alloy.Globals.Data.locali;
 	}
 	
-	mapView.annotations = _.map(data, function(locale) {
+	mapView.annotations = data.map(function(locale) {
 		var latitude = OS_IOS ? locale.lat : parseFloat(locale.lat);
 		var longitude = OS_IOS ? locale.lon : parseFloat(locale.lon);
 		var annotation = Map.createAnnotation({
@@ -104,6 +105,9 @@ centerMapOnCurrentPosition = function(){
 	});
 };
 
+Ti.App.addEventListener("refresh-data", function(e){
+	populateMap();
+});
 
 centerMapOnCurrentPosition();
 
@@ -121,4 +125,5 @@ exports.showAdvertisement = function(show){
 exports.setTab = function(tab){
 	currentTab = tab;
 };
+exports.refresh = populateMap;
 exports.onBookmarkClick = onBookmarkClick;

@@ -1,6 +1,31 @@
-var listController, mapController, joinController, infoController;
+var Repository = require('Repository');
 
-var launch = true;
+var launch, syncInterval, listController, mapController, joinController, infoController,
+	synchronize, startAutoSync, stopAutoSync, appResumed, appPaused;
+
+syncInterval = null;
+launch = true;
+
+synchronize = function(){
+	Repository.fetchDataOnline().then(Repository.fetchDistances).then(function(){
+		listController.refresh();
+		mapController.refresh();
+	});
+};
+
+startAutoSync = function(){
+	Ti.API.info('Start automatic sync');
+	
+	synchronize();
+	if (syncInterval !== null) { clearInterval(syncInterval); }
+	syncInterval = setInterval(synchronize, Number(Alloy.CFG.syncronizationInterval)*(60*1000));
+};
+stopAutoSync = function(){
+	Ti.API.info('Stop automatic sync');
+	
+	clearInterval(syncInterval);
+};
+
 if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
 	launch = false;
 	Ti.App.addEventListener("testsExecutionComplete", function testsExecutionComplete() {
@@ -11,6 +36,18 @@ if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
 if (launch) {
 	init();
 }
+
+appResumed = function(e){
+	Ti.API.debug("App resumed");
+	startAutoSync();
+};
+Ti.App.addEventListener('resumed', appResumed);
+
+appPaused = function(e){
+	Ti.API.debug("App paused");
+	stopAutoSync();
+};
+Ti.App.addEventListener('paused', appPaused);
 
 function init(){
 	var addTab, connectivityChange;
@@ -29,6 +66,8 @@ function init(){
 		
 		return controller;
 	};
+	
+	Repository.fetchDataOffline();
 	
 	if (OS_ANDROID){
 		listController = addTab('list', "", 'images/light_home.png');
@@ -54,6 +93,8 @@ function init(){
 		mapController.showAdvertisement(e.online);
 	};
 	Ti.Network.addEventListener('change', connectivityChange);
+	
+	startAutoSync();
 	
 	$.tabGroup.open();
 }

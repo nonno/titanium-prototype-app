@@ -1,13 +1,11 @@
 var _args = arguments[0] || {},
 	App = Alloy.Globals.App, // reference to the APP singleton object
 	$FM = require('favoritesmgr'),
-	GeoUtils = require("GeoUtils"),
 	Repository = require("Repository"),
-	locali = null,
 	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
-	onSearchCancel, title, currentTab, formatDistance, calculateDistances, init;
+	onSearchCancel, title, currentTab, formatDistance;
 
 title = (_args.title || "").toLowerCase();
 
@@ -49,15 +47,16 @@ populateList = function(params){
 	params = params || {};
 	params.orderByDistance = params.orderByDistance || false;
 	
-	var indexes, sections, groups, section;
+	Ti.API.debug("list.populateList");
 	
-	if (!locali) {
-		return;
-	}
+	var locali, indexes, sections, groups, section;
+	
+	locali = Alloy.Globals.Data.locali;
+	
 	if (params.orderByDistance){
 		Ti.API.debug('Ordering by distance');
 		
-		locali = _.sortBy(locali, function(item){
+		locali = locali.sort(function(item){
 			return item.distanza;
 		});
 		
@@ -68,7 +67,7 @@ populateList = function(params){
 	} else {
 		Ti.API.debug('Ordering by name');
 		
-		locali = _.sortBy(locali, function(item){
+		locali = locali.sort(function(item){
 			return item.nome;
 		});
 		
@@ -145,19 +144,8 @@ onBookmarkClick = function(e){
 		$.listView.defaultItemTemplate = 'defaultTemplate';
 	}
 	
-	init();
+	populateList();
 };
-
-calculateDistances = function(e) {
-	if (e.success) {
-		locali = _.map(locali, function(locale) {
-			locale.distanza = GeoUtils.calculateDistance({'latitude' : locale.lat, 'longitude' : locale.lon}, e.coords);
-			return locale;
-		});
-		return true;
-	}
-	return false;
-}; 
 
 formatDistance = function(distance) {
 	if (distance == undefined || !_.isNumber(distance) || _.isNaN(distance) || (distance == Number.POSITIVE_INFINITY)) {
@@ -167,16 +155,6 @@ formatDistance = function(distance) {
 		return Math.round(distance) + ' km';
 	}
 	return Math.round(distance * 10) / 10 + ' km';
-};
-
-init = function(){
-	locali = locali = Repository.getLocali();
-	
-	Ti.Geolocation.getCurrentPosition(function(e) {
-		var distancesCalculated = calculateDistances(e);
-		
-		populateList({'orderByDistance' : distancesCalculated});
-	});
 };
 
 if (OS_IOS){
@@ -204,7 +182,7 @@ if (OS_IOS){
 		}
 		
 		$.listView.editing = false;
-		init();
+		populateList();
 	}
 	$.listView.addEventListener("rowAction", onRowAction);
 }
@@ -220,13 +198,13 @@ $.wrapper.addEventListener("open", function(){
 });
 
 Ti.App.addEventListener("refresh-data", function(e){
-	init();
+	populateList();
 });
 
 if (_args.title){
 	$.wrapper.title = _args.title;
 }
-init();
+populateList();
 
 exports.setTab = function(tab){
 	currentTab = tab;
@@ -236,9 +214,10 @@ exports.showAdvertisement = function(show){
 		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
 		$.listView.bottom = Alloy.CFG.gui.advertisementBannerHeight;
 	} else {
-		$.listView.bottom = "0dp";
-		$.advContainer.height = "0dp";
+		$.listView.bottom = 0;
+		$.advContainer.height = 0;
 	}
 };
+exports.refresh = populateList;
 exports.onSearchChange = onSearchChange;
 exports.onBookmarkClick = onBookmarkClick;

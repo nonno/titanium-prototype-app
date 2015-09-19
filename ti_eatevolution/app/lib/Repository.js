@@ -1,7 +1,10 @@
-var DateUtils = require('DateUtils');
+var Request = require('Request'),
+	q = require('q'),
+	DateUtils = require('DateUtils'),
+	GeoUtils = require('GeoUtils');
 
-var tipiLocali, getLocali, addressToString, getLocaleTodayTimetable, isLocaleTodayOpen,
-	getFoodTypes, getFoodCategories;
+var getDataFile, tipiLocali, fetchDataOffline, fetchDataOnline, addressToString,
+	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, fetchDistances;
 
 tipiLocali = {
 	'ris': {'text':'locale.tipo.ris','icon':'\ue008','color':'red'},
@@ -15,10 +18,71 @@ tipiLocali = {
 	'ff': {'text':'locale.tipo.ff','icon':'\ue00e','color':'orange'}
 };
 
-getLocali = function(){
-	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + "data/locali.json");
+getDataFile = function(){
+	if (OS_IOS){
+		return Ti.Filesystem.getFile(Ti.Filesystem.applicationSupportDirectory, 'data.json');
+	}
+	return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'data.json');
+};
+
+fetchDataOffline = function(){
+	var file = getDataFile();
 	
-	return JSON.parse(file.read().text).locali;
+	if (!file.exists() || !file.size){
+		file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "data/data.json");
+	}
+	Alloy.Globals.Data.locali = JSON.parse(file.read().text).locali;
+};
+fetchDataOnline = function(){
+	var defer = q.defer();
+	
+	Request.get(Alloy.CFG.dataUrl, {
+		'success' : function(res){
+			var file, data;
+			
+			try {
+				data = JSON.parse(res);
+				
+				if (data && data.locali){
+					file = getDataFile();
+					Ti.API.debug("Writing data on file " + file.resolve());
+					file.write(res);
+					
+					Alloy.Globals.Data.locali = data.locali;
+					
+					defer.resolve(res);
+				} else {
+					defer.reject();
+				}
+			} catch(err){
+				defer.reject(err);
+			}
+		},
+		'error' : function(err){
+			defer.reject(err);
+		}
+	});
+	
+	return defer.promise;
+};
+fetchDistances = function(){
+	var defer = q.defer();
+	
+	Ti.Geolocation.getCurrentPosition(function(e) {
+		if (e.success) {
+			Alloy.Globals.Data.locali = Alloy.Globals.Data.locali.map(function(locale) {
+				if (locale.lat && locale.lon){
+					locale.distanza = GeoUtils.calculateDistance({'latitude' : locale.lat, 'longitude' : locale.lon}, e.coords);
+				}
+				return locale;
+			});
+			defer.resolve();
+		} else {
+			defer.reject();
+		}
+	});
+	
+	return defer.promise;
 };
 
 addressToString = function(locale){
@@ -107,7 +171,11 @@ getFoodCategories = function(locale){
 	}, []));
 };
 
-exports.getLocali = getLocali;
+
+exports.getDataFile = getDataFile;
+exports.fetchDataOffline = fetchDataOffline;
+exports.fetchDataOnline = fetchDataOnline;
+exports.fetchDistances = fetchDistances;
 exports.addressToString = addressToString;
 exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
