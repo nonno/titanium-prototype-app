@@ -7,10 +7,21 @@ syncInterval = null;
 launch = true;
 
 synchronize = function(){
-	Repository.fetchDataOnline().then(Repository.fetchDistances).then(function(){
-		listController.refresh();
-		mapController.refresh();
-	});
+	Repository.fetchDataOnline()
+		.then(
+			Repository.calculateDistances,
+			function(err){Ti.API.debug(JSON.stringify(err));}
+		)
+		.then(
+			function(res){
+				Ti.API.debug('Refresh data on list and map controllers');
+				listController.refresh();
+				mapController.refresh();
+			}, 
+			function(err){
+				Ti.API.debug(JSON.stringify(err));
+			}
+		);
 };
 
 startAutoSync = function(){

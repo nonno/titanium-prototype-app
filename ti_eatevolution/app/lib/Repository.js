@@ -4,7 +4,7 @@ var Request = require('Request'),
 	GeoUtils = require('GeoUtils');
 
 var getDataFile, tipiLocali, fetchDataOffline, fetchDataOnline, addressToString,
-	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, fetchDistances;
+	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances;
 
 tipiLocali = {
 	'ris': {'text':'locale.tipo.ris','icon':'\ue008','color':'red'},
@@ -26,14 +26,21 @@ getDataFile = function(){
 };
 
 fetchDataOffline = function(){
-	var file = getDataFile();
+	Ti.API.debug('Repository.fetchDataOffline');
+	var file, data;
 	
+	file = getDataFile();
 	if (!file.exists() || !file.size){
 		file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "data/data.json");
 	}
-	Alloy.Globals.Data.locali = JSON.parse(file.read().text).locali;
+	
+	data = JSON.parse(file.read().text);
+	
+	Alloy.Globals.Data.date = data.date;
+	Alloy.Globals.Data.locali = data.locali;
 };
 fetchDataOnline = function(){
+	Ti.API.debug('Repository.fetchDataOnline');
 	var defer = q.defer();
 	
 	Request.get(Alloy.CFG.dataUrl, {
@@ -43,16 +50,21 @@ fetchDataOnline = function(){
 			try {
 				data = JSON.parse(res);
 				
-				if (data && data.locali){
+				if (!data || !data.locali){
+					throw {'message':'Data malformed'};
+				} else if (Ti.App.version !== data.appVersion){
+					throw {'message':'App outdated: ' + Ti.App.version + ' !== ' + data.appVersion};
+				} else if (data.date <= Alloy.Globals.Data.date){
+					throw {'message':'No data update available: ' + data.date + ' <= ' + Alloy.Globals.Data.date};
+				} else {
 					file = getDataFile();
 					Ti.API.debug("Writing data on file " + file.resolve());
 					file.write(res);
 					
 					Alloy.Globals.Data.locali = data.locali;
+					Alloy.Globals.Data.date = data.date;
 					
 					defer.resolve(res);
-				} else {
-					defer.reject();
 				}
 			} catch(err){
 				defer.reject(err);
@@ -65,7 +77,8 @@ fetchDataOnline = function(){
 	
 	return defer.promise;
 };
-fetchDistances = function(){
+calculateDistances = function(){
+	Ti.API.debug('Repository.calculateDistances');
 	var defer = q.defer();
 	
 	Ti.Geolocation.getCurrentPosition(function(e) {
@@ -175,7 +188,7 @@ getFoodCategories = function(locale){
 exports.getDataFile = getDataFile;
 exports.fetchDataOffline = fetchDataOffline;
 exports.fetchDataOnline = fetchDataOnline;
-exports.fetchDistances = fetchDistances;
+exports.calculateDistances = calculateDistances;
 exports.addressToString = addressToString;
 exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
