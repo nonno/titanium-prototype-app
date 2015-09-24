@@ -23,7 +23,7 @@
 			
 			<!-- Information -->
 			<View class="vgroup top vsize" left="5" right="5">
-				<Label id="nome" class="h3 red top-buffer no-touch size" />
+				<Label id="nome" class="h3 primary-color top-buffer no-touch size" />
 				<Label id="tipo" class="h4 gray no-touch size" />
 				<Label id="indirizzo" class="h5 gray no-touch size" />
 			</View>
@@ -39,11 +39,11 @@
 			
 			<View id="infoCibiContainer" class="vgroup top size hbuffer">
 				<View id="tipiCibiContainer" class="vgroup vbuffer hfill vsize">
-					<Label id="tipiCibiLabel" class="h4 red" text="L('lblFoodTypes')" />
+					<Label id="tipiCibiLabel" class="h4 primary-color" text="L('lblFoodTypes')" />
 					<Label id="tipiCibiValue" class="h5 gray size" /> 
 				</View>
 				<View id="catCibiContainer" class="vgroup hfill vsize">
-					<Label id="catCibiLabel" class="h4 red" text="L('lblFoodCategories')" />
+					<Label id="catCibiLabel" class="h4 primary-color" text="L('lblFoodCategories')" />
 					<Label id="catCibiValue" class="h5 gray size" />
 				</View>
 			</View>
@@ -53,19 +53,19 @@
 			<!-- Contact Information -->
 		 	<View class='buffer vgroup size'>
 				<View id="telefonoContainer" class='hgroup size left-buffer top-buffer'>
-					<Label class="h3 icon icon-phone icon-small red left top" />
+					<Label class="h3 icon icon-phone icon-small primary-color left top" />
 					<Label id="telefono" class="h6 gray left-buffer"></Label>
 				</View>
 				<View id="emailContainer" class='hgroup size left-buffer top-buffer'>
-					<Label class="h3 icon icon-email icon-small red left top" />
+					<Label class="h3 icon icon-email icon-small primary-color left top" />
 					<Label id="email" class="h6 gray left-buffer"></Label>
 				</View>
 				<View id="webContainer" class='hgroup size left-buffer top-buffer'>
-					<Label class="h3 icon icon-cloud icon-small red left top" />
+					<Label class="h3 icon icon-cloud icon-small primary-color left top" />
 					<Label id="web" class="h6 gray left-buffer right-buffer"></Label>
 				</View>
 				<View id="aperturaContainer" class='hgroup size left-buffer top-buffer'>
-					<Label class="h3 icon icon-calendar icon-small red left top" />
+					<Label class="h3 icon icon-calendar icon-small primary-color left top" />
 					<Label id="apertura" class="h6 gray left-buffer right-buffer"></Label>
 				</View>
 			</View>

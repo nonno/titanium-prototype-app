@@ -4,7 +4,7 @@
 'Window': {
 	backgroundColor: '#fff', // white background instead of default transparent
 	titleAttributes: {
-		color: "#C41230"
+		color: "#98c10f"
 	}
 },
 'Window[platform=android]': {
@@ -152,72 +152,32 @@
 		fontSize: 36
 	}
 },
-
-".h1[platform=blackberry]":{
-	font:{
-		fontSize: 30
-	}
-},
-
 ".h2":{
 	font:{
 		fontSize: 30
 	}
 },
-
-".h2[platform=blackberry]":{
-	font:{
-		fontSize: 24
-	}
-},
-
 ".h3":{
 	font:{
 		fontSize: 24
 	}
 },
-
-".h3[platform=blackberry]":{
-	font:{
-		fontSize: 18
-	}
-},
-
 ".h4":{
 	font:{
 		fontSize: 18
 	}
 },
-
-".h4[platform=blackberry]":{
-	font:{
-		fontSize: 14
-	}
-},
-
 ".h5":{
 	font:{
 		fontSize: 14
 	}
 },
-
-".h5[platform=blackberry]":{
-	font:{
-		fontSize: 12
-	}
-},
-
 ".h6":{
 	font:{
 		fontSize: 12
 	}
 },
 
-".h6[platform=blackberry]":{
-	font:{
-		fontSize: 10
-	}
-},
 ".normal-text":{
 	font:{
 		fontSize: 14
@@ -264,8 +224,8 @@
 	color:"#666"
 }
 
-".red":{
-	color: '#C41230'
+".primary-color":{
+	color: '#98c10f'
 }
 
 /**
@@ -398,11 +358,11 @@
 	width: 60,
 	left: 10,
 	right: 10,
-	color: "#C41230",
+	color: "#98c10f",
 	borderRadius: 30,
 	borderWidth: 2,
-	borderColor: "#C41230",
-	backgroundColor: "#33C41230",
+	borderColor: "#98c10f",
+	backgroundColor: "#e0f1a3",
 	textAlign: "center",
 	font:{
 		fontSize: 24

@@ -23,6 +23,5 @@
 	"os:mobileweb": {},
 	"os:ios": {},
 	"os:android": {},
-	"os:blackberry": {},
 	"dependencies": {}
 }

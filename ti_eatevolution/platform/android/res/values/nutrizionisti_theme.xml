@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<style name="nutrizionisti" parent="@style/Theme.AppCompat">
-		<item name="colorPrimary">#CD1625</item>
+		<item name="colorPrimary">#98c10f</item>
 		<item name="colorAccent">#333333</item>
-		<item name="android:statusBarColor">#A30A00</item>
-		<item name="android:navigationBarColor">#CD1625</item>
+		<item name="android:statusBarColor">#90a441</item>
+		<item name="android:navigationBarColor">#98c10f</item>
 	</style>
 	<style name="nutrizionisti.NoActionBar" parent="@style/Theme.AppCompat">
 		<!-- AppCompat Compatibility -->
