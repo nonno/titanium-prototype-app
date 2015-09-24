@@ -10,7 +10,16 @@ synchronize = function(){
 	Repository.fetchDataOnline()
 		.then(
 			Repository.calculateDistances,
-			function(err){Ti.API.debug(JSON.stringify(err));}
+			function(err){
+				if (err.showAlert){
+					Ti.UI.createAlertDialog({
+						title: '',
+						message: err.message,
+						buttonNames: [L('lblOk')]
+					}).show();
+				}
+				Ti.API.debug(JSON.stringify(err.message));
+			}
 		)
 		.then(
 			function(res){
@@ -19,7 +28,7 @@ synchronize = function(){
 				mapController.refresh();
 			}, 
 			function(err){
-				Ti.API.debug(JSON.stringify(err));
+				Ti.API.warn(JSON.stringify(err));
 			}
 		);
 };

@@ -4,6 +4,7 @@
 	<string name="lblCampaignName">Eat Evolution</string>
 	<string name="lblYes">Sì</string>
 	<string name="lblNo">No</string>
+	<string name="lblOk">Ok</string>
 	<string name="lblSearch">Cerca</string>
 	<string name="lblListTab">Elenco</string>
 	<string name="lblMapTab">Mappa</string>
@@ -19,6 +20,10 @@
 	<string name="lblTodayClose">Oggi chiuso</string>
 	<string name="lblFoodTypes">Potete trovare</string>
 	<string name="lblFoodCategories">Per le vostre esigenze</string>
+	
+	<string name="msgSyncErrorAppOutdated">Si prega di aggiornare l'app</string>
+	<string name="msgSyncErrorDataMalformed">Dati non corretti</string>
+	<string name="msgSyncErrorNoDataUpdate">Nessun aggiornamento disponibile</string>
 	
 	<string name="locale.tipo.ris">Ristorante</string>
 	<string name="locale.tipo.gel">Gelateria</string>

@@ -4,6 +4,7 @@
 	<string name="lblCampaignName">Eat Evolution</string>
 	<string name="lblYes">Yes</string>
 	<string name="lblNo">No</string>
+	<string name="lblOk">Ok</string>
 	<string name="lblSearch">Search</string>
 	<string name="lblListTab">List</string>
 	<string name="lblMapTab">Map</string>
@@ -19,6 +20,10 @@
 	<string name="lblTodayClose">Today close</string>
 	<string name="lblFoodTypes">You can find</string>
 	<string name="lblFoodCategories">For your needs</string>
+	
+	<string name="msgSyncErrorAppOutdated">App update available, please update</string>
+	<string name="msgSyncErrorDataMalformed">Data malformed</string>
+	<string name="msgSyncErrorNoDataUpdate">No data update</string>
 	
 	<string name="locale.tipo.ris">Restaurant</string>
 	<string name="locale.tipo.gel">Ice-cream parlour</string>

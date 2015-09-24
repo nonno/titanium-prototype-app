@@ -39,7 +39,7 @@ fetchDataOffline = function(){
 	Alloy.Globals.Data.date = data.date;
 	Alloy.Globals.Data.locali = data.locali;
 };
-fetchDataOnline = function(){
+fetchDataOnline = function(params){
 	Ti.API.debug('Repository.fetchDataOnline');
 	var defer = q.defer();
 	
@@ -51,11 +51,11 @@ fetchDataOnline = function(){
 				data = JSON.parse(res);
 				
 				if (!data || !data.locali){
-					throw {'message':'Data malformed'};
+					throw {'message':L('msgSyncErrorDataMalformed')};
 				} else if (Ti.App.version !== data.appVersion){
-					throw {'message':'App outdated: ' + Ti.App.version + ' !== ' + data.appVersion};
+					throw {'message':L('msgSyncErrorAppOutdated'),'showAlert':true};
 				} else if (data.date <= Alloy.Globals.Data.date){
-					throw {'message':'No data update available: ' + data.date + ' <= ' + Alloy.Globals.Data.date};
+					throw {'message':L('msgSyncErrorNoDataUpdate')};
 				} else {
 					file = getDataFile();
 					Ti.API.debug("Writing data on file " + file.resolve());
@@ -64,7 +64,7 @@ fetchDataOnline = function(){
 					Alloy.Globals.Data.locali = data.locali;
 					Alloy.Globals.Data.date = data.date;
 					
-					defer.resolve(res);
+					defer.resolve("Data replaced");
 				}
 			} catch(err){
 				defer.reject(err);
@@ -77,12 +77,12 @@ fetchDataOnline = function(){
 	
 	return defer.promise;
 };
-calculateDistances = function(){
+calculateDistances = function(params){
 	Ti.API.debug('Repository.calculateDistances');
 	var defer = q.defer();
 	
 	Ti.Geolocation.getCurrentPosition(function(e) {
-		if (e.success) {
+		if (e.success && e.coords) {
 			Alloy.Globals.Data.locali = Alloy.Globals.Data.locali.map(function(locale) {
 				if (locale.lat && locale.lon){
 					locale.distanza = GeoUtils.calculateDistance({'latitude' : locale.lat, 'longitude' : locale.lon}, e.coords);
@@ -91,7 +91,7 @@ calculateDistances = function(){
 			});
 			defer.resolve();
 		} else {
-			defer.reject();
+			defer.reject(e.error);
 		}
 	});
 	
