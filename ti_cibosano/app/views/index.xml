@@ -1,5 +1,0 @@
-<Alloy>
-	<Window class="container">
-            <Button id="syncButton">Sync</Button>
-	</Window>
-</Alloy>
