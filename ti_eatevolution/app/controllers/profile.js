@@ -71,8 +71,8 @@ if (!$.tipiCibiValue.text && !$.catCibiValue.text){
 $.mapview.setRegion({
 	latitude: locale.lat || 43.425505,
 	longitude: locale.lon || 11.8668486,
-	latitudeDelta:0.1,
-	longitudeDelta:0.1,
+	latitudeDelta:0.01,
+	longitudeDelta:0.01,
 	zoom:15,
 	tilt:45
 });
