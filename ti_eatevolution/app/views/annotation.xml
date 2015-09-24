@@ -1,0 +1,6 @@
+<Alloy>
+	<View class="size vgroup">
+		<Label id="icon" />
+		<Label id="iconArrow" />
+	</View>
+</Alloy>

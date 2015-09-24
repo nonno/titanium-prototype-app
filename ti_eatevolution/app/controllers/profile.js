@@ -107,7 +107,7 @@ function toggleFavorite(){
 		Alloy.Globals.analyticsEvent({action:'profile-remove_favorite', label:locale.id});
 		
 		$FM.remove(locale.id);
-		$.addFavoriteBtn.setColor('#C41230'); 
+		$.addFavoriteBtn.setColor(Alloy.CFG.gui.primaryColor);
 	}
 	
 	Ti.App.fireEvent("refresh-data");

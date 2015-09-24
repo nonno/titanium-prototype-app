@@ -24,8 +24,9 @@ synchronize = function(){
 		.then(
 			function(res){
 				Ti.API.debug('Refresh data on list and map controllers');
-				listController.refresh();
-				mapController.refresh();
+				// FIXME in case of filters on data, we lost them
+				//listController.refresh();
+				//mapController.refresh();
 			}, 
 			function(err){
 				Ti.API.warn(JSON.stringify(err));

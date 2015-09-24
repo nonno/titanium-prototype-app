@@ -41,11 +41,13 @@ populateMap = function(params){
 	mapView.annotations = data.map(function(locale) {
 		var latitude = OS_IOS ? locale.lat : parseFloat(locale.lat);
 		var longitude = OS_IOS ? locale.lon : parseFloat(locale.lon);
+		var type = Repository.tipiLocali[locale.tipo];
 		var annotation = Map.createAnnotation({
 			latitude : latitude,
 			longitude : longitude,
 			title : locale.nome,
-			locale : locale
+			locale : locale,
+			customView: Alloy.createController("annotation", {type:type}).getView(),
 		});
 		if (OS_IOS) {
 			annotation.rightButton = Ti.UI.iPhone.SystemButton.INFO_LIGHT;

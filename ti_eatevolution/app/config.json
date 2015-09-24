@@ -1,6 +1,7 @@
 {
 	"global": {
 		"gui": {
+			"primaryColor": "#98c10f",
 			"advertisementBannerHeight": "50"
 		},
 		"companyReferences": {

@@ -1,0 +1,19 @@
+"#icon":{
+	color: 'white',
+	width: 40,
+	height: 40,
+	borderRadius: 20,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font: {
+		fontFamily: 'flaticon',
+		fontSize: 30 
+	}
+},
+"#iconArrow":{
+	font: {
+		fontSize: 30,
+		fontFamily:"icomoon"
+	},
+	text: "\uf0d7",
+	top: -16
+}

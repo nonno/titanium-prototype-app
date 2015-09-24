@@ -4,7 +4,7 @@
 'Window': {
 	backgroundColor: '#fff', // white background instead of default transparent
 	titleAttributes: {
-		color: "#98c10f"
+		color: Alloy.CFG.gui.primaryColor
 	}
 },
 'Window[platform=android]': {
@@ -225,7 +225,7 @@
 }
 
 ".primary-color":{
-	color: '#98c10f'
+	color: Alloy.CFG.gui.primaryColor
 }
 
 /**
@@ -358,10 +358,10 @@
 	width: 60,
 	left: 10,
 	right: 10,
-	color: "#98c10f",
+	color: Alloy.CFG.gui.primaryColor,
 	borderRadius: 30,
 	borderWidth: 2,
-	borderColor: "#98c10f",
+	borderColor: Alloy.CFG.gui.primaryColor,
 	backgroundColor: "#e0f1a3",
 	textAlign: "center",
 	font:{
