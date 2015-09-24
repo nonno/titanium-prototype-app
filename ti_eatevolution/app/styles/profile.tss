@@ -6,11 +6,6 @@
 	compassEnabled: false,
 	height: "30%",
 },
-"#addBookmarkBtn[platform=android]":{
-	backgroundColor: 'transparent',
-	color: "#C41230",
-	borderWidth:0
-},
 ".container":{
 	backgroundColor: "#fff",
 	theme: "nutrizionisti"

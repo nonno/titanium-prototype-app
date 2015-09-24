@@ -20,10 +20,12 @@
 	<string name="lblTodayClose">Oggi chiuso</string>
 	<string name="lblFoodTypes">Potete trovare</string>
 	<string name="lblFoodCategories">Per le vostre esigenze</string>
+	<string name="lblReportProfileMailSubject">Segnalazione locale</string>
 	
 	<string name="msgSyncErrorAppOutdated">Si prega di aggiornare l'app</string>
 	<string name="msgSyncErrorDataMalformed">Dati non corretti</string>
 	<string name="msgSyncErrorNoDataUpdate">Nessun aggiornamento disponibile</string>
+	<string name="msgReportProfileMailBody">Si comunica che il locale '%s', denominato '%s' non non rispetta quanto indicato nel profilo.</string>
 	
 	<string name="locale.tipo.ris">Ristorante</string>
 	<string name="locale.tipo.gel">Gelateria</string>

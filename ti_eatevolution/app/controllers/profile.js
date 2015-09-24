@@ -73,7 +73,7 @@ $.mapview.setRegion({
 	longitude: locale.lon || 11.8668486,
 	latitudeDelta:0.1,
 	longitudeDelta:0.1,
-	zoom:10,
+	zoom:15,
 	tilt:45
 });
 
@@ -85,22 +85,9 @@ $.mapview.addAnnotation(mapAnnotation);
 
 // Check that the contact is not already a favorite, and update the favorites button
 // title as required.
-$FM.exists(locale.id) && $.addFavoriteBtn.setTitle(L('lblRemoveFromFavorites'));
+$FM.exists(locale.id) && $.addFavoriteBtn.setColor('yellow');
 
-function emailContact() {
-	Alloy.Globals.analyticsEvent({action:'profile-email', label:locale.id});
-	
-	if (OS_IOS && Ti.Platform.model === "Simulator"){
-		alert("Simulator does not support sending emails. Use a device instead");
-		return;
-	}
-
-	var emailDialog = Ti.UI.createEmailDialog();
-	emailDialog.toRecipients = [locale.email];
-	emailDialog.open();
-};
-
-function callContact(){
+function callProfile(){
 	Alloy.Globals.analyticsEvent({action:'profile-call', label:locale.id});
 	
 	if (ENV_DEV){
@@ -115,15 +102,30 @@ function toggleFavorite(){
 		Alloy.Globals.analyticsEvent({action:'profile-add_favorite', label:locale.id});
 	
 		$FM.add(locale.id);
-		$.addFavoriteBtn.setTitle(L('lblRemoveFromFavorites'));
+		$.addFavoriteBtn.setColor('yellow');
 	} else {
 		Alloy.Globals.analyticsEvent({action:'profile-remove_favorite', label:locale.id});
 		
 		$FM.remove(locale.id);
-		$.addFavoriteBtn.setTitle(L('lblAddToFavorites')); 
+		$.addFavoriteBtn.setColor('#C41230'); 
 	}
 	
 	Ti.App.fireEvent("refresh-data");
+};
+
+function reportProfile(){
+	Alloy.Globals.analyticsEvent({action:'profile-report', label:locale.id});
+	
+	if (OS_IOS && Ti.Platform.model === "Simulator"){
+		alert("Simulator does not support sending emails. Use a device instead");
+		return;
+	}
+
+	var emailDialog = Ti.UI.createEmailDialog();
+	emailDialog.toRecipients = [Alloy.CFG.companyReferences.email];
+	emailDialog.subject = L('lblReportProfileMailSubject');
+	emailDialog.messageBody = String.format(L('msgReportProfileMailBody'), locale.id, locale.nome);
+	emailDialog.open();
 };
 
 function hideInfoContainer(container){

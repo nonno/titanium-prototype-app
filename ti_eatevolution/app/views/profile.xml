@@ -12,20 +12,27 @@
 		-->
 		<ScrollView id="contactInfo" class='vgroup top'>
 			<!--  Map View Leverages the Map Module, allowing for v2 of Google Maps and latest codebase unifying Google v2 and IOS -->
-			<Module id="mapview" module="ti.map" method="createView" platform="android,ios,windows" enableZoomControls="true" class="top" />
+			<Module
+				id="mapview"
+				module="ti.map"
+				method="createView"
+				platform="android,ios,windows"
+				enableZoomControls="true"
+				class="top span-width"
+			/>
 			
 			<!-- Information -->
-			<View class="vgroup top size buffer">
-				<Label id="nome" class="h3 red top-buffer no-touch" />
-				<Label id="tipo" class="h5 gray no-touch" />
+			<View class="vgroup top vsize" left="5" right="5">
+				<Label id="nome" class="h3 red top-buffer no-touch size" />
+				<Label id="tipo" class="h4 gray no-touch size" />
 				<Label id="indirizzo" class="h5 gray no-touch size" />
-				<Button id="addFavoriteBtn" class="h4 span-width top-buffer" onClick="toggleFavorite" textid="bookmarkBtn" title="L('lblAddToFavorites')"></Button>
 			</View>
 			
 			<!-- User Actions --->
 			<View class="hgroup top-buffer size">
-				<Label id="callBtn" class="icon icon-btn icon-phone"  onClick="callContact" />
-				<Label id="emailBtn" class="icon icon-btn icon-email" onClick="emailContact" />
+				<Label id="callBtn" class="icon icon-btn icon-phone" onClick="callProfile" />
+				<Label id="addFavoriteBtn" class="icon icon-btn icon-star" onClick="toggleFavorite" />
+				<Label id="reportBtn" class="icon icon-btn icon-exclamation-triangle" onClick="reportProfile" />
 			</View>
 			
 			<View class='separator' />
