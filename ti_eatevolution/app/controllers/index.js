@@ -9,7 +9,12 @@ launch = true;
 synchronize = function(){
 	Repository.fetchDataOnline()
 		.then(
-			Repository.calculateDistances,
+			function(res){
+				listController.refresh();
+				mapController.refresh();
+				
+				Repository.calculateDistances();
+			}, 
 			function(err){
 				if (err.showAlert){
 					Ti.UI.createAlertDialog({
@@ -19,17 +24,6 @@ synchronize = function(){
 					}).show();
 				}
 				Ti.API.debug(JSON.stringify(err.message));
-			}
-		)
-		.then(
-			function(res){
-				Ti.API.debug('Refresh data on list and map controllers');
-				// FIXME in case of filters on data, we lost them
-				//listController.refresh();
-				//mapController.refresh();
-			}, 
-			function(err){
-				Ti.API.warn(JSON.stringify(err));
 			}
 		);
 };
@@ -60,13 +54,11 @@ if (launch) {
 
 appResumed = function(e){
 	Ti.API.debug("App resumed");
-	startAutoSync();
 };
 Ti.App.addEventListener('resumed', appResumed);
 
 appPaused = function(e){
 	Ti.API.debug("App paused");
-	stopAutoSync();
 };
 Ti.App.addEventListener('paused', appPaused);
 
@@ -115,7 +107,7 @@ function init(){
 	};
 	Ti.Network.addEventListener('change', connectivityChange);
 	
-	startAutoSync();
+	synchronize();
 	
 	$.tabGroup.open();
 }
