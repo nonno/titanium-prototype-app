@@ -60,6 +60,7 @@ fetchDataOnline = function(params){
 					Ti.API.debug("Writing data on file " + file.resolve());
 					file.write(res);
 					
+					// TODO handle mix of data (for don't loose added properties like distances)
 					Alloy.Globals.Data.locali = data.locali;
 					Alloy.Globals.Data.date = data.date;
 					

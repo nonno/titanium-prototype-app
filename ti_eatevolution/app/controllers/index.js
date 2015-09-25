@@ -7,6 +7,8 @@ syncInterval = null;
 launch = true;
 
 synchronize = function(){
+	Ti.API.info('Synchronize');
+	
 	Repository.fetchDataOnline()
 		.then(
 			function(res){
@@ -54,11 +56,19 @@ if (launch) {
 
 appResumed = function(e){
 	Ti.API.debug("App resumed");
+	
+	if (Alloy.CFG.syncronizationInterval){
+		startAutoSync();
+	}
 };
 Ti.App.addEventListener('resumed', appResumed);
 
 appPaused = function(e){
 	Ti.API.debug("App paused");
+	
+	if (Alloy.CFG.syncronizationInterval){
+		stopAutoSync();
+	}
 };
 Ti.App.addEventListener('paused', appPaused);
 
@@ -107,7 +117,11 @@ function init(){
 	};
 	Ti.Network.addEventListener('change', connectivityChange);
 	
-	synchronize();
+	if (Alloy.CFG.syncronizationInterval){
+		startAutoSync();
+	} else {
+		synchronize();
+	}
 	
 	$.tabGroup.open();
 }

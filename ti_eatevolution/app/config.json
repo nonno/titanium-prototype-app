@@ -2,7 +2,7 @@
 	"global": {
 		"gui": {
 			"primaryColor": "#98c10f",
-			"advertisementBannerHeight": "50"
+			"advertisementBannerHeight": 50
 		},
 		"companyReferences": {
 			"address": "Via Rossini, 51 - 60035 Jesi (AN)",
@@ -13,7 +13,7 @@
 			"web": "http://www.nutrizionistisenzafrontiere.org"
 		},
 		"dataUrl": "https://dl.dropboxusercontent.com/u/18816030/EatEvolution/data.json",
-		"syncronizationInterval": "10",
+		"syncronizationInterval": 0,
 		"gaTrackingId": "UA-63543213-2"
 	},
 	"env:development": {
