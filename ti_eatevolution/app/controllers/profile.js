@@ -2,7 +2,7 @@ var locale = arguments[0] || {},
 	Map = require('ti.map'),
 	Repository = require('Repository'),
 	$FM = require('favoritesmgr'),
-	tipoData = Repository.tipiLocali[locale.tipo];
+	tipoData = Repository.profileTypes[locale.tipo];
 
 Alloy.Globals.analyticsEvent({action:'profile-open', label:locale.id});
 

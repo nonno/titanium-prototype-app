@@ -47,7 +47,7 @@
 
 ".thumbTipo":{
 	font:{
-		fontFamily: 'flaticon', 
+		fontFamily: 'food-types', 
 		fontSize: 60 
 	},
 	top: 15,

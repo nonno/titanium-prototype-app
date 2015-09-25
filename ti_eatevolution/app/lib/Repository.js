@@ -3,19 +3,18 @@ var Request = require('Request'),
 	DateUtils = require('DateUtils'),
 	GeoUtils = require('GeoUtils');
 
-var getDataFile, tipiLocali, fetchDataOffline, fetchDataOnline, addressToString,
+var getDataFile, profileTypes, fetchDataOffline, fetchDataOnline, addressToString,
 	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances;
 
-tipiLocali = {
-	'ris': {'text':'locale.tipo.ris','icon':'\ue008','color':'red'},
-	'gel': {'text':'locale.tipo.gel','icon':'\ue010','color':'cyan'},
-	'pas': {'text':'locale.tipo.pas','icon':'\ue01c','color':'purple'},
-	'for': {'text':'locale.tipo.for','icon':'\ue003','color':'brown'},
-	'bar': {'text':'locale.tipo.bar','icon':'\ue004','color':'maroon'},
-	'tc': {'text':'locale.tipo.tc','icon':'\ue017','color':'olive'},
-	'ag': {'text':'locale.tipo.ag','icon':'\ue017','color':'olive'},
-	'ros': {'text':'locale.tipo.ros','icon':'\ue014','color':'pink'},
-	'ff': {'text':'locale.tipo.ff','icon':'\ue00e','color':'orange'}
+profileTypes = {
+	'ris': {text:'locale.tipo.ris', icon:Alloy.Globals.Icons.foodTypes.cutlery, color:'red'},
+	'gel': {text:'locale.tipo.gel', icon:Alloy.Globals.Icons.foodTypes.iceCream, color:'cyan'},
+	'pas': {text:'locale.tipo.pas', icon:Alloy.Globals.Icons.foodTypes.sweet, color:'purple'},
+	'for': {text:'locale.tipo.for', icon:Alloy.Globals.Icons.foodTypes.croissant, color:'brown'},
+	'bar': {text:'locale.tipo.bar', icon:Alloy.Globals.Icons.foodTypes.coffee, color:'maroon'},
+	'tc': {text:'locale.tipo.tc', icon:Alloy.Globals.Icons.foodTypes.pot, color:'olive'},
+	'ros': {text:'locale.tipo.ros', icon:Alloy.Globals.Icons.foodTypes.ham, color:'pink'},
+	'ff': {text:'locale.tipo.ff', icon:Alloy.Globals.Icons.foodTypes.fastFood, color:'orange'}
 };
 
 getDataFile = function(){
@@ -194,4 +193,4 @@ exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
 exports.getFoodTypes = getFoodTypes;
 exports.getFoodCategories = getFoodCategories;
-exports.tipiLocali = tipiLocali;
+exports.profileTypes = profileTypes;

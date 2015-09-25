@@ -41,7 +41,7 @@ populateMap = function(params){
 	mapView.annotations = data.map(function(locale) {
 		var latitude = OS_IOS ? locale.lat : parseFloat(locale.lat);
 		var longitude = OS_IOS ? locale.lon : parseFloat(locale.lon);
-		var type = Repository.tipiLocali[locale.tipo];
+		var type = Repository.profileTypes[locale.tipo];
 		var annotation = Map.createAnnotation({
 			latitude : latitude,
 			longitude : longitude,

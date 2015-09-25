@@ -7,6 +7,30 @@ if (OS_IOS){ // FIXME problem with ti.ga and ti.map
 
 Alloy.Globals.Data = {};
 Alloy.Globals.Data.locali = {};
+Alloy.Globals.Icons = {
+	logo : "\ue600",
+	foodTypes : {
+		cheese: "\ue600",
+		cherries: "\ue601",
+		cocktail: "\ue602",
+		coffee: "\ue603",
+		croissant: "\ue604",
+		cutlery: "\ue605",
+		fastFood: "\ue606",
+		ham: "\ue607",
+		iceCream: "\ue608",
+		iceCream2: "\ue609",
+		knife: "\ue60a",
+		pizza: "\ue60b",
+		pot: "\ue60c",
+		seaFood: "\ue60d",
+		steak: "\ue60e",
+		sweet: "\ue60f",
+		taco: "\ue610",
+		teaPot: "\ue611",
+		vegetables: "\ue612"
+	}
+};
 
 Alloy.Globals.analyticsShowView = function(viewName){
 	if (Alloy.Globals.trackerGA){
