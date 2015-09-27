@@ -39,34 +39,24 @@ populateMap = function(params){
 	}
 	
 	mapView.annotations = data.map(function(locale) {
-		var latitude = OS_IOS ? locale.lat : parseFloat(locale.lat);
-		var longitude = OS_IOS ? locale.lon : parseFloat(locale.lon);
-		var type = Repository.profileTypes[locale.tipo];
 		var annotation = Map.createAnnotation({
-			latitude : latitude,
-			longitude : longitude,
+			latitude : OS_IOS ? locale.lat : parseFloat(locale.lat),
+			longitude : OS_IOS ? locale.lon : parseFloat(locale.lon),
 			title : locale.nome,
 			locale : locale,
-			customView: Alloy.createController("annotation", {type:type}).getView(),
+			customView: Alloy.createController("annotation", {
+				type: Repository.profileTypes[locale.tipo]
+			}).getView(),
 		});
-		if (OS_IOS) {
-			annotation.rightButton = Ti.UI.iPhone.SystemButton.INFO_LIGHT;
-		}
 		return annotation;
 	});
 };
 
 listener = function(event) {
-	if (event.clicksource == 'rightButton') {
+	if (!OS_ANDROID || event.clicksource !== 'pin') {
 		Alloy.Globals.analyticsEvent({action:'map-open_profile', label:event.annotation.locale.id});
 		
 		currentTab.open(Alloy.createController("profile", event.annotation.locale).getView());
-	} else {
-		if (event.clicksource != 'pin' && OS_ANDROID) {
-			Alloy.Globals.analyticsEvent({action:'map-open_profile', label:event.annotation.locale.id});
-			
-			currentTab.open(Alloy.createController("profile", event.annotation.locale).getView());
-		}
 	}
 };
 mapView.addEventListener('click', listener);
