@@ -184,7 +184,7 @@ if (OS_IOS){
 		$.listView.editing = false;
 		populateList();
 	}
-	$.listView.addEventListener("rowAction", onRowAction);
+	$.listView.addEventListener("editaction", onRowAction);
 }
 
 $.wrapper.addEventListener("open", function(){
