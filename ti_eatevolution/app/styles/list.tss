@@ -21,10 +21,10 @@
 ".favorite":{
 	font:{
 		fontSize: 25,
-		fontFamily:"icomoon",
+		fontFamily:"font-awesome",
 	},
 	color:"#038BC8",
-	text:"\uf005",	
+	text:Alloy.Globals.Icons.fontAwesome.star,
 	right: 10
 },
 

@@ -12,8 +12,8 @@
 "#iconArrow":{
 	font: {
 		fontSize: 30,
-		fontFamily:"icomoon"
+		fontFamily:"font-awesome"
 	},
-	text: "\uf0d7",
+	text: Alloy.Globals.Icons.fontAwesome.caretDown,
 	top: -16
 }

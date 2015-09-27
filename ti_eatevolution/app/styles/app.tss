@@ -311,7 +311,7 @@
 
 '.icon':{
 	font:{
-		fontFamily: 'icomoon', 
+		fontFamily: 'font-awesome', 
 		fontSize: 20 
 	}
 },
@@ -333,25 +333,25 @@
  *  being used to represent the icons on the profile view
  */
 ".icon-home":{
-	text: "\uf015"
+	text: Alloy.Globals.Icons.fontAwesome.home
 },
 ".icon-phone":{
-	text: "\uf095"
+	text: Alloy.Globals.Icons.fontAwesome.phone
 },
 ".icon-email":{
-	text:"\uf0e0"
+	text: Alloy.Globals.Icons.fontAwesome.envelope
 },
 ".icon-cloud":{
-	text:"\uf0c3"
+	text: Alloy.Globals.Icons.fontAwesome.cloud
 },
 ".icon-calendar":{
-	text: "\uf073"
+	text: Alloy.Globals.Icons.fontAwesome.calendar
 },
 ".icon-star":{
-	text: "\uf005"
+	text: Alloy.Globals.Icons.fontAwesome.star
 },
 ".icon-exclamation-triangle":{
-	text: "\uf071"
+	text: Alloy.Globals.Icons.fontAwesome.exlamationTriangle
 },
 ".icon-btn":{
 	height: 60,

@@ -28,7 +28,19 @@ Alloy.Globals.Icons = {
 		sweet: "\ue60f",
 		taco: "\ue610",
 		teaPot: "\ue611",
-		vegetables: "\ue612"
+		vegetables: "\ue612",
+	},
+	fontAwesome : {
+		star: "\uf005",
+		home: "\uf015",
+		exlamationTriangle: "\uf071",
+		calendar: "\uf073",
+		phone: "\uf095",
+		globe: "\uf0ac",
+		cloud: "\uf0c2",
+		caretDown: "\uf0d7",
+		envelope: "\uf0e0",
+		map: "\uf278"
 	}
 };
 
