@@ -7,14 +7,15 @@ var getDataFile, profileTypes, fetchDataOffline, fetchDataOnline, addressToStrin
 	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances;
 
 profileTypes = {
-	'ris': {text:'locale.tipo.ris', icon:Alloy.Globals.Icons.foodTypes.cutlery, color:'red'},
+	'bar': {text:'locale.tipo.bar', icon:Alloy.Globals.Icons.foodTypes.coffee, color:'maroon'},
+	'ff': {text:'locale.tipo.ff', icon:Alloy.Globals.Icons.foodTypes.fastFood, color:'orange'},
+	'for': {text:'locale.tipo.for', icon:Alloy.Globals.Icons.foodTypes.croissant, color:'brown'},
 	'gel': {text:'locale.tipo.gel', icon:Alloy.Globals.Icons.foodTypes.iceCream, color:'cyan'},
 	'pas': {text:'locale.tipo.pas', icon:Alloy.Globals.Icons.foodTypes.sweet, color:'purple'},
-	'for': {text:'locale.tipo.for', icon:Alloy.Globals.Icons.foodTypes.croissant, color:'brown'},
-	'bar': {text:'locale.tipo.bar', icon:Alloy.Globals.Icons.foodTypes.coffee, color:'maroon'},
-	'tc': {text:'locale.tipo.tc', icon:Alloy.Globals.Icons.foodTypes.pot, color:'olive'},
+	'piz': {text:'locale.tipo.piz', icon:Alloy.Globals.Icons.foodTypes.pizza, color:'red'},
+	'ris': {text:'locale.tipo.ris', icon:Alloy.Globals.Icons.foodTypes.cutlery, color:'gray'},
 	'ros': {text:'locale.tipo.ros', icon:Alloy.Globals.Icons.foodTypes.ham, color:'pink'},
-	'ff': {text:'locale.tipo.ff', icon:Alloy.Globals.Icons.foodTypes.fastFood, color:'orange'}
+	'tc': {text:'locale.tipo.tc', icon:Alloy.Globals.Icons.foodTypes.pot, color:'olive'}
 };
 
 getDataFile = function(){

@@ -27,14 +27,15 @@
 	<string name="msgSyncErrorNoDataUpdate">No data update</string>
 	<string name="msgReportProfileMailBody">Profile '%s', named '%s' doesn't offer what it promise.</string>
 	
-	<string name="locale.tipo.ris">Restaurant</string>
+	<string name="locale.tipo.bar">Café</string>
+	<string name="locale.tipo.ff">Fast-food</string>
+	<string name="locale.tipo.for">Bakery</string>
 	<string name="locale.tipo.gel">Ice-cream parlour</string>
 	<string name="locale.tipo.pas">Patisserie</string>
-	<string name="locale.tipo.for">Bakery</string>
-	<string name="locale.tipo.bar">Café</string>
-	<string name="locale.tipo.tc">Dining hall</string>
+	<string name="locale.tipo.piz">Pizzeria</string>
+	<string name="locale.tipo.ris">Restaurant</string>
 	<string name="locale.tipo.ros">Fry shop</string>
-	<string name="locale.tipo.ff">Fast-food</string>
+	<string name="locale.tipo.tc">Dining hall</string>
 	
 	<string name="cibo.tipo.dol">Desserts</string>
 	<string name="cibo.tipo.gel">Ice-creams</string>
@@ -45,6 +46,7 @@
 	
 	<string name="cibo.cat.gf">Gluten free</string>
 	<string name="cibo.cat.lf">Lactose free</string>
+	<string name="cibo.cat.mac">Macrobiotic</string>
 	<string name="cibo.cat.pm">Maternity</string>
 	<string name="cibo.cat.vegan">Vegan</string>
 	<string name="cibo.cat.veget">Vegetarian</string>

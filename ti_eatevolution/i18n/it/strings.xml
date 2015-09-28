@@ -27,14 +27,15 @@
 	<string name="msgSyncErrorNoDataUpdate">Nessun aggiornamento disponibile</string>
 	<string name="msgReportProfileMailBody">Si comunica che il locale '%s', denominato '%s' non non rispetta quanto indicato nel profilo.</string>
 	
-	<string name="locale.tipo.ris">Ristorante</string>
+	<string name="locale.tipo.bar">Bar</string>
+	<string name="locale.tipo.ff">Fast-food</string>
+	<string name="locale.tipo.for">Forno</string>
 	<string name="locale.tipo.gel">Gelateria</string>
 	<string name="locale.tipo.pas">Pasticceria</string>
-	<string name="locale.tipo.for">Forno</string>
-	<string name="locale.tipo.bar">Bar</string>
-	<string name="locale.tipo.tc">Tavola calda</string>
+	<string name="locale.tipo.piz">Pizzeria</string>
+	<string name="locale.tipo.ris">Ristorante</string>
 	<string name="locale.tipo.ros">Rosticceria</string>
-	<string name="locale.tipo.ff">Fast-food</string>
+	<string name="locale.tipo.tc">Tavola calda</string>
 	
 	<string name="cibo.tipo.dol">Dolci</string>
 	<string name="cibo.tipo.gel">Gelati</string>
@@ -45,6 +46,7 @@
 	
 	<string name="cibo.cat.gf">Senza glutine</string>
 	<string name="cibo.cat.lf">Senza lattosio</string>
+	<string name="cibo.cat.mac">Macrobiotica</string>
 	<string name="cibo.cat.pm">Premaman</string>
 	<string name="cibo.cat.vegan">Vegana</string>
 	<string name="cibo.cat.veget">Vegetariana</string>
