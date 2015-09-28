@@ -2,12 +2,16 @@ var locale = arguments[0] || {},
 	Map = require('ti.map'),
 	Repository = require('Repository'),
 	$FM = require('favoritesmgr'),
-	tipoData = Repository.profileTypes[locale.tipo];
+	Admob = OS_ANDROID ? require('ti.admob') : null;
+
+var typeData, adMobView;
 
 Alloy.Globals.analyticsEvent({action:'profile-open', label:locale.id});
 
+typeData = Repository.profileTypes[locale.tipo];
+
 $.nome.text = locale.nome;
-$.tipo.text = L(tipoData.text);
+$.tipo.text = L(typeData.text);
 $.indirizzo.text = Repository.addressToString(locale);
 
 if (locale.tel){
@@ -159,6 +163,23 @@ $.profile.addEventListener("postlayout", function(e){
 		curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT
 	});
 });
+
+if (OS_ANDROID){
+	adMobView = Admob.createView({
+		publisherId:"pub-5803114779573585",
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0
+	});
+	adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
+		Ti.API.debug("Ad received " + JSON.stringify(e));
+	});
+	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function(e){
+		Ti.API.debug("Ad not received " + JSON.stringify(e));
+	});
+	$.advContainer.add(adMobView);
+}
 
 showAdvertisement(Ti.Network.online);
 

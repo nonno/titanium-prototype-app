@@ -1,9 +1,11 @@
 var args = arguments[0] || {},
 	$FM = require('favoritesmgr'),
 	Repository = require("Repository"),
+	Admob = OS_ANDROID ? require('ti.admob') : null,
 	Map = require('ti.map');
 
-var file, mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap, onlyFavourites;
+var file, mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap,
+	onlyFavourites, adMobView;
 
 onlyFavourites = false;
 
@@ -100,6 +102,23 @@ centerMapOnCurrentPosition = function(){
 Ti.App.addEventListener("refresh-data", function(e){
 	populateMap();
 });
+
+if (OS_ANDROID){
+	adMobView = Admob.createView({
+		publisherId:"pub-5803114779573585",
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0
+	});
+	adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
+		Ti.API.debug("Ad received " + JSON.stringify(e));
+	});
+	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function(e){
+		Ti.API.debug("Ad not received " + JSON.stringify(e));
+	});
+	$.advContainer.add(adMobView);
+}
 
 centerMapOnCurrentPosition();
 
