@@ -1,11 +1,12 @@
 var _args = arguments[0] || {},
 	App = Alloy.Globals.App, // reference to the APP singleton object
+	Admob = OS_ANDROID ? require('ti.admob') : null,
 	$FM = require('favoritesmgr'),
 	Repository = require("Repository"),
 	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
-	onSearchCancel, title, currentTab, formatDistance;
+	onSearchCancel, title, currentTab, formatDistance, adMobView;
 
 title = (_args.title || "").toLowerCase();
 
@@ -201,6 +202,22 @@ Ti.App.addEventListener("refresh-data", function(e){
 	populateList();
 });
 
+if (OS_ANDROID){
+	adMobView = Admob.createView({
+		publisherId:"pub-5803114779573585",
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0
+	});
+	adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
+		Ti.API.debug("Ad received " + JSON.stringify(e));
+	});
+	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function(e){
+		Ti.API.debug("Ad not received " + JSON.stringify(e));
+	});
+	$.advContainer.add(adMobView);
+}
 if (_args.title){
 	$.wrapper.title = _args.title;
 }
