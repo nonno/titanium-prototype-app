@@ -7,9 +7,10 @@
 				<!-- defaultTemplate - this is the default ListItem template -->
 				<ItemTemplate id="defaultTemplate" name="defaultTemplate" class="template">
 					<View class="left-buffer">
-						<Label id="tipo" bindId="tipo" class="thumbTipo" />
+						<Label id="icon" bindId="icon" class="thumbTipo" />
 						<View class="vgroup left size">
 							<Label id="nome" bindId="nome" class="title" />
+							<Label id="tipo" bindId="tipo" class="subtitle" />
 							<Label id="indirizzo" bindId="indirizzo" class="subtitle" />
 							<Label id="telefono" bindId="telefono" class="subtitle" />
 							<Label id="distanza" bindId="distanza" class="subtitle" />
@@ -21,9 +22,10 @@
 				<!-- favoriteTemplate - this is the ListItem template for contacts that have been bookmarked -->
 				<ItemTemplate id="favoriteTemplate" name="favoriteTemplate" class="template">
 					<View class="left-buffer">
-						<Label id="tipo" bindId="tipo" class="thumbTipo" />
+						<Label id="icon" bindId="icon" class="thumbTipo" />
 						<View class="vgroup left size">
 							<Label id="nome" bindId="nome" class="title" />
+							<Label id="tipo" bindId="tipo" class="subtitle" />
 							<Label id="indirizzo" bindId="indirizzo" class="subtitle" />
 							<Label id="telefono" bindId="telefono" class="subtitle" />
 							<Label id="distanza" bindId="distanza" class="subtitle" />

@@ -8,7 +8,7 @@ var typeData, adMobView;
 
 Alloy.Globals.analyticsEvent({action:'profile-open', label:locale.id});
 
-typeData = Repository.profileTypes[locale.tipo];
+typeData = Repository.getProfileType(locale.tipo);
 
 $.nome.text = locale.nome;
 $.tipo.text = L(typeData.text);
@@ -166,11 +166,7 @@ $.profile.addEventListener("postlayout", function(e){
 
 if (OS_ANDROID){
 	adMobView = Admob.createView({
-		publisherId:"pub-5803114779573585",
-		top: 0,
-		left: 0,
-		right: 0,
-		bottom: 0
+		publisherId:"ca-app-pub-5803114779573585/5082268359"
 	});
 	adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
 		Ti.API.debug("Ad received " + JSON.stringify(e));

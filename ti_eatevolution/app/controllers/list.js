@@ -6,9 +6,7 @@ var _args = arguments[0] || {},
 	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
-	onSearchCancel, title, currentTab, formatDistance, adMobView;
-
-title = (_args.title || "").toLowerCase();
+	onSearchCancel, currentTab, formatDistance, adMobView;
 
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
@@ -16,14 +14,14 @@ onSearchChange = function(e){
 
 preprocessForListView = function(rawData) {
 	if ($.listView.defaultItemTemplate === 'favoriteTemplate') {
-		rawData = _.filter(rawData, function(item){
+		rawData = rawData.filter(function(item){
 			return $FM.exists(item.id);
 		});
 	}
 	
-	return _.map(rawData, function(item) {
+	return rawData.map(function(item) {
 		var isFavorite = $FM.exists(item.id);
-		var type = Repository.profileTypes[item.tipo];
+		var type = Repository.getProfileType(item.tipo);
 		
 		return {
 			template: isFavorite ? "favoriteTemplate" : "defaultTemplate",
@@ -35,8 +33,9 @@ preprocessForListView = function(rawData) {
 				],
 				canEdit:true
 			},
-			tipo: {text: type.icon, color: type.color},
+			icon: {text: type.icon, color: type.color},
 			nome: {text: item.nome},
+			tipo: {text: L(type.text)},
 			indirizzo: {text: Repository.addressToString(item)},
 			telefono: {text: item.tel},
 			distanza: {text: formatDistance(item.distanza)}
@@ -204,11 +203,7 @@ Ti.App.addEventListener("refresh-data", function(e){
 
 if (OS_ANDROID){
 	adMobView = Admob.createView({
-		publisherId:"pub-5803114779573585",
-		top: 0,
-		left: 0,
-		right: 0,
-		bottom: 0
+		publisherId:"ca-app-pub-5803114779573585/8333772750",
 	});
 	adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
 		Ti.API.debug("Ad received " + JSON.stringify(e));
@@ -218,9 +213,8 @@ if (OS_ANDROID){
 	});
 	$.advContainer.add(adMobView);
 }
-if (_args.title){
-	$.wrapper.title = _args.title;
-}
+
+$.wrapper.title = (_args.title || "").toLowerCase();
 populateList();
 
 exports.setTab = function(tab){

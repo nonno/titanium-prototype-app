@@ -3,7 +3,7 @@ var Request = require('Request'),
 	DateUtils = require('DateUtils'),
 	GeoUtils = require('GeoUtils');
 
-var getDataFile, profileTypes, fetchDataOffline, fetchDataOnline, addressToString,
+var getDataFile, profileTypes, fetchDataOffline, fetchDataOnline, addressToString, getProfileType,
 	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances;
 
 profileTypes = {
@@ -185,6 +185,20 @@ getFoodCategories = function(locale){
 	}, []));
 };
 
+getProfileType = function(type){
+	var value, defaultType;
+	defaultType = 'ris';
+	if (!type){
+		Ti.API.warn('getProfileType called with no type');
+		type = defaultType;
+	}
+	value = profileTypes[type];
+	if (!value){
+		Ti.API.warn('getProfileType called with no existent type ' + type);
+		value = profileTypes[defaultType];
+	}
+	return value;
+};
 
 exports.getDataFile = getDataFile;
 exports.fetchDataOffline = fetchDataOffline;
@@ -195,4 +209,4 @@ exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
 exports.getFoodTypes = getFoodTypes;
 exports.getFoodCategories = getFoodCategories;
-exports.profileTypes = profileTypes;
+exports.getProfileType = getProfileType;

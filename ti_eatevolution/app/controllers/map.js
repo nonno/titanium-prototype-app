@@ -47,7 +47,7 @@ populateMap = function(params){
 			title : locale.nome,
 			locale : locale,
 			customView: Alloy.createController("annotation", {
-				type: Repository.profileTypes[locale.tipo]
+				type: Repository.getProfileType(locale.tipo)
 			}).getView(),
 		});
 		return annotation;
@@ -105,11 +105,7 @@ Ti.App.addEventListener("refresh-data", function(e){
 
 if (OS_ANDROID){
 	adMobView = Admob.createView({
-		publisherId:"pub-5803114779573585",
-		top: 0,
-		left: 0,
-		right: 0,
-		bottom: 0
+		publisherId:"ca-app-pub-5803114779573585/3605535158"
 	});
 	adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
 		Ti.API.debug("Ad received " + JSON.stringify(e));
