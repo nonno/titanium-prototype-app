@@ -2,10 +2,10 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>it.mpic.eatevolution</id>
     <name>Eat Evolution</name>
-    <version>1.0</version>
+    <version>0.2</version>
     <publisher>Mauro Piccotti</publisher>
     <url>http://www.mpic.it</url>
-    <description>not specified</description>
+    <description>Mangia sano nei locali raccomandati da Nutrizionisti Senza Frontiere</description>
     <copyright>2015 by Mauro Piccotti</copyright>
     <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>
