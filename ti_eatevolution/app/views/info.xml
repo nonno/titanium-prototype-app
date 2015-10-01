@@ -1,6 +1,6 @@
 <Alloy>
 	<Window title="L('lblInfoTab')">
-		<ScrollView id="mainContainer" class='vgroup buffer'>
+		<ScrollView id="mainContainer" class="vgroup buffer" scrollType="vertical">
 			<View class="top size">
 				<Label id="title" class='h3 primary-color top-buffer no-touch' text="L('lblCompanyName')" />
 			</View>

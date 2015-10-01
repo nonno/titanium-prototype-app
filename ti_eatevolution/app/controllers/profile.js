@@ -2,13 +2,11 @@ var locale = arguments[0] || {},
 	Map = require('ti.map'),
 	Repository = require('Repository'),
 	$FM = require('favoritesmgr'),
-	Admob = OS_ANDROID ? require('ti.admob') : null;
-
-var typeData, adMobView;
+	Admob = OS_ANDROID ? require('ti.admob') : null; // FIXME on ios
 
 Alloy.Globals.analyticsEvent({action:'profile-open', label:locale.id});
 
-typeData = Repository.getProfileType(locale.tipo);
+var typeData = Repository.getProfileType(locale.tipo);
 
 $.nome.text = locale.nome;
 $.tipo.text = L(typeData.text);
@@ -146,7 +144,22 @@ function showAdvertisement(show){
 	if (show){
 		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
 		$.contactInfo.bottom = Alloy.CFG.gui.advertisementBannerHeight;
+		
+		if (Admob){
+			var adMobView = Admob.createView({
+				publisherId:"ca-app-pub-5803114779573585/5082268359"
+			});
+			adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
+				Ti.API.debug("Ad received " + e.source.publisherId);
+			});
+			adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function(e){
+				Ti.API.warn("Ad not received " + JSON.stringify(e));
+			});
+			$.advContainer.add(adMobView);
+		}
 	} else {
+		$.advContainer.removeAllChildren();
+		
 		$.contactInfo.bottom = 0;
 		$.advContainer.height = 0;
 	}
@@ -163,19 +176,6 @@ $.profile.addEventListener("postlayout", function(e){
 		curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT
 	});
 });
-
-if (OS_ANDROID){
-	adMobView = Admob.createView({
-		publisherId:"ca-app-pub-5803114779573585/5082268359"
-	});
-	adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
-		Ti.API.debug("Ad received " + JSON.stringify(e));
-	});
-	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function(e){
-		Ti.API.debug("Ad not received " + JSON.stringify(e));
-	});
-	$.advContainer.add(adMobView);
-}
 
 showAdvertisement(Ti.Network.online);
 

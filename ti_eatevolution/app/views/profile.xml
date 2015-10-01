@@ -3,14 +3,7 @@
 	<Window class="container" opacity="0.0" title="L('lblDetailsTitle')">
 		<ActionBar platform="android" displayHomeAsUp="true" onHomeIconItemSelected="closeWindow" />
 		
-		<!-- 
-			Profile Page
-			- A ScrollView that an end user can swipe to show more information about the user.
-			- Information View, shows phone, email, IM
-			- About View, a blurb of text about the user
-			- MapView shows an annotation of where the user is located
-		-->
-		<ScrollView id="contactInfo" class='vgroup top'>
+		<ScrollView id="contactInfo" class='vgroup top' scrollType="vertical">
 			<!--  Map View Leverages the Map Module, allowing for v2 of Google Maps and latest codebase unifying Google v2 and IOS -->
 			<Module
 				id="mapview"

@@ -1,12 +1,12 @@
 var _args = arguments[0] || {},
 	App = Alloy.Globals.App, // reference to the APP singleton object
-	Admob = OS_ANDROID ? require('ti.admob') : null,
+	Admob = OS_ANDROID ? require('ti.admob') : null, // FIXME on ios
 	$FM = require('favoritesmgr'),
 	Repository = require("Repository"),
 	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
-	onSearchCancel, currentTab, formatDistance, adMobView;
+	onSearchCancel, currentTab, formatDistance;
 
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
@@ -201,19 +201,6 @@ Ti.App.addEventListener("refresh-data", function(e){
 	populateList();
 });
 
-if (OS_ANDROID){
-	adMobView = Admob.createView({
-		publisherId:"ca-app-pub-5803114779573585/8333772750",
-	});
-	adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
-		Ti.API.debug("Ad received " + JSON.stringify(e));
-	});
-	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function(e){
-		Ti.API.debug("Ad not received " + JSON.stringify(e));
-	});
-	$.advContainer.add(adMobView);
-}
-
 $.wrapper.title = (_args.title || "").toLowerCase();
 populateList();
 
@@ -224,7 +211,22 @@ exports.showAdvertisement = function(show){
 	if (show){
 		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
 		$.listView.bottom = Alloy.CFG.gui.advertisementBannerHeight;
+		
+		if (Admob){
+			var adMobView = Admob.createView({
+				publisherId:"ca-app-pub-5803114779573585/8333772750",
+			});
+			adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
+				Ti.API.debug("Ad received " + e.source.publisherId);
+			});
+			adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function(e){
+				Ti.API.warn("Ad not received " + JSON.stringify(e));
+			});
+			$.advContainer.add(adMobView);
+		}
 	} else {
+		$.advContainer.removeAllChildren();
+		
 		$.listView.bottom = 0;
 		$.advContainer.height = 0;
 	}
