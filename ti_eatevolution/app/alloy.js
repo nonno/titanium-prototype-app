@@ -8,42 +8,32 @@ if (OS_IOS){ // FIXME problem with ti.ga and ti.map
 Alloy.Globals.Data = {};
 Alloy.Globals.Data.locali = {};
 Alloy.Globals.Icons = {
-	logo : "\ue600",
-	foodTypes : {
-		cheese: "\ue600",
-		cherries: "\ue601",
-		cocktail: "\ue602",
-		coffee: "\ue603",
-		croissant: "\ue604",
-		cutlery: "\ue605",
-		fastFood: "\ue606",
-		ham: "\ue607",
-		iceCream: "\ue608",
-		iceCream2: "\ue609",
-		knife: "\ue60a",
-		pizza: "\ue60b",
-		pot: "\ue60c",
-		seaFood: "\ue60d",
-		steak: "\ue60e",
-		sweet: "\ue60f",
-		taco: "\ue610",
-		teaPot: "\ue611",
-		vegetables: "\ue612",
+	"logo": "\ue600",
+	"profileTypes": {
+		"bar": "\ue600",
+		"ff": "\ue601",
+		"for": "\ue602",
+		"gel": "\ue603",
+		"pas": "\ue604",
+		"piz": "\ue605",
+		"ris": "\ue606",
+		"ros": "\ue607",
+		"tc": "\ue608"
 	},
-	fontAwesome : {
-		star: "\uf005",
-		home: "\uf015",
-		timesCircle: "\uf057",
-		checkCircle: "\uf058",
-		exlamationTriangle: "\uf071",
-		calendar: "\uf073",
-		phone: "\uf095",
-		globe: "\uf0ac",
-		cloud: "\uf0c2",
-		money: "\uf0d6",
-		caretDown: "\uf0d7",
-		envelope: "\uf0e0",
-		map: "\uf278"
+	"fontAwesome": {
+		"star": "\uf005",
+		"home": "\uf015",
+		"timesCircle": "\uf057",
+		"checkCircle": "\uf058",
+		"exlamationTriangle": "\uf071",
+		"calendar": "\uf073",
+		"phone": "\uf095",
+		"globe": "\uf0ac",
+		"cloud": "\uf0c2",
+		"money": "\uf0d6",
+		"caretDown": "\uf0d7",
+		"envelope": "\uf0e0",
+		"map": "\uf278"
 	}
 };
 

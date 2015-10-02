@@ -7,15 +7,15 @@ var getDataFile, profileTypes, fetchDataOffline, fetchDataOnline, addressToStrin
 	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances;
 
 profileTypes = {
-	'bar': {text:'locale.tipo.bar', icon:Alloy.Globals.Icons.foodTypes.coffee, color:'maroon'},
-	'ff': {text:'locale.tipo.ff', icon:Alloy.Globals.Icons.foodTypes.fastFood, color:'orange'},
-	'for': {text:'locale.tipo.for', icon:Alloy.Globals.Icons.foodTypes.croissant, color:'brown'},
-	'gel': {text:'locale.tipo.gel', icon:Alloy.Globals.Icons.foodTypes.iceCream, color:'cyan'},
-	'pas': {text:'locale.tipo.pas', icon:Alloy.Globals.Icons.foodTypes.sweet, color:'purple'},
-	'piz': {text:'locale.tipo.piz', icon:Alloy.Globals.Icons.foodTypes.pizza, color:'red'},
-	'ris': {text:'locale.tipo.ris', icon:Alloy.Globals.Icons.foodTypes.cutlery, color:'gray'},
-	'ros': {text:'locale.tipo.ros', icon:Alloy.Globals.Icons.foodTypes.ham, color:'pink'},
-	'tc': {text:'locale.tipo.tc', icon:Alloy.Globals.Icons.foodTypes.pot, color:'olive'}
+	'bar': {text:'locale.tipo.bar', icon:Alloy.Globals.Icons.profileTypes.bar, color:'maroon'},
+	'ff': {text:'locale.tipo.ff', icon:Alloy.Globals.Icons.profileTypes.ff, color:'orange'},
+	'for': {text:'locale.tipo.for', icon:Alloy.Globals.Icons.profileTypes.for, color:'brown'},
+	'gel': {text:'locale.tipo.gel', icon:Alloy.Globals.Icons.profileTypes.gel, color:'cyan'},
+	'pas': {text:'locale.tipo.pas', icon:Alloy.Globals.Icons.profileTypes.pas, color:'purple'},
+	'piz': {text:'locale.tipo.piz', icon:Alloy.Globals.Icons.profileTypes.piz, color:'red'},
+	'ris': {text:'locale.tipo.ris', icon:Alloy.Globals.Icons.profileTypes.ris, color:'gray'},
+	'ros': {text:'locale.tipo.ros', icon:Alloy.Globals.Icons.profileTypes.ros, color:'pink'},
+	'tc': {text:'locale.tipo.tc', icon:Alloy.Globals.Icons.profileTypes.tc, color:'olive'}
 };
 
 getDataFile = function(){

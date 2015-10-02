@@ -46,8 +46,10 @@
 },
 
 ".thumbTipo":{
+	width: 65,
+	height: 65,
 	font:{
-		fontFamily: 'food-types', 
+		fontFamily: 'profile-types2', 
 		fontSize: 60 
 	},
 	top: 15,
