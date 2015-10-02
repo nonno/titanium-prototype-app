@@ -33,11 +33,14 @@ Alloy.Globals.Icons = {
 	fontAwesome : {
 		star: "\uf005",
 		home: "\uf015",
+		timesCircle: "\uf057",
+		checkCircle: "\uf058",
 		exlamationTriangle: "\uf071",
 		calendar: "\uf073",
 		phone: "\uf095",
 		globe: "\uf0ac",
 		cloud: "\uf0c2",
+		money: "\uf0d6",
 		caretDown: "\uf0d7",
 		envelope: "\uf0e0",
 		map: "\uf278"

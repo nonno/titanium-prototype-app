@@ -21,6 +21,11 @@
 	<string name="lblFoodTypes">Potete trovare</string>
 	<string name="lblFoodCategories">Per le vostre esigenze</string>
 	<string name="lblReportProfileMailSubject">Segnalazione locale</string>
+	<string name="lblPriceCategory">Fascia di prezzo: </string>
+	<string name="lblTakeAway">Da asporto: </string>
+	<string name="lblSeating">Posti a sedere: </string>
+	<string name="lblForDisabled">Strutture per disabili: </string>
+	<string name="lblPos">Pagamento con carta: </string>
 	
 	<string name="msgSyncErrorAppOutdated">Si prega di aggiornare l'app</string>
 	<string name="msgSyncErrorDataMalformed">Dati non corretti</string>

@@ -20,4 +20,7 @@
 	height: Alloy.CFG.gui.advertisementBannerHeight,
 	width: Ti.UI.FILL,
 	backgroundColor: "#000"
+},
+".flags-column": {
+	width: 150
 }

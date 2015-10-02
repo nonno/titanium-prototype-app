@@ -70,7 +70,6 @@
 	width: Ti.UI.FILL
 },
 ".hfill":{
-	height: Ti.UI.FILL,
 	width: Ti.UI.FILL
 },
 
@@ -90,6 +89,13 @@
 },
 ".vsize":{
 	height: Ti.UI.SIZE
+},
+".hsize":{
+	width: Ti.UI.SIZE
+},
+
+".ellipsize-end": {
+	ellipsize: Ti.UI.TEXT_ELLIPSIZE_TRUNCATE_END
 },
 
 ".bottom":{
@@ -221,7 +227,7 @@
 }
 
 ".gray":{
-	color:"#666"
+	color: Alloy.CFG.gui.secondaryColor
 }
 
 ".primary-color":{
@@ -319,9 +325,13 @@
 '.no-touch':{
 	touchEnabled:false
 },
+'.no-autolink':{
+	autolink: Ti.UI.AUTOLINK_NONE
+}
 
 '.separator':{
-	top:25,
+	top: 10,
+	bottom: 10,
 	height: 1,
 	width: "90%",
 	backgroundColor:"#acacac"

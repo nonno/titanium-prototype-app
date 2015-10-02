@@ -2,6 +2,7 @@
 	"global": {
 		"gui": {
 			"primaryColor": "#98c10f",
+			"secondaryColor": "#666666",
 			"advertisementBannerHeight": 50
 		},
 		"companyReferences": {
@@ -17,7 +18,7 @@
 		"gaTrackingId": "UA-63543213-2"
 	},
 	"env:development": {
-		"runTests": true
+		"runTests": false
 	},
 	"env:test": {},
 	"env:production": {},

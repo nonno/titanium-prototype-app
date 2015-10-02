@@ -25,7 +25,7 @@ if (locale.email){
 }
 
 if (locale.web){
-	$.web.text = locale.web;
+	$.web.text = locale.web.replace('https://','').replace('http://','');
 } else {
 	hideInfoContainer($.webContainer);
 }
@@ -51,6 +51,7 @@ if (locale.web){
 	}
 }());
 
+// food types section
 $.tipiCibiValue.text = Repository.getFoodTypes(locale).map(function(tipo){
 	return L('cibo.tipo.' + tipo);
 }).sort().join(', ').toLowerCase();
@@ -70,6 +71,33 @@ if (!$.tipiCibiValue.text && !$.catCibiValue.text){
 	hideInfoContainer($.infoCibiSeparator);
 }
 
+
+// flags section
+if (locale.costo){
+	$.costo.text = Array(locale.costo + 1).join(Alloy.Globals.Icons.fontAwesome.money + ' ');
+} else {
+	hideInfoContainer($.costoContainer);
+}
+function configFlag(value, field, container){
+	if (_.isBoolean(value)){
+		if (value){
+			field.text = Alloy.Globals.Icons.fontAwesome.checkCircle;
+			field.color = Alloy.CFG.gui.primaryColor;
+		} else {
+			field.text = Alloy.Globals.Icons.fontAwesome.timesCircle;
+			field.color = Alloy.CFG.gui.secondaryColor;
+		}
+	} else {
+		hideInfoContainer(container);
+	}
+}
+configFlag(locale.asporto, $.asporto, $.asportoContainer);
+configFlag(locale.sedere, $.sedere, $.sedereContainer);
+configFlag(locale.disabili, $.disabili, $.disabiliContainer);
+configFlag(locale.pos, $.pos, $.posContainer);
+
+
+// map section
 $.mapview.setRegion({
 	latitude: locale.lat || 43.425505,
 	longitude: locale.lon || 11.8668486,
@@ -78,15 +106,12 @@ $.mapview.setRegion({
 	zoom:15,
 	tilt:45
 });
-
-var mapAnnotation = Map.createAnnotation({
+$.mapview.addAnnotation(Map.createAnnotation({
 	latitude: locale.lat || 43.425505,
 	longitude: locale.lon || 11.8668486
-});
-$.mapview.addAnnotation(mapAnnotation);
+}));
 
-// Check that the contact is not already a favorite, and update the favorites button
-// title as required.
+
 $FM.exists(locale.id) && $.addFavoriteBtn.setColor('yellow');
 
 function callProfile(){
