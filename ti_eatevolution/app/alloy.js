@@ -1,14 +1,11 @@
-if (OS_IOS){ // FIXME problem with ti.ga and ti.map
-	Alloy.Globals.trackerGA = require('ti.ga').createTracker({
-		trackingId: Alloy.CFG.gaTrackingId,
-		useSecure: true
-	});
-}
+Alloy.Globals.trackerGA = require('ti.ga').createTracker({
+	trackingId: Alloy.CFG.gaTrackingId,
+	useSecure: true
+});
 
 Alloy.Globals.Data = {};
 Alloy.Globals.Data.locali = {};
 Alloy.Globals.Icons = {
-	"logo": "\ue600",
 	"profileTypes": {
 		"bar": "\ue600",
 		"ff": "\ue601",
