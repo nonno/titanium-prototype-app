@@ -1,6 +1,6 @@
 <Alloy>
 	<View class="size vgroup">
-		<Label id="icon" />
+		<Label id="icon" class="icon-profile-types" />
 		<Label id="iconArrow" />
 	</View>
 </Alloy>

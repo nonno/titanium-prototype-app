@@ -5,7 +5,6 @@
 	borderRadius: 20,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	font: {
-		fontFamily: 'profile-types2',
 		fontSize: 30 
 	}
 },

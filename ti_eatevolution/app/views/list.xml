@@ -7,7 +7,7 @@
 				<!-- defaultTemplate - this is the default ListItem template -->
 				<ItemTemplate id="defaultTemplate" name="defaultTemplate" class="template">
 					<View class="left-buffer">
-						<Label id="icon" bindId="icon" class="thumbTipo" />
+						<Label id="icon" bindId="icon" class="icon-profile-types thumb-type" />
 						<View class="vgroup left size">
 							<Label id="nome" bindId="nome" class="title" />
 							<Label id="tipo" bindId="tipo" class="subtitle" />
@@ -22,7 +22,7 @@
 				<!-- favoriteTemplate - this is the ListItem template for contacts that have been bookmarked -->
 				<ItemTemplate id="favoriteTemplate" name="favoriteTemplate" class="template">
 					<View class="left-buffer">
-						<Label id="icon" bindId="icon" class="thumbTipo" />
+						<Label id="icon" bindId="icon" class="icon-profile-types thumb-type" />
 						<View class="vgroup left size">
 							<Label id="nome" bindId="nome" class="title" />
 							<Label id="tipo" bindId="tipo" class="subtitle" />

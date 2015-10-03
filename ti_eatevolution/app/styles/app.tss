@@ -321,6 +321,11 @@
 		fontSize: 20 
 	}
 },
+'.icon-profile-types':{
+	font:{
+		fontFamily: 'profile-types2',
+	}
+},
 
 '.no-touch':{
 	touchEnabled:false

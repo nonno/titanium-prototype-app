@@ -45,11 +45,10 @@
 	color: "#666"
 },
 
-".thumbTipo":{
+".thumb-type":{
 	width: 65,
 	height: 65,
 	font:{
-		fontFamily: 'profile-types2', 
 		fontSize: 60 
 	},
 	top: 15,
