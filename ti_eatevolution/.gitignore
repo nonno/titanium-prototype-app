@@ -1,8 +1,8 @@
 .DS_Store
 /Resources/
 /build/
-/app/assets/iphone/images/
-/app/assets/android/images/
+/app/assets/iphone/images/**
+/app/assets/android/images/**
 build.log
 npm-debug.log
 tmp
