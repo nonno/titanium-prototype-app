@@ -12,7 +12,8 @@
 	<string name="lblInfoTab">About</string>
 	<string name="lblDetailsTitle">Details</string>
 	<string name="lblFavorite">Favorite</string>
-	<string name="lblFavorites">Favorites</string>
+	<string name="lblFavorites">Favorites/All</string>
+	<string name="lblDataOptions">Data view options</string>
 	<string name="lblAddToFavorites">Add to favorites</string>
 	<string name="lblRemoveFromFavorites">Remove from favorites</string>
 	<string name="lblInfoEmailSubject">Info request</string>

@@ -129,6 +129,10 @@ function init(){
 	$.tabGroup.open();
 }
 
+function showFilters(){
+	Ti.API.debug("Showing filters");
+}
+
 // necessary for customizing android actionbar changing tab
 function onTabGroupOpen(e){
 	if (OS_ANDROID){
@@ -157,9 +161,16 @@ function onTabGroupOpen(e){
 					
 					(function(menu){
 						var item = menu.add({
+							title : L('lblDataOptions'),
+							showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
+						});
+						item.addEventListener('click', showFilters);
+					}(e.menu));
+					
+					(function(menu){
+						var item = menu.add({
 							title : L('lblFavorites'),
-							showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
-							icon : '/images/ic_action_action_bookmark.png'
+							showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
 						});
 						item.addEventListener('click', listController.onBookmarkClick);
 					}(e.menu));
@@ -168,9 +179,16 @@ function onTabGroupOpen(e){
 				case TAB_MAP:
 					(function(menu){
 						var item = menu.add({
+							title : L('lblDataOptions'),
+							showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
+						});
+						item.addEventListener('click', showFilters);
+					}(e.menu));
+					
+					(function(menu){
+						var item = menu.add({
 							title : L('lblFavorites'),
-							showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
-							icon : '/images/ic_action_action_bookmark.png'
+							showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
 						});
 						item.addEventListener('click', mapController.onBookmarkClick);
 					}(e.menu));
