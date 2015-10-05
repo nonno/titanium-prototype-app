@@ -3,6 +3,9 @@ var Repository = require('Repository');
 var launch, syncInterval, listController, mapController, joinController, infoController,
 	synchronize, startAutoSync, stopAutoSync, appResumed, appPaused;
 
+var TAB_LIST = 0,
+	TAB_MAP = 1;
+
 syncInterval = null;
 launch = true;
 
@@ -134,38 +137,44 @@ function onTabGroupOpen(e){
 		var activity = e.source.getActivity();
 	
 		activity.onCreateOptionsMenu = function(e) {
-			var item, searchView;
-			
 			e.menu.clear();
 			
 			switch(Alloy.Globals.currentTab){
-				case 0:
-					searchView = Ti.UI.Android.createSearchView({
-						hintText : L('lblSearch')
-					});
-					searchView.addEventListener('change', listController.onSearchChange);
+				case TAB_LIST:
+					(function(menu){
+						var searchView = Ti.UI.Android.createSearchView({
+							hintText : L('lblSearch')
+						});
+						searchView.addEventListener('change', listController.onSearchChange);
+						
+						menu.add({
+							title : L('lblSearch'),
+							showAsAction : Ti.Android.SHOW_AS_ACTION_ALWAYS,
+							icon : Ti.Android.R.drawable.ic_menu_search,
+							actionView : searchView
+						});
+					}(e.menu));
 					
-					e.menu.add({
-						title : L('lblSearch'),
-						showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
-						icon : Ti.Android.R.drawable.ic_menu_search,
-						actionView : searchView
-					});
+					(function(menu){
+						var item = menu.add({
+							title : L('lblFavorites'),
+							showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
+							icon : '/images/ic_action_action_bookmark.png'
+						});
+						item.addEventListener('click', listController.onBookmarkClick);
+					}(e.menu));
 					
-					item = e.menu.add({
-						title : L('lblFavorites'),
-						showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
-						icon : '/images/ic_action_action_bookmark.png'
-					});
-					item.addEventListener('click', listController.onBookmarkClick);
 					break;
-				case 1:
-					item = e.menu.add({
-						title : L('lblFavorites'),
-						showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
-						icon : '/images/ic_action_action_bookmark.png'
-					});
-					item.addEventListener('click', mapController.onBookmarkClick);
+				case TAB_MAP:
+					(function(menu){
+						var item = menu.add({
+							title : L('lblFavorites'),
+							showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
+							icon : '/images/ic_action_action_bookmark.png'
+						});
+						item.addEventListener('click', mapController.onBookmarkClick);
+					}(e.menu));
+					
 					break;
 			}
 		};
