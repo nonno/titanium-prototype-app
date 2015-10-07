@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>it.mpic.eatevolution</id>
     <name>Eat Evolution</name>
-    <version>0.2</version>
+    <version>0.3</version>
     <publisher>Mauro Piccotti</publisher>
     <url>http://www.mpic.it</url>
     <description>Mangia sano nei locali raccomandati da Nutrizionisti Senza Frontiere</description>
@@ -58,7 +58,7 @@
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <tool-api-level>14</tool-api-level>
-        <manifest android:versionCode="3">
+        <manifest android:versionCode="4">
             <application android:theme="@style/nutrizionisti">
                 <!-- Replace "PASTE YOUR GOOGLE MAPS API KEY HERE" with the Google API key you obtained -->
                 <meta-data
