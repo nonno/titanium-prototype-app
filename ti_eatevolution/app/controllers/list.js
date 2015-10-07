@@ -29,7 +29,7 @@ preprocessForListView = function(rawData) {
 				searchableText: item.nome + ' ' + item.email,
 				locale: item,
 				editActions: [
-					{title: isFavorite ? ("- " + L('lblFavorite')) : ("+ " + L('lblFavorite')), color: isFavorite ? "#C41230" : "#038BC8" }
+					{title: isFavorite ? ("- " + L('lblFavorite')) : ("+ " + L('lblFavorite')), color: isFavorite ? "#C41230" : Alloy.CFG.iosColor }
 				],
 				canEdit:true
 			},
@@ -201,7 +201,6 @@ Ti.App.addEventListener("refresh-data", function(e){
 	populateList();
 });
 
-$.wrapper.title = (_args.title || "").toLowerCase();
 populateList();
 
 exports.setTab = function(tab){

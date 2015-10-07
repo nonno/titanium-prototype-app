@@ -1,30 +1,27 @@
 'Label[platform=android]': {
-	color: '#000' // all platforms except Android default to black 
+	color: '#000' 
 },
 'Window': {
-	backgroundColor: '#fff', // white background instead of default transparent
+	backgroundColor: '#fff'
+},
+'Window[platform=ios]': {
+	titleAttributes: {
+		color: Alloy.CFG.iosColor
+	}
+}
+'Window[platform=android]': {
 	titleAttributes: {
 		color: Alloy.CFG.gui.primaryColor
-	}
-},
-'Window[platform=android]': {
+	},
 	modal: false, // make android windows all heavyweight
 	navBarHidden: true
 },
 'TextField': {
-	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED // common default style
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
 },
 "ImageView":{
 	preventDefaultImage: true
-}
-
-/**************************************************************************
- * General Helper and Utility Styles
- *************************************************************************/
-
-/**
- * 	Layouts & Fills
- */
+},
 
 ".vgroup":{
 	layout: 'vertical'
@@ -114,45 +111,10 @@
 	left: 0
 },
 
-/**
- * 	Rounded
- */
 ".rounded":{
 	borderRadius: 7
-}
-
-/**
- * Common Sizes
- */
-
-".thumbnail":{
-	height: 75,
-	width: 75
 },
 
-".square100":{
-	height: 100,
-	width: 100
-},
-
-".square150":{
-	height: 150,
-	width: 150
-},
-
-".square200":{
-	height: 200,
-	width: 200
-},
-
-".square250":{
-	height: 250,
-	width: 250
-},
-
-/**
- * 	Typography
- */
 ".h1":{
 	font:{
 		fontSize: 36
@@ -202,21 +164,13 @@
 	}
 },
 
-/**
- * 	Visibility
- */
-
 ".hide":{
 	visible: false
 },
 
 ".transparent":{
 	opacity: 0.25
-}
-
-/*
- * Color Classes for Labels
- */
+},
 
 ".white":{
 	color: "#fff"
@@ -224,20 +178,16 @@
 
 ".black":{
 	color: "#000"
-}
+},
 
 ".gray":{
 	color: Alloy.CFG.gui.secondaryColor
-}
+},
 
 ".primary-color":{
 	color: Alloy.CFG.gui.primaryColor
-}
+},
 
-/**
- * 	Alert / Notification Styles 
- *  These should be used in conjunction with Views and/or labels
- */
 ".success":{
 	color: "#468847",
 	backgroundColor: "#dff0d8",
@@ -261,41 +211,7 @@
 	backgroundColor: "#d9edf7",
 	borderColor: "#bce8f1",
 	border: 1
-}
-
-/**
- * 	Borders and Lines
- */
-".border-dark":{
-	border: 6,
-	borderColor:"#666",
 },
-
-".border-dark-thin":{
-	border: 2,
-	borderColor:"#666",
-},
-
-".border-dark-thick":{
-	border: 10,
-	borderColor:"#666",
-},
-
-".border-light":{
-	border: 6,
-	borderColor:"#ececec",
-},
-
-".border-light-thin":{
-	border: 2,
-	borderColor:"#ececec",
-},
-
-".border-light-thick":{
-	border: 10,
-	borderColor:"#ececec",
-},
-
 
 ".black-line":{
 	backgroundColor: "#000",
@@ -342,11 +258,7 @@
 	backgroundColor:"#acacac"
 },
 
-/**
- * 	Action Button Styles
- *  These styles represent unicode character codes for the icon fonts
- *  being used to represent the icons on the profile view
- */
+
 ".icon-home":{
 	text: Alloy.Globals.Icons.fontAwesome.home
 },

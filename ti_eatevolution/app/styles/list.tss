@@ -5,27 +5,20 @@
 	height: 100,
 	width: Ti.UI.FILL
 },
-"#wrapper": {
-	backgroundColor:"#fff",
-	orientationModes: [Ti.UI.PORTRAIT,Ti.UI.LANDSCAPE_LEFT,Ti.UI.LANDSCAPE_RIGHT,Ti.UI.UPSIDE_PORTRAIT],
-	exitOnClose: true,
-	titleAttributes: {
-	},
-	hideShadow: true,
-	translucent: true,
-	extendEdges: Titanium.UI.EXTEND_EDGE_TOP
-},
-
-"#wrapper[platform=ios]":{
-},
 ".favorite":{
 	font:{
 		fontSize: 25,
 		fontFamily:"font-awesome",
 	},
-	color:"#038BC8",
+	color:Alloy.CFG.gui.primaryColor,
 	text:Alloy.Globals.Icons.fontAwesome.star,
 	right: 10
+},
+".favorite[platform=ios]":{
+	color: Alloy.CFG.iosColor
+},
+".favorite[platform=android]":{
+	color: Alloy.CFG.gui.primaryColor
 },
 
 ".title":{
