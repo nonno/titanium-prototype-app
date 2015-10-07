@@ -1,7 +1,7 @@
 var args = arguments[0] || {},
 	$FM = require('favoritesmgr'),
 	Repository = require("Repository"),
-	Admob = OS_ANDROID ? require('ti.admob') : null, // FIXME on ios
+	AdMob = require('AdMob'),
 	Map = require('ti.map');
 
 var file, mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap,
@@ -112,18 +112,9 @@ exports.showAdvertisement = function(show){
 		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
 		$.mapContainer.bottom = Alloy.CFG.gui.advertisementBannerHeight;
 		
-		if (Admob){
-			var adMobView = Admob.createView({
-				publisherId:"ca-app-pub-5803114779573585/3605535158"
-			});
-			adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
-				Ti.API.debug("Ad received " + e.source.publisherId);
-			});
-			adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function(e){
-				Ti.API.warn("Ad not received " + JSON.stringify(e));
-			});
-			$.advContainer.add(adMobView);
-		}
+		$.advContainer.add(AdMob.create({
+			unitId : 'ca-app-pub-5803114779573585/3605535158'
+		}));
 	} else {
 		$.advContainer.removeAllChildren();
 		

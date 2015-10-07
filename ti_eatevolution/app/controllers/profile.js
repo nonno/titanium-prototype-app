@@ -2,7 +2,7 @@ var locale = arguments[0] || {},
 	Map = require('ti.map'),
 	Repository = require('Repository'),
 	$FM = require('favoritesmgr'),
-	Admob = OS_ANDROID ? require('ti.admob') : null; // FIXME on ios
+	AdMob = require('AdMob');
 
 Alloy.Globals.analyticsEvent({action:'profile-open', label:locale.id});
 
@@ -170,18 +170,9 @@ function showAdvertisement(show){
 		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
 		$.contactInfo.bottom = Alloy.CFG.gui.advertisementBannerHeight;
 		
-		if (Admob){
-			var adMobView = Admob.createView({
-				publisherId:"ca-app-pub-5803114779573585/5082268359"
-			});
-			adMobView.addEventListener(Admob.AD_RECEIVED, function(e){
-				Ti.API.debug("Ad received " + e.source.publisherId);
-			});
-			adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function(e){
-				Ti.API.warn("Ad not received " + JSON.stringify(e));
-			});
-			$.advContainer.add(adMobView);
-		}
+		$.advContainer.add(AdMob.create({
+			unitId : 'ca-app-pub-5803114779573585/5082268359'
+		}));
 	} else {
 		$.advContainer.removeAllChildren();
 		
