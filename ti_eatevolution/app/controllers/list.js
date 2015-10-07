@@ -13,7 +13,7 @@ onSearchChange = function(e){
 };
 
 preprocessForListView = function(rawData) {
-	if ($.listView.defaultItemTemplate === 'favoriteTemplate') {
+	if (Alloy.Globals.Data.favorites) {
 		rawData = rawData.filter(function(item){
 			return $FM.exists(item.id);
 		});
@@ -138,9 +138,9 @@ onItemClick = function(e){
 };
 
 onBookmarkClick = function(e){
-	if ($.listView.defaultItemTemplate === 'defaultTemplate'){
+	if (Alloy.Globals.Data.favorites){
 		$.listView.defaultItemTemplate = 'favoriteTemplate';
-	} else if ($.listView.defaultItemTemplate === 'favoriteTemplate') {
+	} else {
 		$.listView.defaultItemTemplate = 'defaultTemplate';
 	}
 	

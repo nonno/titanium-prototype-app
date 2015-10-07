@@ -4,10 +4,7 @@ var args = arguments[0] || {},
 	AdMob = require('AdMob'),
 	Map = require('ti.map');
 
-var file, mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap,
-	onlyFavourites;
-
-onlyFavourites = false;
+var file, mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap;
 
 mapView = Map.createView({
 	mapType : Map.NORMAL_TYPE,
@@ -26,13 +23,12 @@ $.mapContainer.add(mapView);
 
 populateMap = function(params){
 	params = params || {};
-	params.onlyFavourites = params.onlyFavourites || false;
 	
 	Ti.API.debug("map.populateMap");
 	
 	var data;
 	
-	if (params.onlyFavourites) {
+	if (Alloy.Globals.Data.favorites) {
 		data = Alloy.Globals.Data.locali.filter(function(item){
 			return $FM.exists(item.id);
 		});
@@ -64,9 +60,7 @@ listener = function(event) {
 mapView.addEventListener('click', listener);
 
 onBookmarkClick = function(e){
-	onlyFavourites = !onlyFavourites;
-
-	populateMap({'onlyFavourites' : onlyFavourites});
+	populateMap();
 };
 
 centerMapOnCurrentPosition = function(){

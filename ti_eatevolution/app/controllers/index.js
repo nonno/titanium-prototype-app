@@ -143,57 +143,44 @@ function onTabGroupOpen(e){
 		activity.onCreateOptionsMenu = function(e) {
 			e.menu.clear();
 			
-			switch(Alloy.Globals.currentTab){
-				case TAB_LIST:
-					(function(menu){
-						var searchView = Ti.UI.Android.createSearchView({
-							hintText : L('lblSearch')
-						});
-						searchView.addEventListener('change', listController.onSearchChange);
+			if (Alloy.Globals.currentTab === TAB_LIST){
+				(function(menu){
+					var searchView = Ti.UI.Android.createSearchView({
+						hintText : L('lblSearch')
+					});
+					searchView.addEventListener('change', listController.onSearchChange);
+					
+					menu.add({
+						title : L('lblSearch'),
+						showAsAction : Ti.Android.SHOW_AS_ACTION_ALWAYS,
+						icon : Ti.Android.R.drawable.ic_menu_search,
+						actionView : searchView
+					});
+				}(e.menu));
+			}
+			if (Alloy.Globals.currentTab === TAB_LIST || Alloy.Globals.currentTab === TAB_MAP){
+				(function(menu){
+					var item = menu.add({
+						title : Alloy.Globals.Data.favorites ? L('lblShowAll') : L('lblShowFavorites'),
+						showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
+					});
+					item.addEventListener('click', function(){
+						Alloy.Globals.Data.favorites = !Alloy.Globals.Data.favorites;
 						
-						menu.add({
-							title : L('lblSearch'),
-							showAsAction : Ti.Android.SHOW_AS_ACTION_ALWAYS,
-							icon : Ti.Android.R.drawable.ic_menu_search,
-							actionView : searchView
-						});
-					}(e.menu));
-					
-					/*(function(menu){
-						var item = menu.add({
-							title : L('lblDataOptions'),
-							showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
-						});
-						item.addEventListener('click', showFilters);
-					}(e.menu));*/
-					
-					(function(menu){
-						var item = menu.add({
-							title : L('lblFavorites'),
-							showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
-						});
-						item.addEventListener('click', listController.onBookmarkClick);
-					}(e.menu));
-					
-					break;
-				case TAB_MAP:
-					/*(function(menu){
-						var item = menu.add({
-							title : L('lblDataOptions'),
-							showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
-						});
-						item.addEventListener('click', showFilters);
-					}(e.menu));*/
-					
-					(function(menu){
-						var item = menu.add({
-							title : L('lblFavorites'),
-							showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
-						});
-						item.addEventListener('click', mapController.onBookmarkClick);
-					}(e.menu));
-					
-					break;
+						listController.onBookmarkClick();
+						mapController.onBookmarkClick();
+						
+						item.title = Alloy.Globals.Data.favorites ? L('lblShowAll') : L('lblShowFavorites');
+					});
+				}(e.menu));
+				
+				/*(function(menu){
+					var item = menu.add({
+						title : L('lblDataOptions'),
+						showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
+					});
+					item.addEventListener('click', showFilters);
+				}(e.menu));*/
 			}
 		};
 		

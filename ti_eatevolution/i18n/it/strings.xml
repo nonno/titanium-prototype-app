@@ -12,7 +12,8 @@
 	<string name="lblInfoTab">Chi siamo</string>
 	<string name="lblDetailsTitle">Dettagli</string>
 	<string name="lblFavorite">Preferito</string>
-	<string name="lblFavorites">Visualizzazione preferiti/tutti</string>
+	<string name="lblShowAll">Visualizza tutti</string>
+	<string name="lblShowFavorites">Visualizza i preferiti</string>
 	<string name="lblDataOptions">Opzioni di visualizzazione</string>
 	<string name="lblAddToFavorites">Aggiungi ai preferiti</string>
 	<string name="lblRemoveFromFavorites">Rimuovi dai preferiti</string>
