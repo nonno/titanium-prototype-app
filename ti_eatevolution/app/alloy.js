@@ -6,6 +6,7 @@ Alloy.Globals.trackerGA = require('ti.ga').createTracker({
 Alloy.Globals.Data = {};
 Alloy.Globals.Data.locali = {};
 Alloy.Globals.Data.favorites = false;
+Alloy.Globals.Data.orderByDistance = false;
 
 Alloy.Globals.Icons = {
 	"profileTypes": {

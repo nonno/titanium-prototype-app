@@ -28,11 +28,14 @@
 	<string name="lblSeating">Posti a sedere: </string>
 	<string name="lblForDisabled">Strutture per disabili: </string>
 	<string name="lblPos">Pagamento con carta: </string>
+	<string name="lblOrderByName">Ordina per nome</string>
+	<string name="lblOrderByDistance">Ordina per distanza</string>
 	
 	<string name="msgSyncErrorAppOutdated">Si prega di aggiornare l'app</string>
 	<string name="msgSyncErrorDataMalformed">Dati non corretti</string>
 	<string name="msgSyncErrorNoDataUpdate">Nessun aggiornamento disponibile</string>
 	<string name="msgReportProfileMailBody">Si comunica che il locale '%s', denominato '%s' non non rispetta quanto indicato nel profilo.</string>
+	<string name="msgCurrentLocationUnavailable">Posizione corrente non disponibile, impossibile ordinare per distanza</string>
 	
 	<string name="locale.tipo.bar">Bar</string>
 	<string name="locale.tipo.ff">Fast-food</string>

@@ -28,11 +28,14 @@
 	<string name="lblSeating">Seating: </string>
 	<string name="lblForDisabled">Facilities for disabled: </string>
 	<string name="lblPos">Payment with card: </string>
+	<string name="lblOrderByName">Order by name</string>
+	<string name="lblOrderByDistance">Order by distance</string>
 	
 	<string name="msgSyncErrorAppOutdated">App update available, please update</string>
 	<string name="msgSyncErrorDataMalformed">Data malformed</string>
 	<string name="msgSyncErrorNoDataUpdate">No data update</string>
-	<string name="msgReportProfileMailBody">Profile '%s', named '%s' doesn't offer what it promise.</string>
+	<string name="msgReportProfileMailBody">Profile '%s', named '%s' doesn't offer what it promise</string>
+	<string name="msgCurrentLocationUnavailable">Current location unavailable, impossibile to order by distance</string>
 	
 	<string name="locale.tipo.bar">Café</string>
 	<string name="locale.tipo.ff">Fast-food</string>

@@ -45,7 +45,6 @@ preprocessForListView = function(rawData) {
 
 populateList = function(params){
 	params = params || {};
-	params.orderByDistance = params.orderByDistance || false;
 	
 	Ti.API.debug("list.populateList");
 	
@@ -53,11 +52,11 @@ populateList = function(params){
 	
 	locali = Alloy.Globals.Data.locali;
 	
-	if (params.orderByDistance){
+	if (Alloy.Globals.Data.orderByDistance){
 		Ti.API.debug('Ordering by distance');
 		
-		locali = locali.sort(function(item){
-			return item.distanza;
+		locali = locali.sort(function(a, b){
+			return a.distanza - b.distanza;
 		});
 		
 		section = Ti.UI.createListSection();
@@ -67,8 +66,13 @@ populateList = function(params){
 	} else {
 		Ti.API.debug('Ordering by name');
 		
-		locali = locali.sort(function(item){
-			return item.nome;
+		locali = locali.sort(function(a, b){
+			if (a.nome < b.nome){
+				return -1;
+			} else if (a.nome > b.nome){
+				return 1;
+			}
+			return 0;
 		});
 		
 		indexes = [];

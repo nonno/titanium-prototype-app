@@ -157,6 +157,33 @@ function onTabGroupOpen(e){
 						actionView : searchView
 					});
 				}(e.menu));
+				
+				(function(menu){
+					var item = menu.add({
+						title : Alloy.Globals.Data.orderByDistance ? L('lblOrderByName') : L('lblOrderByDistance'),
+						showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER
+					});
+					item.addEventListener('click', function(){
+						Repository.calculateDistances().then(
+							function(res){
+								Alloy.Globals.Data.orderByDistance = !Alloy.Globals.Data.orderByDistance;
+								
+								listController.refresh();
+								
+								item.title = Alloy.Globals.Data.orderByDistance ? L('lblOrderByName') : L('lblOrderByDistance');
+							},
+							function(err){
+								Ti.API.warn(err);
+								
+								Ti.UI.createAlertDialog({
+									title: '',
+									message: L('msgCurrentLocationUnavailable'),
+									buttonNames: [L('lblOk')]
+								}).show();
+							}
+						);
+					});
+				}(e.menu));
 			}
 			if (Alloy.Globals.currentTab === TAB_LIST || Alloy.Globals.currentTab === TAB_MAP){
 				(function(menu){
