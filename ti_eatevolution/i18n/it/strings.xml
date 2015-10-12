@@ -30,6 +30,7 @@
 	<string name="lblPos">Pagamento con carta: </string>
 	<string name="lblOrderByName">Ordina per nome</string>
 	<string name="lblOrderByDistance">Ordina per distanza</string>
+	<string name="lblNoResults">Nessun risultato per la ricerca corrente</string>
 	
 	<string name="msgSyncErrorAppOutdated">Si prega di aggiornare l'app</string>
 	<string name="msgSyncErrorDataMalformed">Dati non corretti</string>

@@ -6,19 +6,13 @@ var _args = arguments[0] || {},
 	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
-	onSearchCancel, currentTab, formatDistance;
+	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName;
 
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
 };
 
 preprocessForListView = function(rawData) {
-	if (Alloy.Globals.Data.favorites) {
-		rawData = rawData.filter(function(item){
-			return $FM.exists(item.id);
-		});
-	}
-	
 	return rawData.map(function(item) {
 		var isFavorite = $FM.exists(item.id);
 		var type = Repository.getProfileType(item.tipo);
@@ -43,6 +37,18 @@ preprocessForListView = function(rawData) {
 	});
 };
 
+sortProfilesByDistance = function(a, b){
+	return a.distanza - b.distanza;
+};
+sortProfilesByName = function(a, b){
+	if (a.nome < b.nome){
+		return -1;
+	} else if (a.nome > b.nome){
+		return 1;
+	}
+	return 0;
+};
+
 populateList = function(params){
 	params = params || {};
 	
@@ -52,12 +58,18 @@ populateList = function(params){
 	
 	locali = Alloy.Globals.Data.locali;
 	
+	if (Alloy.Globals.Data.favorites) {
+		locali = locali.filter(function(item){
+			return $FM.exists(item.id);
+		});
+	}
+	
+	$.listFooterLabelContainer.visible = !locali.length;
+	
 	if (Alloy.Globals.Data.orderByDistance){
 		Ti.API.debug('Ordering by distance');
 		
-		locali = locali.sort(function(a, b){
-			return a.distanza - b.distanza;
-		});
+		locali = locali.sort(sortProfilesByDistance);
 		
 		section = Ti.UI.createListSection();
 		section.items = preprocessForListView(locali);
@@ -66,14 +78,7 @@ populateList = function(params){
 	} else {
 		Ti.API.debug('Ordering by name');
 		
-		locali = locali.sort(function(a, b){
-			if (a.nome < b.nome){
-				return -1;
-			} else if (a.nome > b.nome){
-				return 1;
-			}
-			return 0;
-		});
+		locali = locali.sort(sortProfilesByName);
 		
 		indexes = [];
 		sections = [];
@@ -190,6 +195,10 @@ if (OS_IOS){
 	}
 	$.listView.addEventListener("editaction", onRowAction);
 }
+
+$.listView.addEventListener('noresults', function(){
+	$.listFooterLabelContainer.visible = true;
+});
 
 $.wrapper.addEventListener("open", function(){
 	if (OS_ANDROID && $.listView.defaultItemTemplate === 'favoriteTemplate'){

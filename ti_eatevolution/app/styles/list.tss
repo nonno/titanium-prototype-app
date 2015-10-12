@@ -74,6 +74,16 @@
 "#listView[platform=ios]":{
 	top:"50dp"
 },
+"#listFooterLabelContainer": {
+	width: Ti.UI.FILL,
+	height: 40
+},
+"#listFooterLabel": {
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font:{
+		fontSize: 16
+	}
+},
 "#advContainer": {
 	bottom: "0dp",
 	height: Alloy.CFG.gui.advertisementBannerHeight,

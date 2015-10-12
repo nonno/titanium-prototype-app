@@ -3,6 +3,12 @@
 		<SearchBar id="searchBar" platform="ios" class="search" hintText="L('lblSearch')" onBookmark="onBookmarkClick" onFocus="onSearchFocus" onCancel="onSearchCancel"  onChange="onSearchChange" />
 		
 		<ListView id="listView" defaultItemTemplate="defaultTemplate" onItemclick="onItemClick">
+			<FooterView>
+				<View id="listFooterLabelContainer">
+					<Label id="listFooterLabel" text="L('lblNoResults')" />
+				</View>
+			</FooterView>
+			
 			<Templates>
 				<!-- defaultTemplate - this is the default ListItem template -->
 				<ItemTemplate id="defaultTemplate" name="defaultTemplate" class="template">
