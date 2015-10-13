@@ -6,7 +6,7 @@ var _args = arguments[0] || {},
 	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
-	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName;
+	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName, filterProfiles;
 
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
@@ -49,6 +49,15 @@ sortProfilesByName = function(a, b){
 	return 0;
 };
 
+filterProfiles = function(profiles){
+	if (Alloy.Globals.Data.favorites) {
+		profiles = profiles.filter(function(profile){
+			return $FM.exists(profile.id);
+		});
+	}
+	return profiles;
+};
+
 populateList = function(params){
 	params = params || {};
 	
@@ -56,13 +65,7 @@ populateList = function(params){
 	
 	var locali, indexes, sections, groups, section;
 	
-	locali = Alloy.Globals.Data.locali;
-	
-	if (Alloy.Globals.Data.favorites) {
-		locali = locali.filter(function(item){
-			return $FM.exists(item.id);
-		});
-	}
+	locali = filterProfiles(Alloy.Globals.Data.locali);
 	
 	$.listFooterLabelContainer.visible = !locali.length;
 	
