@@ -1,19 +1,20 @@
-var Admob = require('ti.admob');
+var Admob = require("ti.admob");
 
 var create = function(params) {
 	params = params || {};
+	params.unitId = params.unitId;
 	
-	var unitId = params['unitId'];
+	var adMobArgs, eventReceived, eventFail, adMobView;
 	
 	if (OS_ANDROID){
 		adMobArgs = {
-			publisherId: unitId
+			publisherId: params.unitId
 		};
 		eventReceived = Admob.AD_RECEIVED;
 		eventFail = Admob.AD_NOT_RECEIVED;
 	} else if (OS_IOS) {
 		adMobArgs = {
-			adUnitId: unitId
+			adUnitId: params.unitId
 		};
 		eventReceived = "didReceiveAd";
 		eventFail = "didFailToReceiveAd";

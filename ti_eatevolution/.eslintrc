@@ -1,0 +1,43 @@
+{
+	"globals": {
+		"Ti": false,
+		"Titanium": false,
+		"Alloy": false,
+		"$": false,
+		"_": false,
+		"L": false,
+		"arguments": false,
+		"require": false,
+		"module": false,
+		"exports": true,
+		"OS_ANDROID": false,
+		"OS_IOS": false,
+		"ENV_PRODUCTION": false,
+		"ENV_DEV": false,
+		"setInterval": false,
+		"clearInterval": false,
+		"setTimeout": false,
+		"clearTimeout": false,
+		"alert": false,
+		"describe": false,
+		"it": false,
+		"beforeEach": false,
+		"afterEach": false
+	},
+	"rules": {
+		"strict": [2, "never"],
+		"new-cap": [2, {"capIsNewExceptions": ["L"]}],
+		"no-trailing-spaces": [1, { "skipBlankLines": true }],
+		"space-infix-ops": [1, {"int32Hint": false}],
+		"comma-spacing": [1, {"before": false, "after": true}],
+		"key-spacing": [1, {"beforeColon": false, "afterColon": true}],
+		"semi-spacing": [1, {"before": false, "after": true}],
+		"dot-notation": 1,
+		"no-underscore-dangle": 1,
+		"no-unused-vars": 1,
+		"no-multi-spaces": 1,
+		"quotes": [1, "double"],
+		"eol-last": 0,
+		"no-alert": 0
+	}
+}

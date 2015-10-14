@@ -1,32 +1,32 @@
-var Request = require('Request'),
-	q = require('q'),
-	DateUtils = require('DateUtils'),
-	GeoUtils = require('GeoUtils');
+var Request = require("Request"),
+	q = require("q"),
+	DateUtils = require("DateUtils"),
+	GeoUtils = require("GeoUtils");
 
 var getDataFile, profileTypes, fetchDataOffline, fetchDataOnline, addressToString, getProfileType,
 	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances;
 
 profileTypes = {
-	'bar': {text:'locale.tipo.bar', icon:Alloy.Globals.Icons.profileTypes.bar, color:'maroon'},
-	'ff': {text:'locale.tipo.ff', icon:Alloy.Globals.Icons.profileTypes.ff, color:'orange'},
-	'for': {text:'locale.tipo.for', icon:Alloy.Globals.Icons.profileTypes.for, color:'brown'},
-	'gel': {text:'locale.tipo.gel', icon:Alloy.Globals.Icons.profileTypes.gel, color:'cyan'},
-	'pas': {text:'locale.tipo.pas', icon:Alloy.Globals.Icons.profileTypes.pas, color:'purple'},
-	'piz': {text:'locale.tipo.piz', icon:Alloy.Globals.Icons.profileTypes.piz, color:'red'},
-	'ris': {text:'locale.tipo.ris', icon:Alloy.Globals.Icons.profileTypes.ris, color:'gray'},
-	'ros': {text:'locale.tipo.ros', icon:Alloy.Globals.Icons.profileTypes.ros, color:'pink'},
-	'tc': {text:'locale.tipo.tc', icon:Alloy.Globals.Icons.profileTypes.tc, color:'olive'}
+	"bar": {text: "locale.tipo.bar", icon: Alloy.Globals.Icons.profileTypes.bar, color: "maroon"},
+	"ff": {text: "locale.tipo.ff", icon: Alloy.Globals.Icons.profileTypes.ff, color: "orange"},
+	"for": {text: "locale.tipo.for", icon: Alloy.Globals.Icons.profileTypes.for, color: "brown"},
+	"gel": {text: "locale.tipo.gel", icon: Alloy.Globals.Icons.profileTypes.gel, color: "cyan"},
+	"pas": {text: "locale.tipo.pas", icon: Alloy.Globals.Icons.profileTypes.pas, color: "purple"},
+	"piz": {text: "locale.tipo.piz", icon: Alloy.Globals.Icons.profileTypes.piz, color: "red"},
+	"ris": {text: "locale.tipo.ris", icon: Alloy.Globals.Icons.profileTypes.ris, color: "gray"},
+	"ros": {text: "locale.tipo.ros", icon: Alloy.Globals.Icons.profileTypes.ros, color: "pink"},
+	"tc": {text: "locale.tipo.tc", icon: Alloy.Globals.Icons.profileTypes.tc, color: "olive"}
 };
 
 getDataFile = function(){
 	if (OS_IOS){
-		return Ti.Filesystem.getFile(Ti.Filesystem.applicationSupportDirectory, 'data.json');
+		return Ti.Filesystem.getFile(Ti.Filesystem.applicationSupportDirectory, "data.json");
 	}
-	return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'data.json');
+	return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "data.json");
 };
 
 fetchDataOffline = function(){
-	Ti.API.debug('Repository.fetchDataOffline');
+	Ti.API.debug("Repository.fetchDataOffline");
 	var file, data;
 	
 	file = getDataFile();
@@ -40,22 +40,22 @@ fetchDataOffline = function(){
 	Alloy.Globals.Data.locali = data.locali;
 };
 fetchDataOnline = function(params){
-	Ti.API.debug('Repository.fetchDataOnline');
+	Ti.API.debug("Repository.fetchDataOnline");
 	var defer = q.defer();
 	
 	Request.get(Alloy.CFG.dataUrl, {
-		'success' : function(res){
+		"success": function(res){
 			var file, data;
 			
 			try {
 				data = JSON.parse(res);
 				
 				if (!data || !data.locali){
-					throw {'message':L('msgSyncErrorDataMalformed')};
+					throw {"message": L("msgSyncErrorDataMalformed")};
 				} else if (Ti.App.version !== data.appVersion){
-					throw {'message':L('msgSyncErrorAppOutdated'),'showAlert':true};
+					throw {"message": L("msgSyncErrorAppOutdated"), "showAlert": true};
 				} else if (data.date <= Alloy.Globals.Data.date){
-					throw {'message':L('msgSyncErrorNoDataUpdate')};
+					throw {"message": L("msgSyncErrorNoDataUpdate")};
 				} else {
 					file = getDataFile();
 					Ti.API.debug("Writing data on file " + file.resolve());
@@ -71,7 +71,7 @@ fetchDataOnline = function(params){
 				defer.reject(err);
 			}
 		},
-		'error' : function(err){
+		"error": function(err){
 			defer.reject(err);
 		}
 	});
@@ -79,14 +79,14 @@ fetchDataOnline = function(params){
 	return defer.promise;
 };
 calculateDistances = function(params){
-	Ti.API.debug('Repository.calculateDistances');
+	Ti.API.debug("Repository.calculateDistances");
 	var defer = q.defer();
 	
 	Ti.Geolocation.getCurrentPosition(function(e) {
 		if (e.success && e.coords) {
 			Alloy.Globals.Data.locali = Alloy.Globals.Data.locali.map(function(locale) {
 				if (locale.lat && locale.lon){
-					locale.distanza = GeoUtils.calculateDistance({'latitude' : locale.lat, 'longitude' : locale.lon}, e.coords);
+					locale.distanza = GeoUtils.calculateDistance({"latitude": locale.lat, "longitude": locale.lon}, e.coords);
 				}
 				return locale;
 			});
@@ -127,7 +127,7 @@ getLocaleTodayTimetable = function(locale, now){
 		return [];
 	}
 	
-	var now, dayOfWeek, i, opening;
+	var dayOfWeek, i, opening;
 	
 	dayOfWeek = (now.getDay() + 6) % 7;
 	
@@ -187,14 +187,14 @@ getFoodCategories = function(locale){
 
 getProfileType = function(type){
 	var value, defaultType;
-	defaultType = 'ris';
+	defaultType = "ris";
 	if (!type){
-		Ti.API.warn('getProfileType called with no type');
+		Ti.API.warn("getProfileType called with no type");
 		type = defaultType;
 	}
 	value = profileTypes[type];
 	if (!value){
-		Ti.API.warn('getProfileType called with no existent type ' + type);
+		Ti.API.warn("getProfileType called with no existent type " + type);
 		value = profileTypes[defaultType];
 	}
 	return value;

@@ -1,23 +1,22 @@
-var args = arguments[0] || {},
-	$FM = require('favoritesmgr'),
+var $FM = require("favoritesmgr"),
 	Repository = require("Repository"),
-	AdMob = require('AdMob'),
-	Map = require('ti.map');
+	AdMob = require("AdMob"),
+	TiMap = require("ti.map");
 
-var file, mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap;
+var mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap;
 
-mapView = Map.createView({
-	mapType : Map.NORMAL_TYPE,
-	region : {
-		latitude : 43.0977,
-		longitude : 12.3838,
-		latitudeDelta : 2,
-		longitudeDelta : 2,
-		animate : true
+mapView = TiMap.createView({
+	mapType: TiMap.NORMAL_TYPE,
+	region: {
+		latitude: 43.0977,
+		longitude: 12.3838,
+		latitudeDelta: 2,
+		longitudeDelta: 2,
+		animate: true
 	},
-	animate : true,
-	regionFit : true,
-	userLocation : true
+	animate: true,
+	regionFit: true,
+	userLocation: true
 });
 $.mapContainer.add(mapView);
 
@@ -37,29 +36,29 @@ populateMap = function(params){
 	}
 	
 	mapView.annotations = data.map(function(locale) {
-		var annotation = Map.createAnnotation({
-			latitude : OS_IOS ? locale.lat : parseFloat(locale.lat),
-			longitude : OS_IOS ? locale.lon : parseFloat(locale.lon),
-			title : locale.nome,
-			locale : locale,
+		var annotation = TiMap.createAnnotation({
+			latitude: OS_IOS ? locale.lat : parseFloat(locale.lat),
+			longitude: OS_IOS ? locale.lon : parseFloat(locale.lon),
+			title: locale.nome,
+			locale: locale,
 			customView: Alloy.createController("annotation", {
 				type: Repository.getProfileType(locale.tipo)
-			}).getView(),
+			}).getView()
 		});
 		return annotation;
 	});
 };
 
 listener = function(event) {
-	if (!OS_ANDROID || event.clicksource !== 'pin') {
-		Alloy.Globals.analyticsEvent({action:'map-open_profile', label:event.annotation.locale.id});
+	if (!OS_ANDROID || event.clicksource !== "pin") {
+		Alloy.Globals.analyticsEvent({action: "map-open_profile", label: event.annotation.locale.id});
 		
 		currentTab.open(Alloy.createController("profile", event.annotation.locale).getView());
 	}
 };
-mapView.addEventListener('click', listener);
+mapView.addEventListener("click", listener);
 
-onBookmarkClick = function(e){
+onBookmarkClick = function(){
 	populateMap();
 };
 
@@ -77,23 +76,23 @@ centerMapOnCurrentPosition = function(){
 		
 		if (ENV_DEV && OS_IOS){
 			coords = {
-				latitude : 43.0977,
-				longitude : 12.3838
+				latitude: 43.0977,
+				longitude: 12.3838
 			};
 		}
 		
 		if (coords){
 			mapView.setRegion({
-				'latitude' : coords.latitude,
-				'longitude' : coords.longitude,
-				'latitudeDelta' : 1,
-				'longitudeDelta' : 1,
+				"latitude": coords.latitude,
+				"longitude": coords.longitude,
+				"latitudeDelta": 1,
+				"longitudeDelta": 1
 			});
 		}
 	});
 };
 
-Ti.App.addEventListener("refresh-data", function(e){
+Ti.App.addEventListener("refresh-data", function(){
 	populateMap();
 });
 
@@ -107,7 +106,7 @@ exports.showAdvertisement = function(show){
 		$.mapContainer.bottom = Alloy.CFG.gui.advertisementBannerHeight;
 		
 		$.advContainer.add(AdMob.create({
-			unitId : 'ca-app-pub-5803114779573585/3605535158'
+			unitId: "ca-app-pub-5803114779573585/3605535158"
 		}));
 	} else {
 		$.advContainer.removeAllChildren();

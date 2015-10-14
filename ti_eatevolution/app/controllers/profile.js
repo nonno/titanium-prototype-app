@@ -1,12 +1,14 @@
 var locale = arguments[0] || {},
-	Map = require('ti.map'),
-	Repository = require('Repository'),
-	$FM = require('favoritesmgr'),
-	AdMob = require('AdMob');
+	TiMap = require("ti.map"),
+	Repository = require("Repository"),
+	$FM = require("favoritesmgr"),
+	AdMob = require("AdMob");
 
-Alloy.Globals.analyticsEvent({action:'profile-open', label:locale.id});
+Alloy.Globals.analyticsEvent({action: "profile-open", label: locale.id});
 
-var typeData = Repository.getProfileType(locale.tipo);
+var typeData, currentTab;
+
+typeData = Repository.getProfileType(locale.tipo);
 
 $.nome.text = locale.nome;
 $.tipo.text = L(typeData.text);
@@ -25,7 +27,7 @@ if (locale.email){
 }
 
 if (locale.web){
-	$.web.text = locale.web.replace('https://','').replace('http://','');
+	$.web.text = locale.web.replace("https://", "").replace("http://", "");
 } else {
 	hideInfoContainer($.webContainer);
 }
@@ -38,12 +40,12 @@ if (locale.web){
 		if (todayOpen){
 			todayTimetable = Repository.getLocaleTodayTimetable(locale);
 			
-			aperturaText= L('lblTodayOpen') + ' ' + todayTimetable.reduce(function(memo, time){
-				memo += memo.length > 0 ? ', ' : '';
-				return memo + time.da + '-' + time.a;
-			}, '');
+			aperturaText = L("lblTodayOpen") + " " + todayTimetable.reduce(function(memo, time){
+				memo += memo.length > 0 ? ", " : "";
+				return memo + time.da + "-" + time.a;
+			}, "");
 		} else {
-			aperturaText = L('lblTodayClose');
+			aperturaText = L("lblTodayClose");
 		}
 		$.apertura.text = aperturaText;
 	} else {
@@ -53,12 +55,12 @@ if (locale.web){
 
 // food types section
 $.tipiCibiValue.text = Repository.getFoodTypes(locale).map(function(tipo){
-	return L('cibo.tipo.' + tipo);
-}).sort().join(', ').toLowerCase();
+	return L("cibo.tipo." + tipo);
+}).sort().join(", ").toLowerCase();
 
 $.catCibiValue.text = Repository.getFoodCategories(locale).map(function(cat){
-	return L('cibo.cat.' + cat);
-}).sort().join(', ').toLowerCase();
+	return L("cibo.cat." + cat);
+}).sort().join(", ").toLowerCase();
 
 if (!$.tipiCibiValue.text){
 	hideInfoContainer($.tipiCibiContainer);
@@ -74,7 +76,7 @@ if (!$.tipiCibiValue.text && !$.catCibiValue.text){
 
 // flags section
 if (locale.costo){
-	$.costo.text = Array(locale.costo + 1).join(Alloy.Globals.Icons.fontAwesome.money + ' ');
+	$.costo.text = Array(locale.costo + 1).join(Alloy.Globals.Icons.fontAwesome.money + " ");
 } else {
 	hideInfoContainer($.costoContainer);
 }
@@ -101,47 +103,48 @@ configFlag(locale.pos, $.pos, $.posContainer);
 $.mapview.setRegion({
 	latitude: locale.lat || 43.425505,
 	longitude: locale.lon || 11.8668486,
-	latitudeDelta:0.01,
-	longitudeDelta:0.01,
-	zoom:15,
-	tilt:45
+	latitudeDelta: 0.01,
+	longitudeDelta: 0.01,
+	zoom: 15,
+	tilt: 45
 });
-$.mapview.addAnnotation(Map.createAnnotation({
+$.mapview.addAnnotation(TiMap.createAnnotation({
 	latitude: locale.lat || 43.425505,
 	longitude: locale.lon || 11.8668486
 }));
 
-
-$FM.exists(locale.id) && $.addFavoriteBtn.setColor('yellow');
+if ($FM.exists(locale.id)) {
+	$.addFavoriteBtn.setColor("yellow");
+}
 
 function callProfile(){
-	Alloy.Globals.analyticsEvent({action:'profile-call', label:locale.id});
+	Alloy.Globals.analyticsEvent({action: "profile-call", label: locale.id});
 	
 	if (ENV_DEV){
 		Ti.Platform.openURL("tel:+393381540774");
 	} else {
-		Ti.Platform.openURL("tel:"+locale.tel);
+		Ti.Platform.openURL("tel:" + locale.tel);
 	}
-};
+}
 
 function toggleFavorite(){
 	if(!$FM.exists(locale.id)){
-		Alloy.Globals.analyticsEvent({action:'profile-add_favorite', label:locale.id});
+		Alloy.Globals.analyticsEvent({action: "profile-add_favorite", label: locale.id});
 	
 		$FM.add(locale.id);
-		$.addFavoriteBtn.setColor('yellow');
+		$.addFavoriteBtn.setColor("yellow");
 	} else {
-		Alloy.Globals.analyticsEvent({action:'profile-remove_favorite', label:locale.id});
+		Alloy.Globals.analyticsEvent({action: "profile-remove_favorite", label: locale.id});
 		
 		$FM.remove(locale.id);
 		$.addFavoriteBtn.setColor(Alloy.CFG.gui.primaryColor);
 	}
 	
 	Ti.App.fireEvent("refresh-data");
-};
+}
 
 function reportProfile(){
-	Alloy.Globals.analyticsEvent({action:'profile-report', label:locale.id});
+	Alloy.Globals.analyticsEvent({action: "profile-report", label: locale.id});
 	
 	if (OS_IOS && Ti.Platform.model === "Simulator"){
 		alert("Simulator does not support sending emails. Use a device instead");
@@ -150,10 +153,10 @@ function reportProfile(){
 
 	var emailDialog = Ti.UI.createEmailDialog();
 	emailDialog.toRecipients = [Alloy.CFG.companyReferences.email];
-	emailDialog.subject = L('lblReportProfileMailSubject');
-	emailDialog.messageBody = String.format(L('msgReportProfileMailBody'), locale.id, locale.nome);
+	emailDialog.subject = L("lblReportProfileMailSubject");
+	emailDialog.messageBody = String.format(L("msgReportProfileMailBody"), locale.id, locale.nome);
 	emailDialog.open();
-};
+}
 
 function hideInfoContainer(container){
 	container.visible = false;
@@ -163,7 +166,7 @@ function hideInfoContainer(container){
 	container.bottom = 0;
 	container.left = 0;
 	container.right = 0;
-};
+}
 
 function showAdvertisement(show){
 	if (show){
@@ -171,7 +174,7 @@ function showAdvertisement(show){
 		$.contactInfo.bottom = Alloy.CFG.gui.advertisementBannerHeight;
 		
 		$.advContainer.add(AdMob.create({
-			unitId : 'ca-app-pub-5803114779573585/5082268359'
+			unitId: "ca-app-pub-5803114779573585/5082268359"
 		}));
 	} else {
 		$.advContainer.removeAllChildren();
@@ -179,7 +182,7 @@ function showAdvertisement(show){
 		$.contactInfo.bottom = 0;
 		$.advContainer.height = 0;
 	}
-};
+}
 
 function closeWindow(){
 	$.profile.close();

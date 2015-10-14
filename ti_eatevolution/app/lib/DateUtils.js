@@ -1,41 +1,41 @@
-var moment = require('alloy/moment'),
-	MomentRange = require('moment-range');
+var moment = require("alloy/moment"),
+	MomentRange = require("moment-range");
 
 var getTimeInterval, isDateIncluded;
 
 getTimeInterval = function(obj){
 	if (!obj.a || !obj.da){
-		throw {'message' : 'Invalid object'};
+		throw {"message": "Invalid object"};
 	}
 	
 	var timeInterval, currentYear;
 	
 	currentYear = (new Date()).getFullYear();
 	
-	timeInterval = '';
+	timeInterval = "";
 	
-	if (obj.da.indexOf('0000') > -1){
-		timeInterval += obj.da.replace('0000', currentYear);
+	if (obj.da.indexOf("0000") > -1){
+		timeInterval += obj.da.replace("0000", currentYear);
 	} else {
 		timeInterval += obj.da;
 	}
-	if (obj.da.indexOf('T') > -1){
-		timeInterval += ':00+00:00';
+	if (obj.da.indexOf("T") > -1){
+		timeInterval += ":00+00:00";
 	} else {
-		timeInterval += 'T00:00:00+00:00';
+		timeInterval += "T00:00:00+00:00";
 	}
 	
-	timeInterval += '/';
+	timeInterval += "/";
 	
-	if (obj.a.indexOf('0000') > -1){
-		timeInterval += obj.a.replace('0000', currentYear);
+	if (obj.a.indexOf("0000") > -1){
+		timeInterval += obj.a.replace("0000", currentYear);
 	} else {
 		timeInterval += obj.a;
 	}
-	if (obj.a.indexOf('T') > -1){
-		timeInterval += ':00+00:00';
+	if (obj.a.indexOf("T") > -1){
+		timeInterval += ":00+00:00";
 	} else {
-		timeInterval += 'T23:59:59+00:00';
+		timeInterval += "T23:59:59+00:00";
 	}
 	
 	return timeInterval;

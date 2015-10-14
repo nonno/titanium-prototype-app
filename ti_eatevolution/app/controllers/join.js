@@ -1,4 +1,4 @@
-var args = arguments[0] || {};
+var currentTab;
 
 exports.setTab = function(tab){
 	currentTab = tab;

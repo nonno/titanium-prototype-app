@@ -1,4 +1,4 @@
-Alloy.Globals.trackerGA = require('ti.ga').createTracker({
+Alloy.Globals.trackerGA = require("ti.ga").createTracker({
 	trackingId: Alloy.CFG.gaTrackingId,
 	useSecure: true
 });
@@ -44,16 +44,16 @@ Alloy.Globals.analyticsShowView = function(viewName){
 };
 Alloy.Globals.analyticsEvent = function(params){
 	params = params || {};
-	params.action = params.action || '';
+	params.action = params.action || "";
 	params.label = params.label;
 	params.value = params.value || 1;
 	
 	var category, eventString;
 	
 	category = Ti.Platform.osname;
-	eventString = [category, params.action].join('-');
+	eventString = [category, params.action].join("-");
 	
-	Ti.API.debug('Feature event: ' + eventString);
+	Ti.API.debug("Feature event: " + eventString);
 	Ti.Analytics.featureEvent(eventString);
 	
 	if (Alloy.Globals.trackerGA){
@@ -67,5 +67,5 @@ Alloy.Globals.analyticsEvent = function(params){
 };
 
 if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
-	require('tests/testsRunner');
+	require("tests/testsRunner");
 }

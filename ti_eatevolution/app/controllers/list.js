@@ -1,12 +1,10 @@
-var _args = arguments[0] || {},
-	App = Alloy.Globals.App, // reference to the APP singleton object
-	AdMob = require('AdMob'),
-	$FM = require('favoritesmgr'),
-	Repository = require("Repository"),
-	indexes = [];  // Array placeholder for the ListView Index (used by iOS only);
+var AdMob = require("AdMob"),
+	$FM = require("favoritesmgr"),
+	Repository = require("Repository");
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
-	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName, filterProfiles;
+	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName,
+	filterProfiles, onRowAction;
 
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
@@ -20,12 +18,12 @@ preprocessForListView = function(rawData) {
 		return {
 			template: isFavorite ? "favoriteTemplate" : "defaultTemplate",
 			properties: {
-				searchableText: item.nome + ' ' + item.email,
+				searchableText: item.nome + " " + item.email,
 				locale: item,
 				editActions: [
-					{title: isFavorite ? ("- " + L('lblFavorite')) : ("+ " + L('lblFavorite')), color: isFavorite ? "#C41230" : Alloy.CFG.iosColor }
+					{title: isFavorite ? ("- " + L("lblFavorite")) : ("+ " + L("lblFavorite")), color: isFavorite ? "#C41230" : Alloy.CFG.iosColor }
 				],
-				canEdit:true
+				canEdit: true
 			},
 			icon: {text: type.icon, color: type.color},
 			nome: {text: item.nome},
@@ -70,7 +68,7 @@ populateList = function(params){
 	$.listFooterLabelContainer.visible = !locali.length;
 	
 	if (Alloy.Globals.Data.orderByDistance){
-		Ti.API.debug('Ordering by distance');
+		Ti.API.debug("Ordering by distance");
 		
 		locali = locali.sort(sortProfilesByDistance);
 		
@@ -79,7 +77,7 @@ populateList = function(params){
 		
 		$.listView.sections = [section];
 	} else {
-		Ti.API.debug('Ordering by name');
+		Ti.API.debug("Ordering by name");
 		
 		locali = locali.sort(sortProfilesByName);
 		
@@ -88,14 +86,14 @@ populateList = function(params){
 		groups = null;
 		
 		// Group the data by first letter of last name to make it easier to create sections.
-		groups  = _.groupBy(locali, function(item){
+		groups = _.groupBy(locali, function(item){
 			return item.nome.charAt(0);
 		});
 
 		_.each(groups, function(group){
 			var dataToAdd = preprocessForListView(group);
 			
-			if (dataToAdd.length < 1) return;
+			if (dataToAdd.length < 1){ return; }
 			
 			indexes.push({
 				index: indexes.length,
@@ -111,7 +109,7 @@ populateList = function(params){
 			var sectionLabel = Ti.UI.createLabel({
 				text: group[0].nome.charAt(0),
 				left: 20,
-				font:{
+				font: {
 					fontSize: 20
 				},
 				color: "#666"
@@ -144,67 +142,71 @@ populateList = function(params){
 onItemClick = function(e){
 	var item = $.listView.sections[e.sectionIndex].items[e.itemIndex];
 	
-	Alloy.Globals.analyticsEvent({action:'list-open_profile', label:item.properties.locale.id});
+	Alloy.Globals.analyticsEvent({action: "list-open_profile", label: item.properties.locale.id});
 	
 	currentTab.open(Alloy.createController("profile", item.properties.locale).getView());
 };
 
-onBookmarkClick = function(e){
+onBookmarkClick = function(){
+	if (OS_IOS){
+		Alloy.Globals.Data.favorites = !Alloy.Globals.Data.favorites;
+	}
+	
 	if (Alloy.Globals.Data.favorites){
-		$.listView.defaultItemTemplate = 'favoriteTemplate';
+		$.listView.defaultItemTemplate = "favoriteTemplate";
 	} else {
-		$.listView.defaultItemTemplate = 'defaultTemplate';
+		$.listView.defaultItemTemplate = "defaultTemplate";
 	}
 	
 	populateList();
 };
 
 formatDistance = function(distance) {
-	if (distance == undefined || !_.isNumber(distance) || _.isNaN(distance) || (distance == Number.POSITIVE_INFINITY)) {
-		return '';
+	if (distance === undefined || !_.isNumber(distance) || _.isNaN(distance) || (distance === Number.POSITIVE_INFINITY)) {
+		return "";
 	}
 	if (distance > 9) {
-		return Math.round(distance) + ' km';
+		return Math.round(distance) + " km";
 	}
-	return Math.round(distance * 10) / 10 + ' km';
+	return Math.round(distance * 10) / 10 + " km";
 };
 
 if (OS_IOS){
-	onSearchFocus = function(e){
+	onSearchFocus = function(){
 		$.searchBar.showBookmark = false;
 		$.searchBar.showCancel = true;
 	};
 	
-	onSearchCancel = function(e){
+	onSearchCancel = function(){
 		$.searchBar.showBookmark = true;
 		$.searchBar.showCancel = false;
 		$.searchBar.blur();
 	};
 	
-	function onRowAction(e){
+	onRowAction = function(e){
 		var row = e.section.getItemAt(e.itemIndex);
 		var id = row.properties.locale.id;
 		
-		if (e.action === ("+ " + L('lblFavorite'))){
-			Alloy.Globals.analyticsEvent({action:'list-add_favorite', label:id});
+		if (e.action === ("+ " + L("lblFavorite"))){
+			Alloy.Globals.analyticsEvent({action: "list-add_favorite", label: id});
 			$FM.add(id);
 		} else {
-			Alloy.Globals.analyticsEvent({action:'list-remove_favorite', label:id});
+			Alloy.Globals.analyticsEvent({action: "list-remove_favorite", label: id});
 			$FM.remove(id);
 		}
 		
 		$.listView.editing = false;
 		populateList();
-	}
+	};
 	$.listView.addEventListener("editaction", onRowAction);
 }
 
-$.listView.addEventListener('noresults', function(){
+$.listView.addEventListener("noresults", function(){
 	$.listFooterLabelContainer.visible = true;
 });
 
 $.wrapper.addEventListener("open", function(){
-	if (OS_ANDROID && $.listView.defaultItemTemplate === 'favoriteTemplate'){
+	if (OS_ANDROID && $.listView.defaultItemTemplate === "favoriteTemplate"){
 		var activity = $.wrapper.getActivity();
 		activity.onCreateOptionsMenu = function(e) {
 			e.menu.clear();
@@ -213,7 +215,7 @@ $.wrapper.addEventListener("open", function(){
 	}
 });
 
-Ti.App.addEventListener("refresh-data", function(e){
+Ti.App.addEventListener("refresh-data", function(){
 	populateList();
 });
 
@@ -228,7 +230,7 @@ exports.showAdvertisement = function(show){
 		$.listView.bottom = Alloy.CFG.gui.advertisementBannerHeight;
 		
 		$.advContainer.add(AdMob.create({
-			unitId : 'ca-app-pub-5803114779573585/8333772750'
+			unitId: "ca-app-pub-5803114779573585/8333772750"
 		}));
 	} else {
 		$.advContainer.removeAllChildren();

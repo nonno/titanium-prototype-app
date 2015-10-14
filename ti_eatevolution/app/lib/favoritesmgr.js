@@ -18,7 +18,7 @@ var FavoritesManager = {
 	remove: function _remove(id){
 		this.favorites = _.difference(this.favorites, [id]);
 
-		Ti.App.Properties.setList("favorites", this.favorites); 
+		Ti.App.Properties.setList("favorites", this.favorites);
 	}
 };
 module.exports = FavoritesManager;
