@@ -1,9 +1,7 @@
 "Label":{
 	autoLink: Ti.UI.AUTOLINK_ALL
 },
-"#mapview":{
-	enableZoomControls: false,
-	compassEnabled: false,
+"#mapContainer":{
 	height: "30%",
 },
 ".container":{

@@ -4,7 +4,8 @@ var args = arguments[0] || {},
 	$FM = require("favoritesmgr"),
 	AdMob = require("AdMob");
 
-var profile, typeData, currentTab, listSource, mapSource;
+var profile, typeData, currentTab, listSource, mapSource,
+	generateMapImage, generateMap, openExternalMap;
 
 function callProfile(){
 	Alloy.Globals.analyticsEvent({action: "profile-call", label: profile.id});
@@ -95,6 +96,65 @@ function configFlag(value, field, container){
 	}
 }
 
+openExternalMap = function(data){
+	data = data || {};
+	data.searchString = data.searchString || "";
+	data.latitude = data.latitude;
+	data.longitude = data.longitude;
+	
+	var searchString;
+	
+	if (OS_IOS){
+		searchString = data.searchString.replace(" ", "+").replace("&", "+");
+		Ti.Platform.openURL("http://maps.apple.com/?q=" + searchString + "&sll=" + data.latitude + "," + data.longitude);
+	} else {
+		Ti.Platform.openURL("http://maps.google.com/?q=@" + data.latitude + "," + data.longitude);
+	}
+};
+
+generateMapImage = function(data){
+	data = data || {};
+	data.latitude = data.latitude;
+	data.longitude = data.longitude;
+	
+	var mapImage = Ti.UI.createImageView({
+		"width": Ti.UI.FILL,
+		"height": Ti.UI.FILL
+	});
+	mapImage.image = "https://maps.googleapis.com/maps/api/staticmap?center=" + data.latitude + "," + data.longitude + "&markers=" + data.latitude + "," + data.longitude + "&zoom=16&size=640x300&scale=2&key=" + Alloy.CFG.googleMapsKey;
+	
+	return mapImage;
+};
+
+generateMap = function(data){
+	data = data || {};
+	data.latitude = data.latitude;
+	data.longitude = data.longitude;
+	
+	var mapView = TiMap.createView({
+		"mapType": TiMap.NORMAL_TYPE,
+		"region": {
+			"latitude": data.latitude,
+			"longitude": data.longitude,
+			"latitudeDelta": 0.01,
+			"longitudeDelta": 0.01,
+			"zoom": 15,
+			"tilt": 45
+		},
+		"animate": false,
+		"enableCompass": false,
+		"enableZoomControls": false,
+		"rotateEnabled": false,
+		"userLocation": true
+	});
+	mapView.addAnnotation(TiMap.createAnnotation({
+		latitude: data.latitude,
+		longitude: data.longitude
+	}));
+	
+	return mapView;
+};
+
 profile = args.profile;
 listSource = args.listSource;
 mapSource = args.mapSource;
@@ -178,20 +238,32 @@ configFlag(profile.sedere, $.sedere, $.sedereContainer);
 configFlag(profile.disabili, $.disabili, $.disabiliContainer);
 configFlag(profile.pos, $.pos, $.posContainer);
 
-
 // map section
-$.mapview.setRegion({
-	latitude: profile.lat || 43.425505,
-	longitude: profile.lon || 11.8668486,
-	latitudeDelta: 0.01,
-	longitudeDelta: 0.01,
-	zoom: 15,
-	tilt: 45
-});
-$.mapview.addAnnotation(TiMap.createAnnotation({
-	latitude: profile.lat || 43.425505,
-	longitude: profile.lon || 11.8668486
-}));
+(function(){
+	var mapOverlay, generatorFunction;
+	
+	if (Alloy.CFG.staticMapOnDetail){
+		generatorFunction = generateMapImage;
+	} else {
+		generatorFunction = generateMap;
+	}
+	$.mapContainer.add(generatorFunction({"latitude": profile.lat, "longitude": profile.lon}));
+	
+	if (Alloy.CFG.mapOverlayOnDetail){
+		mapOverlay = Ti.UI.createView({
+			"width": Ti.UI.FILL,
+			"height": Ti.UI.FILL
+		});
+		mapOverlay.addEventListener("singletap", function(){
+			openExternalMap({
+				"searchString": profile.nome,
+				"latitude": profile.lat,
+				"longitude": profile.lon
+			});
+		});
+		$.mapContainer.add(mapOverlay);
+	}
+}());
 
 if ($FM.exists(profile.id)) {
 	$.addFavoriteBtn.setColor("yellow");

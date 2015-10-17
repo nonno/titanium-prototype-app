@@ -15,7 +15,10 @@
 		},
 		"dataUrl": "https://dl.dropboxusercontent.com/u/18816030/EatEvolution/data.json",
 		"syncronizationInterval": 0,
-		"gaTrackingId": "UA-63543213-2"
+		"gaTrackingId": "UA-63543213-2",
+		"googleMapsKey": "AIzaSyD1y5-w94SxFHvyssJ8godURb90SkyBcC8",
+		"staticMapOnDetail": false,
+		"mapOverlayOnDetail": true
 	},
 	"env:development": {
 		"runTests": false
