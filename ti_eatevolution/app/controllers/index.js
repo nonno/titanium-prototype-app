@@ -173,6 +173,17 @@ onTabGroupOpen = function(e){
 			if (Alloy.Globals.currentTab === TAB_LIST || Alloy.Globals.currentTab === TAB_MAP){
 				(function(menu){
 					var item = menu.add({
+						title: L("lblReloadData"),
+						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
+					});
+					item.addEventListener("click", function(){
+						listController.refresh();
+						mapController.refresh();
+					});
+				}(createOptionEvent.menu));
+				
+				(function(menu){
+					var item = menu.add({
 						title: Alloy.Globals.Data.favorites ? L("lblShowAll") : L("lblShowOnlyFavorites"),
 						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
 					});

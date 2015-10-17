@@ -31,6 +31,7 @@
 	<string name="lblOrderByName">Order by name</string>
 	<string name="lblOrderByDistance">Order by distance</string>
 	<string name="lblNoResults">No results for the current search</string>
+	<string name="lblReloadData">Reload</string>
 	
 	<string name="msgSyncErrorAppOutdated">App update available, please update</string>
 	<string name="msgSyncErrorDataMalformed">Data malformed</string>
