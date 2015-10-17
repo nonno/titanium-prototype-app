@@ -13,7 +13,7 @@
 	<string name="lblDetailsTitle">Details</string>
 	<string name="lblFavorite">Favorite</string>
 	<string name="lblShowAll">Show all</string>
-	<string name="lblShowFavorites">Show favorites</string>
+	<string name="lblShowOnlyFavorites">Show only favorites</string>
 	<string name="lblDataOptions">Data view options</string>
 	<string name="lblAddToFavorites">Add to favorites</string>
 	<string name="lblRemoveFromFavorites">Remove from favorites</string>

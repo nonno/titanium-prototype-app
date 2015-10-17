@@ -1,7 +1,7 @@
 var Repository = require("Repository");
 
 var launch, syncInterval, listController, mapController, joinController, infoController,
-	synchronize, startAutoSync, stopAutoSync, appResumed, appPaused;
+	synchronize, startAutoSync, stopAutoSync, appResumed, appPaused, init, onTabGroupOpen;
 
 var TAB_LIST = 0,
 	TAB_MAP = 1;
@@ -14,7 +14,7 @@ synchronize = function(){
 	
 	Repository.fetchDataOnline()
 		.then(
-			function(res){
+			function(){
 				listController.refresh();
 				mapController.refresh();
 				
@@ -46,18 +46,7 @@ stopAutoSync = function(){
 	clearInterval(syncInterval);
 };
 
-if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
-	launch = false;
-	Ti.App.addEventListener("testsExecutionComplete", function testsExecutionComplete() {
-		Ti.App.removeEventListener("testsExecutionComplete", testsExecutionComplete);
-		init();
-	});
-}
-if (launch) {
-	init();
-}
-
-appResumed = function(e){
+appResumed = function(){
 	Ti.API.debug("App resumed");
 	
 	if (Alloy.CFG.syncronizationInterval){
@@ -66,7 +55,7 @@ appResumed = function(e){
 };
 Ti.App.addEventListener("resumed", appResumed);
 
-appPaused = function(e){
+appPaused = function(){
 	Ti.API.debug("App paused");
 	
 	if (Alloy.CFG.syncronizationInterval){
@@ -75,7 +64,7 @@ appPaused = function(e){
 };
 Ti.App.addEventListener("paused", appPaused);
 
-function init(){
+init = function(){
 	var addTab, connectivityChange;
 	
 	addTab = function(controllerName, title, icon){
@@ -127,14 +116,10 @@ function init(){
 	}
 	
 	$.tabGroup.open();
-}
-
-function showFilters(){
-	Ti.API.debug("Showing filters");
-}
+};
 
 // necessary for customizing android actionbar changing tab
-function onTabGroupOpen(e){
+onTabGroupOpen = function(e){
 	if (OS_ANDROID){
 		Alloy.Globals.currentTab = 0;
 		
@@ -165,7 +150,7 @@ function onTabGroupOpen(e){
 					});
 					item.addEventListener("click", function(){
 						Repository.calculateDistances().then(
-							function(res){
+							function(){
 								Alloy.Globals.Data.orderByDistance = !Alloy.Globals.Data.orderByDistance;
 								
 								listController.refresh();
@@ -188,7 +173,7 @@ function onTabGroupOpen(e){
 			if (Alloy.Globals.currentTab === TAB_LIST || Alloy.Globals.currentTab === TAB_MAP){
 				(function(menu){
 					var item = menu.add({
-						title: Alloy.Globals.Data.favorites ? L("lblShowAll") : L("lblShowFavorites"),
+						title: Alloy.Globals.Data.favorites ? L("lblShowAll") : L("lblShowOnlyFavorites"),
 						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
 					});
 					item.addEventListener("click", function(){
@@ -197,17 +182,9 @@ function onTabGroupOpen(e){
 						listController.onBookmarkClick();
 						mapController.onBookmarkClick();
 						
-						item.title = Alloy.Globals.Data.favorites ? L("lblShowAll") : L("lblShowFavorites");
+						item.title = Alloy.Globals.Data.favorites ? L("lblShowAll") : L("lblShowOnlyFavorites");
 					});
 				}(createOptionEvent.menu));
-				
-				/*(function(menu){
-					var item = menu.add({
-						title: L("lblDataOptions"),
-						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
-					});
-					item.addEventListener("click", showFilters);
-				}(createOptionEvent.menu));*/
 			}
 		};
 		
@@ -218,4 +195,15 @@ function onTabGroupOpen(e){
 			}
 		});
 	}
+};
+
+if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
+	launch = false;
+	Ti.App.addEventListener("testsExecutionComplete", function testsExecutionComplete() {
+		Ti.App.removeEventListener("testsExecutionComplete", testsExecutionComplete);
+		init();
+	});
+}
+if (launch) {
+	init();
 }

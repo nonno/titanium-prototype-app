@@ -6,6 +6,95 @@ var args = arguments[0] || {},
 
 var profile, typeData, currentTab, listSource, mapSource;
 
+function callProfile(){
+	Alloy.Globals.analyticsEvent({action: "profile-call", label: profile.id});
+	
+	if (ENV_DEV){
+		Ti.Platform.openURL("tel:+393381540774");
+	} else {
+		Ti.Platform.openURL("tel:" + profile.tel);
+	}
+}
+
+function toggleFavorite(){
+	if(!$FM.exists(profile.id)){
+		Alloy.Globals.analyticsEvent({action: "profile-add_favorite", label: profile.id});
+	
+		$FM.add(profile.id);
+		$.addFavoriteBtn.setColor("yellow");
+	} else {
+		Alloy.Globals.analyticsEvent({action: "profile-remove_favorite", label: profile.id});
+		
+		$FM.remove(profile.id);
+		$.addFavoriteBtn.setColor(Alloy.CFG.gui.primaryColor);
+	}
+	
+	Ti.App.fireEvent("profile-changed", {
+		"profile": profile,
+		"listSource": listSource,
+		"mapSource": listSource
+	});
+}
+
+function reportProfile(){
+	Alloy.Globals.analyticsEvent({action: "profile-report", label: profile.id});
+	
+	if (OS_IOS && Ti.Platform.model === "Simulator"){
+		alert("Simulator does not support sending emails. Use a device instead");
+		return;
+	}
+
+	var emailDialog = Ti.UI.createEmailDialog();
+	emailDialog.toRecipients = [Alloy.CFG.companyReferences.email];
+	emailDialog.subject = L("lblReportProfileMailSubject");
+	emailDialog.messageBody = String.format(L("msgReportProfileMailBody"), profile.id, profile.nome);
+	emailDialog.open();
+}
+
+function hideInfoContainer(container){
+	container.visible = false;
+	container.height = 0;
+	container.width = 0;
+	container.top = 0;
+	container.bottom = 0;
+	container.left = 0;
+	container.right = 0;
+}
+
+function showAdvertisement(show){
+	if (show){
+		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
+		$.contactInfo.bottom = Alloy.CFG.gui.advertisementBannerHeight;
+		
+		$.advContainer.add(AdMob.create({
+			unitId: "ca-app-pub-5803114779573585/5082268359"
+		}));
+	} else {
+		$.advContainer.removeAllChildren();
+		
+		$.contactInfo.bottom = 0;
+		$.advContainer.height = 0;
+	}
+}
+
+function closeWindow(){
+	$.profile.close();
+}
+
+function configFlag(value, field, container){
+	if (_.isBoolean(value)){
+		if (value){
+			field.text = Alloy.Globals.Icons.fontAwesome.checkCircle;
+			field.color = Alloy.CFG.gui.primaryColor;
+		} else {
+			field.text = Alloy.Globals.Icons.fontAwesome.timesCircle;
+			field.color = Alloy.CFG.gui.secondaryColor;
+		}
+	} else {
+		hideInfoContainer(container);
+	}
+}
+
 profile = args.profile;
 listSource = args.listSource;
 mapSource = args.mapSource;
@@ -83,19 +172,7 @@ if (profile.costo){
 } else {
 	hideInfoContainer($.costoContainer);
 }
-function configFlag(value, field, container){
-	if (_.isBoolean(value)){
-		if (value){
-			field.text = Alloy.Globals.Icons.fontAwesome.checkCircle;
-			field.color = Alloy.CFG.gui.primaryColor;
-		} else {
-			field.text = Alloy.Globals.Icons.fontAwesome.timesCircle;
-			field.color = Alloy.CFG.gui.secondaryColor;
-		}
-	} else {
-		hideInfoContainer(container);
-	}
-}
+
 configFlag(profile.asporto, $.asporto, $.asportoContainer);
 configFlag(profile.sedere, $.sedere, $.sedereContainer);
 configFlag(profile.disabili, $.disabili, $.disabiliContainer);
@@ -120,82 +197,7 @@ if ($FM.exists(profile.id)) {
 	$.addFavoriteBtn.setColor("yellow");
 }
 
-function callProfile(){
-	Alloy.Globals.analyticsEvent({action: "profile-call", label: profile.id});
-	
-	if (ENV_DEV){
-		Ti.Platform.openURL("tel:+393381540774");
-	} else {
-		Ti.Platform.openURL("tel:" + profile.tel);
-	}
-}
-
-function toggleFavorite(){
-	if(!$FM.exists(profile.id)){
-		Alloy.Globals.analyticsEvent({action: "profile-add_favorite", label: profile.id});
-	
-		$FM.add(profile.id);
-		$.addFavoriteBtn.setColor("yellow");
-	} else {
-		Alloy.Globals.analyticsEvent({action: "profile-remove_favorite", label: profile.id});
-		
-		$FM.remove(profile.id);
-		$.addFavoriteBtn.setColor(Alloy.CFG.gui.primaryColor);
-	}
-	
-	Ti.App.fireEvent("profile-changed", {
-		"profile": profile,
-		"listSource": listSource,
-		"mapSource": listSource
-	});
-}
-
-function reportProfile(){
-	Alloy.Globals.analyticsEvent({action: "profile-report", label: profile.id});
-	
-	if (OS_IOS && Ti.Platform.model === "Simulator"){
-		alert("Simulator does not support sending emails. Use a device instead");
-		return;
-	}
-
-	var emailDialog = Ti.UI.createEmailDialog();
-	emailDialog.toRecipients = [Alloy.CFG.companyReferences.email];
-	emailDialog.subject = L("lblReportProfileMailSubject");
-	emailDialog.messageBody = String.format(L("msgReportProfileMailBody"), profile.id, profile.nome);
-	emailDialog.open();
-}
-
-function hideInfoContainer(container){
-	container.visible = false;
-	container.height = 0;
-	container.width = 0;
-	container.top = 0;
-	container.bottom = 0;
-	container.left = 0;
-	container.right = 0;
-}
-
-function showAdvertisement(show){
-	if (show){
-		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
-		$.contactInfo.bottom = Alloy.CFG.gui.advertisementBannerHeight;
-		
-		$.advContainer.add(AdMob.create({
-			unitId: "ca-app-pub-5803114779573585/5082268359"
-		}));
-	} else {
-		$.advContainer.removeAllChildren();
-		
-		$.contactInfo.bottom = 0;
-		$.advContainer.height = 0;
-	}
-}
-
-function closeWindow(){
-	$.profile.close();
-}
-
-$.profile.addEventListener("postlayout", function(e){
+$.profile.addEventListener("postlayout", function(){
 	$.profile.animate({
 		opacity: 1.0,
 		duration: 250,

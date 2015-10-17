@@ -232,7 +232,7 @@ Ti.App.addEventListener("profile-changed", function(params){
 	
 	var itemData;
 	
-	if (params.profile && _.isNumber(sectionIndex) && _.isNumber(itemIndex)){
+	if (params.profile && _.isNumber(sectionIndex) && _.isNumber(itemIndex) && $.listView.sections[sectionIndex]){
 		Ti.API.debug("Updating item " + itemIndex + " in section " + sectionIndex + " with id " + params.profile.id);
 		itemData = preprocessForListView([params.profile])[0];
 		$.listView.sections[sectionIndex].updateItemAt(itemIndex, itemData);
