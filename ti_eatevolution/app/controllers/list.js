@@ -144,7 +144,13 @@ onItemClick = function(e){
 	
 	Alloy.Globals.analyticsEvent({action: "list-open_profile", label: item.properties.locale.id});
 	
-	currentTab.open(Alloy.createController("profile", item.properties.locale).getView());
+	currentTab.open(Alloy.createController("profile", {
+		"profile": item.properties.locale,
+		"listSource": {
+			"sectionIndex": e.sectionIndex,
+			"itemIndex": e.itemIndex
+		}
+	}).getView());
 };
 
 onBookmarkClick = function(){
@@ -215,8 +221,22 @@ $.wrapper.addEventListener("open", function(){
 	}
 });
 
-Ti.App.addEventListener("refresh-data", function(){
-	populateList();
+Ti.App.addEventListener("profile-changed", function(params){
+	params = params || {};
+	params.profile = params.profile;
+	params.listSource = params.listSource;
+	
+	var listSource = params.listSource || {},
+		sectionIndex = listSource.sectionIndex,
+		itemIndex = listSource.itemIndex;
+	
+	var itemData;
+	
+	if (params.profile && _.isNumber(sectionIndex) && _.isNumber(itemIndex)){
+		Ti.API.debug("Updating item " + itemIndex + " in section " + sectionIndex + " with id " + params.profile.id);
+		itemData = preprocessForListView([params.profile])[0];
+		$.listView.sections[sectionIndex].updateItemAt(itemIndex, itemData);
+	}
 });
 
 populateList();

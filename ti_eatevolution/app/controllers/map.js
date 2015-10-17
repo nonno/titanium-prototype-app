@@ -3,7 +3,7 @@ var $FM = require("favoritesmgr"),
 	AdMob = require("AdMob"),
 	TiMap = require("ti.map");
 
-var mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap;
+var mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap, dataToAnnotation;
 
 mapView = TiMap.createView({
 	mapType: TiMap.NORMAL_TYPE,
@@ -20,6 +20,18 @@ mapView = TiMap.createView({
 });
 $.mapContainer.add(mapView);
 
+dataToAnnotation = function(locale) {
+	return TiMap.createAnnotation({
+		latitude: OS_IOS ? locale.lat : parseFloat(locale.lat),
+		longitude: OS_IOS ? locale.lon : parseFloat(locale.lon),
+		title: locale.nome,
+		locale: locale,
+		customView: Alloy.createController("annotation", {
+			type: Repository.getProfileType(locale.tipo)
+		}).getView()
+	});
+};
+
 populateMap = function(params){
 	params = params || {};
 	
@@ -35,25 +47,17 @@ populateMap = function(params){
 		data = Alloy.Globals.Data.locali;
 	}
 	
-	mapView.annotations = data.map(function(locale) {
-		var annotation = TiMap.createAnnotation({
-			latitude: OS_IOS ? locale.lat : parseFloat(locale.lat),
-			longitude: OS_IOS ? locale.lon : parseFloat(locale.lon),
-			title: locale.nome,
-			locale: locale,
-			customView: Alloy.createController("annotation", {
-				type: Repository.getProfileType(locale.tipo)
-			}).getView()
-		});
-		return annotation;
-	});
+	mapView.annotations = data.map(dataToAnnotation);
 };
 
 listener = function(event) {
 	if (!OS_ANDROID || event.clicksource !== "pin") {
 		Alloy.Globals.analyticsEvent({action: "map-open_profile", label: event.annotation.locale.id});
 		
-		currentTab.open(Alloy.createController("profile", event.annotation.locale).getView());
+		currentTab.open(Alloy.createController("profile", {
+			"profile": event.annotation.locale,
+			"mapSource": event.annotation
+		}).getView());
 	}
 };
 mapView.addEventListener("click", listener);
@@ -92,8 +96,13 @@ centerMapOnCurrentPosition = function(){
 	});
 };
 
-Ti.App.addEventListener("refresh-data", function(){
-	populateMap();
+Ti.App.addEventListener("profile-changed", function(params){
+	params = params || {};
+	params.profile = params.profile;
+	params.mapSource = params.mapSource;
+	
+	// TODO probably better don't do anything
+	//populateMap();
 });
 
 centerMapOnCurrentPosition();

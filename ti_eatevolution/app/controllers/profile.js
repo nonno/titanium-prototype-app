@@ -1,33 +1,36 @@
-var locale = arguments[0] || {},
+var args = arguments[0] || {},
 	TiMap = require("ti.map"),
 	Repository = require("Repository"),
 	$FM = require("favoritesmgr"),
 	AdMob = require("AdMob");
 
-Alloy.Globals.analyticsEvent({action: "profile-open", label: locale.id});
+var profile, typeData, currentTab, listSource, mapSource;
 
-var typeData, currentTab;
+profile = args.profile;
+listSource = args.listSource;
+mapSource = args.mapSource;
+typeData = Repository.getProfileType(profile.tipo);
 
-typeData = Repository.getProfileType(locale.tipo);
+Alloy.Globals.analyticsEvent({action: "profile-open", label: profile.id});
 
-$.nome.text = locale.nome;
+$.nome.text = profile.nome;
 $.tipo.text = L(typeData.text);
-$.indirizzo.text = Repository.addressToString(locale);
+$.indirizzo.text = Repository.addressToString(profile);
 
-if (locale.tel){
-	$.telefono.text = locale.tel;
+if (profile.tel){
+	$.telefono.text = profile.tel;
 } else {
 	hideInfoContainer($.telefonoContainer);
 }
 
-if (locale.email){
-	$.email.text = locale.email;
+if (profile.email){
+	$.email.text = profile.email;
 } else {
 	hideInfoContainer($.emailContainer);
 }
 
-if (locale.web){
-	$.web.text = locale.web.replace("https://", "").replace("http://", "");
+if (profile.web){
+	$.web.text = profile.web.replace("https://", "").replace("http://", "");
 } else {
 	hideInfoContainer($.webContainer);
 }
@@ -35,10 +38,10 @@ if (locale.web){
 (function(){
 	var aperturaText, todayOpen, todayTimetable;
 	
-	if (locale.aperto && locale.aperto.length > 0){
-		todayOpen = Repository.isLocaleTodayOpen(locale);
+	if (profile.aperto && profile.aperto.length > 0){
+		todayOpen = Repository.isLocaleTodayOpen(profile);
 		if (todayOpen){
-			todayTimetable = Repository.getLocaleTodayTimetable(locale);
+			todayTimetable = Repository.getLocaleTodayTimetable(profile);
 			
 			aperturaText = L("lblTodayOpen") + " " + todayTimetable.reduce(function(memo, time){
 				memo += memo.length > 0 ? ", " : "";
@@ -54,11 +57,11 @@ if (locale.web){
 }());
 
 // food types section
-$.tipiCibiValue.text = Repository.getFoodTypes(locale).map(function(tipo){
+$.tipiCibiValue.text = Repository.getFoodTypes(profile).map(function(tipo){
 	return L("cibo.tipo." + tipo);
 }).sort().join(", ").toLowerCase();
 
-$.catCibiValue.text = Repository.getFoodCategories(locale).map(function(cat){
+$.catCibiValue.text = Repository.getFoodCategories(profile).map(function(cat){
 	return L("cibo.cat." + cat);
 }).sort().join(", ").toLowerCase();
 
@@ -75,8 +78,8 @@ if (!$.tipiCibiValue.text && !$.catCibiValue.text){
 
 
 // flags section
-if (locale.costo){
-	$.costo.text = Array(locale.costo + 1).join(Alloy.Globals.Icons.fontAwesome.money + " ");
+if (profile.costo){
+	$.costo.text = Array(profile.costo + 1).join(Alloy.Globals.Icons.fontAwesome.money + " ");
 } else {
 	hideInfoContainer($.costoContainer);
 }
@@ -93,58 +96,62 @@ function configFlag(value, field, container){
 		hideInfoContainer(container);
 	}
 }
-configFlag(locale.asporto, $.asporto, $.asportoContainer);
-configFlag(locale.sedere, $.sedere, $.sedereContainer);
-configFlag(locale.disabili, $.disabili, $.disabiliContainer);
-configFlag(locale.pos, $.pos, $.posContainer);
+configFlag(profile.asporto, $.asporto, $.asportoContainer);
+configFlag(profile.sedere, $.sedere, $.sedereContainer);
+configFlag(profile.disabili, $.disabili, $.disabiliContainer);
+configFlag(profile.pos, $.pos, $.posContainer);
 
 
 // map section
 $.mapview.setRegion({
-	latitude: locale.lat || 43.425505,
-	longitude: locale.lon || 11.8668486,
+	latitude: profile.lat || 43.425505,
+	longitude: profile.lon || 11.8668486,
 	latitudeDelta: 0.01,
 	longitudeDelta: 0.01,
 	zoom: 15,
 	tilt: 45
 });
 $.mapview.addAnnotation(TiMap.createAnnotation({
-	latitude: locale.lat || 43.425505,
-	longitude: locale.lon || 11.8668486
+	latitude: profile.lat || 43.425505,
+	longitude: profile.lon || 11.8668486
 }));
 
-if ($FM.exists(locale.id)) {
+if ($FM.exists(profile.id)) {
 	$.addFavoriteBtn.setColor("yellow");
 }
 
 function callProfile(){
-	Alloy.Globals.analyticsEvent({action: "profile-call", label: locale.id});
+	Alloy.Globals.analyticsEvent({action: "profile-call", label: profile.id});
 	
 	if (ENV_DEV){
 		Ti.Platform.openURL("tel:+393381540774");
 	} else {
-		Ti.Platform.openURL("tel:" + locale.tel);
+		Ti.Platform.openURL("tel:" + profile.tel);
 	}
 }
 
 function toggleFavorite(){
-	if(!$FM.exists(locale.id)){
-		Alloy.Globals.analyticsEvent({action: "profile-add_favorite", label: locale.id});
+	if(!$FM.exists(profile.id)){
+		Alloy.Globals.analyticsEvent({action: "profile-add_favorite", label: profile.id});
 	
-		$FM.add(locale.id);
+		$FM.add(profile.id);
 		$.addFavoriteBtn.setColor("yellow");
 	} else {
-		Alloy.Globals.analyticsEvent({action: "profile-remove_favorite", label: locale.id});
+		Alloy.Globals.analyticsEvent({action: "profile-remove_favorite", label: profile.id});
 		
-		$FM.remove(locale.id);
+		$FM.remove(profile.id);
 		$.addFavoriteBtn.setColor(Alloy.CFG.gui.primaryColor);
 	}
 	
-	Ti.App.fireEvent("refresh-data");
+	Ti.App.fireEvent("profile-changed", {
+		"profile": profile,
+		"listSource": listSource,
+		"mapSource": listSource
+	});
 }
 
 function reportProfile(){
-	Alloy.Globals.analyticsEvent({action: "profile-report", label: locale.id});
+	Alloy.Globals.analyticsEvent({action: "profile-report", label: profile.id});
 	
 	if (OS_IOS && Ti.Platform.model === "Simulator"){
 		alert("Simulator does not support sending emails. Use a device instead");
@@ -154,7 +161,7 @@ function reportProfile(){
 	var emailDialog = Ti.UI.createEmailDialog();
 	emailDialog.toRecipients = [Alloy.CFG.companyReferences.email];
 	emailDialog.subject = L("lblReportProfileMailSubject");
-	emailDialog.messageBody = String.format(L("msgReportProfileMailBody"), locale.id, locale.nome);
+	emailDialog.messageBody = String.format(L("msgReportProfileMailBody"), profile.id, profile.nome);
 	emailDialog.open();
 }
 
