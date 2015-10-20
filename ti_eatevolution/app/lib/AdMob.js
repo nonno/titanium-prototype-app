@@ -8,7 +8,8 @@ var create = function(params) {
 	
 	if (OS_ANDROID){
 		adMobArgs = {
-			publisherId: params.unitId
+			publisherId: params.unitId,
+			smartBanner: true
 		};
 		eventReceived = Admob.AD_RECEIVED;
 		eventFail = Admob.AD_NOT_RECEIVED;
