@@ -1,6 +1,6 @@
 var Repository = require("Repository");
 
-var launch, syncInterval, listController, mapController, joinController, infoController,
+var launch, syncInterval, listController, mapController, joinController, infoController, orientationchange,
 	synchronize, startAutoSync, stopAutoSync, appResumed, appPaused, init, onTabGroupOpen;
 
 var TAB_LIST = 0,
@@ -207,6 +207,16 @@ onTabGroupOpen = function(e){
 		});
 	}
 };
+
+orientationchange = function(e){
+	listController.showAdvertisement(Ti.Network.online);
+	mapController.showAdvertisement(Ti.Network.online);
+};
+Ti.Gesture.addEventListener("orientationchange", orientationchange);
+
+$.tabGroup.addEventListener("close", function(){
+	Ti.Gesture.removeEventListener("orientationchange", orientationchange);
+});
 
 if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
 	launch = false;

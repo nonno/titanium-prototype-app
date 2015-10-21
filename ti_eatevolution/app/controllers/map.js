@@ -114,6 +114,7 @@ exports.showAdvertisement = function(show){
 		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
 		$.mapContainer.bottom = Alloy.CFG.gui.advertisementBannerHeight;
 		
+		$.advContainer.removeAllChildren();
 		$.advContainer.add(AdMob.create({
 			unitId: "ca-app-pub-5803114779573585/3605535158"
 		}));

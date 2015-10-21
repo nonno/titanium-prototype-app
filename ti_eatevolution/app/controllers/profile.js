@@ -4,7 +4,7 @@ var args = arguments[0] || {},
 	$FM = require("favoritesmgr"),
 	AdMob = require("AdMob");
 
-var profile, typeData, currentTab, listSource, mapSource,
+var profile, typeData, currentTab, listSource, mapSource, orientationchange,
 	generateMapImage, generateMap, openExternalMap;
 
 function callProfile(){
@@ -67,6 +67,7 @@ function showAdvertisement(show){
 		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
 		$.contactInfo.bottom = Alloy.CFG.gui.advertisementBannerHeight;
 		
+		$.advContainer.removeAllChildren();
 		$.advContainer.add(AdMob.create({
 			unitId: "ca-app-pub-5803114779573585/5082268359"
 		}));
@@ -154,6 +155,11 @@ generateMap = function(data){
 	
 	return mapView;
 };
+
+orientationchange = function(e){
+	showAdvertisement(Ti.Network.online);
+};
+Ti.Gesture.addEventListener("orientationchange", orientationchange);
 
 profile = args.profile;
 listSource = args.listSource;
@@ -268,6 +274,10 @@ configFlag(profile.pos, $.pos, $.posContainer);
 if ($FM.exists(profile.id)) {
 	$.addFavoriteBtn.setColor("yellow");
 }
+
+$.profile.addEventListener("close", function(){
+	Ti.Gesture.removeEventListener("orientationchange", orientationchange);
+});
 
 $.profile.addEventListener("postlayout", function(){
 	$.profile.animate({
