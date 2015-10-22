@@ -1,6 +1,7 @@
 var args = arguments[0] || {},
 	TiMap = require("ti.map"),
-	Repository = require("Repository"),
+	ProfileRepository = require("ProfileRepository"),
+	ProfileTypeRepository = require("ProfileTypeRepository"),
 	$FM = require("favoritesmgr"),
 	AdMob = require("AdMob");
 
@@ -156,7 +157,7 @@ generateMap = function(data){
 	return mapView;
 };
 
-orientationchange = function(e){
+orientationchange = function(){
 	showAdvertisement(Ti.Network.online);
 };
 Ti.Gesture.addEventListener("orientationchange", orientationchange);
@@ -164,13 +165,13 @@ Ti.Gesture.addEventListener("orientationchange", orientationchange);
 profile = args.profile;
 listSource = args.listSource;
 mapSource = args.mapSource;
-typeData = Repository.getProfileType(profile.tipo);
+typeData = ProfileTypeRepository.getType(profile.tipo) || ProfileTypeRepository.getDefaultType();
 
 Alloy.Globals.analyticsEvent({action: "profile-open", label: profile.id});
 
 $.nome.text = profile.nome;
 $.tipo.text = L(typeData.text);
-$.indirizzo.text = Repository.addressToString(profile);
+$.indirizzo.text = ProfileRepository.addressToString(profile);
 
 if (profile.tel){
 	$.telefono.text = profile.tel;
@@ -194,9 +195,9 @@ if (profile.web){
 	var aperturaText, todayOpen, todayTimetable;
 	
 	if (profile.aperto && profile.aperto.length > 0){
-		todayOpen = Repository.isLocaleTodayOpen(profile);
+		todayOpen = ProfileRepository.isLocaleTodayOpen(profile);
 		if (todayOpen){
-			todayTimetable = Repository.getLocaleTodayTimetable(profile);
+			todayTimetable = ProfileRepository.getLocaleTodayTimetable(profile);
 			
 			aperturaText = L("lblTodayOpen") + " " + todayTimetable.reduce(function(memo, time){
 				memo += memo.length > 0 ? ", " : "";
@@ -212,11 +213,11 @@ if (profile.web){
 }());
 
 // food types section
-$.tipiCibiValue.text = Repository.getFoodTypes(profile).map(function(tipo){
+$.tipiCibiValue.text = ProfileRepository.getFoodTypes(profile).map(function(tipo){
 	return L("cibo.tipo." + tipo);
 }).sort().join(", ").toLowerCase();
 
-$.catCibiValue.text = Repository.getFoodCategories(profile).map(function(cat){
+$.catCibiValue.text = ProfileRepository.getFoodCategories(profile).map(function(cat){
 	return L("cibo.cat." + cat);
 }).sort().join(", ").toLowerCase();
 

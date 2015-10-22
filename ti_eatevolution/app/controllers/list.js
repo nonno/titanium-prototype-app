@@ -1,10 +1,11 @@
 var AdMob = require("AdMob"),
 	$FM = require("favoritesmgr"),
-	Repository = require("Repository");
+	ProfileTypeRepository = require("ProfileTypeRepository"),
+	ProfileRepository = require("ProfileRepository");
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
 	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName,
-	filterProfiles, onRowAction;
+	filterProfiles, onRowAction, iosSwipe, iosSwipePartial;
 
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
@@ -13,7 +14,7 @@ onSearchChange = function(e){
 preprocessForListView = function(rawData) {
 	return rawData.map(function(item) {
 		var isFavorite = $FM.exists(item.id);
-		var type = Repository.getProfileType(item.tipo);
+		var type = ProfileTypeRepository.getType(item.tipo) || ProfileTypeRepository.getDefaultType();
 		
 		return {
 			template: isFavorite ? "favoriteTemplate" : "defaultTemplate",
@@ -28,7 +29,7 @@ preprocessForListView = function(rawData) {
 			icon: {text: type.icon, color: type.color},
 			nome: {text: item.nome},
 			tipo: {text: L(type.text)},
-			indirizzo: {text: Repository.addressToString(item)},
+			indirizzo: {text: ProfileRepository.addressToString(item)},
 			telefono: {text: item.tel},
 			distanza: {text: formatDistance(item.distanza)}
 		};
@@ -55,6 +56,18 @@ filterProfiles = function(profiles){
 	}
 	return profiles;
 };
+
+if (OS_IOS){
+	iosSwipePartial = null;
+	iosSwipe = function(indexes, swipeEvent){
+		if (swipeEvent.direction === "left"){
+			$.listView.sectionIndexTitles = indexes;
+		}
+		if (swipeEvent.direction === "right"){
+			$.listView.sectionIndexTitles = null;
+		}
+	};
+}
 
 populateList = function(params){
 	params = params || {};
@@ -129,14 +142,12 @@ populateList = function(params){
 		$.listView.sections = sections;
 		
 		if (OS_IOS) {
-			$.wrapper.addEventListener("swipe", function(e){
-				if (e.direction === "left"){
-					$.listView.sectionIndexTitles = indexes;
-				}
-				if (e.direction === "right"){
-					$.listView.sectionIndexTitles = null;
-				}
-			});
+			if (iosSwipePartial){
+				$.wrapper.removeEventListener("swipe", iosSwipePartial);
+			}
+			iosSwipePartial = _.partial(iosSwipe, indexes);
+			
+			$.wrapper.addEventListener("swipe", iosSwipePartial);
 		}
 	}
 	

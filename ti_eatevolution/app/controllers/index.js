@@ -1,4 +1,4 @@
-var Repository = require("Repository");
+var ProfileRepository = require("ProfileRepository");
 
 var launch, syncInterval, listController, mapController, joinController, infoController, orientationchange,
 	synchronize, startAutoSync, stopAutoSync, appResumed, appPaused, init, onTabGroupOpen;
@@ -12,13 +12,13 @@ launch = true;
 synchronize = function(){
 	Ti.API.info("Synchronize");
 	
-	Repository.fetchDataOnline()
+	ProfileRepository.fetchDataOnline()
 		.then(
 			function(){
 				listController.refresh();
 				mapController.refresh();
 				
-				Repository.calculateDistances();
+				ProfileRepository.calculateDistances();
 			},
 			function(err){
 				if (err.showAlert){
@@ -82,7 +82,7 @@ init = function(){
 		return controller;
 	};
 	
-	Repository.fetchDataOffline();
+	ProfileRepository.fetchDataOffline();
 	
 	if (OS_ANDROID){
 		listController = addTab("list", "", "images/light_home.png");
@@ -149,7 +149,7 @@ onTabGroupOpen = function(e){
 						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
 					});
 					item.addEventListener("click", function(){
-						Repository.calculateDistances().then(
+						ProfileRepository.calculateDistances().then(
 							function(){
 								Alloy.Globals.Data.orderByDistance = !Alloy.Globals.Data.orderByDistance;
 								

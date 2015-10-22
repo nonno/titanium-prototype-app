@@ -1,5 +1,5 @@
 var $FM = require("favoritesmgr"),
-	Repository = require("Repository"),
+	ProfileTypeRepository = require("ProfileTypeRepository"),
 	AdMob = require("AdMob"),
 	TiMap = require("ti.map");
 
@@ -27,7 +27,7 @@ dataToAnnotation = function(locale) {
 		title: locale.nome,
 		locale: locale,
 		customView: Alloy.createController("annotation", {
-			type: Repository.getProfileType(locale.tipo)
+			type: ProfileTypeRepository.getType(locale.tipo) || ProfileTypeRepository.getDefaultType()
 		}).getView()
 	});
 };

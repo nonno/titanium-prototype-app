@@ -3,20 +3,8 @@ var Request = require("Request"),
 	DateUtils = require("DateUtils"),
 	GeoUtils = require("GeoUtils");
 
-var getDataFile, profileTypes, fetchDataOffline, fetchDataOnline, addressToString, getProfileType,
+var getDataFile, fetchDataOffline, fetchDataOnline, addressToString,
 	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances;
-
-profileTypes = {
-	"bar": {text: "locale.tipo.bar", icon: Alloy.Globals.Icons.profileTypes.bar, color: "maroon"},
-	"ff": {text: "locale.tipo.ff", icon: Alloy.Globals.Icons.profileTypes.ff, color: "orange"},
-	"for": {text: "locale.tipo.for", icon: Alloy.Globals.Icons.profileTypes.for, color: "brown"},
-	"gel": {text: "locale.tipo.gel", icon: Alloy.Globals.Icons.profileTypes.gel, color: "cyan"},
-	"pas": {text: "locale.tipo.pas", icon: Alloy.Globals.Icons.profileTypes.pas, color: "purple"},
-	"piz": {text: "locale.tipo.piz", icon: Alloy.Globals.Icons.profileTypes.piz, color: "red"},
-	"ris": {text: "locale.tipo.ris", icon: Alloy.Globals.Icons.profileTypes.ris, color: "gray"},
-	"ros": {text: "locale.tipo.ros", icon: Alloy.Globals.Icons.profileTypes.ros, color: "pink"},
-	"tc": {text: "locale.tipo.tc", icon: Alloy.Globals.Icons.profileTypes.tc, color: "olive"}
-};
 
 getDataFile = function(){
 	if (OS_IOS){
@@ -26,7 +14,7 @@ getDataFile = function(){
 };
 
 fetchDataOffline = function(){
-	Ti.API.debug("Repository.fetchDataOffline");
+	Ti.API.debug("ProfileRepository.fetchDataOffline");
 	var file, data;
 	
 	file = getDataFile();
@@ -39,8 +27,8 @@ fetchDataOffline = function(){
 	Alloy.Globals.Data.date = data.date;
 	Alloy.Globals.Data.locali = data.locali;
 };
-fetchDataOnline = function(params){
-	Ti.API.debug("Repository.fetchDataOnline");
+fetchDataOnline = function(){
+	Ti.API.debug("ProfileRepository.fetchDataOnline");
 	var defer = q.defer();
 	
 	Request.get(Alloy.CFG.dataUrl, {
@@ -78,8 +66,8 @@ fetchDataOnline = function(params){
 	
 	return defer.promise;
 };
-calculateDistances = function(params){
-	Ti.API.debug("Repository.calculateDistances");
+calculateDistances = function(){
+	Ti.API.debug("ProfileRepository.calculateDistances");
 	var defer = q.defer();
 	
 	Ti.Geolocation.getCurrentPosition(function(e) {
@@ -185,21 +173,6 @@ getFoodCategories = function(locale){
 	}, []));
 };
 
-getProfileType = function(type){
-	var value, defaultType;
-	defaultType = "ris";
-	if (!type){
-		Ti.API.warn("getProfileType called with no type");
-		type = defaultType;
-	}
-	value = profileTypes[type];
-	if (!value){
-		Ti.API.warn("getProfileType called with no existent type " + type);
-		value = profileTypes[defaultType];
-	}
-	return value;
-};
-
 exports.getDataFile = getDataFile;
 exports.fetchDataOffline = fetchDataOffline;
 exports.fetchDataOnline = fetchDataOnline;
@@ -209,4 +182,3 @@ exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
 exports.getFoodTypes = getFoodTypes;
 exports.getFoodCategories = getFoodCategories;
-exports.getProfileType = getProfileType;
