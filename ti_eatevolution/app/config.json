@@ -30,5 +30,7 @@
 		"iosColor": "#007aff"
 	},
 	"os:android": {},
-	"dependencies": {}
+	"dependencies": {
+		"nl.fokkezb.loading":"*"
+	}
 }

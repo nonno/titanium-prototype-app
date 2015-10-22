@@ -82,28 +82,18 @@
                 android:name="it.mpic.eatevolution.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
         </manifest>
     </android>
-    <windows>
-        <manifest>
-            <Capabilities>
-                <Capability Name="internetClient"/>
-                <DeviceCapability Name="location"/>
-            </Capabilities>
-        </manifest>
-    </windows>
     <modules>
         <module platform="iphone">ti.admob</module>
         <module platform="android">ti.admob</module>
         <module platform="iphone">ti.map</module>
-        <module platform="commonjs">ti.cloud</module>
-        <module platform="android">ti.ga</module>
         <module platform="android">ti.map</module>
         <module platform="iphone">ti.ga</module>
+        <module platform="android">ti.ga</module>
     </modules>
     <deployment-targets>
         <target device="mobileweb">false</target>
-        <target device="windows">true</target>
         <target device="android">true</target>
-        <target device="ipad">false</target>
+        <target device="ipad">true</target>
         <target device="iphone">true</target>
     </deployment-targets>
     <sdk-version>5.0.2.GA</sdk-version>

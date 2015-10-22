@@ -61,6 +61,8 @@ populateList = function(params){
 	
 	Ti.API.debug("list.populateList");
 	
+	Alloy.Globals.loading.show();
+	
 	var locali, indexes, sections, groups, section;
 	
 	locali = filterProfiles(Alloy.Globals.Data.locali);
@@ -137,6 +139,8 @@ populateList = function(params){
 			});
 		}
 	}
+	
+	Alloy.Globals.loading.hide();
 };
 
 onItemClick = function(e){

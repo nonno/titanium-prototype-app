@@ -35,9 +35,11 @@ dataToAnnotation = function(locale) {
 populateMap = function(params){
 	params = params || {};
 	
+	var data, annotations;
+	
 	Ti.API.debug("map.populateMap");
 	
-	var data;
+	Alloy.Globals.loading.show();
 	
 	if (Alloy.Globals.Data.favorites) {
 		data = Alloy.Globals.Data.locali.filter(function(item){
@@ -47,7 +49,16 @@ populateMap = function(params){
 		data = Alloy.Globals.Data.locali;
 	}
 	
-	mapView.annotations = data.map(dataToAnnotation);
+	annotations = data.map(dataToAnnotation);
+	
+	if (mapView.annotations && mapView.annotations.length){
+		mapView.removeAnnotations(mapView.annotations);
+	}
+	_.each(annotations, function(annotation){
+		mapView.addAnnotation(annotation);
+	});
+	
+	Alloy.Globals.loading.hide();
 };
 
 listener = function(event) {

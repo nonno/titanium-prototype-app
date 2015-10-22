@@ -177,8 +177,8 @@ onTabGroupOpen = function(e){
 						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
 					});
 					item.addEventListener("click", function(){
-						listController.refresh();
 						mapController.refresh();
+						listController.refresh();
 					});
 				}(createOptionEvent.menu));
 				

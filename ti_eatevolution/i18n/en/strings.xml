@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+	<string name="app_name">Eat Evolution</string>
+	
 	<string name="lblCompanyName">Nutrionisti senza frontiere</string>
 	<string name="lblCampaignName">Eat Evolution</string>
 	<string name="lblYes">Yes</string>

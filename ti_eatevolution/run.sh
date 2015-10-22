@@ -17,7 +17,7 @@ if [ "$CHOICE" == "" ]; then
 fi
 
 if [ "$CHOICE" == "Y" ]; then
-	appc ti build --platform $PLATFORM --log-level debug --target $TARGET --device-id
+	appc ti build --platform $PLATFORM --log-level debug --target $TARGET --skip-js-minify --device-id
 else
-	appc ti build --platform $PLATFORM --log-level debug --target $TARGET
+	appc ti build --platform $PLATFORM --log-level debug --target $TARGET --skip-js-minify
 fi
