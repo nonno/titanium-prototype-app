@@ -15,9 +15,9 @@
 			
 			<!-- User Actions --->
 			<View class="hgroup top-buffer size">
+				<Label id="reportBtn" class="icon icon-btn icon-exclamation-triangle" onClick="reportProfile" />
 				<Label id="callBtn" class="icon icon-btn icon-phone" onClick="callProfile" />
 				<Label id="addFavoriteBtn" class="icon icon-btn icon-star" onClick="toggleFavorite" />
-				<Label id="reportBtn" class="icon icon-btn icon-exclamation-triangle" onClick="reportProfile" />
 			</View>
 			
 			<View class='separator' />

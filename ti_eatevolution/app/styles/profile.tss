@@ -21,4 +21,9 @@
 },
 ".flags-column": {
 	width: 150
+},
+"#callBtn": {
+	width: 80,
+	height: 80,
+	borderRadius: 40
 }
