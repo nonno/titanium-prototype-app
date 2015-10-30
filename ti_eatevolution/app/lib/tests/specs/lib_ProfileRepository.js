@@ -1,4 +1,4 @@
-var should = require("tests/should"),
+var assert = require("tests/chai").assert,
 	ProfileRepository = require("ProfileRepository");
 
 describe("ProfileRepository", function() {
@@ -6,11 +6,11 @@ describe("ProfileRepository", function() {
 	describe("getLocaleTodayTimetable", function(){
 
 		it("should return an empty array if 'locale' doesn't define a opening timetable", function(){
-			ProfileRepository.getLocaleTodayTimetable().should.be.empty;
-			ProfileRepository.getLocaleTodayTimetable({}).should.be.empty;
-			ProfileRepository.getLocaleTodayTimetable({"aperto": null}).should.be.empty;
-			ProfileRepository.getLocaleTodayTimetable({"aperto": undefined}).should.be.empty;
-			ProfileRepository.getLocaleTodayTimetable({"aperto": []}).should.be.empty;
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable(), 0, '()');
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({}), 0, '{}');
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": null}), 0, '{"aperto": null}');
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": undefined}), 0, '{"aperto": undefined}');
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": []}), 0, '{"aperto": []}');
 		});
 
 		it("should show the timetable for the right week-day", function(){
@@ -26,7 +26,7 @@ describe("ProfileRepository", function() {
 					[{"da": "10:00", "a": "19:00"}]
 				]}
 			]};
-			ProfileRepository.getLocaleTodayTimetable(locale, now).should.eql([{"da": "07:00", "a": "22:00"}]);
+			assert.deepEqual(ProfileRepository.getLocaleTodayTimetable(locale, now), [{"da": "07:00", "a": "22:00"}]);
 		});
 		
 		it("should show the timetable for the right period of the year", function(){
@@ -51,18 +51,18 @@ describe("ProfileRepository", function() {
 					[{"da": "16:00", "a": "19:00"}]
 				]}
 			]};
-			ProfileRepository.getLocaleTodayTimetable(locale, now).should.eql([{"da": "15:00", "a": "20:00"}]);
+			assert.deepEqual(ProfileRepository.getLocaleTodayTimetable(locale, now), [{"da": "15:00", "a": "20:00"}]);
 		});
 	});
 
 	describe("getFoodTypes", function(){
 
 		it("should return an empty array if 'locale' has no array 'cibi' or it's empty", function() {
-			ProfileRepository.getFoodTypes().should.be.empty;
-			ProfileRepository.getFoodTypes({}).should.be.empty;
-			ProfileRepository.getFoodTypes({"cibi": null}).should.be.empty;
-			ProfileRepository.getFoodTypes({"cibi": undefined}).should.be.empty;
-			ProfileRepository.getFoodTypes({"cibi": []}).should.be.empty;
+			assert.lengthOf(ProfileRepository.getFoodTypes(), 0, "()");
+			assert.lengthOf(ProfileRepository.getFoodTypes({}), 0, "{}");
+			assert.lengthOf(ProfileRepository.getFoodTypes({"cibi": null}), 0, '{"cibi": null}');
+			assert.lengthOf(ProfileRepository.getFoodTypes({"cibi": undefined}), 0, '{"cibi": undefined}');
+			assert.lengthOf(ProfileRepository.getFoodTypes({"cibi": []}), 0, '{"cibi": []}');
 		});
 
 		it("should return an array with unique values", function() {
@@ -72,7 +72,7 @@ describe("ProfileRepository", function() {
 					{"tipo": "gel"}
 				]
 			};
-			ProfileRepository.getFoodTypes(locale).should.eql(["gel"]);
+			assert.deepEqual(ProfileRepository.getFoodTypes(locale), ["gel"]);
 		});
 
 		it("should return an array containing each values", function() {
@@ -84,10 +84,10 @@ describe("ProfileRepository", function() {
 				]
 			};
 			result = ProfileRepository.getFoodTypes(locale);
-			result.should.have.length(3);
-			result.should.containEql("gel");
-			result.should.containEql("pan");
-			result.should.containEql("ins");
+			assert.lengthOf(result, 3);
+			assert.include(result, "gel");
+			assert.include(result, "pan");
+			assert.include(result, "ins");
 		});
 
 	});
@@ -95,11 +95,11 @@ describe("ProfileRepository", function() {
 	describe("getFoodCategories", function(){
 
 		it("should return an empty array if 'locale' has no array 'cibi' or it's empty", function() {
-			ProfileRepository.getFoodCategories().should.be.empty;
-			ProfileRepository.getFoodCategories({}).should.be.empty;
-			ProfileRepository.getFoodCategories({"cibi": null}).should.be.empty;
-			ProfileRepository.getFoodCategories({"cibi": undefined}).should.be.empty;
-			ProfileRepository.getFoodCategories({"cibi": []}).should.be.empty;
+			assert.lengthOf(ProfileRepository.getFoodCategories(), 0, "()");
+			assert.lengthOf(ProfileRepository.getFoodCategories({}), 0, "{}");
+			assert.lengthOf(ProfileRepository.getFoodCategories({"cibi": null}), 0, '{"cibi": null}');
+			assert.lengthOf(ProfileRepository.getFoodCategories({"cibi": undefined}), 0, '{"cibi": undefined}');
+			assert.lengthOf(ProfileRepository.getFoodCategories({"cibi": []}), 0, '{"cibi": []}');
 		});
 
 		it("should return an array with unique values", function() {
@@ -109,7 +109,7 @@ describe("ProfileRepository", function() {
 					{"cat": ["gf"]}
 				]
 			};
-			ProfileRepository.getFoodCategories(locale).should.eql(["gf"]);
+			assert.deepEqual(ProfileRepository.getFoodCategories(locale), ["gf"]);
 		});
 
 		it("should return an array containing each values", function() {
@@ -121,10 +121,10 @@ describe("ProfileRepository", function() {
 				]
 			};
 			result = ProfileRepository.getFoodCategories(locale);
-			result.should.have.length(3);
-			result.should.containEql("gf");
-			result.should.containEql("lf");
-			result.should.containEql("veget");
+			assert.lengthOf(result, 3);
+			assert.include(result, "gf");
+			assert.include(result, "lf");
+			assert.include(result, "veget");
 		});
 
 	});
