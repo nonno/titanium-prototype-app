@@ -1,6 +1,7 @@
 var Request = require("Request"),
 	q = require("q"),
 	DateUtils = require("DateUtils"),
+	VersionChecker = require("VersionChecker"),
 	GeoUtils = require("GeoUtils");
 
 var getDataFile, fetchDataOffline, fetchDataOnline, addressToString,
@@ -40,8 +41,10 @@ fetchDataOnline = function(){
 				
 				if (!data || !data.locali){
 					throw {"message": L("msgSyncErrorDataMalformed")};
-				} else if (Ti.App.version !== data.appVersion){
+				} else if (VersionChecker.compare(Ti.App.version, data.appMinVersion) === 2){
 					throw {"message": L("msgSyncErrorAppOutdated"), "showAlert": true};
+				} else if (Ti.App.version !== data.appVersion){
+					throw {"message": L("msgSyncErrorAppOutdated")};
 				} else if (data.date <= Alloy.Globals.Data.date){
 					throw {"message": L("msgSyncErrorNoDataUpdate")};
 				} else {
