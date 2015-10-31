@@ -3,6 +3,7 @@ Alloy.Globals.trackerGA = require("ti.ga").createTracker({
 	useSecure: true
 });
 
+Alloy.Globals.justInstalled = false;
 Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
 Alloy.Globals.Data = {};

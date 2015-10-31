@@ -20,7 +20,8 @@ fetchDataOffline = function(){
 	
 	file = getDataFile();
 	if (!file.exists() || !file.size){
-		file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "data/data.json");
+		Alloy.Globals.justInstalled = true;
+		file.write(Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "data/data.json").read());
 	}
 	
 	data = JSON.parse(file.read().text);
