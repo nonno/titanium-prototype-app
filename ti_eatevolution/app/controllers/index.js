@@ -1,6 +1,6 @@
 var ProfileRepository = require("ProfileRepository");
 
-var launch, syncInterval, listController, mapController, joinController, infoController, orientationchange,
+var launch, syncInterval, listController, mapController, infoController, orientationchange,
 	synchronize, startAutoSync, stopAutoSync, appResumed, appPaused, init, onTabGroupOpen;
 
 var TAB_LIST = 0,
@@ -88,12 +88,10 @@ init = function(){
 	if (OS_ANDROID){
 		listController = addTab("list", "", "images/light_home.png");
 		mapController = addTab("map", "", "images/light_globe.png");
-		//joinController = addTab("join", "", "images/light_link.png");
 		infoController = addTab("info", "", "images/light_info.png");
 	} else {
 		listController = addTab("list", L("lblListTab"), "images/dark_home.png");
 		mapController = addTab("map", L("lblMapTab"), "images/dark_globe.png");
-		//joinController = addTab("join", L("lblJoinTab"), "images/dark_link.png");
 		infoController = addTab("info", L("lblInfoTab"), "images/dark_info.png");
 	}
 	

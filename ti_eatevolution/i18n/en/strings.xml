@@ -64,22 +64,4 @@
 	<string name="cibo.cat.pm">Maternity</string>
 	<string name="cibo.cat.vegan">Vegan</string>
 	<string name="cibo.cat.veget">Vegetarian</string>
-	
-	<string name="lblCompanyInfo">
-blabla
-bla
-blablabla
-	</string>
-	
-	<string name="lblCompanyMission">
-blabla
-bla
-blablabla
-	</string>
-	
-	<string name="lblJoinInfo">
-blabla
-bla
-blablabla
-	</string>
 </resources>

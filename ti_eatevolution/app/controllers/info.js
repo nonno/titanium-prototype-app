@@ -1,11 +1,6 @@
-var currentTab;
+var currentTab, email, call, web, orientationCheck;
 
-$.address.text = Alloy.CFG.companyReferences.address;
-$.phone.text = Alloy.CFG.companyReferences.phone + " - " + Alloy.CFG.companyReferences.mobilePhone;
-$.email.text = Alloy.CFG.companyReferences.email;
-$.web.text = Alloy.CFG.companyReferences.web;
-
-function email() {
+email = function() {
 	Alloy.Globals.analyticsEvent({action: "info-email"});
 	
 	if (OS_IOS && Ti.Platform.model === "Simulator"){
@@ -17,9 +12,9 @@ function email() {
 	emailDialog.subject = L("lblInfoEmailSubject");
 	emailDialog.toRecipients = [Alloy.CFG.companyReferences.email];
 	emailDialog.open();
-}
+};
 
-function call(){
+call = function(){
 	Alloy.Globals.analyticsEvent({action: "info-call"});
 	
 	if (ENV_DEV){
@@ -27,13 +22,32 @@ function call(){
 	} else if (ENV_PRODUCTION){
 		Ti.Platform.openURL("tel:" + Alloy.CFG.companyReferences.phone);
 	}
-}
+};
 
-function web(){
+web = function(){
 	Alloy.Globals.analyticsEvent({action: "info-web"});
 	
 	Ti.Platform.openURL(Alloy.CFG.companyReferences.web);
-}
+};
+
+orientationCheck = function(){
+	if (Alloy.isHandheld){
+		if (Ti.Gesture.landscape){
+			$.banner.visible = false;
+			$.banner.height = 0;
+		} else if (Ti.Gesture.portrait){
+			$.banner.visible = true;
+			$.banner.height = Ti.UI.SIZE;
+		}
+	}
+};
+Ti.Gesture.addEventListener("orientationchange", orientationCheck);
+
+$.info.addEventListener("close", function(){
+	Ti.Gesture.removeEventListener("orientationchange", orientationCheck);
+});
+
+orientationCheck();
 
 exports.setTab = function(tab){
 	currentTab = tab;

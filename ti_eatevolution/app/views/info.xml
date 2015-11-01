@@ -1,32 +1,15 @@
 <Alloy>
 	<Window title="L('lblInfoTab')">
-		<ScrollView id="mainContainer" class="vgroup buffer" scrollType="vertical">
-			<View class="top size">
-				<Label id="title" class='h3 primary-color top-buffer no-touch' text="L('lblCompanyName')" />
-			</View>
+		<View id="mainContainer" class="vgroup buffer">
+			<ImageView id="banner" image="/html/info_banner.png" class="hfill vsize" />
 			
-			<Label text="L('lblCompanyInfo')" class="h6 left-buffer right-buffer top-buffer size" />
-			
-			<View class='separator' />
-			
-			<View class='buffer vgroup size'>
-				<View class='hgroup size left-buffer top-buffer'>
-					<Label class="h3 icon icon-home icon-small primary-color left top" />
-					<Label id="address" class="h6 gray left-buffer"></Label>
-				</View>
-				<View class='hgroup size left-buffer top-buffer' onClick="call">
-					<Label class="h3 icon icon-phone icon-small primary-color left top" />
-					<Label id="phone" class="h6 gray left-buffer"></Label>
-				</View>
-				<View class='hgroup size left-buffer top-buffer' onClick="email">
-					<Label class="h3 icon icon-email icon-small primary-color left top" />
-					<Label id="email" class="h6 gray left-buffer right-buffer"></Label>
-				</View>
-				<View class='hgroup size left-buffer top-buffer' onClick="web">
-					<Label class="h3 icon icon-cloud icon-small primary-color left top" />
-					<Label id="web" class="h6 gray left-buffer right-buffer"></Label>
-				</View>
-			</View>
-		</ScrollView>
+			<WebView
+				id="htmlInfo"
+				url="/html/info_it.html"
+				enableZoomControls="false"
+				horizontalWrap="false"
+				width="Ti.UI.FILL" top="10" bottom="0"
+			/>
+		</View>
 	</Window>
 </Alloy>
