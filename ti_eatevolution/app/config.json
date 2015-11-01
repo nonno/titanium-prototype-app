@@ -11,7 +11,8 @@
 			"mobilePhone": "+39 380 6468882",
 			"taxCode": "92034660420",
 			"email": "info@nutrizionistisenzafrontiere.org",
-			"web": "http://www.nutrizionistisenzafrontiere.org"
+			"web": "http://www.nutrizionistisenzafrontiere.org",
+			"campaign": "http://www.nutrizionistisenzafrontiere.org/campagna-eat-evolution/"
 		},
 		"dataUrl": "https://dl.dropboxusercontent.com/u/18816030/EatEvolution/data.json",
 		"syncronizationInterval": 0,

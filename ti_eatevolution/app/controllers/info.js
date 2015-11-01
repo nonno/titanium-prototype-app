@@ -1,4 +1,4 @@
-var currentTab, email, call, web, orientationCheck;
+var currentTab, email, phone, webOrganization, webCampaign, orientationCheck;
 
 email = function() {
 	Alloy.Globals.analyticsEvent({action: "info-email"});
@@ -14,8 +14,8 @@ email = function() {
 	emailDialog.open();
 };
 
-call = function(){
-	Alloy.Globals.analyticsEvent({action: "info-call"});
+phone = function(){
+	Alloy.Globals.analyticsEvent({action: "info-phone"});
 	
 	if (ENV_DEV){
 		Ti.Platform.openURL("tel:+393381540774");
@@ -24,10 +24,15 @@ call = function(){
 	}
 };
 
-web = function(){
-	Alloy.Globals.analyticsEvent({action: "info-web"});
+webOrganization = function(){
+	Alloy.Globals.analyticsEvent({action: "info-organization"});
 	
 	Ti.Platform.openURL(Alloy.CFG.companyReferences.web);
+};
+webCampaign = function(){
+	Alloy.Globals.analyticsEvent({action: "info-campaign"});
+	
+	Ti.Platform.openURL(Alloy.CFG.companyReferences.campaign);
 };
 
 orientationCheck = function(){
@@ -49,6 +54,10 @@ $.info.addEventListener("close", function(){
 
 orientationCheck();
 
+exports.email = email;
+exports.phone = phone;
+exports.webOrganization = webOrganization;
+exports.webCampaign = webCampaign;
 exports.setTab = function(tab){
 	currentTab = tab;
 };

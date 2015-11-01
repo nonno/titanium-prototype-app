@@ -197,6 +197,51 @@ onTabGroupOpen = function(e){
 					});
 				}(createOptionEvent.menu));
 			}
+			if (Alloy.Globals.currentTab === TAB_INFO){
+				(function(menu){
+					var item = menu.add({
+						title: L("lblMoreInfoOrganization"),
+						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
+					});
+					item.addEventListener("click", function(){
+						infoController.webOrganization();
+					});
+				}(createOptionEvent.menu));
+				
+				(function(menu){
+					var item = menu.add({
+						title: L("lblMoreInfoCampaign"),
+						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
+					});
+					item.addEventListener("click", function(){
+						infoController.webCampaign();
+					});
+				}(createOptionEvent.menu));
+				
+				(function(menu){
+					var item = menu.add({
+						title: L("lblToJoin"),
+						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
+					});
+					item.addEventListener("click", function(){
+						var alert, options, optionsActions, selectedOption;
+						
+						options = [L("lblEmail"), L("lblPhone")];
+						optionsActions = [infoController.email, infoController.phone];
+						
+						alert = Ti.UI.createOptionDialog({"options": options});
+						
+						alert.addEventListener("click", function(alertEvent) {
+							selectedOption = alertEvent.index;
+							
+							if (selectedOption >= 0){
+								optionsActions[selectedOption]();
+							}
+						});
+						alert.show();
+					});
+				}(createOptionEvent.menu));
+			}
 		};
 		
 		$.tabGroup.addEventListener("focus", function(focusEvent) {

@@ -7,6 +7,8 @@
 	<string name="lblYes">Yes</string>
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
+	<string name="lblEmail">Email</string>
+	<string name="lblPhone">Telephone</string>
 	<string name="lblSearch">Search</string>
 	<string name="lblListTab">List</string>
 	<string name="lblMapTab">Map</string>
@@ -19,7 +21,7 @@
 	<string name="lblDataOptions">Data view options</string>
 	<string name="lblAddToFavorites">Add to favorites</string>
 	<string name="lblRemoveFromFavorites">Remove from favorites</string>
-	<string name="lblInfoEmailSubject">Info request</string>
+	<string name="lblInfoEmailSubject">Info request to join</string>
 	<string name="lblTodayOpen">Today open</string>
 	<string name="lblTodayClose">Today close</string>
 	<string name="lblFoodTypes">You can find</string>
@@ -34,6 +36,9 @@
 	<string name="lblOrderByDistance">Order by distance</string>
 	<string name="lblNoResults">No results for the current search</string>
 	<string name="lblReloadData">Reload</string>
+	<string name="lblMoreInfoOrganization">More info about us</string>
+	<string name="lblMoreInfoCampaign">More info about the campaign</string>
+	<string name="lblToJoin">Join us/Recommend</string>
 	
 	<string name="msgSyncErrorAppOutdated">App update available, please update</string>
 	<string name="msgSyncErrorDataMalformed">Data malformed</string>

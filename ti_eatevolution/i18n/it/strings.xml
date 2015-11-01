@@ -8,6 +8,8 @@
 	<string name="lblYes">Sì</string>
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
+	<string name="lblEmail">Email</string>
+	<string name="lblPhone">Telefono</string>
 	<string name="lblSearch">Cerca</string>
 	<string name="lblListTab">Elenco</string>
 	<string name="lblMapTab">Mappa</string>
@@ -20,7 +22,7 @@
 	<string name="lblDataOptions">Opzioni di visualizzazione</string>
 	<string name="lblAddToFavorites">Aggiungi ai preferiti</string>
 	<string name="lblRemoveFromFavorites">Rimuovi dai preferiti</string>
-	<string name="lblInfoEmailSubject">Richiesta informazioni</string>
+	<string name="lblInfoEmailSubject">Richiesta informazioni per aderire</string>
 	<string name="lblTodayOpen">Oggi aperto</string>
 	<string name="lblTodayClose">Oggi chiuso</string>
 	<string name="lblFoodTypes">Potete trovare</string>
@@ -35,6 +37,9 @@
 	<string name="lblOrderByDistance">Ordina per distanza</string>
 	<string name="lblNoResults">Nessun risultato per la ricerca corrente</string>
 	<string name="lblReloadData">Ricarica</string>
+	<string name="lblMoreInfoOrganization">Maggiori informazioni su di noi</string>
+	<string name="lblMoreInfoCampaign">Maggiori informazioni sulla campagna</string>
+	<string name="lblToJoin">Aderisci/Suggerisci un locale</string>
 	
 	<string name="msgSyncErrorAppOutdated">Si prega di aggiornare l'app</string>
 	<string name="msgSyncErrorDataMalformed">Dati non corretti</string>
