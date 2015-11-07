@@ -14,7 +14,7 @@
 				<ItemTemplate id="defaultTemplate" name="defaultTemplate" class="template">
 					<View class="left-buffer">
 						<Label id="icon" bindId="icon" class="icon-profile-types thumb-type" />
-						<View class="vgroup left size">
+						<View class="vgroup left size" right="5">
 							<Label id="nome" bindId="nome" class="title" />
 							<Label id="tipo" bindId="tipo" class="subtitle" />
 							<Label id="indirizzo" bindId="indirizzo" class="subtitle" />
@@ -29,7 +29,7 @@
 				<ItemTemplate id="favoriteTemplate" name="favoriteTemplate" class="template">
 					<View class="left-buffer">
 						<Label id="icon" bindId="icon" class="icon-profile-types thumb-type" />
-						<View class="vgroup left size">
+						<View class="vgroup left size" right="15">
 							<Label id="nome" bindId="nome" class="title" />
 							<Label id="tipo" bindId="tipo" class="subtitle" />
 							<Label id="indirizzo" bindId="indirizzo" class="subtitle" />

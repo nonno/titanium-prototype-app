@@ -49,7 +49,7 @@ function reportProfile(){
 	var emailDialog = Ti.UI.createEmailDialog();
 	emailDialog.toRecipients = [Alloy.CFG.companyReferences.email];
 	emailDialog.subject = L("lblReportProfileMailSubject");
-	emailDialog.messageBody = String.format(L("msgReportProfileMailBody"), profile.id, profile.nome);
+	emailDialog.messageBody = String.format(L("msgReportProfileMailBody"), profile.nome, profile.loc);
 	emailDialog.open();
 }
 
@@ -175,18 +175,37 @@ $.indirizzo.text = ProfileRepository.addressToString(profile);
 
 if (profile.tel){
 	$.telefono.text = profile.tel;
+	
+	$.telefonoContainer.addEventListener("singletap", function(){
+		Ti.Platform.openURL("tel:" + profile.tel);
+	});
 } else {
 	hideInfoContainer($.telefonoContainer);
 }
 
 if (profile.email){
 	$.email.text = profile.email;
+	
+	$.emailContainer.addEventListener("singletap", function(){
+		if (OS_IOS && Ti.Platform.model === "Simulator"){
+			alert("Simulator does not support sending emails. Use a device instead");
+			return;
+		}
+		
+		var emailDialog = Ti.UI.createEmailDialog();
+		emailDialog.toRecipients = [profile.email];
+		emailDialog.open();
+	});
 } else {
 	hideInfoContainer($.emailContainer);
 }
 
 if (profile.web){
 	$.web.text = profile.web.replace("https://", "").replace("http://", "");
+	
+	$.webContainer.addEventListener("singletap", function(){
+		Ti.Platform.openURL(profile.web.indexOf("http") !== 0 ? "http://" + profile.web : profile.web);
+	});
 } else {
 	hideInfoContainer($.webContainer);
 }

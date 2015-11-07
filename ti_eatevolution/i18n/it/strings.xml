@@ -44,7 +44,7 @@
 	<string name="msgSyncErrorAppOutdated">Si prega di aggiornare l'app</string>
 	<string name="msgSyncErrorDataMalformed">Dati non corretti</string>
 	<string name="msgSyncErrorNoDataUpdate">Nessun aggiornamento disponibile</string>
-	<string name="msgReportProfileMailBody">Si comunica che il locale '%s', denominato '%s' non non rispetta quanto indicato nel profilo.</string>
+	<string name="msgReportProfileMailBody">Si comunica che il locale %s (località %s) non rispetta quanto indicato nel profilo, in quanto </string>
 	<string name="msgCurrentLocationUnavailable">Posizione corrente non disponibile, impossibile ordinare per distanza</string>
 	
 	<string name="locale.tipo.bar">Bar</string>

@@ -1,5 +1,4 @@
 "Label":{
-	autoLink: Ti.UI.AUTOLINK_ALL
 },
 "#mapContainer":{
 	height: "30%",

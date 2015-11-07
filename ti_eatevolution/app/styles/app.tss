@@ -259,26 +259,29 @@
 },
 
 
-".icon-home":{
-	text: Alloy.Globals.Icons.fontAwesome.home
-},
 ".icon-phone":{
-	text: Alloy.Globals.Icons.fontAwesome.phone
+	text: Alloy.Globals.Icons.fontAwesome.phone,
+	title: Alloy.Globals.Icons.fontAwesome.phone
 },
 ".icon-email":{
-	text: Alloy.Globals.Icons.fontAwesome.envelope
+	text: Alloy.Globals.Icons.fontAwesome.envelope,
+	title: Alloy.Globals.Icons.fontAwesome.envelope
 },
 ".icon-cloud":{
-	text: Alloy.Globals.Icons.fontAwesome.cloud
+	text: Alloy.Globals.Icons.fontAwesome.cloud,
+	title: Alloy.Globals.Icons.fontAwesome.cloud
 },
 ".icon-calendar":{
-	text: Alloy.Globals.Icons.fontAwesome.calendar
+	text: Alloy.Globals.Icons.fontAwesome.calendar,
+	title: Alloy.Globals.Icons.fontAwesome.calendar
 },
 ".icon-star":{
-	text: Alloy.Globals.Icons.fontAwesome.star
+	text: Alloy.Globals.Icons.fontAwesome.star,
+	title: Alloy.Globals.Icons.fontAwesome.star
 },
 ".icon-exclamation-triangle":{
-	text: Alloy.Globals.Icons.fontAwesome.exlamationTriangle
+	text: Alloy.Globals.Icons.fontAwesome.exlamationTriangle,
+	title: Alloy.Globals.Icons.fontAwesome.exlamationTriangle
 },
 ".icon-btn":{
 	height: 60,
