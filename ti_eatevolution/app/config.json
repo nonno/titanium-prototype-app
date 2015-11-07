@@ -19,7 +19,8 @@
 		"gaTrackingId": "UA-63543213-2",
 		"googleMapsKey": "AIzaSyD1y5-w94SxFHvyssJ8godURb90SkyBcC8",
 		"staticMapOnDetail": false,
-		"mapOverlayOnDetail": true
+		"mapOverlayOnDetail": true,
+		"disableAdv": false
 	},
 	"env:development": {
 		"runTests": false
