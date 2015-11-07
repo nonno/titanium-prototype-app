@@ -4,8 +4,12 @@ var Request = require("Request"),
 	VersionChecker = require("VersionChecker"),
 	GeoUtils = require("GeoUtils");
 
-var getDataFile, fetchDataOffline, fetchDataOnline, addressToString,
+var getAssetDataFile, getDataFile, fetchDataOffline, fetchDataOnline, addressToString,
 	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances;
+
+getAssetDataFile = function(){
+	return Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "data/data.json");
+};
 
 getDataFile = function(){
 	if (OS_IOS){
@@ -21,7 +25,7 @@ fetchDataOffline = function(){
 	file = getDataFile();
 	if (!file.exists() || !file.size){
 		Alloy.Globals.justInstalled = true;
-		file.write(Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "data/data.json").read());
+		file.write(getAssetDataFile().read());
 	}
 	
 	data = JSON.parse(file.read().text);
@@ -177,6 +181,7 @@ getFoodCategories = function(locale){
 	}, []));
 };
 
+exports.getAssetDataFile = getAssetDataFile;
 exports.getDataFile = getDataFile;
 exports.fetchDataOffline = fetchDataOffline;
 exports.fetchDataOnline = fetchDataOnline;
