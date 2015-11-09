@@ -108,7 +108,7 @@ openExternalMap = function(data){
 	
 	if (OS_IOS){
 		searchString = data.searchString.replace(" ", "+").replace("&", "+");
-		Ti.Platform.openURL("http://maps.apple.com/?q=" + searchString + "&sll=" + data.latitude + "," + data.longitude);
+		Ti.Platform.openURL("http://maps.apple.com/?q=@" + data.latitude + "," + data.longitude + "&sll=" + data.latitude + "," + data.longitude);
 	} else {
 		Ti.Platform.openURL("http://maps.google.com/?q=@" + data.latitude + "," + data.longitude);
 	}

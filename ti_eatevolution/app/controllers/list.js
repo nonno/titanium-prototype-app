@@ -194,12 +194,10 @@ formatDistance = function(distance) {
 
 if (OS_IOS){
 	onSearchFocus = function(){
-		$.searchBar.showBookmark = false;
 		$.searchBar.showCancel = true;
 	};
 	
 	onSearchCancel = function(){
-		$.searchBar.showBookmark = true;
 		$.searchBar.showCancel = false;
 		$.searchBar.blur();
 	};
@@ -235,6 +233,10 @@ $.wrapper.addEventListener("open", function(){
 		activity.invalidateOptionsMenu();
 	}
 });
+
+if (OS_IOS){
+	$.bookmarksButton.addEventListener("click", onBookmarkClick);
+}
 
 Ti.App.addEventListener("profile-changed", function(params){
 	params = params || {};

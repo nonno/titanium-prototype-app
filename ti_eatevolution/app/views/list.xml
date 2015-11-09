@@ -1,6 +1,14 @@
 <Alloy>
 	<Window id="wrapper" title="L('lblListTab')">
-		<SearchBar id="searchBar" platform="ios" class="search" hintText="L('lblSearch')" onBookmark="onBookmarkClick" onFocus="onSearchFocus" onCancel="onSearchCancel"  onChange="onSearchChange" />
+		<View id="searchBarContainer" platform="ios" class="hfill">
+			<SearchBar id="searchBar" platform="ios" hintText="L('lblSearch')" onFocus="onSearchFocus" onCancel="onSearchCancel" onChange="onSearchChange" />
+			
+			<Toolbar id="rightNavButtons" platform="ios" barColor="white">
+				<Items>
+					<Button id="bookmarksButton" systemButton="BOOKMARKS" class="hsize" />
+				</Items>
+			</Toolbar>
+		</View>
 		
 		<ListView id="listView" defaultItemTemplate="defaultTemplate" onItemclick="onItemClick">
 			<FooterView>

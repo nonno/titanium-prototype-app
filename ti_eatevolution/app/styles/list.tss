@@ -48,23 +48,26 @@
 	left: 5,
 	border: 0
 },
-".search":{ 
-	backgroundColor: "#fff",
+"#searchBarContainer":{
+	top:0,
+	height:Ti.UI.SIZE,
+	width:Ti.UI.FILL,
 	borderWidth:0,
-	borderColor:"#fff",
-	tintColor: "#C41230",
-	barColor: "#fff",
-	showBookmark:true
+	borderColor:"#fff"
 },
-"#searchBar[platform=ios]": {
-	top:"0dp",
-	height:"50dp",
-	width:Ti.UI.FILL
+"#rightNavButtons":{
+	top:0,
+	right:0,
+	width:50,
+	height:50
 },
-"#searchBar[platform=android,windows]":{
-	height: 40,
-	left: 10,
-	width: "76%"
+"#searchBar":{
+	height:50,
+	left:0,
+	top:0,
+	right:50,
+	backgroundImage: "/images/alpha.png",
+	backgroundRepeat: true
 },
 "#listView":{
 	bottom: Alloy.CFG.gui.advertisementBannerHeight,
@@ -72,7 +75,7 @@
 	tintColor: "#666"
 },
 "#listView[platform=ios]":{
-	top:"50dp"
+	top:50
 },
 "#listFooterLabelContainer": {
 	width: Ti.UI.FILL,
@@ -85,7 +88,7 @@
 	}
 },
 "#advContainer": {
-	bottom: "0dp",
+	bottom: 0,
 	height: Alloy.CFG.gui.advertisementBannerHeight,
 	width: Ti.UI.FILL,
 	backgroundColor: "#000"
