@@ -71,10 +71,14 @@ if (OS_IOS){
 
 populateList = function(params){
 	params = params || {};
+	params.showGlobalLoading = _.isUndefined(params.showGlobalLoading) ? true : params.showGlobalLoading;
+	params.onComplete = params.onComplete || function(){ return; };
 	
 	Ti.API.debug("list.populateList");
 	
-	Alloy.Globals.loading.show();
+	if (params.showGlobalLoading){
+		Alloy.Globals.loading.show();
+	}
 	
 	var locali, indexes, sections, groups, section;
 	
@@ -151,7 +155,11 @@ populateList = function(params){
 		}
 	}
 	
-	Alloy.Globals.loading.hide();
+	if (params.showGlobalLoading){
+		Alloy.Globals.loading.hide();
+	}
+	
+	params.onComplete();
 };
 
 onItemClick = function(e){
@@ -234,10 +242,6 @@ $.wrapper.addEventListener("open", function(){
 	}
 });
 
-if (OS_IOS){
-	$.bookmarksButton.addEventListener("click", onBookmarkClick);
-}
-
 Ti.App.addEventListener("profile-changed", function(params){
 	params = params || {};
 	params.profile = params.profile;
@@ -255,6 +259,22 @@ Ti.App.addEventListener("profile-changed", function(params){
 		$.listView.sections[sectionIndex].updateItemAt(itemIndex, itemData);
 	}
 });
+
+if (OS_IOS){
+	$.bookmarksButton.addEventListener("click", onBookmarkClick);
+	
+	$.listView.refreshControl = Ti.UI.createRefreshControl({});
+	$.listView.refreshControl.addEventListener("refreshstart", function(e){
+		Ti.API.debug("refreshStart");
+		populateList({
+			"showGlobalLoading": false,
+			"onComplete": function(){
+				Ti.API.debug("endRefreshing");
+				$.listView.refreshControl.endRefreshing();
+			}
+		});
+	});
+}
 
 populateList();
 
