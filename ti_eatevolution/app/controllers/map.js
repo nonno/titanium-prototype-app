@@ -4,7 +4,9 @@ var $FM = require("favoritesmgr"),
 	TiMap = require("ti.map");
 
 var mapView, mapViewClick, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap,
-	dataToAnnotation, webOrganization, webCampaign, openProfile;
+	dataToAnnotation, webOrganization, webCampaign, openProfile, favorites;
+
+favorites = false;
 
 mapView = TiMap.createView({
 	mapType: TiMap.NORMAL_TYPE,
@@ -72,7 +74,11 @@ populateMap = function(params){
 	
 	Alloy.Globals.loading.show();
 	
-	if (Alloy.Globals.Data.favorites) {
+	if (
+		(OS_ANDROID && Alloy.Globals.Data.favorites)
+		||
+		(OS_IOS && favorites)
+	) {
 		data = Alloy.Globals.Data.locali.filter(function(item){
 			return $FM.exists(item.id);
 		});
@@ -102,9 +108,7 @@ if (OS_ANDROID){
 }
 
 onBookmarkClick = function(){
-	if (OS_IOS){
-		Alloy.Globals.Data.favorites = !Alloy.Globals.Data.favorites;
-	}
+	if (OS_IOS){ favorites = !favorites; }
 	
 	populateMap();
 };

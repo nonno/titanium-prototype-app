@@ -5,7 +5,9 @@ var AdMob = require("AdMob"),
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
 	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName,
-	filterProfiles, onRowAction, iosSwipe, iosSwipePartial, webOrganization, webCampaign;
+	filterProfiles, onRowAction, iosSwipe, iosSwipePartial, webOrganization, webCampaign, favorites;
+
+favorites = false;
 
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
@@ -49,7 +51,11 @@ sortProfilesByName = function(a, b){
 };
 
 filterProfiles = function(profiles){
-	if (Alloy.Globals.Data.favorites) {
+	if (
+		(OS_ANDROID && Alloy.Globals.Data.favorites)
+		||
+		(OS_IOS && favorites)
+	) {
 		profiles = profiles.filter(function(profile){
 			return $FM.exists(profile.id);
 		});
@@ -177,11 +183,13 @@ onItemClick = function(e){
 };
 
 onBookmarkClick = function(){
-	if (OS_IOS){
-		Alloy.Globals.Data.favorites = !Alloy.Globals.Data.favorites;
-	}
+	if (OS_IOS){ favorites = !favorites; }
 	
-	if (Alloy.Globals.Data.favorites){
+	if (
+		(OS_ANDROID && Alloy.Globals.Data.favorites)
+		||
+		(OS_IOS && favorites)
+	) {
 		$.listView.defaultItemTemplate = "favoriteTemplate";
 	} else {
 		$.listView.defaultItemTemplate = "defaultTemplate";
