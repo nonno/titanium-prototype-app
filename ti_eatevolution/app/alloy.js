@@ -28,6 +28,7 @@ Alloy.Globals.Icons = {
 		"home": "\uf015",
 		"timesCircle": "\uf057",
 		"checkCircle": "\uf058",
+		"infoCircle": "\uf05a",
 		"exlamationTriangle": "\uf071",
 		"calendar": "\uf073",
 		"phone": "\uf095",

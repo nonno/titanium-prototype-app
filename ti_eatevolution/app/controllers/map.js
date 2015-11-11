@@ -3,8 +3,8 @@ var $FM = require("favoritesmgr"),
 	AdMob = require("AdMob"),
 	TiMap = require("ti.map");
 
-var mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap,
-	dataToAnnotation, webOrganization, webCampaign;
+var mapView, mapViewClick, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap,
+	dataToAnnotation, webOrganization, webCampaign, openProfile;
 
 mapView = TiMap.createView({
 	mapType: TiMap.NORMAL_TYPE,
@@ -21,16 +21,46 @@ mapView = TiMap.createView({
 });
 $.mapContainer.add(mapView);
 
+openProfile = function(annotation){
+	Alloy.Globals.analyticsEvent({action: "map-open_profile", label: annotation.locale.id});
+	
+	currentTab.open(Alloy.createController("profile", {
+		"profile": annotation.locale,
+		"mapSource": annotation
+	}).getView());
+};
+
 dataToAnnotation = function(locale) {
-	return TiMap.createAnnotation({
+	var rightView, annotation;
+	
+	if (OS_IOS){
+		rightView = Ti.UI.createButton({
+			"title": Alloy.Globals.Icons.fontAwesome.infoCircle,
+			"width": 30,
+			"height": 30,
+			"color": Alloy.CFG.iosColor,
+			"backgroundColor": "transparent",
+			"font": {
+				"fontFamily": "font-awesome",
+				"fontSize": 30
+			}
+		});
+	}
+	annotation = TiMap.createAnnotation({
 		latitude: OS_IOS ? locale.lat : parseFloat(locale.lat),
 		longitude: OS_IOS ? locale.lon : parseFloat(locale.lon),
 		title: locale.nome,
 		locale: locale,
+		rightView: rightView,
 		customView: Alloy.createController("annotation", {
 			type: ProfileTypeRepository.getType(locale.tipo) || ProfileTypeRepository.getDefaultType()
 		}).getView()
 	});
+	if (OS_IOS){
+		rightView.addEventListener("click", _.partial(openProfile, annotation));
+	}
+	
+	return annotation;
 };
 
 populateMap = function(params){
@@ -62,17 +92,14 @@ populateMap = function(params){
 	Alloy.Globals.loading.hide();
 };
 
-listener = function(event) {
-	if (!OS_ANDROID || event.clicksource !== "pin") {
-		Alloy.Globals.analyticsEvent({action: "map-open_profile", label: event.annotation.locale.id});
-		
-		currentTab.open(Alloy.createController("profile", {
-			"profile": event.annotation.locale,
-			"mapSource": event.annotation
-		}).getView());
-	}
-};
-mapView.addEventListener("click", listener);
+if (OS_ANDROID){
+	mapViewClick = function(event) {
+		if (event.clicksource === "title"){
+			openProfile(event.annotation);
+		}
+	};
+	mapView.addEventListener("click", mapViewClick);
+}
 
 onBookmarkClick = function(){
 	if (OS_IOS){
