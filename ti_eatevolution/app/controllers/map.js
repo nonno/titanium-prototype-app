@@ -169,8 +169,15 @@ if (OS_IOS){
 		nsfLogo.addEventListener("singletap", webOrganization);
 		$.map.leftNavButton = nsfLogo;
 		
-		var bookmarksButton = Ti.UI.createButton({
-			"systemButton": Ti.UI.iPhone.SystemButton.BOOKMARKS
+		var bookmarksButton = Ti.UI.createLabel({
+			"text": Alloy.Globals.Icons.fontAwesome.star,
+			"color": Alloy.CFG.iosColor,
+			"width": 26,
+			"height": 26,
+			"font": {
+				"fontFamily": "font-awesome",
+				"fontSize": 26
+			}
 		});
 		bookmarksButton.addEventListener("click", onBookmarkClick);
 		

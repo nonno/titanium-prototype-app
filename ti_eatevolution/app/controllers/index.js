@@ -149,24 +149,11 @@ onTabGroupOpen = function(e){
 						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
 					});
 					item.addEventListener("click", function(){
-						ProfileRepository.calculateDistances().then(
-							function(){
-								Alloy.Globals.Data.orderByDistance = !Alloy.Globals.Data.orderByDistance;
-								
-								listController.refresh();
-								
+						listController.orderByDistance({
+							"onComplete": function(){
 								item.title = Alloy.Globals.Data.orderByDistance ? L("lblOrderByName") : L("lblOrderByDistance");
-							},
-							function(err){
-								Ti.API.warn(err);
-								
-								Ti.UI.createAlertDialog({
-									title: "",
-									message: L("msgCurrentLocationUnavailable"),
-									buttonNames: [L("lblOk")]
-								}).show();
 							}
-						);
+						});
 					});
 				}(createOptionEvent.menu));
 			}
@@ -223,23 +210,7 @@ onTabGroupOpen = function(e){
 						title: L("lblToJoin"),
 						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
 					});
-					item.addEventListener("click", function(){
-						var alert, options, optionsActions, selectedOption;
-						
-						options = [L("lblEmail"), L("lblPhone")];
-						optionsActions = [infoController.email, infoController.phone];
-						
-						alert = Ti.UI.createOptionDialog({"options": options});
-						
-						alert.addEventListener("click", function(alertEvent) {
-							selectedOption = alertEvent.index;
-							
-							if (selectedOption >= 0){
-								optionsActions[selectedOption]();
-							}
-						});
-						alert.show();
-					});
+					item.addEventListener("click", infoController.toJoin);
 				}(createOptionEvent.menu));
 			}
 		};

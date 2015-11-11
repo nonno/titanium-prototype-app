@@ -33,10 +33,12 @@ Alloy.Globals.Icons = {
 		"calendar": "\uf073",
 		"phone": "\uf095",
 		"globe": "\uf0ac",
+		"chain": "\uf0c1",
 		"cloud": "\uf0c2",
 		"money": "\uf0d6",
 		"caretDown": "\uf0d7",
 		"envelope": "\uf0e0",
+		"sort": "\uf160",
 		"map": "\uf278"
 	}
 };

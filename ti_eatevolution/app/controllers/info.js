@@ -1,4 +1,4 @@
-var currentTab, email, phone, webOrganization, webCampaign, orientationCheck;
+var currentTab, email, phone, toJoin, webOrganization, webCampaign, orientationCheck;
 
 email = function() {
 	Alloy.Globals.analyticsEvent({action: "info-email"});
@@ -22,6 +22,28 @@ phone = function(){
 	} else if (ENV_PRODUCTION){
 		Ti.Platform.openURL("tel:" + Alloy.CFG.companyReferences.phone);
 	}
+};
+
+toJoin = function(){
+	var alert, options, optionsActions, selectedOption;
+	
+	options = [L("lblEmail"), L("lblPhone"), L("lblCancel")];
+	optionsActions = [email, phone];
+	
+	alert = Ti.UI.createOptionDialog({"options": options, "cancel": 2});
+	
+	alert.addEventListener("click", function(alertEvent) {
+		selectedOption = alertEvent.index;
+		
+		if (
+			(OS_IOS && selectedOption !== alertEvent.cancel)
+			||
+			(OS_ANDROID && !alertEvent.cancel && selectedOption >= 0)
+		){
+			optionsActions[selectedOption]();
+		}
+	});
+	alert.show();
 };
 
 webOrganization = function(){
@@ -57,13 +79,26 @@ if (OS_IOS){
 		var nsfLogo = Alloy.Globals.createNSFLogo();
 		nsfLogo.addEventListener("singletap", webCampaign);
 		$.info.leftNavButton = nsfLogo;
+		
+		var joinButton = Ti.UI.createLabel({
+			"text": Alloy.Globals.Icons.fontAwesome.chain,
+			"color": Alloy.CFG.iosColor,
+			"width": 26,
+			"height": 26,
+			"font": {
+				"fontFamily": "font-awesome",
+				"fontSize": 26
+			}
+		});
+		joinButton.addEventListener("click", toJoin);
+		
+		$.info.rightNavButtons = [joinButton];
 	}());
 }
 
 orientationCheck();
 
-exports.email = email;
-exports.phone = phone;
+exports.toJoin = toJoin;
 exports.webOrganization = webOrganization;
 exports.webCampaign = webCampaign;
 exports.setTab = function(tab){

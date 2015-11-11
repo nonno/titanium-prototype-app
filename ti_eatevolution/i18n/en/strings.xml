@@ -7,6 +7,7 @@
 	<string name="lblYes">Yes</string>
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
+	<string name="lblCancel">Cancel</string>
 	<string name="lblEmail">Email</string>
 	<string name="lblPhone">Telephone</string>
 	<string name="lblSearch">Search</string>

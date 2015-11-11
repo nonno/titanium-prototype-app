@@ -4,7 +4,7 @@ var AdMob = require("AdMob"),
 	ProfileRepository = require("ProfileRepository");
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
-	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName,
+	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName, orderByDistance,
 	filterProfiles, onRowAction, iosSwipe, iosSwipePartial, webOrganization, webCampaign, favorites;
 
 favorites = false;
@@ -208,6 +208,30 @@ formatDistance = function(distance) {
 	return Math.round(distance * 10) / 10 + " km";
 };
 
+orderByDistance = function(params){
+	params = params || {};
+	params.onComplete = params.onComplete || function(){ return; };
+	
+	ProfileRepository.calculateDistances().then(
+		function(){
+			Alloy.Globals.Data.orderByDistance = !Alloy.Globals.Data.orderByDistance;
+			
+			populateList({
+				"onComplete": params.onComplete
+			});
+		},
+		function(err){
+			Ti.API.warn(err);
+			
+			Ti.UI.createAlertDialog({
+				title: "",
+				message: L("msgCurrentLocationUnavailable"),
+				buttonNames: [L("lblOk")]
+			}).show();
+		}
+	);
+};
+
 webOrganization = function(){
 	Alloy.Globals.analyticsEvent({action: "list-organization"});
 	
@@ -281,7 +305,7 @@ Ti.App.addEventListener("profile-changed", function(params){
 
 if (OS_IOS){
 	$.listView.refreshControl = Ti.UI.createRefreshControl({});
-	$.listView.refreshControl.addEventListener("refreshstart", function(e){
+	$.listView.refreshControl.addEventListener("refreshstart", function(){
 		Ti.API.debug("refreshStart");
 		populateList({
 			"showGlobalLoading": false,
@@ -297,12 +321,31 @@ if (OS_IOS){
 		nsfLogo.addEventListener("singletap", webOrganization);
 		$.wrapper.leftNavButton = nsfLogo;
 		
-		var bookmarksButton = Ti.UI.createButton({
-			"systemButton": Ti.UI.iPhone.SystemButton.BOOKMARKS
+		var bookmarksButton = Ti.UI.createLabel({
+			"text": Alloy.Globals.Icons.fontAwesome.star,
+			"color": Alloy.CFG.iosColor,
+			"width": 26,
+			"height": 26,
+			"font": {
+				"fontFamily": "font-awesome",
+				"fontSize": 26
+			}
 		});
 		bookmarksButton.addEventListener("click", onBookmarkClick);
 		
-		$.wrapper.rightNavButtons = [bookmarksButton];
+		var orderByButton = Ti.UI.createLabel({
+			"text": Alloy.Globals.Icons.fontAwesome.sort,
+			"color": Alloy.CFG.iosColor,
+			"width": 26,
+			"height": 26,
+			"font": {
+				"fontFamily": "font-awesome",
+				"fontSize": 26
+			}
+		});
+		orderByButton.addEventListener("click", orderByDistance);
+		
+		$.wrapper.rightNavButtons = [bookmarksButton, orderByButton];
 	}());
 }
 
@@ -330,3 +373,4 @@ exports.showAdvertisement = function(show){
 exports.refresh = populateList;
 exports.onSearchChange = onSearchChange;
 exports.onBookmarkClick = onBookmarkClick;
+exports.orderByDistance = orderByDistance;

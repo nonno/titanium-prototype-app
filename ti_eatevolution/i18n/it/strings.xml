@@ -8,6 +8,7 @@
 	<string name="lblYes">Sì</string>
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
+	<string name="lblCancel">Annulla</string>
 	<string name="lblEmail">Email</string>
 	<string name="lblPhone">Telefono</string>
 	<string name="lblSearch">Cerca</string>
