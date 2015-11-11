@@ -3,11 +3,7 @@
 		<View id="searchBarContainer" platform="ios" class="hfill">
 			<SearchBar id="searchBar" platform="ios" hintText="L('lblSearch')" onFocus="onSearchFocus" onCancel="onSearchCancel" onChange="onSearchChange" />
 			
-			<Toolbar id="rightNavButtons" platform="ios" barColor="white">
-				<Items>
-					<Button id="bookmarksButton" systemButton="BOOKMARKS" class="hsize" />
-				</Items>
-			</Toolbar>
+			<Toolbar id="rightNavButtons" platform="ios" barColor="white" />
 		</View>
 		
 		<ListView id="listView" defaultItemTemplate="defaultTemplate" onItemclick="onItemClick">

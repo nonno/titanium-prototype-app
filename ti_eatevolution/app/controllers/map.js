@@ -74,6 +74,10 @@ listener = function(event) {
 mapView.addEventListener("click", listener);
 
 onBookmarkClick = function(){
+	if (OS_IOS){
+		Alloy.Globals.Data.favorites = !Alloy.Globals.Data.favorites;
+	}
+	
 	populateMap();
 };
 
@@ -115,6 +119,17 @@ Ti.App.addEventListener("profile-changed", function(params){
 	// TODO probably better don't do anything
 	//populateMap();
 });
+
+if (OS_IOS){
+	(function(){
+		var bookmarksButton = Ti.UI.createButton({
+			"systemButton": Ti.UI.iPhone.SystemButton.BOOKMARKS
+		});
+		bookmarksButton.addEventListener("click", onBookmarkClick);
+		
+		$.map.rightNavButtons = [bookmarksButton];
+	}());
+}
 
 centerMapOnCurrentPosition();
 

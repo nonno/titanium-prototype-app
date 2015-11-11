@@ -261,8 +261,6 @@ Ti.App.addEventListener("profile-changed", function(params){
 });
 
 if (OS_IOS){
-	$.bookmarksButton.addEventListener("click", onBookmarkClick);
-	
 	$.listView.refreshControl = Ti.UI.createRefreshControl({});
 	$.listView.refreshControl.addEventListener("refreshstart", function(e){
 		Ti.API.debug("refreshStart");
@@ -274,6 +272,15 @@ if (OS_IOS){
 			}
 		});
 	});
+	
+	(function(){
+		var bookmarksButton = Ti.UI.createButton({
+			"systemButton": Ti.UI.iPhone.SystemButton.BOOKMARKS
+		});
+		bookmarksButton.addEventListener("click", onBookmarkClick);
+		
+		$.wrapper.rightNavButtons = [bookmarksButton];
+	}());
 }
 
 populateList();
