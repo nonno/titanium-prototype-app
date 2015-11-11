@@ -96,15 +96,15 @@ init = function(){
 	}
 	
 	// checking of connection for showing/hiding advertisement
-	listController.showAdvertisement(Ti.Network.online);
-	mapController.showAdvertisement(Ti.Network.online);
+	if (listController){ listController.showAdvertisement(Ti.Network.online); }
+	if (mapController){ mapController.showAdvertisement(Ti.Network.online); }
 	
 	connectivityChange = function(e){
 		if (e.online){
 			Ti.API.debug(e.networkTypeName);
 		}
-		listController.showAdvertisement(e.online);
-		mapController.showAdvertisement(e.online);
+		if (listController){ listController.showAdvertisement(e.online); }
+		if (mapController){ mapController.showAdvertisement(e.online); }
 	};
 	Ti.Network.addEventListener("change", connectivityChange);
 	
@@ -253,9 +253,9 @@ onTabGroupOpen = function(e){
 	}
 };
 
-orientationchange = function(e){
-	listController.showAdvertisement(Ti.Network.online);
-	mapController.showAdvertisement(Ti.Network.online);
+orientationchange = function(){
+	if (listController){ listController.showAdvertisement(Ti.Network.online); }
+	if (mapController){ mapController.showAdvertisement(Ti.Network.online); }
 };
 Ti.Gesture.addEventListener("orientationchange", orientationchange);
 

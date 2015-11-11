@@ -5,7 +5,7 @@ var AdMob = require("AdMob"),
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
 	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName,
-	filterProfiles, onRowAction, iosSwipe, iosSwipePartial;
+	filterProfiles, onRowAction, iosSwipe, iosSwipePartial, webOrganization, webCampaign;
 
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
@@ -200,6 +200,17 @@ formatDistance = function(distance) {
 	return Math.round(distance * 10) / 10 + " km";
 };
 
+webOrganization = function(){
+	Alloy.Globals.analyticsEvent({action: "list-organization"});
+	
+	Ti.Platform.openURL(Alloy.CFG.companyReferences.web);
+};
+webCampaign = function(){
+	Alloy.Globals.analyticsEvent({action: "list-campaign"});
+	
+	Ti.Platform.openURL(Alloy.CFG.companyReferences.campaign);
+};
+
 if (OS_IOS){
 	onSearchFocus = function(){
 		$.searchBar.showCancel = true;
@@ -274,6 +285,10 @@ if (OS_IOS){
 	});
 	
 	(function(){
+		var nsfLogo = Alloy.Globals.createNSFLogo();
+		nsfLogo.addEventListener("singletap", webOrganization);
+		$.wrapper.leftNavButton = nsfLogo;
+		
 		var bookmarksButton = Ti.UI.createButton({
 			"systemButton": Ti.UI.iPhone.SystemButton.BOOKMARKS
 		});

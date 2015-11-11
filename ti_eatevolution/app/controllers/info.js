@@ -52,6 +52,14 @@ $.info.addEventListener("close", function(){
 	Ti.Gesture.removeEventListener("orientationchange", orientationCheck);
 });
 
+if (OS_IOS){
+	(function(){
+		var nsfLogo = Alloy.Globals.createNSFLogo();
+		nsfLogo.addEventListener("singletap", webCampaign);
+		$.info.leftNavButton = nsfLogo;
+	}());
+}
+
 orientationCheck();
 
 exports.email = email;

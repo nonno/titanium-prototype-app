@@ -69,6 +69,27 @@ Alloy.Globals.analyticsEvent = function(params){
 	}
 };
 
+Alloy.Globals.createEatEvolutionLogo = function(){
+	return Ti.UI.createLabel({
+		"text": "\ue600",
+		"color": Alloy.CFG.iosColor,
+		"font": {
+			"fontFamily": "logos",
+			"fontSize": 40
+		}
+	});
+};
+Alloy.Globals.createNSFLogo = function(){
+	return Ti.UI.createLabel({
+		"text": "\ue601",
+		"color": Alloy.CFG.iosColor,
+		"font": {
+			"fontFamily": "logos",
+			"fontSize": 40
+		}
+	});
+};
+
 if (!ENV_PRODUCTION && Alloy.CFG.runTests) {
 	require("tests/testsRunner");
 }

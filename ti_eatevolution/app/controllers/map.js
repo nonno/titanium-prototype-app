@@ -3,7 +3,8 @@ var $FM = require("favoritesmgr"),
 	AdMob = require("AdMob"),
 	TiMap = require("ti.map");
 
-var mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap, dataToAnnotation;
+var mapView, listener, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap,
+	dataToAnnotation, webOrganization, webCampaign;
 
 mapView = TiMap.createView({
 	mapType: TiMap.NORMAL_TYPE,
@@ -111,6 +112,17 @@ centerMapOnCurrentPosition = function(){
 	});
 };
 
+webOrganization = function(){
+	Alloy.Globals.analyticsEvent({action: "map-organization"});
+	
+	Ti.Platform.openURL(Alloy.CFG.companyReferences.web);
+};
+webCampaign = function(){
+	Alloy.Globals.analyticsEvent({action: "map-campaign"});
+	
+	Ti.Platform.openURL(Alloy.CFG.companyReferences.campaign);
+};
+
 Ti.App.addEventListener("profile-changed", function(params){
 	params = params || {};
 	params.profile = params.profile;
@@ -122,6 +134,10 @@ Ti.App.addEventListener("profile-changed", function(params){
 
 if (OS_IOS){
 	(function(){
+		var nsfLogo = Alloy.Globals.createNSFLogo();
+		nsfLogo.addEventListener("singletap", webOrganization);
+		$.map.leftNavButton = nsfLogo;
+		
 		var bookmarksButton = Ti.UI.createButton({
 			"systemButton": Ti.UI.iPhone.SystemButton.BOOKMARKS
 		});
