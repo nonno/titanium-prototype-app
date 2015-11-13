@@ -12,11 +12,17 @@
 	bottom: Alloy.CFG.gui.advertisementBannerHeight,
 	width: Ti.UI.FILL
 },
+"#contactInfo[formFactor=tablet]":{
+	bottom: Alloy.CFG.gui.advertisementBannerHeightTablet,
+},
 "#advContainer": {
 	bottom: "0dp",
 	height: Alloy.CFG.gui.advertisementBannerHeight,
 	width: Ti.UI.FILL,
 	backgroundColor: "#000"
+},
+"#advContainer[formFactor=tablet]":{
+	height: Alloy.CFG.gui.advertisementBannerHeightTablet,
 },
 ".flags-column": {
 	width: 150

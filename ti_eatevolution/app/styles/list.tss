@@ -74,6 +74,9 @@
 	width:Ti.UI.FILL,
 	tintColor: "#666"
 },
+"#listView[formFactor=tablet]":{
+	bottom: Alloy.CFG.gui.advertisementBannerHeightTablet,
+},
 "#listView[platform=ios]":{
 	top:50
 },
@@ -92,4 +95,7 @@
 	height: Alloy.CFG.gui.advertisementBannerHeight,
 	width: Ti.UI.FILL,
 	backgroundColor: "#000"
+},
+"#advContainer[formFactor=tablet]":{
+	height: Alloy.CFG.gui.advertisementBannerHeightTablet,
 }

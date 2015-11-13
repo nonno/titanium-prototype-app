@@ -65,8 +65,8 @@ function hideInfoContainer(container){
 
 function showAdvertisement(show){
 	if (show){
-		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
-		$.contactInfo.bottom = Alloy.CFG.gui.advertisementBannerHeight;
+		$.advContainer.height = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
+		$.contactInfo.bottom = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
 		
 		$.advContainer.removeAllChildren();
 		$.advContainer.add(AdMob.create({

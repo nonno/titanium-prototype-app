@@ -3,7 +3,8 @@
 		"gui": {
 			"primaryColor": "#98c10f",
 			"secondaryColor": "#666666",
-			"advertisementBannerHeight": 50
+			"advertisementBannerHeight": 50,
+			"advertisementBannerHeightTablet": 90
 		},
 		"companyReferences": {
 			"address": "Via Rossini, 51 - 60035 Jesi (AN)",

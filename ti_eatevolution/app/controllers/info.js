@@ -1,4 +1,4 @@
-var currentTab, email, phone, toJoin, webOrganization, webCampaign, orientationCheck;
+var currentTab, email, phone, toJoin, webOrganization, webCampaign, bannerAdjustment;
 
 email = function() {
 	Alloy.Globals.analyticsEvent({action: "info-email"});
@@ -57,21 +57,35 @@ webCampaign = function(){
 	Ti.Platform.openURL(Alloy.CFG.companyReferences.campaign);
 };
 
-orientationCheck = function(){
+bannerAdjustment = function(){
 	if (Alloy.isHandheld){
-		if (Ti.Gesture.landscape){
+		if (
+			(OS_IOS && Ti.Gesture.isLandscape())
+			||
+			(OS_ANDROID && Ti.Gesture.landscape)
+		){
 			$.banner.visible = false;
 			$.banner.height = 0;
 		} else if (Ti.Gesture.portrait){
 			$.banner.visible = true;
 			$.banner.height = Ti.UI.SIZE;
 		}
+	} else if (Alloy.isTablet) {
+		if (
+			(OS_IOS && Ti.Gesture.isLandscape())
+			||
+			(OS_ANDROID && Ti.Gesture.landscape)
+		){
+			$.banner.width = "50%";
+		} else {
+			$.banner.width = Ti.UI.FILL;
+		}
 	}
 };
-Ti.Gesture.addEventListener("orientationchange", orientationCheck);
+Ti.Gesture.addEventListener("orientationchange", bannerAdjustment);
 
 $.info.addEventListener("close", function(){
-	Ti.Gesture.removeEventListener("orientationchange", orientationCheck);
+	Ti.Gesture.removeEventListener("orientationchange", bannerAdjustment);
 });
 
 if (OS_IOS){
@@ -96,7 +110,7 @@ if (OS_IOS){
 	}());
 }
 
-orientationCheck();
+bannerAdjustment();
 
 exports.toJoin = toJoin;
 exports.webOrganization = webOrganization;

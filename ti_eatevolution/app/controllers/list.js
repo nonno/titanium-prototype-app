@@ -356,8 +356,8 @@ exports.setTab = function(tab){
 };
 exports.showAdvertisement = function(show){
 	if (show){
-		$.advContainer.height = Alloy.CFG.gui.advertisementBannerHeight;
-		$.listView.bottom = Alloy.CFG.gui.advertisementBannerHeight;
+		$.advContainer.height = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
+		$.listView.bottom = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
 		
 		$.advContainer.removeAllChildren();
 		$.advContainer.add(AdMob.create({
