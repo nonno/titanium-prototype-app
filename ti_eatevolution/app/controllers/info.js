@@ -17,21 +17,24 @@ email = function() {
 phone = function(){
 	Alloy.Globals.analyticsEvent({action: "info-phone"});
 	
-	if (ENV_DEV){
-		Ti.Platform.openURL("tel:+393381540774");
-	} else if (ENV_PRODUCTION){
-		Ti.Platform.openURL("tel:" + Alloy.CFG.companyReferences.phone);
-	}
+	Ti.Platform.openURL("tel:" + Alloy.CFG.companyReferences.phone);
 };
 
 toJoin = function(){
-	var alert, options, optionsActions, selectedOption;
+	var alert, options, optionsActions, optionDialogArgs, selectedOption;
 	
-	options = [L("lblEmail"), L("lblPhone"), L("lblCancel")];
 	optionsActions = [email, phone];
+	options = [L("lblEmail"), L("lblPhone")];
+	if (OS_IOS && Alloy.isHandheld){
+		options.push(L("lblCancel"));
+	}
 	
-	alert = Ti.UI.createOptionDialog({"options": options, "cancel": 2});
+	optionDialogArgs = {"options": options};
+	if (OS_IOS && Alloy.isHandheld){
+		optionDialogArgs.cancel = 2;
+	}
 	
+	alert = Ti.UI.createOptionDialog(optionDialogArgs);
 	alert.addEventListener("click", function(alertEvent) {
 		selectedOption = alertEvent.index;
 		
@@ -59,11 +62,13 @@ webCampaign = function(){
 
 bannerAdjustment = function(){
 	if (
+		Alloy.isTablet
+		||
 		(OS_IOS && Ti.Gesture.isLandscape())
 		||
 		(OS_ANDROID && Ti.Gesture.landscape)
 	){
-		$.banner.width = "50%";
+		$.banner.width = "60%";
 	} else {
 		$.banner.width = Ti.UI.FILL;
 	}
@@ -99,6 +104,7 @@ if (OS_IOS){
 }
 
 bannerAdjustment();
+$.joinButtonLabel.text = $.joinButtonLabel.text.toUpperCase();
 
 exports.toJoin = toJoin;
 exports.webOrganization = webOrganization;

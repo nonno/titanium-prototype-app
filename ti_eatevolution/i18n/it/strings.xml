@@ -3,8 +3,7 @@
 	<string name="app_name">Eat Evolution</string>
 	
 	<string name="loadingMessage">Attendere prego...</string>
-	<string name="lblCompanyName">Nutrionisti senza frontiere</string>
-	<string name="lblCampaignName">Eat Evolution</string>
+	
 	<string name="lblYes">Sì</string>
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
