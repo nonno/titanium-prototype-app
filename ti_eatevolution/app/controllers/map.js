@@ -136,8 +136,8 @@ centerMapOnCurrentPosition = function(){
 			mapView.setRegion({
 				"latitude": coords.latitude,
 				"longitude": coords.longitude,
-				"latitudeDelta": 1,
-				"longitudeDelta": 1
+				"latitudeDelta": 2,
+				"longitudeDelta": 2
 			});
 		}
 	});
