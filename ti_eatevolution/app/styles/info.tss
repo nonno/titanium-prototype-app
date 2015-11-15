@@ -1,0 +1,32 @@
+"#title": {
+	font: {
+		fontSize: 16,
+		fontWeight: "bold"
+	}
+},
+"#subtitle": {
+	font: {
+		fontSize: 14,
+		fontWeight: "bold"
+	}
+},
+".paragraph": {
+	top: 2,
+	bottom: 2,
+	font: {
+		fontSize: 12
+	}
+},
+"#joinButtonLabel": {
+	color: Alloy.CFG.gui.primaryColor,
+	backgroundColor: "#000",
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+},
+"#joinButtonContainer": {
+	height: 50,
+	width: Ti.UI.SIZE,
+	backgroundColor: "#000",
+	borderColor: "#000",
+	borderRadius: 10,
+	borderWidth: 2
+}

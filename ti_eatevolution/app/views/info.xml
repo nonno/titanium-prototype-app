@@ -1,15 +1,20 @@
 <Alloy>
 	<Window title="L('lblInfoTab')">
-		<View id="mainContainer" class="vgroup buffer">
-			<ImageView id="banner" image="/html/info_banner.png" class="hfill vsize" onClick="webCampaign" />
+		<ScrollView id="mainContainer" class="vgroup buffer fill" scrollType="vertical" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL">
+			<ImageView id="banner" image="/images/info_banner.png" class="hfill vsize" onClick="webCampaign" />
 			
-			<WebView
-				id="htmlInfo"
-				url="/html/info_it.html"
-				enableZoomControls="false"
-				horizontalWrap="false"
-				width="Ti.UI.FILL" top="10" bottom="0"
-			/>
-		</View>
+			<Label id="title" class="vsize hfill" text="L('lblInfoTitle')" top="10" />
+			<Label id="subtitle" class="vsize hfill" text="L('lblInfoSubtitle')" top="10" />
+			
+			<View id="content" class="vgroup vsize hfill" top="5">
+				<Label class="paragraph vsize hfill" text="L('lblInfoParagraph1')" />
+				<Label class="paragraph vsize hfill" text="L('lblInfoParagraph2')" />
+				<Label class="paragraph vsize hfill" text="L('lblInfoParagraph3')" />
+			</View>
+			
+			<View id="joinButtonContainer" top="20">
+				<Label id="joinButtonLabel" class="hfill hsize buffer" text="L('lblToJoin')" />
+			</View>
+		</ScrollView>
 	</Window>
 </Alloy>

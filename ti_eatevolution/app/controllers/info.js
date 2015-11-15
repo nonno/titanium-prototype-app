@@ -58,28 +58,14 @@ webCampaign = function(){
 };
 
 bannerAdjustment = function(){
-	if (Alloy.isHandheld){
-		if (
-			(OS_IOS && Ti.Gesture.isLandscape())
-			||
-			(OS_ANDROID && Ti.Gesture.landscape)
-		){
-			$.banner.visible = false;
-			$.banner.height = 0;
-		} else if (Ti.Gesture.portrait){
-			$.banner.visible = true;
-			$.banner.height = Ti.UI.SIZE;
-		}
-	} else if (Alloy.isTablet) {
-		if (
-			(OS_IOS && Ti.Gesture.isLandscape())
-			||
-			(OS_ANDROID && Ti.Gesture.landscape)
-		){
-			$.banner.width = "50%";
-		} else {
-			$.banner.width = Ti.UI.FILL;
-		}
+	if (
+		(OS_IOS && Ti.Gesture.isLandscape())
+		||
+		(OS_ANDROID && Ti.Gesture.landscape)
+	){
+		$.banner.width = "50%";
+	} else {
+		$.banner.width = Ti.UI.FILL;
 	}
 };
 Ti.Gesture.addEventListener("orientationchange", bannerAdjustment);
@@ -87,6 +73,8 @@ Ti.Gesture.addEventListener("orientationchange", bannerAdjustment);
 $.info.addEventListener("close", function(){
 	Ti.Gesture.removeEventListener("orientationchange", bannerAdjustment);
 });
+
+$.joinButtonContainer.addEventListener("singletap", toJoin);
 
 if (OS_IOS){
 	(function(){

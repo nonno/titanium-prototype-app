@@ -39,7 +39,13 @@
 	<string name="lblReloadData">Reload</string>
 	<string name="lblMoreInfoOrganization">More info about us</string>
 	<string name="lblMoreInfoCampaign">More info about the campaign</string>
-	<string name="lblToJoin">Join us/Recommend</string>
+	<string name="lblToJoin">Join us or recommend</string>
+	
+	<string name="lblInfoTitle">Scegli di mangiare sano!</string>
+	<string name="lblInfoSubtitle">Campagna di educazione a una dieta più sana e naturale</string>
+	<string name="lblInfoParagraph1">L’alimentazione in Italia si sta allontanando sempre di più dalla salutare dieta mediterranea e si sta avvicinando al modello Americano: piatti pronti, sbrigativi e facili da preparare, bibite dolci e gassate, cibi industriali, fast food e soprattutto ritmi di lavoro intensi che portano gli Italiani a consumare numerosi pasti frugali fuori casa.</string>
+	<string name="lblInfoParagraph2">Alla luce dei numerosi studi scientifici che testimoniano che un gran numero di patologie cronico-degenerative sono correlate a un’alimentazione scorretta sarebbe necessaria un’ “evoluzione” che aiuti a recuperare delle abitudini alimentari corrette e consapevoli.</string>
+	<string name="lblInfoParagraph3">EatEvolution è la campagna di promozione alla dieta sana promossa da Nutrizionisti Senza Frontiere: se ami prenderti cura del tuo benessere, se hai esigenze alimentari specifiche, se stai seguendo un regime alimentare corretto, se vuoi seguire una dieta sana... mangiare fuori casa non sarà più un problema!</string>
 	
 	<string name="msgSyncErrorAppOutdated">App update available, please update</string>
 	<string name="msgSyncErrorDataMalformed">Data malformed</string>
