@@ -20,7 +20,10 @@
 "#joinButtonLabel": {
 	color: Alloy.CFG.gui.primaryColor,
 	backgroundColor: "#000",
-	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font: {
+		fontWeight: "bold"
+	}
 },
 "#joinButtonContainer": {
 	height: 50,
