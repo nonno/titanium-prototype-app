@@ -58,12 +58,11 @@ describe("Data test", function() {
 			assert.isTrue(ProfileRepository.getAssetDataFile().exists());
 		});
 		
-		it("should be well formed and contains locali", function() {
+		it("should be well formed", function() {
 			try {
 				var data = JSON.parse(ProfileRepository.getAssetDataFile().read().text);
 				
 				assert(1 === 1, "File well formed");
-				assert.isAbove(data.locali.length, 0, "At least one locale is present");
 			} catch(err){
 				assert(1 === 0, "File not well formed");
 			}

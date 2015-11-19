@@ -6,11 +6,11 @@ describe("ProfileRepository", function() {
 	describe("getLocaleTodayTimetable", function(){
 
 		it("should return an empty array if 'locale' doesn't define a opening timetable", function(){
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable(), 0, '()');
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({}), 0, '{}');
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": null}), 0, '{"aperto": null}');
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": undefined}), 0, '{"aperto": undefined}');
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": []}), 0, '{"aperto": []}');
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable(), 0, "()");
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({}), 0, "{}");
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": null}), 0, "{aperto: null}");
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": undefined}), 0, "{aperto: undefined}");
+			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": []}), 0, "{aperto: []}");
 		});
 
 		it("should show the timetable for the right week-day", function(){
@@ -60,9 +60,9 @@ describe("ProfileRepository", function() {
 		it("should return an empty array if 'locale' has no array 'cibi' or it's empty", function() {
 			assert.lengthOf(ProfileRepository.getFoodTypes(), 0, "()");
 			assert.lengthOf(ProfileRepository.getFoodTypes({}), 0, "{}");
-			assert.lengthOf(ProfileRepository.getFoodTypes({"cibi": null}), 0, '{"cibi": null}');
-			assert.lengthOf(ProfileRepository.getFoodTypes({"cibi": undefined}), 0, '{"cibi": undefined}');
-			assert.lengthOf(ProfileRepository.getFoodTypes({"cibi": []}), 0, '{"cibi": []}');
+			assert.lengthOf(ProfileRepository.getFoodTypes({"cibi": null}), 0, "{cibi: null}");
+			assert.lengthOf(ProfileRepository.getFoodTypes({"cibi": undefined}), 0, "{cibi: undefined}");
+			assert.lengthOf(ProfileRepository.getFoodTypes({"cibi": []}), 0, "{cibi: []}");
 		});
 
 		it("should return an array with unique values", function() {
@@ -97,9 +97,9 @@ describe("ProfileRepository", function() {
 		it("should return an empty array if 'locale' has no array 'cibi' or it's empty", function() {
 			assert.lengthOf(ProfileRepository.getFoodCategories(), 0, "()");
 			assert.lengthOf(ProfileRepository.getFoodCategories({}), 0, "{}");
-			assert.lengthOf(ProfileRepository.getFoodCategories({"cibi": null}), 0, '{"cibi": null}');
-			assert.lengthOf(ProfileRepository.getFoodCategories({"cibi": undefined}), 0, '{"cibi": undefined}');
-			assert.lengthOf(ProfileRepository.getFoodCategories({"cibi": []}), 0, '{"cibi": []}');
+			assert.lengthOf(ProfileRepository.getFoodCategories({"cibi": null}), 0, "{cibi: null}");
+			assert.lengthOf(ProfileRepository.getFoodCategories({"cibi": undefined}), 0, "{cibi: undefined}");
+			assert.lengthOf(ProfileRepository.getFoodCategories({"cibi": []}), 0, "{cibi: []}");
 		});
 
 		it("should return an array with unique values", function() {
