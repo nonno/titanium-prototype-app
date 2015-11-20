@@ -129,4 +129,108 @@ describe("ProfileRepository", function() {
 
 	});
 
+	describe("filters", function(){
+		var data;
+		
+		beforeEach(function() {
+			data = [
+				{
+					id: 1,
+					tipo: "bar",
+					cibi: [
+						{tipo: "pan", cat: ["veget", "lf"]},
+						{tipo: "ins", cat: ["veget"]}
+					]
+				},
+				{
+					id: 2,
+					tipo: "ris",
+					cibi: [
+						{tipo: "pan"},
+						{tipo: "gel"},
+						{tipo: "ins", cat: ["veget", "lf", "gf"]}
+					]
+				},
+				{
+					id: 3,
+					tipo: "bar",
+					cibi: [
+						{tipo: "pan", cat: ["lf"]}
+					]
+				},
+				{
+					id: 4,
+					tipo: "piz",
+					cibi: []
+				}
+			];
+		});
+		
+		it("should return only profiles of selected type", function(){
+			var selectedType, results, notFiltered;
+			
+			selectedType = "bar";
+			results = ProfileRepository.filterForTypes(data, [selectedType]);
+			
+			notFiltered = results.filter(function(profile){
+				return profile.tipo !== selectedType;
+			});
+			assert.lengthOf(notFiltered, 0);
+		});
+		
+		it("should return only profiles with one of the selected types", function(){
+			var selectedTypes, results, notFiltered;
+			
+			selectedTypes = ["bar", "ris"];
+			results = ProfileRepository.filterForTypes(data, selectedTypes);
+			
+			notFiltered = results.filter(function(profile){
+				return selectedTypes.indexOf(profile.tipo) === -1;
+			});
+			assert.lengthOf(notFiltered, 0);
+		});
+		
+		it("should return only profiles which serve the selected meal type", function(){
+			var selectedType, results, notFiltered;
+			
+			selectedType = "ins";
+			results = ProfileRepository.filterForMealTypes(data, [selectedType]);
+			
+			notFiltered = results.filter(function(profile){
+				return profile.cibi.filter(function(meal){
+					return meal.tipo === selectedType;
+				}).length === 0;
+			});
+			assert.lengthOf(notFiltered, 0);
+		});
+		
+		it("should return only profiles which serve all the selected meal types", function(){
+			var selectedTypes, results, notFiltered;
+			
+			selectedTypes = ["ins", "pan"];
+			results = ProfileRepository.filterForMealTypes(data, selectedTypes);
+			
+			notFiltered = results.filter(function(profile){
+				var profileMealTypes = profile.cibi.map(function(meal){ return meal.tipo; });
+				return _.intersection(profileMealTypes, selectedTypes).length !== selectedTypes.length;
+			});
+			assert.lengthOf(notFiltered, 0);
+		});
+		
+		/*it("should return only profiles which serve at least one meal of selected category", function(){
+			var selectedCategory, results;
+			
+			selectedCategory = "veget";
+			results = ProfileRepository.filterForMealCategories(data, [selectedCategory]);
+			Ti.API.info(JSON.stringify(results));
+		});
+		
+		it("should return only profiles which serve at least one meal with all the selected categories", function(){
+			var selectedCategories, results;
+			
+			selectedCategories = ["veget", "lf"];
+			results = ProfileRepository.filterForMealCategories(data, selectedCategories);
+			Ti.API.info(JSON.stringify(results));
+		});*/
+	});
 });

@@ -5,7 +5,8 @@ var Request = require("Request"),
 	GeoUtils = require("GeoUtils");
 
 var getAssetDataFile, getDataFile, fetchDataOffline, fetchDataOnline, addressToString,
-	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances;
+	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances,
+	filterForTypes, filterForMealTypes, filterForMealCategories;
 
 getAssetDataFile = function(){
 	return Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "data/data.json");
@@ -181,6 +182,45 @@ getFoodCategories = function(locale){
 	}, []));
 };
 
+filterForTypes = function(profiles, types){
+	if (types && types.length){
+		return profiles.filter(function(profile){
+			if (profile.tipo){
+				return types.indexOf(profile.tipo) > -1;
+			}
+			return true;
+		});
+	}
+	return profiles;
+};
+
+filterForMealTypes = function(profiles, mealTypes){
+	if (mealTypes && mealTypes.length){
+		return profiles.filter(function(profile){
+			var profileMealTypes = profile.cibi.map(function(cibo){ return cibo.tipo; });
+			
+			return _.intersection(profileMealTypes, mealTypes).length === mealTypes.length;
+		});
+	}
+	return profiles;
+};
+
+filterForMealCategories = function(profiles, mealCategories){
+	if (mealCategories && mealCategories.length){
+		return profiles.filter(function(profile){
+			var i, cat;
+			for (i in profile.cibi){
+				cat = profile.cibi[i].cat;
+				if (_.intersection(cat, mealCategories).length === mealCategories.length){
+					return true;
+				}
+			}
+			return false;
+		});
+	}
+	return profiles;
+};
+
 exports.getAssetDataFile = getAssetDataFile;
 exports.getDataFile = getDataFile;
 exports.fetchDataOffline = fetchDataOffline;
@@ -191,3 +231,6 @@ exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
 exports.isLocaleTodayOpen = isLocaleTodayOpen;
 exports.getFoodTypes = getFoodTypes;
 exports.getFoodCategories = getFoodCategories;
+exports.filterForTypes = filterForTypes;
+exports.filterForMealTypes = filterForMealTypes;
+exports.filterForMealCategories = filterForMealCategories;
