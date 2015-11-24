@@ -214,9 +214,9 @@ if (profile.web){
 	var aperturaText, todayOpen, todayTimetable;
 	
 	if (profile.aperto && profile.aperto.length > 0){
-		todayOpen = ProfileRepository.isLocaleTodayOpen(profile);
+		todayOpen = ProfileRepository.isTodayOpen(profile);
 		if (todayOpen){
-			todayTimetable = ProfileRepository.getLocaleTodayTimetable(profile);
+			todayTimetable = ProfileRepository.getTodayTimetable(profile);
 			
 			aperturaText = L("lblTodayOpen") + " " + todayTimetable.reduce(function(memo, time){
 				memo += memo.length > 0 ? ", " : "";

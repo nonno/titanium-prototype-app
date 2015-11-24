@@ -3,14 +3,14 @@ var assert = require("tests/chai").assert,
 
 describe("ProfileRepository", function() {
 
-	describe("getLocaleTodayTimetable", function(){
+	describe("getTodayTimetable", function(){
 
 		it("should return an empty array if 'locale' doesn't define a opening timetable", function(){
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable(), 0, "()");
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({}), 0, "{}");
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": null}), 0, "{aperto: null}");
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": undefined}), 0, "{aperto: undefined}");
-			assert.lengthOf(ProfileRepository.getLocaleTodayTimetable({"aperto": []}), 0, "{aperto: []}");
+			assert.lengthOf(ProfileRepository.getTodayTimetable(), 0, "()");
+			assert.lengthOf(ProfileRepository.getTodayTimetable({}), 0, "{}");
+			assert.lengthOf(ProfileRepository.getTodayTimetable({"aperto": null}), 0, "{aperto: null}");
+			assert.lengthOf(ProfileRepository.getTodayTimetable({"aperto": undefined}), 0, "{aperto: undefined}");
+			assert.lengthOf(ProfileRepository.getTodayTimetable({"aperto": []}), 0, "{aperto: []}");
 		});
 
 		it("should show the timetable for the right week-day", function(){
@@ -26,7 +26,7 @@ describe("ProfileRepository", function() {
 					[{"da": "10:00", "a": "19:00"}]
 				]}
 			]};
-			assert.deepEqual(ProfileRepository.getLocaleTodayTimetable(locale, now), [{"da": "07:00", "a": "22:00"}]);
+			assert.deepEqual(ProfileRepository.getTodayTimetable(locale, now), [{"da": "07:00", "a": "22:00"}]);
 		});
 		
 		it("should show the timetable for the right period of the year", function(){
@@ -51,7 +51,7 @@ describe("ProfileRepository", function() {
 					[{"da": "16:00", "a": "19:00"}]
 				]}
 			]};
-			assert.deepEqual(ProfileRepository.getLocaleTodayTimetable(locale, now), [{"da": "15:00", "a": "20:00"}]);
+			assert.deepEqual(ProfileRepository.getTodayTimetable(locale, now), [{"da": "15:00", "a": "20:00"}]);
 		});
 	});
 

@@ -6,7 +6,7 @@ var Request = require("Request"),
 	GeoUtils = require("GeoUtils");
 
 var getAssetDataFile, getDataFile, fetchDataOffline, fetchDataOnline, addressToString,
-	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances,
+	getTodayTimetable, isTodayOpen, getFoodTypes, getFoodCategories, calculateDistances,
 	filterForTypes, filterForMealTypes, filterForMealCategories, filter;
 
 getAssetDataFile = function(){
@@ -118,7 +118,7 @@ addressToString = function(locale){
 	return address;
 };
 
-getLocaleTodayTimetable = function(locale, now){
+getTodayTimetable = function(locale, now){
 	now = now || new Date();
 	
 	if (!locale || !locale.aperto || !locale.aperto.length){
@@ -142,7 +142,7 @@ getLocaleTodayTimetable = function(locale, now){
 	return [];
 };
 
-isLocaleTodayOpen = function(locale){
+isTodayOpen = function(locale){
 	var now = new Date();
 	
 	var closed = false;
@@ -153,7 +153,7 @@ isLocaleTodayOpen = function(locale){
 		return false;
 	}
 	
-	var timetable = getLocaleTodayTimetable(locale);
+	var timetable = getTodayTimetable(locale);
 	return Boolean(timetable) && (timetable.length > 0);
 };
 
@@ -224,29 +224,64 @@ filterForMealCategories = function(profiles, mealCategories){
 
 filter = function(profiles, params){
 	params = params || {};
-	params.nome = params.nome;
 	params.asporto = params.asporto;
 	params.sedere = params.sedere;
 	params.disabili = params.disabili;
 	params.pos = params.pos;
 	params.dormire = params.dormire;
-	params.aperto = params.aperto;
 	params.costo = params.costo;
 	params.preferiti = params.preferiti;
+	params.aperto = params.aperto;
 	params.tipi = params.tipi;
 	params.tipiCibi = params.tipiCibi;
 	params.categorieCibi = params.categorieCibi;
 	params.coordinate = params.coordinate;
 	
-	if (!_.isUndefined(params.preferiti)){
+	if (!_.isUndefined(params.asporto)){
 		profiles = profiles.filter(function(profile){
-			if (params.preferiti){
-				return $FM.exists(profile.id);
-			} else {
-				return !$FM.exists(profile.id);
-			}
+			return (params.asporto && profile.asporto) || (!params.asporto && !profile.asporto);
 		});
 	}
+	if (!_.isUndefined(params.sedere)){
+		profiles = profiles.filter(function(profile){
+			return (params.sedere && profile.sedere) || (!params.sedere && !profile.sedere);
+		});
+	}
+	if (!_.isUndefined(params.disabili)){
+		profiles = profiles.filter(function(profile){
+			return (params.disabili && profile.disabili) || (!params.disabili && !profile.disabili);
+		});
+	}
+	if (!_.isUndefined(params.pos)){
+		profiles = profiles.filter(function(profile){
+			return (params.pos && profile.pos) || (!params.pos && !profile.pos);
+		});
+	}
+	if (!_.isUndefined(params.dormire)){
+		profiles = profiles.filter(function(profile){
+			return (params.dormire && profile.dormire) || (!params.dormire && !profile.dormire);
+		});
+	}
+	if (!_.isUndefined(params.costo)){
+		profiles = profiles.filter(function(profile){
+			return profile.costo <= params.costo;
+		});
+	}
+	if (params.preferiti){
+		profiles = profiles.filter(function(profile){
+			return $FM.exists(profile.id);
+		});
+	}
+	if (!_.isUndefined(params.aperto)){
+		profiles = profiles.filter(function(profile){
+			var open = isTodayOpen(profile);
+			return (params.aperto && open) || (!params.aperto && !open);
+		});
+	}
+	
+	profiles = filterForTypes(profiles, params.tipi);
+	profiles = filterForMealTypes(profiles, params.tipiCibi);
+	profiles = filterForMealCategories(profiles, params.categorieCibi);
 	
 	return profiles;
 };
@@ -257,8 +292,8 @@ exports.fetchDataOffline = fetchDataOffline;
 exports.fetchDataOnline = fetchDataOnline;
 exports.calculateDistances = calculateDistances;
 exports.addressToString = addressToString;
-exports.getLocaleTodayTimetable = getLocaleTodayTimetable;
-exports.isLocaleTodayOpen = isLocaleTodayOpen;
+exports.getTodayTimetable = getTodayTimetable;
+exports.isTodayOpen = isTodayOpen;
 exports.getFoodTypes = getFoodTypes;
 exports.getFoodCategories = getFoodCategories;
 exports.filterForTypes = filterForTypes;
