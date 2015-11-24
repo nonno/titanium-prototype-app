@@ -1,4 +1,5 @@
 var Request = require("Request"),
+	$FM = require("favoritesmgr"),
 	q = require("q"),
 	DateUtils = require("DateUtils"),
 	VersionChecker = require("VersionChecker"),
@@ -6,7 +7,7 @@ var Request = require("Request"),
 
 var getAssetDataFile, getDataFile, fetchDataOffline, fetchDataOnline, addressToString,
 	getLocaleTodayTimetable, isLocaleTodayOpen, getFoodTypes, getFoodCategories, calculateDistances,
-	filterForTypes, filterForMealTypes, filterForMealCategories;
+	filterForTypes, filterForMealTypes, filterForMealCategories, filter;
 
 getAssetDataFile = function(){
 	return Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "data/data.json");
@@ -221,6 +222,35 @@ filterForMealCategories = function(profiles, mealCategories){
 	return profiles;
 };
 
+filter = function(profiles, params){
+	params = params || {};
+	params.nome = params.nome;
+	params.asporto = params.asporto;
+	params.sedere = params.sedere;
+	params.disabili = params.disabili;
+	params.pos = params.pos;
+	params.dormire = params.dormire;
+	params.aperto = params.aperto;
+	params.costo = params.costo;
+	params.preferiti = params.preferiti;
+	params.tipi = params.tipi;
+	params.tipiCibi = params.tipiCibi;
+	params.categorieCibi = params.categorieCibi;
+	params.coordinate = params.coordinate;
+	
+	if (!_.isUndefined(params.preferiti)){
+		profiles = profiles.filter(function(profile){
+			if (params.preferiti){
+				return $FM.exists(profile.id);
+			} else {
+				return !$FM.exists(profile.id);
+			}
+		});
+	}
+	
+	return profiles;
+};
+
 exports.getAssetDataFile = getAssetDataFile;
 exports.getDataFile = getDataFile;
 exports.fetchDataOffline = fetchDataOffline;
@@ -234,3 +264,4 @@ exports.getFoodCategories = getFoodCategories;
 exports.filterForTypes = filterForTypes;
 exports.filterForMealTypes = filterForMealTypes;
 exports.filterForMealCategories = filterForMealCategories;
+exports.filter = filter;

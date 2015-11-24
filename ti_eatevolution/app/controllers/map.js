@@ -1,4 +1,4 @@
-var $FM = require("favoritesmgr"),
+var ProfileRepository = require("ProfileRepository"),
 	ProfileTypeRepository = require("ProfileTypeRepository"),
 	AdMob = require("AdMob"),
 	TiMap = require("ti.map");
@@ -74,18 +74,9 @@ populateMap = function(params){
 	
 	Alloy.Globals.loading.show();
 	
-	if (
-		(OS_ANDROID && Alloy.Globals.Data.favorites)
-		||
-		(OS_IOS && favorites)
-	) {
-		data = Alloy.Globals.Data.locali.filter(function(item){
-			return $FM.exists(item.id);
-		});
-	} else {
-		data = Alloy.Globals.Data.locali;
-	}
-	
+	data = ProfileRepository.filter(Alloy.Globals.Data.locali, {
+		"preferiti": (OS_ANDROID && Alloy.Globals.Data.favorites) || (OS_IOS && favorites)
+	});
 	annotations = data.map(dataToAnnotation);
 	
 	if (mapView.annotations && mapView.annotations.length){

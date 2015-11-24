@@ -5,7 +5,7 @@ var AdMob = require("AdMob"),
 
 var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
 	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName, orderByDistance,
-	filterProfiles, onRowAction, iosSwipe, iosSwipePartial, webOrganization, webCampaign, favorites;
+	onRowAction, iosSwipe, iosSwipePartial, webOrganization, webCampaign, favorites;
 
 favorites = false;
 
@@ -50,19 +50,6 @@ sortProfilesByName = function(a, b){
 	return 0;
 };
 
-filterProfiles = function(profiles){
-	if (
-		(OS_ANDROID && Alloy.Globals.Data.favorites)
-		||
-		(OS_IOS && favorites)
-	) {
-		profiles = profiles.filter(function(profile){
-			return $FM.exists(profile.id);
-		});
-	}
-	return profiles;
-};
-
 if (OS_IOS){
 	iosSwipePartial = null;
 	iosSwipe = function(indexes, swipeEvent){
@@ -88,7 +75,9 @@ populateList = function(params){
 	
 	var locali, indexes, sections, groups, section;
 	
-	locali = filterProfiles(Alloy.Globals.Data.locali);
+	locali = ProfileRepository.filter(Alloy.Globals.Data.locali, {
+		"preferiti": (OS_ANDROID && Alloy.Globals.Data.favorites) || (OS_IOS && favorites)
+	});
 	
 	$.listFooterLabelContainer.visible = !locali.length;
 	
