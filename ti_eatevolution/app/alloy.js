@@ -8,8 +8,13 @@ Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
 Alloy.Globals.Data = {};
 Alloy.Globals.Data.locali = {};
-Alloy.Globals.Data.favorites = false;
+Alloy.Globals.Data.filters = {};
 Alloy.Globals.Data.orderByDistance = false;
+Alloy.Globals.Data.setFilters = function(filters){
+	Alloy.Globals.Data.filters = filters;
+	
+	Ti.App.fireEvent("filterschanged");
+};
 
 Alloy.Globals.Icons = {
 	"profileTypes": {
@@ -33,6 +38,7 @@ Alloy.Globals.Icons = {
 		"calendar": "\uf073",
 		"phone": "\uf095",
 		"globe": "\uf0ac",
+		"filter": "\uf0b0",
 		"chain": "\uf0c1",
 		"cloud": "\uf0c2",
 		"money": "\uf0d6",
@@ -91,6 +97,26 @@ Alloy.Globals.createNSFLogo = function(){
 			"fontSize": 40
 		}
 	});
+};
+Alloy.Globals.createModalWindowHeaderButton = function(params){
+	params = params || {};
+	params.backgroundImage = "none";
+	params.color = params.color;
+	params.backgroundColor = params.backgroundColor || "transparent";
+	params.width = params.width || Ti.UI.SIZE;
+	params.height = Ti.UI.FILL;
+	params.left = 2;
+	params.right = 2;
+	
+	if (!params.color){
+		if (OS_IOS){
+			 params.color = Alloy.CFG.iosColor;
+		} else if (OS_ANDROID){
+			params.color = Alloy.CFG.gui.primaryColor;
+		}
+	}
+	
+	return Ti.UI.createButton(params);
 };
 
 if (!ENV_PRODUCTION && Alloy.CFG.runTests) {

@@ -11,4 +11,8 @@
 		<item name="windowActionBar">false</item>
 		<item name="windowNoTitle">true</item>
 	</style>
+	<style name="nutrizionisti.Modal" parent="@style/nutrizionisti.NoActionBar">
+		<item name="colorPrimary">#98c10f</item>
+		<item name="colorAccent">#98c10f</item>
+	</style>
 </resources>

@@ -3,10 +3,8 @@ var ProfileRepository = require("ProfileRepository"),
 	AdMob = require("AdMob"),
 	TiMap = require("ti.map");
 
-var mapView, mapViewClick, currentTab, centerMapOnCurrentPosition, onBookmarkClick, populateMap,
-	dataToAnnotation, webOrganization, webCampaign, openProfile, favorites;
-
-favorites = false;
+var mapView, mapViewClick, currentTab, centerMapOnCurrentPosition, onFiltersClick, populateMap,
+	dataToAnnotation, webOrganization, webCampaign, openProfile, modalWindowFilters;
 
 mapView = TiMap.createView({
 	mapType: TiMap.NORMAL_TYPE,
@@ -55,7 +53,7 @@ dataToAnnotation = function(locale) {
 		locale: locale,
 		rightView: rightView,
 		customView: Alloy.createController("annotation", {
-			type: ProfileTypeRepository.getType(locale.tipo) || ProfileTypeRepository.getDefaultType()
+			type: ProfileTypeRepository.get(locale.tipo) || ProfileTypeRepository.getDefault()
 		}).getView()
 	});
 	if (OS_IOS){
@@ -74,9 +72,7 @@ populateMap = function(params){
 	
 	Alloy.Globals.loading.show();
 	
-	data = ProfileRepository.filter(Alloy.Globals.Data.locali, {
-		"preferiti": (OS_ANDROID && Alloy.Globals.Data.favorites) || (OS_IOS && favorites)
-	});
+	data = ProfileRepository.filter(Alloy.Globals.Data.locali, Alloy.Globals.Data.filters);
 	annotations = data.map(dataToAnnotation);
 	
 	if (mapView.annotations && mapView.annotations.length){
@@ -98,10 +94,30 @@ if (OS_ANDROID){
 	mapView.addEventListener("click", mapViewClick);
 }
 
-onBookmarkClick = function(){
-	if (OS_IOS){ favorites = !favorites; }
+onFiltersClick = function(){
+	var filtersController = Alloy.createController("filters", {"filters": Alloy.Globals.Data.filters});
+	modalWindowFilters = Alloy.createController("modalWindow", {
+		"innerController": filtersController,
+		"leftNav": [
+			{
+				"button": Alloy.Globals.createModalWindowHeaderButton({"title": L("lblCancel")}),
+				"listener": function(){ modalWindowFilters.close(); }
+			}
+		],
+		"rightNav": [
+			{
+				"button": Alloy.Globals.createModalWindowHeaderButton({"title": L("lblDone")}),
+				"listener": function(){
+					Alloy.Globals.Data.setFilters(filtersController.getFilters());
+					
+					modalWindowFilters.close();
+				}
+			}
+		],
+		"closeFunction": function(){}
+	});
 	
-	populateMap();
+	modalWindowFilters.open();
 };
 
 centerMapOnCurrentPosition = function(){
@@ -145,7 +161,9 @@ webCampaign = function(){
 	Ti.Platform.openURL(Alloy.CFG.companyReferences.campaign);
 };
 
-Ti.App.addEventListener("profile-changed", function(params){
+Ti.App.addEventListener("filterschanged", populateMap);
+
+Ti.App.addEventListener("profilechanged", function(params){
 	params = params || {};
 	params.profile = params.profile;
 	params.mapSource = params.mapSource;
@@ -161,7 +179,7 @@ if (OS_IOS){
 		$.map.leftNavButton = nsfLogo;
 		
 		var bookmarksButton = Ti.UI.createLabel({
-			"text": Alloy.Globals.Icons.fontAwesome.star,
+			"text": Alloy.Globals.Icons.fontAwesome.filter,
 			"color": Alloy.CFG.iosColor,
 			"width": 26,
 			"height": 26,
@@ -170,7 +188,7 @@ if (OS_IOS){
 				"fontSize": 26
 			}
 		});
-		bookmarksButton.addEventListener("click", onBookmarkClick);
+		bookmarksButton.addEventListener("click", onFiltersClick);
 		
 		$.map.rightNavButtons = [bookmarksButton];
 	}());
@@ -200,4 +218,4 @@ exports.setTab = function(tab){
 	currentTab = tab;
 };
 exports.refresh = populateMap;
-exports.onBookmarkClick = onBookmarkClick;
+exports.onFiltersClick = onFiltersClick;

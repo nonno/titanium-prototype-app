@@ -1,0 +1,12 @@
+"#mainContainer":{
+	width: 90,
+	height: 60,
+	backgroundColor: "#aaa"
+},
+"#label":{
+	color: "white",
+	textAlign: "center",
+	font:{
+		fontSize: 13
+	}
+}

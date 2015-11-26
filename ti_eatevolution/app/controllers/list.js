@@ -3,11 +3,10 @@ var AdMob = require("AdMob"),
 	ProfileTypeRepository = require("ProfileTypeRepository"),
 	ProfileRepository = require("ProfileRepository");
 
-var populateList, preprocessForListView, onItemClick, onBookmarkClick, onSearchChange, onSearchFocus,
+var populateList, preprocessForListView, onItemClick, onFiltersClick, onSearchChange, onSearchFocus,
 	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName, orderByDistance,
-	onRowAction, iosSwipe, iosSwipePartial, webOrganization, webCampaign, favorites;
-
-favorites = false;
+	onRowAction, iosSwipe, iosSwipePartial, webOrganization, webCampaign,
+	modalWindowFilters;
 
 onSearchChange = function(e){
 	$.listView.searchText = e.source.value;
@@ -16,7 +15,7 @@ onSearchChange = function(e){
 preprocessForListView = function(rawData) {
 	return rawData.map(function(item) {
 		var isFavorite = $FM.exists(item.id);
-		var type = ProfileTypeRepository.getType(item.tipo) || ProfileTypeRepository.getDefaultType();
+		var type = ProfileTypeRepository.get(item.tipo) || ProfileTypeRepository.getDefault();
 		
 		return {
 			template: isFavorite ? "favoriteTemplate" : "defaultTemplate",
@@ -75,9 +74,7 @@ populateList = function(params){
 	
 	var locali, indexes, sections, groups, section;
 	
-	locali = ProfileRepository.filter(Alloy.Globals.Data.locali, {
-		"preferiti": (OS_ANDROID && Alloy.Globals.Data.favorites) || (OS_IOS && favorites)
-	});
+	locali = ProfileRepository.filter(Alloy.Globals.Data.locali, Alloy.Globals.Data.filters);
 	
 	$.listFooterLabelContainer.visible = !locali.length;
 	
@@ -171,20 +168,30 @@ onItemClick = function(e){
 	}).getView());
 };
 
-onBookmarkClick = function(){
-	if (OS_IOS){ favorites = !favorites; }
+onFiltersClick = function(){
+	var filtersController = Alloy.createController("filters", {"filters": Alloy.Globals.Data.filters});
+	modalWindowFilters = Alloy.createController("modalWindow", {
+		"innerController": filtersController,
+		"leftNav": [
+			{
+				"button": Alloy.Globals.createModalWindowHeaderButton({"title": L("lblCancel")}),
+				"listener": function(){ modalWindowFilters.close(); }
+			}
+		],
+		"rightNav": [
+			{
+				"button": Alloy.Globals.createModalWindowHeaderButton({"title": L("lblDone")}),
+				"listener": function(){
+					Alloy.Globals.Data.setFilters(filtersController.getFilters());
+					
+					modalWindowFilters.close();
+				}
+			}
+		],
+		"closeFunction": function(){}
+	});
 	
-	if (
-		(OS_ANDROID && Alloy.Globals.Data.favorites)
-		||
-		(OS_IOS && favorites)
-	) {
-		$.listView.defaultItemTemplate = "favoriteTemplate";
-	} else {
-		$.listView.defaultItemTemplate = "defaultTemplate";
-	}
-	
-	populateList();
+	modalWindowFilters.open();
 };
 
 formatDistance = function(distance) {
@@ -274,7 +281,9 @@ $.wrapper.addEventListener("open", function(){
 	}
 });
 
-Ti.App.addEventListener("profile-changed", function(params){
+Ti.App.addEventListener("filterschanged", populateList);
+
+Ti.App.addEventListener("profilechanged", function(params){
 	params = params || {};
 	params.profile = params.profile;
 	params.listSource = params.listSource;
@@ -310,8 +319,8 @@ if (OS_IOS){
 		nsfLogo.addEventListener("singletap", webOrganization);
 		$.wrapper.leftNavButton = nsfLogo;
 		
-		var bookmarksButton = Ti.UI.createLabel({
-			"text": Alloy.Globals.Icons.fontAwesome.star,
+		var filtersButton = Ti.UI.createLabel({
+			"text": Alloy.Globals.Icons.fontAwesome.filter,
 			"color": Alloy.CFG.iosColor,
 			"width": 26,
 			"height": 26,
@@ -320,7 +329,7 @@ if (OS_IOS){
 				"fontSize": 26
 			}
 		});
-		bookmarksButton.addEventListener("click", onBookmarkClick);
+		filtersButton.addEventListener("click", onFiltersClick);
 		
 		var orderByButton = Ti.UI.createLabel({
 			"text": Alloy.Globals.Icons.fontAwesome.sort,
@@ -334,7 +343,7 @@ if (OS_IOS){
 		});
 		orderByButton.addEventListener("click", orderByDistance);
 		
-		$.wrapper.rightNavButtons = [bookmarksButton, orderByButton];
+		$.wrapper.rightNavButtons = [filtersButton, orderByButton];
 	}());
 }
 
@@ -361,5 +370,5 @@ exports.showAdvertisement = function(show){
 };
 exports.refresh = populateList;
 exports.onSearchChange = onSearchChange;
-exports.onBookmarkClick = onBookmarkClick;
+exports.onFiltersClick = onFiltersClick;
 exports.orderByDistance = orderByDistance;

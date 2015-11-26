@@ -1,0 +1,32 @@
+<Alloy>
+	<ScrollView id="mainContainer" class="vgroup buffer">
+		<View class="hgroup hfill vsize">
+			<Label text="L('lblShowOnlyFavoritesFilter')" class="switchLabel hbuffer vsize" /> <Switch id="favoritesSwitch" />
+		</View>
+		<View class="hgroup hfill vsize top-buffer">
+			<Label text="L('lblTodayOpenFilter')" class="switchLabel hbuffer vsize" /> <Switch id="openSwitch" />
+		</View>
+		
+		<ScrollView id="profileTypesContainer" platform="ios" class="squareFiltersContainer hgroup buffer" />
+		<View id="profileTypesContainer" platform="android" class="squareFiltersContainer hgroup buffer" />
+		
+		<View class="hgroup hfill vsize">
+			<Label text="L('lblTakeAway')" class="switchLabel hbuffer vsize" /> <Switch id="takeAwaySwitch" />
+		</View>
+		<View class="hgroup hfill vsize top-buffer">
+			<Label text="L('lblSeating')" class="switchLabel hbuffer vsize" /> <Switch id="seatingSwitch" />
+		</View>
+		<View class="hgroup hfill vsize top-buffer">
+			<Label text="L('lblForDisabled')" class="switchLabel hbuffer vsize" /> <Switch id="forDisabledSwitch" />
+		</View>
+		<View class="hgroup hfill vsize top-buffer">
+			<Label text="L('lblPos')" class="switchLabel hbuffer vsize" /> <Switch id="posSwitch" />
+		</View>
+		
+		<ScrollView id="mealTypesContainer" platform="ios" class="squareFiltersContainer hgroup buffer" />
+		<View id="mealTypesContainer" platform="android" class="squareFiltersContainer hgroup buffer" />
+		
+		<ScrollView id="mealCategoriesContainer" platform="ios" class="squareFiltersContainer hgroup buffer" />
+		<View id="mealCategoriesContainer" platform="android" class="squareFiltersContainer hgroup buffer" />
+	</ScrollView>
+</Alloy>

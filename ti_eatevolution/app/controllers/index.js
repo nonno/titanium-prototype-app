@@ -171,16 +171,13 @@ onTabGroupOpen = function(e){
 				
 				(function(menu){
 					var item = menu.add({
-						title: Alloy.Globals.Data.favorites ? L("lblShowAll") : L("lblShowOnlyFavorites"),
-						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
+						title: L("lblFilters"),
+						icon: "/images/ic_action_filter.png",
+						showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
 					});
 					item.addEventListener("click", function(){
-						Alloy.Globals.Data.favorites = !Alloy.Globals.Data.favorites;
-						
-						listController.onBookmarkClick();
-						mapController.onBookmarkClick();
-						
-						item.title = Alloy.Globals.Data.favorites ? L("lblShowAll") : L("lblShowOnlyFavorites");
+						if (Alloy.Globals.currentTab === TAB_LIST){ listController.onFiltersClick(); }
+						if (Alloy.Globals.currentTab === TAB_MAP){ mapController.onFiltersClick(); }
 					});
 				}(createOptionEvent.menu));
 			}

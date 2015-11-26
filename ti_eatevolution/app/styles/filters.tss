@@ -1,0 +1,27 @@
+"#mainContainer":{
+	contentHeight: Ti.UI.SIZE,
+	contentWidth: Ti.UI.FILL
+},
+"#mainContainer[platform=android]":{
+	scrollType: "vertical"
+},
+".squareFiltersContainer":{
+	width: Ti.UI.SIZE
+},
+".squareFiltersContainer[platform=ios]":{
+	contentWidth: Ti.UI.SIZE,
+	contentHeight: 70,
+	height: 70
+},
+".squareFiltersContainer[platform=android]":{
+	height: Ti.UI.SIZE
+},
+"Switch[platform=android]":{
+	style: Ti.UI.Android.SWITCH_STYLE_SWITCH
+},
+".switchLabel":{
+	width: 180,
+	font:{
+		fontSize: 16
+	}
+},

@@ -31,7 +31,7 @@ function toggleFavorite(){
 		$.addFavoriteBtn.setColor(Alloy.CFG.gui.primaryColor);
 	}
 	
-	Ti.App.fireEvent("profile-changed", {
+	Ti.App.fireEvent("profilechanged", {
 		"profile": profile,
 		"listSource": listSource,
 		"mapSource": listSource
@@ -165,7 +165,7 @@ Ti.Gesture.addEventListener("orientationchange", orientationchange);
 profile = args.profile;
 listSource = args.listSource;
 mapSource = args.mapSource;
-typeData = ProfileTypeRepository.getType(profile.tipo) || ProfileTypeRepository.getDefaultType();
+typeData = ProfileTypeRepository.get(profile.tipo) || ProfileTypeRepository.getDefault();
 
 Alloy.Globals.analyticsEvent({action: "profile-open", label: profile.id});
 

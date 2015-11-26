@@ -8,6 +8,8 @@
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
 	<string name="lblCancel">Annulla</string>
+	<string name="lblDone">Fatto</string>
+	<string name="lblReset">Ripristina</string>
 	<string name="lblEmail">Email</string>
 	<string name="lblPhone">Telefono</string>
 	<string name="lblSearch">Cerca</string>
@@ -17,13 +19,16 @@
 	<string name="lblInfoTab">Chi siamo</string>
 	<string name="lblDetailsTitle">Dettagli</string>
 	<string name="lblFavorite">Preferito</string>
+	<string name="lblFilters">Filtri</string>
 	<string name="lblShowAll">Visualizza tutti</string>
 	<string name="lblShowOnlyFavorites">Visualizza solo i preferiti</string>
+	<string name="lblShowOnlyFavoritesFilter">Visualizza solo i preferiti: </string>
 	<string name="lblDataOptions">Opzioni di visualizzazione</string>
 	<string name="lblAddToFavorites">Aggiungi ai preferiti</string>
 	<string name="lblRemoveFromFavorites">Rimuovi dai preferiti</string>
 	<string name="lblInfoEmailSubject">Richiesta informazioni per aderire</string>
 	<string name="lblTodayOpen">Oggi aperto</string>
+	<string name="lblTodayOpenFilter">Oggi aperto: </string>
 	<string name="lblTodayClose">Oggi chiuso</string>
 	<string name="lblFoodTypes">Potete trovare</string>
 	<string name="lblFoodCategories">Per le vostre esigenze</string>

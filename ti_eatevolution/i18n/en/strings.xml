@@ -6,6 +6,8 @@
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
 	<string name="lblCancel">Cancel</string>
+	<string name="lblDone">Done</string>
+	<string name="lblReset">Reset</string>
 	<string name="lblEmail">Email</string>
 	<string name="lblPhone">Telephone</string>
 	<string name="lblSearch">Search</string>
@@ -15,13 +17,16 @@
 	<string name="lblInfoTab">About</string>
 	<string name="lblDetailsTitle">Details</string>
 	<string name="lblFavorite">Favorite</string>
+	<string name="lblFilters">Filters</string>
 	<string name="lblShowAll">Show all</string>
 	<string name="lblShowOnlyFavorites">Show only favorites</string>
+	<string name="lblShowOnlyFavoritesFilter">Show only favorites: </string>
 	<string name="lblDataOptions">Data view options</string>
 	<string name="lblAddToFavorites">Add to favorites</string>
 	<string name="lblRemoveFromFavorites">Remove from favorites</string>
 	<string name="lblInfoEmailSubject">Info request to join</string>
 	<string name="lblTodayOpen">Today open</string>
+	<string name="lblTodayOpenFilter">Today open: </string>
 	<string name="lblTodayClose">Today close</string>
 	<string name="lblFoodTypes">You can find</string>
 	<string name="lblFoodCategories">For your needs</string>
