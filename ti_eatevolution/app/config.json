@@ -3,6 +3,7 @@
 		"gui": {
 			"primaryColor": "#98c10f",
 			"baseTextColor": "#666",
+			"neutralGreyColor": "#ccc",
 			"advertisementBannerHeight": 50,
 			"advertisementBannerHeightTablet": 90
 		},

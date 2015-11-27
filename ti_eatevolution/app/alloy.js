@@ -112,7 +112,7 @@ Alloy.Globals.createModalWindowHeaderButton = function(params){
 		if (OS_IOS){
 			 params.color = Alloy.CFG.iosColor;
 		} else if (OS_ANDROID){
-			params.color = Alloy.CFG.gui.primaryColor;
+			params.color = "white";
 		}
 	}
 	

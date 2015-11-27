@@ -1,4 +1,5 @@
 "#mainContainer":{
+	backgroundColor: "white",
 	contentHeight: Ti.UI.SIZE,
 	contentWidth: Ti.UI.FILL
 },
@@ -29,9 +30,14 @@
 ".squareFiltersSeparator":{
 	left: 160,
 	right: 0
-}
+},
+"Switch[platform=ios]":{
+	onTintColor: Alloy.CFG.gui.primaryColor
+},
 "Switch[platform=android]":{
-	style: Ti.UI.Android.SWITCH_STYLE_SWITCH
+	backgroundColor: Alloy.CFG.gui.neutralGreyColor,
+	style: Ti.UI.Android.SWITCH_STYLE_SWITCH,
+	borderRadius: 5
 },
 ".switchLabel":{
 	color: Alloy.CFG.gui.baseTextColor,

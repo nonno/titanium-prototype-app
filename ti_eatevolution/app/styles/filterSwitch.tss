@@ -1,7 +1,10 @@
 "#mainContainer":{
 	width: 90,
 	height: 60,
-	backgroundColor: "#aaa"
+	backgroundColor: Alloy.CFG.gui.neutralGreyColor
+},
+"#mainContainer[platform=android]":{
+	borderRadius: 5
 },
 "#label":{
 	color: "white",

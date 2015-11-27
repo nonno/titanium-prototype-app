@@ -108,6 +108,7 @@ onFiltersClick = function(){
 			{
 				"button": Alloy.Globals.createModalWindowHeaderButton({"title": L("lblDone")}),
 				"listener": function(){
+					Alloy.Globals.analyticsEvent({action: "map-data_filtering"});
 					Alloy.Globals.Data.setFilters(filtersController.getFilters());
 					
 					modalWindowFilters.close();

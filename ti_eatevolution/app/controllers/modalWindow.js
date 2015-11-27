@@ -89,6 +89,7 @@ openGeneric = function(params){
 	});
 	
 	controlPanel = Ti.UI.createView({
+		"backgroundColor": Alloy.CFG.gui.primaryColor,
 		"bottom": 0,
 		"height": 50,
 		"width": Ti.UI.FILL
