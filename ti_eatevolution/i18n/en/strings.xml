@@ -28,8 +28,9 @@
 	<string name="lblTodayOpen">Today open</string>
 	<string name="lblTodayOpenFilter">Today open: </string>
 	<string name="lblTodayClose">Today close</string>
-	<string name="lblFoodTypes">You can find</string>
-	<string name="lblFoodCategories">For your needs</string>
+	<string name="lblProfileTypes">Types</string>
+	<string name="lblMealTypes">You can find</string>
+	<string name="lblMealCategories">For your needs</string>
 	<string name="lblReportProfileMailSubject">Profile report</string>
 	<string name="lblPriceCategory">Price category: </string>
 	<string name="lblTakeAway">Take-away: </string>

@@ -1,5 +1,5 @@
 <Alloy>
-	<View id="mainContainer" class="right-buffer bottom-buffer">
-		<Label id="label" class="buffer" />
+	<View id="mainContainer" class="half-buffer">
+		<Label id="label" class="half-buffer" />
 	</View>
 </Alloy>

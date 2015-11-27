@@ -30,12 +30,17 @@
 ".hgroup":{
 	layout: 'horizontal'
 },
-
 ".buffer":{
 	top: 10,
 	left: 10,
 	right: 10,
 	bottom: 10
+},
+".half-buffer":{
+	top: 5,
+	left: 5,
+	right: 5,
+	bottom: 5
 },
 ".hbuffer":{
 	left: 10,
@@ -184,7 +189,7 @@
 },
 
 ".gray":{
-	color: Alloy.CFG.gui.secondaryColor
+	color: Alloy.CFG.gui.baseTextColor
 },
 
 ".primary-color":{

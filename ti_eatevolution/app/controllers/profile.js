@@ -91,7 +91,7 @@ function configFlag(value, field, container){
 			field.color = Alloy.CFG.gui.primaryColor;
 		} else {
 			field.text = Alloy.Globals.Icons.fontAwesome.timesCircle;
-			field.color = Alloy.CFG.gui.secondaryColor;
+			field.color = Alloy.CFG.gui.baseTextColor;
 		}
 	} else {
 		hideInfoContainer(container);

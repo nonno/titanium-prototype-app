@@ -123,7 +123,7 @@ populateList = function(params){
 				font: {
 					fontSize: 20
 				},
-				color: "#666"
+				color: Alloy.CFG.gui.baseTextColor
 			});
 			sectionHeader.add(sectionLabel);
 

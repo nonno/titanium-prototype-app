@@ -7,8 +7,11 @@
 			<Label text="L('lblTodayOpenFilter')" class="switchLabel hbuffer vsize" /> <Switch id="openSwitch" />
 		</View>
 		
-		<ScrollView id="profileTypesContainer" platform="ios" class="squareFiltersContainer hgroup buffer" />
-		<View id="profileTypesContainer" platform="android" class="squareFiltersContainer hgroup buffer" />
+		<View class="hfill vsize top-buffer">
+			<Label text="L('lblProfileTypes')" class="squareFiltersLabel" /> <View class="separator squareFiltersSeparator" />
+		</View>
+		<ScrollView id="profileTypesContainer" platform="ios" class="squareFiltersContainer hgroup vbuffer" />
+		<View id="profileTypesContainer" platform="android" class="squareFiltersContainer hgroup vbuffer" />
 		
 		<View class="hgroup hfill vsize">
 			<Label text="L('lblTakeAway')" class="switchLabel hbuffer vsize" /> <Switch id="takeAwaySwitch" />
@@ -23,10 +26,16 @@
 			<Label text="L('lblPos')" class="switchLabel hbuffer vsize" /> <Switch id="posSwitch" />
 		</View>
 		
-		<ScrollView id="mealTypesContainer" platform="ios" class="squareFiltersContainer hgroup buffer" />
-		<View id="mealTypesContainer" platform="android" class="squareFiltersContainer hgroup buffer" />
+		<View class="hfill vsize top-buffer">
+			<Label text="L('lblMealTypes')" class="squareFiltersLabel" /> <View class="separator squareFiltersSeparator" />
+		</View>
+		<ScrollView id="mealTypesContainer" platform="ios" class="squareFiltersContainer hgroup vbuffer" />
+		<View id="mealTypesContainer" platform="android" class="squareFiltersContainer hgroup vbuffer" />
 		
-		<ScrollView id="mealCategoriesContainer" platform="ios" class="squareFiltersContainer hgroup buffer" />
-		<View id="mealCategoriesContainer" platform="android" class="squareFiltersContainer hgroup buffer" />
+		<View class="hfill vsize top-buffer">
+			<Label text="L('lblMealCategories')" class="squareFiltersLabel" /> <View class="separator squareFiltersSeparator" />
+		</View>
+		<ScrollView id="mealCategoriesContainer" platform="ios" class="squareFiltersContainer hgroup vbuffer" />
+		<View id="mealCategoriesContainer" platform="android" class="squareFiltersContainer hgroup vbuffer" />
 	</ScrollView>
 </Alloy>

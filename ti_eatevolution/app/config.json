@@ -2,7 +2,7 @@
 	"global": {
 		"gui": {
 			"primaryColor": "#98c10f",
-			"secondaryColor": "#666666",
+			"baseTextColor": "#666",
 			"advertisementBannerHeight": 50,
 			"advertisementBannerHeightTablet": 90
 		},

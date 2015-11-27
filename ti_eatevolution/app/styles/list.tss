@@ -35,7 +35,7 @@
 	},
 	left: 85,
 	height: 20,
-	color: "#666"
+	color: Alloy.CFG.gui.baseTextColor
 },
 
 ".thumb-type":{
@@ -72,7 +72,7 @@
 "#listView":{
 	bottom: Alloy.CFG.gui.advertisementBannerHeight,
 	width:Ti.UI.FILL,
-	tintColor: "#666"
+	tintColor: Alloy.CFG.gui.baseTextColor
 },
 "#listView[formFactor=tablet]":{
 	bottom: Alloy.CFG.gui.advertisementBannerHeightTablet,

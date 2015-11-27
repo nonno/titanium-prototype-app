@@ -6,22 +6,37 @@
 	scrollType: "vertical"
 },
 ".squareFiltersContainer":{
-	width: Ti.UI.SIZE
 },
 ".squareFiltersContainer[platform=ios]":{
+	width: Ti.UI.SIZE,
 	contentWidth: Ti.UI.SIZE,
 	contentHeight: 70,
 	height: 70
 },
 ".squareFiltersContainer[platform=android]":{
-	height: Ti.UI.SIZE
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 },
+".squareFiltersLabel":{
+	left: 10,
+	width: 150,
+	color: Alloy.CFG.gui.baseTextColor,
+	font: {
+		fontSize: 14
+	}
+},
+".squareFiltersSeparator":{
+	left: 160,
+	right: 0
+}
 "Switch[platform=android]":{
 	style: Ti.UI.Android.SWITCH_STYLE_SWITCH
 },
 ".switchLabel":{
-	width: 180,
-	font:{
-		fontSize: 16
+	color: Alloy.CFG.gui.baseTextColor,
+	width: 160,
+	font: {
+		fontSize: 14
 	}
 },
