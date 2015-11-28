@@ -78,7 +78,8 @@
 	bottom: Alloy.CFG.gui.advertisementBannerHeightTablet,
 },
 "#listView[platform=ios]":{
-	top:50
+	top:50,
+	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle.NONE
 },
 "#listFooterLabelContainer": {
 	width: Ti.UI.FILL,
