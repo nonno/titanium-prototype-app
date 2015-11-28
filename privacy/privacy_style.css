@@ -1,0 +1,135 @@
+
+/*** Testata ***/
+#top-header-wrapper { background:url(images/top-header-bg.jpg) repeat-x; height:30px; }
+#top-header { width:960px; margin:0 auto; }
+#header-wrapper { background:url(images/fondo_testata.jpg) repeat-x; height:230px; }
+#header { width:960px; margin:0 auto; }
+#logo { padding-top:0px; float:left; }
+#header-banner { float:right; padding-top:7px; }
+
+/*** Stile generale per elementi contenuti nel Body ***/
+body {font-family: 'sf_ui_textregular'; font-size:13px; color:#333; }
+
+a { text-decoration:none; color:#58585A; }
+a:hover { text-decoration:none; }
+p { line-height:20px; }
+
+
+/*** Main Styles ***/
+#wrapper { background:url(images/content-bg.jpg) repeat-y; width:955px; margin:0 auto; overflow:hidden; }
+.wrapper-full { width:955px; margin:0 auto; overflow:hidden; }
+#main { float:left; clear:both; width:637px; overflow:hidden; }
+.main-full { float:left; clear:both; width:955px; overflow:hidden; }
+
+/*** Dettaglio  ***/
+#title-wrapper { /*background:url(images/title-bg.png) repeat-x;*/ height:40px; margin-bottom:10px; }
+#title { width:960px; margin:0 auto; }
+.title-text { text-align:left; padding-left:0px;}
+.title-text a {font-family: 'sf_ui_textregular';}
+
+.title-text h1 { font-family: 'MonopolMedium';font-style: normal; font-size:35px; letter-spacing:1px; color:#444; margin-bottom:6px;}
+.title-text span { font-size:15px; color:#AAA; }
+
+/*** Sidebar Styles ***/
+#sidebar { float:right; width:317px; margin-top:20px; }
+
+
+/*** Widgets Styles ***/
+.post-item-side { margin-bottom:16px; overflow:hidden; }
+.post-item-side:last-child { margin-bottom:0; }
+.post-item-side h4 { margin-bottom:7px; line-height:20px; }
+.post-item-side .post-item-meta span { display:block; margin-bottom:6px; overflow:hidden; }
+.post-item-side .post-item-meta a { color:#555; }
+.post-item-side:last-child .post-item-meta { margin-bottom:-7px; }
+.widget li { border-bottom:1px dashed #E2E2E2; padding-bottom: 10px; margin-bottom: 10px; }
+
+	/* Footer widgets */
+	#footer .widget { width:210px; float:left; margin-right:40px; }
+	#footer .widget.last { margin-right:0; }
+	#footer .widget h3 { background:url(images/footer-line.png) repeat-x bottom; font-size:17px; color:#4a9abb; font-family: 'MonopolMedium'; text-shadow: 1px 1px 1px #FFF; padding-bottom:10px; text-transform: none; margin-bottom:20px; }
+
+	#footer .widget p { line-height:200px; margin-bottom:16px; }
+	#footer .widget .post-item-side img { width:50px; height:45px; background:#FFF; }
+	#footer .widget li { border-bottom:1px dashed #D5D5D5; }
+
+	/* Sidebar widgets */
+	#sidebar .widget { margin-bottom:30px; width:300px; padding-left:17px; overflow:hidden; }
+	#sidebar .widget h3 { background:url(images/double-line.jpg) repeat-x bottom; font-size:32px; letter-spacing:1px; color:#4a9abb; font-family: 'MonopolMedium'; padding-bottom:8px; margin-left:-17px; padding-left:17px; margin-bottom:20px;  margin-top:0px }
+	#sidebar .widget .widget-content { width:300px; margin-left:17px; }
+	#sidebar .post-block { margin-bottom:0; }
+	
+		/* About author widget */
+		.about-cook-text { border-bottom:1px solid #e8e8e8; margin-bottom:16px; padding-bottom:14px; line-height:20px; }
+		.about-cook-image { float:left; padding:4px; bordeR:1px solid #E5E5E5; margin:0 10px 0 0; }
+		.about-email { float:right; width:145px; }
+		.about-email input { background:#f6f6f6; border:1px solid #dfdfdf; width:98px; padding:6px; float:left; font-family: 'MonopolMedium'; font-size:13px; color:#888; }
+		.about-email input:focus { outline:none; }
+		.about-email .email-button { background:#444; width:30px; float:right; color:#CCC; cursor:pointer; }
+		
+
+		/* Tabs widget */
+		.tabs-wrapper ul.tabs { background:url(images/double-line.png) repeat-x bottom; margin-left:-17px; height:41px; margin-bottom:20px; padding-left:17px; }
+		.tabs-wrapper ul.tabs li { background:none; float:left; margin-right:5px; border-top:1px solid #E8E8E8; border-left:1px solid #E8E8E8; border-right:1px solid #E8E8E8; padding:10px; text-transform: uppercase; }
+		.tabs-wrapper ul.tabs li.active { background:#efefef; border-top:1px solid #DFDFDF; border-left:1px solid #DFDFDF; border-right:1px solid #DFDFDF; text-shadow: 1px 1px 1px #FFF; }
+		.tabs-wrapper ul.tabs li a { color:#888; }
+		.tabs-wrapper .tab_content { padding:0; }
+		
+		/* Tagcloud */
+		.tagcloud a { background:url(images/tag.png) no-repeat left; padding-left:21px; padding-right:10px; height:18px; margin:4px; padding-top:10px; font-size:11px !important; color:#FFF; display:inline-block;  -moz-border-radius: 2px; -webkit-border-radius:2px; border-radius: 2px; }
+		
+		/* Text widget */
+		.textwidget p { margin-bottom:20px; }
+		
+		/* Flickr widget */
+		.flickr_badge_image { float:left; margin-right:15px; margin-bottom:13px; }
+		.flickr_badge_image img { padding:4px; border:1px solid #E5E5E5; }
+		#footer .widget .flickr_badge_image { margin-right:5px; margin-bottom:6px; }
+		#footer .widget .flickr_badge_image img { width:60px; height:60px; background:#FFF; }
+		
+		/* Twitter widget */
+		#twitter_update_list li { background:url(images/twitter_small.png) no-repeat top left; padding-left:26px; line-height:20px; }
+
+	
+/*** Post styles ***/
+#post { margin-top:25px; overflow:hidden; margin-bottom:10px; }
+#post img { border:0px solid #E5E5E5; padding:0px; }
+.post-thumb { margin-bottom:20px;}
+.about-author-text { width:525px; overflow:hidden; }
+.post-tags { margin-bottom:25px; clear:both; }
+.post-tags a { background:url(images/tag.png) no-repeat left; padding-left:21px; padding-right:10px; height:18px; margin:4px 10px 4px 0; padding-top:10px; font-size:11px !important; color:#FFF; display:inline-block; -moz-border-radius: 2px; -webkit-border-radius:2px; border-radius: 2px;}
+
+	/* Post content */
+	.post-content { width:620px; }
+	.post-content.full { width:960px; }
+	.post-content p { line-height:20px; margin-bottom:20px; width:100%}
+	.post-content h1 { font-size:28px; margin-bottom:14px; }
+	.post-content h2 { font-size:24px; margin-bottom:14px; }
+	.post-content h3 { font-size:20px; margin-bottom:14px; }
+	.post-content h4 { font-size:18px; margin-bottom:14px; }
+	.post-content h5 { font-size:16px; margin-bottom:14px; }
+	.post-content h6 { font-size:14px; margin-bottom:14px; }
+	.post-content hr { border:0; background-color: #DDD; height:1px; margin-bottom:18px; color:#DDD; }
+	.post-content ul { padding-left: 30px; margin-bottom:20px; font-size:13px; line-height:20px; }
+	.post-content ul li{ background:url(images/ul-dot.png) no-repeat; padding-left:16px; margin-bottom:10px; }
+	.post-content ol { padding-left:46px; margin-bottom:20px; font-size:13px; line-height:20px; }
+	.post-content ol li { list-style-type: decimal; margin-bottom:6px; }
+	.post-content .alignright { float:right; margin:0 0 4px 10px; }
+	.post-content .alignleft { float:left; margin:0 10px 4px 0; }
+	.post-content blockquote { background:url(images/quote.png) no-repeat; padding-left:32px; padding-top:3px; margin-left:25px; color:#777; font-style:italic; }
+	.wp-caption, .gallery-caption  { margin-bottom:20px; text-align: center; }
+	p.wp-caption-text { margin-bottom:2px; }
+	.aligncenter, div.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+	
+	/*** Ingredients ***/
+	.note-wrapper { float:right; margin:0 0 10px px; width:251px; padding-right:10px}
+	.note-top { background:#F8B905; width:231px; height:50px;font-size:40px;letter-spacing:2px; font-family: 'MonopolLight'; color:#FFF; line-height:60px; padding-left:20px;}
+	.note-content { background:#F8B905; padding-bottom:1px; }
+	.note-content ul { padding-left:25px; margin:0 !important; }
+	.note-content li { background:url(images/note-dot.png) no-repeat top left !important; padding:1px 2px 0 14px !important; margin:0 !important; line-height:25px; color:#000; width:200px;}
+	.note-bottom { background:#F8B905; no-repeat; width:251px; height:50px; }
+
+ .appstore {background:url(images/apple_badge.png) no-repeat; margin-top:-110px;  margin-left:120px; width:167px; height:50px; padding:0px 0px 0px 0px; display:block;}
+ .googleplay {background:url(images/google_badge.png) no-repeat; margin-top:10px;  margin-left:120px; width:167px; height:50px; padding:0px 0px 0px 0px; display:block;}
+
+
+ .line { background:#C6C7C8; height:2px; width:620px; padding-bottom:0px; margin-top:20px;}
