@@ -50,7 +50,11 @@ fetchDataOnline = function(){
 					throw {"message": L("msgSyncErrorDataMalformed")};
 				} else if (VersionChecker.compare(Ti.App.version, data.appMinVersion) === 2){
 					throw {"message": L("msgSyncErrorAppOutdated"), "showAlert": true};
-				} else if (Ti.App.version !== data.appVersion){
+				} else if (
+					(OS_IOS && data.currentIosVersion && Ti.App.version !== data.currentIosVersion)
+					||
+					(OS_ANDROID && data.currentAndroidVersion && Ti.App.version !== data.currentAndroidVersion)
+				){
 					throw {"message": L("msgSyncErrorAppOutdated")};
 				} else if (data.date <= Alloy.Globals.Data.date){
 					throw {"message": L("msgSyncErrorNoDataUpdate")};

@@ -42,7 +42,12 @@ describe("Data test", function() {
 			Request.get(Alloy.CFG.dataUrl, {
 				"success": function(res){
 					var data = JSON.parse(res);
-					assert.equal(data.appVersion, Ti.App.version);
+					if (OS_IOS){
+						assert.equal(data.currentIosVersion, Ti.App.version);
+					}
+					if (OS_ANDROID){
+						assert.equal(data.currentAndroidVersion, Ti.App.version);
+					}
 					done();
 				},
 				"error": function(err){
