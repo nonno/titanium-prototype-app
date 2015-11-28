@@ -28,8 +28,7 @@
 	}
 },
 ".squareFiltersSeparator":{
-	left: 160,
-	right: 0
+	left: 160
 },
 "Switch[platform=ios]":{
 	onTintColor: Alloy.CFG.gui.primaryColor
