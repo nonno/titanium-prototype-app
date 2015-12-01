@@ -7,7 +7,8 @@ var Request = require("Request"),
 
 var getAssetDataFile, getDataFile, fetchDataOffline, fetchDataOnline, addressToString,
 	getTodayTimetable, isTodayOpen, getFoodTypes, getFoodCategories, calculateDistances,
-	filterForTypes, filterForMealTypes, filterForMealCategories, filter;
+	filterForTypes, filterForMealTypes, filterForMealCategories, filter,
+	isOfOneType, hasAllMealTypes, hasAllMealCategories;
 
 getAssetDataFile = function(){
 	return Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "data/data.json");
@@ -187,41 +188,44 @@ getFoodCategories = function(locale){
 	}, []));
 };
 
+isOfOneType = function(types, profile){
+	if (profile.tipo){
+		return types.indexOf(profile.tipo) > -1;
+	}
+	return true;
+};
 filterForTypes = function(profiles, types){
 	if (types && types.length){
-		return profiles.filter(function(profile){
-			if (profile.tipo){
-				return types.indexOf(profile.tipo) > -1;
-			}
-			return true;
-		});
+		return profiles.filter(_.partial(isOfOneType, types));
 	}
 	return profiles;
 };
 
+hasAllMealTypes = function(mealTypes, profile){
+	var profileMealTypes = profile.cibi ? profile.cibi.map(function(cibo){ return cibo.tipo; }) : [];
+	
+	return _.intersection(profileMealTypes, mealTypes).length === mealTypes.length;
+};
 filterForMealTypes = function(profiles, mealTypes){
 	if (mealTypes && mealTypes.length){
-		return profiles.filter(function(profile){
-			var profileMealTypes = profile.cibi.map(function(cibo){ return cibo.tipo; });
-			
-			return _.intersection(profileMealTypes, mealTypes).length === mealTypes.length;
-		});
+		return profiles.filter(_.partial(hasAllMealTypes, mealTypes));
 	}
 	return profiles;
 };
 
+hasAllMealCategories = function(mealCategories, profile){
+	var i, cat;
+	for (i in profile.cibi){
+		cat = profile.cibi[i].cat;
+		if (_.intersection(cat, mealCategories).length === mealCategories.length){
+			return true;
+		}
+	}
+	return false;
+};
 filterForMealCategories = function(profiles, mealCategories){
 	if (mealCategories && mealCategories.length){
-		return profiles.filter(function(profile){
-			var i, cat;
-			for (i in profile.cibi){
-				cat = profile.cibi[i].cat;
-				if (_.intersection(cat, mealCategories).length === mealCategories.length){
-					return true;
-				}
-			}
-			return false;
-		});
+		return profiles.filter(_.partial(hasAllMealCategories, mealCategories));
 	}
 	return profiles;
 };
@@ -300,6 +304,9 @@ exports.getTodayTimetable = getTodayTimetable;
 exports.isTodayOpen = isTodayOpen;
 exports.getFoodTypes = getFoodTypes;
 exports.getFoodCategories = getFoodCategories;
+exports.isOfOneType = isOfOneType;
+exports.hasAllMealTypes = hasAllMealTypes;
+exports.hasAllMealCategories = hasAllMealCategories;
 exports.filterForTypes = filterForTypes;
 exports.filterForMealTypes = filterForMealTypes;
 exports.filterForMealCategories = filterForMealCategories;

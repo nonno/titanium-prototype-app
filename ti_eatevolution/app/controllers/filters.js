@@ -11,8 +11,13 @@ profileTypeControllers = [];
 mealTypeControllers = [];
 mealCategoryControllers = [];
 
+ProfileTypeRepository.preProcessItems();
+MealTypeRepository.preProcessItems();
+MealCategoryRepository.preProcessItems();
+
 getFilters = function(){
-	var tipi = [],
+	var filters,
+		tipi = [],
 		tipiCibi = [],
 		categorieCibi = [];
 	
@@ -31,7 +36,7 @@ getFilters = function(){
 	});
 	if (!categorieCibi.length){ categorieCibi = undefined; }
 	
-	return {
+	filters = {
 		"aperto": $.openSwitch.value === true ? true : undefined,
 		"preferiti": $.favoritesSwitch.value === true ? true : undefined,
 		"asporto": $.takeAwaySwitch.value === true ? true : undefined,
@@ -41,7 +46,10 @@ getFilters = function(){
 		"tipi": tipi,
 		"tipiCibi": tipiCibi,
 		"categorieCibi": categorieCibi
-	}
+	};
+	Ti.API.debug("getFilters: " + JSON.stringify(filters));
+	
+	return filters;
 };
 
 sortFilters = function(selected, a, b){
@@ -63,7 +71,7 @@ sortFilters = function(selected, a, b){
 };
 
 setFilters = function(filters){
-	Ti.API.debug(JSON.stringify(filters));
+	Ti.API.debug("setFilters: " + JSON.stringify(filters));
 	
 	var profileTypes, mealTypes, mealCategories;
 	
@@ -101,6 +109,7 @@ setFilters = function(filters){
 		mealTypeControllers.push(controller);
 		$.mealTypesContainer.add(controller.getView());
 	});
+	$.mealTypesLabelContainer.visible = Boolean($.mealTypesContainer.children.length);
 
 	mealCategoryControllers = [];
 	$.mealCategoriesContainer.removeAllChildren();
@@ -115,6 +124,7 @@ setFilters = function(filters){
 		mealCategoryControllers.push(controller);
 		$.mealCategoriesContainer.add(controller.getView());
 	});
+	$.mealCategoriesLabelContainer.visible = Boolean($.mealCategoriesContainer.children.length);
 };
 
 setFilters(filters);

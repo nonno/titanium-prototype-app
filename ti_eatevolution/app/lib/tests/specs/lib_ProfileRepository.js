@@ -211,7 +211,7 @@ describe("ProfileRepository", function() {
 			results = ProfileRepository.filterForMealTypes(data, selectedTypes);
 			
 			notFiltered = results.filter(function(profile){
-				var profileMealTypes = profile.cibi.map(function(meal){ return meal.tipo; });
+				var profileMealTypes = profile.cibi ? profile.cibi.map(function(meal){ return meal.tipo; }) : [];
 				return _.intersection(profileMealTypes, selectedTypes).length !== selectedTypes.length;
 			});
 			assert.lengthOf(notFiltered, 0);
