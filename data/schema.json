@@ -1,0 +1,232 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "Formato del file usato dall'app Eat Evolution, versione 1.0.1",
+	"type": "object",
+	"properties": {
+		"currentIosVersion": {
+			"description": "Versione corrente pubblicata sull'Apple Store",
+			"type": "string"
+		},
+		"currentAndroidVersion": {
+			"description": "Versione corrente pubblicata sul Google Play Store",
+			"type": "string"
+		},
+		"appMinVersion": {
+			"description": "Versione minima dell'app per poter usare il file",
+			"type": "string"
+		},
+		"date": {
+			"description": "Data e ora di aggiornamento dei dati",
+			"type": "string",
+			"pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+		},
+		"locali": {
+			"description": "Elenco dei locali",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"description": "Identificatore univoco per un locale",
+						"type": "integer"
+					},
+					"nome": {
+						"type": "string"
+					},
+					"ind": {
+						"description": "Indirizzo nel formato 'Via Qualcosa 1'",
+						"type": "string"
+					},
+					"cap": {
+						"type": "string",
+						"pattern": "^[1-9][0-9]*$"
+					},
+					"loc": {
+						"description": "Nome della località/città",
+						"type": "string"
+					},
+					"prov": {
+						"description": "Provincia in due lettere",
+						"type": "string",
+						"pattern": "^[A-Z]{2}$"
+					},
+					"reg": {
+						"description": "Nome della regione per esteso",
+						"type": "string"
+					},
+					"naz": {
+						"description": "Nome della nazione per esteso",
+						"type": "string"
+					},
+					"email": {
+						"type": ["string", "null"],
+						"format" : "email"
+					},
+					"tel": {
+						"description": "Telefono, possibilmente con numeri tutti attaccati e prefisso internazionale",
+						"type": "string"
+					},
+					"lat": {
+						"description": "Latitudine",
+						"type": "number"
+					},
+					"lon": {
+						"description": "Longitudine",
+						"type": "number"
+					},
+					"web": {
+						"description": "Url sito web",
+						"type": ["string", "null"]
+					},
+					"tipo": {
+						"description": "Tipologia: bar, fast-food, forno, gelateria, pasticceria, pizzeria, ristorante, rosticceria, tavola calda",
+						"type": "string",
+						"enum": ["bar", "ff", "for", "gel", "pas", "piz", "ris", "ros", "tc"]
+					},
+					"costo": {
+						"description": "Fascia di prezzo in cui si colloca il locale",
+						"type": "integer",
+						"minimum": 1,
+						"maximum": 5,
+						"exclusiveMinimum": false,
+						"exclusiveMaximum": false
+					},
+					"asporto": {
+						"description": "Se è possibile ordinare cibo da asporto",
+						"type": "boolean"
+					},
+					"sedere": {
+						"description": "E' possibile sedersi",
+						"type": "boolean"
+					},
+					"disabili": {
+						"description": "Il locale è accessibile a persone disabili",
+						"type": "boolean"
+					},
+					"pos": {
+						"description": "Possibile pagare con carta",
+						"type": "boolean"
+					},
+					"dormire": {
+						"description": "E' possibile pernottare nel locale",
+						"type": "boolean"
+					},
+					"chiuso": {
+						"description": "Elenco di periodi di chiusura",
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"da": {
+									"description": "Data/ora di inizio periodo di chiusura",
+									"type": "string",
+									"pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+								},
+								"a": {
+									"description": "Data/ora di fine periodo di chiusura",
+									"type": "string",
+									"pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+								}
+							},
+							"additionalProperties": false,
+							"required": ["da", "a"]
+						},
+						"additionalItems": false
+					},
+					"aperto": {
+						"description": "Elenco di periodi di apertura, ciascuno indicante le fasce orarie giorno per giorno",
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"da": {
+									"description": "Data di inizio periodo di apertura",
+									"type": "string",
+									"format": "date"
+								},
+								"a": {
+									"description": "Data di fine periodo di apertura",
+									"type": "string",
+									"format": "date"
+								},
+								"gg": {
+									"description": "I sette giorni della settimana, da lunedì",
+									"type": "array",
+									"minItems": 7,
+									"maxItems": 7,
+									"items": {
+										"description": "Elenco di periodi di apertura all'interno della giornata",
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"da": {
+													"description": "Ora di inizio periodo di apertura",
+													"type": "string",
+													"format": "time"
+												},
+												"a": {
+													"description": "Ora di fine periodo di apertura",
+													"type": "string",
+													"format": "time"
+												}
+											},
+											"additionalProperties": false,
+											"required": ["da", "a"]
+										},
+										"additionalItems": false
+									}
+								}
+							},
+							"additionalProperties": false,
+							"required": ["da", "a", "gg"]
+						},
+						"additionalItems": false
+					},
+					"cibi": {
+						"description": "Elenco di pietanze, ciascuna con le sue caratteristiche",
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"des": {
+									"description": "Descrizione della pietanza",
+									"type": ["string", "null"]
+								},
+								"tipo": {
+									"description": "Tipologia: dolce, gelato, insalata, panino, primo piatto, secondo piatto",
+									"type": "string",
+									"enum": ["dol", "gel", "ins", "pan", "pp", "sp"]
+								},
+								"cat": {
+									"description": "Elenco di categorie: senza glutine, senza lattosio, macrobiotica, premaman, vegana, vegetariana",
+									"type": "array",
+									"items": {
+										"type": "string",
+										"enum": ["gf", "lf", "mac", "pm", "vegan", "veget"]
+									}
+								},
+								"imgDetail": {
+									"description": "Percorso a immagine di dettaglio",
+									"type": ["string", "null"]
+								},
+								"imgThumb": {
+									"description": "Percorso a immagine di anteprima",
+									"type": ["string", "null"]
+								}
+							},
+							"additionalProperties": false,
+							"required": ["tipo"]
+						},
+						"additionalItems": false
+					}
+				},
+				"additionalProperties": false,
+				"required": ["id", "nome", "ind", "cap", "loc", "prov", "tel", "tipo"]
+			},
+			"additionalItems": false
+		}
+	},
+	"additionalProperties": false,
+	"required": ["currentIosVersion", "currentAndroidVersion", "appMinVersion", "date", "locali"]
+}
