@@ -58,6 +58,12 @@ fetchDataOnline = function(params){
 			try {
 				data = JSON.parse(res);
 				
+				if (data){
+					Ti.API.debug("Data date: " + data.date);
+					Ti.API.debug("Data app min version: " + data.appMinVersion);
+				}
+				Ti.API.debug("Current data date: " + Alloy.Globals.Data.date);
+				
 				if (!data || !data.locali){
 					throw {"message": L("msgSyncErrorDataMalformed")};
 				} else if (VersionChecker.compare(Ti.App.version, data.appMinVersion) === 2){
@@ -68,7 +74,7 @@ fetchDataOnline = function(params){
 					(OS_ANDROID && data.currentAndroidVersion && Ti.App.version !== data.currentAndroidVersion)
 				){
 					throw {"message": L("msgSyncErrorAppOutdated")};
-				} else if (data.date <= Alloy.Globals.Data.date){
+				} else if (!params.useTestData && Alloy.Globals.Data.date && data.date <= Alloy.Globals.Data.date){
 					throw {"message": L("msgSyncErrorNoDataUpdate")};
 				} else {
 					file = getDataFile();
@@ -78,6 +84,11 @@ fetchDataOnline = function(params){
 					// TODO handle mix of data (for don't loose added properties like distances)
 					Alloy.Globals.Data.locali = data.locali;
 					Alloy.Globals.Data.date = data.date;
+					
+					if (params.useTestData){
+						Ti.API.debug("Deleting current data date");
+						Alloy.Globals.Data.date = null;
+					}
 					
 					defer.resolve("Data replaced");
 				}
