@@ -5,6 +5,7 @@
 	<string name="lblYes">Yes</string>
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
+	<string name="lblConfirm">Confirm</string>
 	<string name="lblCancel">Cancel</string>
 	<string name="lblDone">Done</string>
 	<string name="lblReset">Reset</string>

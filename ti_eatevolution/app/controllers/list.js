@@ -180,7 +180,7 @@ onFiltersClick = function(){
 		],
 		"rightNav": [
 			{
-				"button": Alloy.Globals.createModalWindowHeaderButton({"title": L("lblDone")}),
+				"button": Alloy.Globals.createModalWindowHeaderButton({"title": OS_IOS ? L("lblDone") : L("lblConfirm")}),
 				"listener": function(){
 					Alloy.Globals.analyticsEvent({action: "list-data_filtering"});
 					Alloy.Globals.Data.setFilters(filtersController.getFilters());

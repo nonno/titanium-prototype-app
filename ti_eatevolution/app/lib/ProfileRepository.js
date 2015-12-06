@@ -36,11 +36,22 @@ fetchDataOffline = function(){
 	Alloy.Globals.Data.date = data.date;
 	Alloy.Globals.Data.locali = data.locali;
 };
-fetchDataOnline = function(){
-	Ti.API.debug("ProfileRepository.fetchDataOnline");
-	var defer = q.defer();
+fetchDataOnline = function(params){
+	params = params || {};
+	params.useTestData = params.useTestData || false;
 	
-	Request.get(Alloy.CFG.dataUrl, {
+	Ti.API.debug("ProfileRepository.fetchDataOnline");
+	var defer, url;
+	
+	defer = q.defer();
+	if (params.useTestData || Alloy.CFG.development){
+		Ti.API.debug("Downloading test file");
+		url = Alloy.CFG.dataTestUrl;
+	} else {
+		url = Alloy.CFG.dataUrl;
+	}
+	
+	Request.get(url, {
 		"success": function(res){
 			var file, data;
 			

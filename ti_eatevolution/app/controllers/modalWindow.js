@@ -169,7 +169,7 @@ close = function(params){
 if (!rightNav || rightNav.length === 0){
 	Ti.API.debug("Adding default button");
 	rightNav = [{
-		"button": Alloy.Globals.createModalWindowHeaderButton({"title": L("lblDone")}),
+		"button": Alloy.Globals.createModalWindowHeaderButton({"title": OS_IOS ? L("lblDone") : L("lblConfirm")}),
 		"listener": close
 	}];
 } else if (rightNav.length === 1 && !rightNav[0].listener){

@@ -81,6 +81,11 @@ $.info.addEventListener("close", function(){
 
 $.joinButtonContainer.addEventListener("singletap", toJoin);
 
+$.banner.addEventListener("singletap", webCampaign);
+$.banner.addEventListener("longpress", function(){
+	require("ProfileRepository").fetchDataOnline({"useTestData": true});
+});
+
 if (OS_IOS){
 	(function(){
 		var nsfLogo = Alloy.Globals.createNSFLogo();

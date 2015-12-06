@@ -29,7 +29,7 @@ var create = function(params) {
 		Ti.API.warn("Ad not received " + JSON.stringify(e));
 	});
 	
-	if (Alloy.CFG.disableAdv){
+	if (Alloy.CFG.development){
 		return Ti.UI.createView();
 	}
 	return adMobView;

@@ -17,12 +17,13 @@
 			"campaign": "http://www.nutrizionistisenzafrontiere.org/campagna-eat-evolution/"
 		},
 		"dataUrl": "https://dl.dropbox.com/s/9vyf6zgxwi9teqn/data.json",
+		"dataTestUrl": "https://dl.dropbox.com/s/98b98lh8nzo3vgo/data.test.json",
 		"syncronizationInterval": 0,
 		"gaTrackingId": "UA-63543213-2",
 		"googleMapsKey": "AIzaSyD1y5-w94SxFHvyssJ8godURb90SkyBcC8",
 		"staticMapOnDetail": false,
 		"mapOverlayOnDetail": true,
-		"disableAdv": false
+		"development": false
 	},
 	"env:development": {
 		"runTests": false

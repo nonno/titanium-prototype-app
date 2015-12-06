@@ -8,6 +8,7 @@
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
 	<string name="lblCancel">Annulla</string>
+	<string name="lblConfirm">Conferma</string>
 	<string name="lblDone">Fatto</string>
 	<string name="lblReset">Ripristina</string>
 	<string name="lblEmail">Email</string>

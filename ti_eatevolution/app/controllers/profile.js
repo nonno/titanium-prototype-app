@@ -219,8 +219,17 @@ if (profile.web){
 			todayTimetable = ProfileRepository.getTodayTimetable(profile);
 			
 			aperturaText = L("lblTodayOpen") + " " + todayTimetable.reduce(function(memo, time){
+				var daParts, aParts;
+				daParts = time.da.split(":");
+				aParts = time.a.split(":");
+				if (daParts.length === 3 && (daParts[2] === "00" || daParts[2] === "59")){
+					daParts.pop();
+				}
+				if (aParts.length === 3 && (aParts[2] === "00" || aParts[2] === "59")){
+					aParts.pop();
+				}
 				memo += memo.length > 0 ? ", " : "";
-				return memo + time.da + "-" + time.a;
+				return memo + daParts.join(":") + "-" + aParts.join(":");
 			}, "");
 		} else {
 			aperturaText = L("lblTodayClose");

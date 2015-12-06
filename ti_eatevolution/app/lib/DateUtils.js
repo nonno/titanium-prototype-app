@@ -20,7 +20,7 @@ getTimeInterval = function(obj){
 		timeInterval += obj.da;
 	}
 	if (obj.da.indexOf("T") > -1){
-		timeInterval += ":00+00:00";
+		timeInterval += "+00:00";
 	} else {
 		timeInterval += "T00:00:00+00:00";
 	}
@@ -33,7 +33,7 @@ getTimeInterval = function(obj){
 		timeInterval += obj.a;
 	}
 	if (obj.a.indexOf("T") > -1){
-		timeInterval += ":00+00:00";
+		timeInterval += "+00:00";
 	} else {
 		timeInterval += "T23:59:59+00:00";
 	}

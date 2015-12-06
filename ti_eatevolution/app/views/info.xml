@@ -1,7 +1,7 @@
 <Alloy>
 	<Window title="L('lblInfoTab')">
 		<ScrollView id="mainContainer" class="vgroup buffer fill" scrollType="vertical" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL">
-			<ImageView id="banner" image="/images/info_banner.png" class="hfill vsize" onClick="webCampaign" />
+			<ImageView id="banner" image="/images/info_banner.png" class="hfill vsize" />
 			
 			<Label id="title" class="vsize hfill" text="L('lblInfoTitle')" top="20" />
 			<Label id="subtitle" class="vsize hfill" text="L('lblInfoSubtitle')" top="10" />
