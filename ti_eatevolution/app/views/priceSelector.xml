@@ -1,0 +1,14 @@
+<Alloy>
+	<View id="mainContainer" class="hsize vgroup">
+		<View class="size hgroup bottom-buffer">
+			<Label id="price1" class="icon icon-money h6 primary-color" />
+			<Label id="price2" class="icon icon-money h6 primary-color" />
+			<Label id="price3" class="icon icon-money h6 primary-color" />
+			<Label id="price4" class="icon icon-money h6 primary-color" />
+			<Label id="price5" class="icon icon-money h6 primary-color" />
+		</View>
+		
+		<Slider id="minLevel" class="hfill" />
+		<Slider id="maxLevel" class="hfill" />
+	</View>
+</Alloy>

@@ -26,6 +26,11 @@
 		<View class="hgroup hfill vsize top-buffer">
 			<Label text="L('lblPos')" class="switchLabel hbuffer vsize" /> <Switch id="posSwitch" />
 		</View>
+		<View class="separator" />
+		
+		<View class="hgroup hfill vsize top-buffer">
+			<Label text="L('lblPriceCategory')" class="switchLabel hbuffer vsize" /> <Require id="priceSelector" src="priceSelector" />
+		</View>
 		
 		<View id="mealTypesLabelContainer" class="hfill vsize top-buffer">
 			<Label text="L('lblMealTypes')" class="squareFiltersLabel" /> <View class="separator squareFiltersSeparator" />

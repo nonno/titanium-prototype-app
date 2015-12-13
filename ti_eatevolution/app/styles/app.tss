@@ -292,6 +292,10 @@
 	text: Alloy.Globals.Icons.fontAwesome.exlamationTriangle,
 	title: Alloy.Globals.Icons.fontAwesome.exlamationTriangle
 },
+".icon-money":{
+	text: Alloy.Globals.Icons.fontAwesome.money,
+	title: Alloy.Globals.Icons.fontAwesome.money
+},
 ".icon-btn":{
 	height: 60,
 	width: 60,

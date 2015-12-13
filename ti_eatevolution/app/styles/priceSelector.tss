@@ -1,0 +1,15 @@
+"#mainContainer[platform=ios]":{
+	width:Ti.UI.SIZE,
+	height:Ti.UI.SIZE
+},
+"#mainContainer[platform=android]":{
+	right:0,
+	width:160,
+	height:100
+},
+"Slider[platform=ios]":{
+	tintColor: Alloy.CFG.gui.primaryColor
+},
+".icon-money":{
+	right:1
+}

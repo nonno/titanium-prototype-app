@@ -16,37 +16,36 @@ Alloy.Globals.Data.setFilters = function(filters){
 	Ti.App.fireEvent("filterschanged");
 };
 
-Alloy.Globals.Icons = {
-	"profileTypes": {
-		"bar": "\ue600",
-		"ff": "\ue601",
-		"for": "\ue602",
-		"gel": "\ue603",
-		"pas": "\ue604",
-		"piz": "\ue605",
-		"ris": "\ue606",
-		"ros": "\ue607",
-		"tc": "\ue608"
-	},
-	"fontAwesome": {
-		"star": "\uf005",
-		"home": "\uf015",
-		"timesCircle": "\uf057",
-		"checkCircle": "\uf058",
-		"infoCircle": "\uf05a",
-		"exlamationTriangle": "\uf071",
-		"calendar": "\uf073",
-		"phone": "\uf095",
-		"globe": "\uf0ac",
-		"filter": "\uf0b0",
-		"chain": "\uf0c1",
-		"cloud": "\uf0c2",
-		"money": "\uf0d6",
-		"caretDown": "\uf0d7",
-		"envelope": "\uf0e0",
-		"sort": "\uf160",
-		"map": "\uf278"
-	}
+Alloy.Globals.Icons = {};
+Alloy.Globals.Icons.profileTypes = {
+	"bar": "\ue600",
+	"ff": "\ue601",
+	"for": "\ue602",
+	"gel": "\ue603",
+	"pas": "\ue604",
+	"piz": "\ue605",
+	"ris": "\ue606",
+	"ros": "\ue607",
+	"tc": "\ue608"
+};
+Alloy.Globals.Icons.fontAwesome = {
+	"star": "\uf005",
+	"home": "\uf015",
+	"timesCircle": "\uf057",
+	"checkCircle": "\uf058",
+	"infoCircle": "\uf05a",
+	"exlamationTriangle": "\uf071",
+	"calendar": "\uf073",
+	"phone": "\uf095",
+	"globe": "\uf0ac",
+	"filter": "\uf0b0",
+	"chain": "\uf0c1",
+	"cloud": "\uf0c2",
+	"money": "\uf0d6",
+	"caretDown": "\uf0d7",
+	"envelope": "\uf0e0",
+	"sort": "\uf160",
+	"map": "\uf278"
 };
 
 Alloy.Globals.analyticsShowView = function(viewName){

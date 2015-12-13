@@ -43,6 +43,7 @@ getFilters = function(){
 		"sedere": $.seatingSwitch.value === true ? true : undefined,
 		"disabili": $.forDisabledSwitch.value === true ? true : undefined,
 		"pos": $.posSwitch.value === true ? true : undefined,
+		"costo": $.priceSelector.getValue(),
 		"tipi": tipi,
 		"tipiCibi": tipiCibi,
 		"categorieCibi": categorieCibi
@@ -81,6 +82,7 @@ setFilters = function(filters){
 	$.seatingSwitch.value = Boolean(filters.sedere);
 	$.forDisabledSwitch.value = Boolean(filters.disabili);
 	$.posSwitch.value = Boolean(filters.pos);
+	if (filters.costo){ $.priceSelector.setValue(filters.costo); }
 	
 	profileTypeControllers = [];
 	$.profileTypesContainer.removeAllChildren();
