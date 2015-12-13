@@ -48,26 +48,11 @@
 	left: 5,
 	border: 0
 },
-"#searchBarContainer":{
-	top:0,
-	height:Ti.UI.SIZE,
-	width:Ti.UI.FILL,
-	borderWidth:0,
-	borderColor:"#fff"
-},
 "#rightNavButtons":{
 	top:0,
 	right:0,
 	width:0,
 	height:50
-},
-"#searchBar":{
-	height:50,
-	left:0,
-	top:0,
-	right:0,
-	backgroundImage: "/images/alpha.png",
-	backgroundRepeat: true
 },
 "#listView":{
 	bottom: Alloy.CFG.gui.advertisementBannerHeight,
@@ -78,7 +63,6 @@
 	bottom: Alloy.CFG.gui.advertisementBannerHeightTablet,
 },
 "#listView[platform=ios]":{
-	top:50,
 	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle.NONE
 },
 "#listFooterLabelContainer": {

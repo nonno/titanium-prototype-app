@@ -1,45 +1,52 @@
 <Alloy>
 	<ScrollView id="mainContainer" class="vgroup buffer">
-		<View class="hgroup hfill vsize">
-			<Label text="L('lblShowOnlyFavoritesFilter')" class="switchLabel hbuffer vsize" /> <Switch id="favoritesSwitch" />
+		<View class="hgroup hfill vsize top-buffer">
+			<Label text="L('lblNameFilter')" class="filterLabel hbuffer vsize" platform="ios" />
+			<TextField id="nameField" class="hfill" platform="ios" clearButtonMode="Ti.UI.INPUT_BUTTONMODE_ONFOCUS" />
+			
+			<TextField id="nameField" class="hfill" platform="android" hintText="L('lblNameFilter')" softKeyboardOnFocus="Ti.UI.Android.SOFT_KEYBOARD_HIDE_ON_FOCUS" />
+		</View>
+		
+		<View class="hgroup hfill vsize top-buffer">
+			<Label text="L('lblShowOnlyFavoritesFilter')" class="filterLabel hbuffer vsize" /> <Switch id="favoritesSwitch" />
 		</View>
 		<View class="hgroup hfill vsize top-buffer">
-			<Label text="L('lblTodayOpenFilter')" class="switchLabel hbuffer vsize" /> <Switch id="openSwitch" />
+			<Label text="L('lblTodayOpenFilter')" class="filterLabel hbuffer vsize" /> <Switch id="openSwitch" />
 		</View>
 		
 		<View class="hfill vsize top-buffer">
-			<Label text="L('lblProfileTypes')" class="squareFiltersLabel" /> <View class="separator squareFiltersSeparator" />
+			<Label text="L('lblProfileTypes')" class="squareFilterLabel" /> <View class="separator squareFiltersSeparator" />
 		</View>
 		<ScrollView id="profileTypesContainer" platform="ios" class="squareFiltersContainer hgroup" />
 		<View id="profileTypesContainer" platform="android" class="squareFiltersContainer hgroup" />
 		<View class="separator" />
 		
-		<View class="hgroup hfill vsize">
-			<Label text="L('lblTakeAway')" class="switchLabel hbuffer vsize" /> <Switch id="takeAwaySwitch" />
-		</View>
 		<View class="hgroup hfill vsize top-buffer">
-			<Label text="L('lblSeating')" class="switchLabel hbuffer vsize" /> <Switch id="seatingSwitch" />
-		</View>
-		<View class="hgroup hfill vsize top-buffer">
-			<Label text="L('lblForDisabled')" class="switchLabel hbuffer vsize" /> <Switch id="forDisabledSwitch" />
-		</View>
-		<View class="hgroup hfill vsize top-buffer">
-			<Label text="L('lblPos')" class="switchLabel hbuffer vsize" /> <Switch id="posSwitch" />
+			<Label text="L('lblPriceCategory')" class="filterLabel hbuffer vsize" /> <Require id="priceSelector" src="priceSelector" />
 		</View>
 		<View class="separator" />
 		
+		<View class="hgroup hfill vsize">
+			<Label text="L('lblTakeAway')" class="filterLabel hbuffer vsize" /> <Switch id="takeAwaySwitch" />
+		</View>
 		<View class="hgroup hfill vsize top-buffer">
-			<Label text="L('lblPriceCategory')" class="switchLabel hbuffer vsize" /> <Require id="priceSelector" src="priceSelector" />
+			<Label text="L('lblSeating')" class="filterLabel hbuffer vsize" /> <Switch id="seatingSwitch" />
+		</View>
+		<View class="hgroup hfill vsize top-buffer">
+			<Label text="L('lblForDisabled')" class="filterLabel hbuffer vsize" /> <Switch id="forDisabledSwitch" />
+		</View>
+		<View class="hgroup hfill vsize top-buffer">
+			<Label text="L('lblPos')" class="filterLabel hbuffer vsize" /> <Switch id="posSwitch" />
 		</View>
 		
 		<View id="mealTypesLabelContainer" class="hfill vsize top-buffer">
-			<Label text="L('lblMealTypes')" class="squareFiltersLabel" /> <View class="separator squareFiltersSeparator" />
+			<Label text="L('lblMealTypes')" class="squareFilterLabel" /> <View class="separator squareFiltersSeparator" />
 		</View>
 		<ScrollView id="mealTypesContainer" platform="ios" class="squareFiltersContainer hgroup" />
 		<View id="mealTypesContainer" platform="android" class="squareFiltersContainer hgroup" />
 		
 		<View id="mealCategoriesLabelContainer" class="hfill vsize top-buffer">
-			<Label text="L('lblMealCategories')" class="squareFiltersLabel" /> <View class="separator squareFiltersSeparator" />
+			<Label text="L('lblMealCategories')" class="squareFilterLabel" /> <View class="separator squareFiltersSeparator" />
 		</View>
 		<ScrollView id="mealCategoriesContainer" platform="ios" class="squareFiltersContainer hgroup" />
 		<View id="mealCategoriesContainer" platform="android" class="squareFiltersContainer hgroup" />

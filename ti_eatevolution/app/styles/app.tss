@@ -14,15 +14,18 @@
 		color: Alloy.CFG.gui.primaryColor
 	},
 	modal: false, // make android windows all heavyweight
-	navBarHidden: true
+	navBarHidden: true,
+	windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_ALWAYS_HIDDEN
 },
 'TextField': {
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
 },
+"TextField[platform=android]":{
+	hintTextColor: "#ddd"
+},
 "ImageView":{
 	preventDefaultImage: true
 },
-
 ".vgroup":{
 	layout: 'vertical'
 },

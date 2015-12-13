@@ -29,6 +29,7 @@ Alloy.Globals.Icons.profileTypes = {
 	"tc": "\ue608"
 };
 Alloy.Globals.Icons.fontAwesome = {
+	"search": "\uf002",
 	"star": "\uf005",
 	"home": "\uf015",
 	"timesCircle": "\uf057",

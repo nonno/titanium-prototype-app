@@ -37,6 +37,7 @@ getFilters = function(){
 	if (!categorieCibi.length){ categorieCibi = undefined; }
 	
 	filters = {
+		"nome": Boolean($.nameField.value) ? $.nameField.value : undefined,
 		"aperto": $.openSwitch.value === true ? true : undefined,
 		"preferiti": $.favoritesSwitch.value === true ? true : undefined,
 		"asporto": $.takeAwaySwitch.value === true ? true : undefined,
@@ -76,6 +77,7 @@ setFilters = function(filters){
 	
 	var profileTypes, mealTypes, mealCategories;
 	
+	$.nameField.value = filters.nome;
 	$.openSwitch.value = Boolean(filters.aperto);
 	$.favoritesSwitch.value = Boolean(filters.preferiti);
 	$.takeAwaySwitch.value = Boolean(filters.asporto);

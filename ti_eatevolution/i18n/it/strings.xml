@@ -31,6 +31,7 @@
 	<string name="lblTodayOpen">Oggi aperto</string>
 	<string name="lblTodayOpenFilter">Oggi aperto: </string>
 	<string name="lblTodayClose">Oggi chiuso</string>
+	<string name="lblNameFilter">Ricerca per nome: </string>
 	<string name="lblProfileTypes">Tipi di locali</string>
 	<string name="lblMealTypes">Potete trovare</string>
 	<string name="lblMealCategories">Per le vostre esigenze</string>

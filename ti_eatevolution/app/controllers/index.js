@@ -130,20 +130,6 @@ onTabGroupOpen = function(e){
 			
 			if (Alloy.Globals.currentTab === TAB_LIST){
 				(function(menu){
-					var searchView = Ti.UI.Android.createSearchView({
-						hintText: L("lblSearch")
-					});
-					searchView.addEventListener("change", listController.onSearchChange);
-					
-					menu.add({
-						title: L("lblSearch"),
-						showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS,
-						icon: Ti.Android.R.drawable.ic_menu_search,
-						actionView: searchView
-					});
-				}(createOptionEvent.menu));
-				
-				(function(menu){
 					var item = menu.add({
 						title: Alloy.Globals.Data.orderByDistance ? L("lblOrderByName") : L("lblOrderByDistance"),
 						showAsAction: Ti.Android.SHOW_AS_ACTION_NEVER
@@ -172,7 +158,7 @@ onTabGroupOpen = function(e){
 				(function(menu){
 					var item = menu.add({
 						title: L("lblFilters"),
-						icon: "/images/ic_action_filter.png",
+						icon: "/images/ic_action_search.png",
 						showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
 					});
 					item.addEventListener("click", function(){

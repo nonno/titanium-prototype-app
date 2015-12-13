@@ -3,8 +3,8 @@ var AdMob = require("AdMob"),
 	ProfileTypeRepository = require("ProfileTypeRepository"),
 	ProfileRepository = require("ProfileRepository");
 
-var populateList, preprocessForListView, onItemClick, onFiltersClick, onSearchChange, onSearchFocus,
-	onSearchCancel, currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName, orderByDistance,
+var populateList, preprocessForListView, onItemClick, onFiltersClick, onSearchChange,
+	currentTab, formatDistance, sortProfilesByDistance, sortProfilesByName, orderByDistance,
 	onRowAction, iosSwipe, iosSwipePartial, webOrganization, webCampaign,
 	modalWindowFilters;
 
@@ -241,15 +241,6 @@ webCampaign = function(){
 };
 
 if (OS_IOS){
-	onSearchFocus = function(){
-		$.searchBar.showCancel = true;
-	};
-	
-	onSearchCancel = function(){
-		$.searchBar.showCancel = false;
-		$.searchBar.blur();
-	};
-	
 	onRowAction = function(e){
 		var row = e.section.getItemAt(e.itemIndex);
 		var id = row.properties.locale.id;
@@ -321,7 +312,7 @@ if (OS_IOS){
 		$.wrapper.leftNavButton = nsfLogo;
 		
 		var filtersButton = Ti.UI.createLabel({
-			"text": Alloy.Globals.Icons.fontAwesome.filter,
+			"text": Alloy.Globals.Icons.fontAwesome.search,
 			"color": Alloy.CFG.iosColor,
 			"width": 26,
 			"height": 26,

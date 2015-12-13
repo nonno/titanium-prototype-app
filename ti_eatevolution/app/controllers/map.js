@@ -180,7 +180,7 @@ if (OS_IOS){
 		$.map.leftNavButton = nsfLogo;
 		
 		var bookmarksButton = Ti.UI.createLabel({
-			"text": Alloy.Globals.Icons.fontAwesome.filter,
+			"text": Alloy.Globals.Icons.fontAwesome.search,
 			"color": Alloy.CFG.iosColor,
 			"width": 26,
 			"height": 26,

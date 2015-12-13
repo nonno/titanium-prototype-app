@@ -1,11 +1,5 @@
 <Alloy>
 	<Window id="wrapper" title="L('lblListTab')">
-		<View id="searchBarContainer" platform="ios" class="hfill">
-			<SearchBar id="searchBar" platform="ios" hintText="L('lblSearch')" onFocus="onSearchFocus" onCancel="onSearchCancel" onChange="onSearchChange" />
-			
-			<Toolbar id="rightNavButtons" platform="ios" barColor="white" />
-		</View>
-		
 		<ListView id="listView" defaultItemTemplate="defaultTemplate" onItemclick="onItemClick">
 			<FooterView>
 				<View id="listFooterLabelContainer">

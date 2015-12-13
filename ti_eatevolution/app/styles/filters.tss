@@ -6,6 +6,9 @@
 "#mainContainer[platform=android]":{
 	scrollType: "vertical"
 },
+"#nameField":{
+	color: Alloy.CFG.gui.baseTextColor
+},
 ".squareFiltersContainer":{
 },
 ".squareFiltersContainer[platform=ios]":{
@@ -19,7 +22,7 @@
 	height: Ti.UI.SIZE,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 },
-".squareFiltersLabel":{
+".squareFilterLabel":{
 	left: 10,
 	width: 150,
 	color: Alloy.CFG.gui.baseTextColor,
@@ -38,9 +41,10 @@
 	style: Ti.UI.Android.SWITCH_STYLE_SWITCH,
 	borderRadius: 5
 },
-".switchLabel":{
+".filterLabel":{
 	color: Alloy.CFG.gui.baseTextColor,
 	width: 160,
+	verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 	font: {
 		fontSize: 14
 	}
