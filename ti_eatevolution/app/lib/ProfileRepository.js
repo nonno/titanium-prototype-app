@@ -34,7 +34,7 @@ fetchDataOffline = function(){
 	data = JSON.parse(file.read().text);
 	
 	Alloy.Globals.Data.date = data.date;
-	Alloy.Globals.Data.locali = data.locali;
+	Alloy.Globals.Data.setProfiles(data.locali);
 };
 fetchDataOnline = function(params){
 	params = params || {};
@@ -82,7 +82,7 @@ fetchDataOnline = function(params){
 					file.write(res);
 					
 					// TODO handle mix of data (for don't loose added properties like distances)
-					Alloy.Globals.Data.locali = data.locali;
+					Alloy.Globals.Data.setProfiles(data.locali);
 					Alloy.Globals.Data.date = data.date;
 					
 					if (params.useTestData){
@@ -109,12 +109,12 @@ calculateDistances = function(){
 	
 	Ti.Geolocation.getCurrentPosition(function(e) {
 		if (e.success && e.coords) {
-			Alloy.Globals.Data.locali = Alloy.Globals.Data.locali.map(function(locale) {
-				if (locale.lat && locale.lon){
-					locale.distanza = GeoUtils.calculateDistance({"latitude": locale.lat, "longitude": locale.lon}, e.coords);
+			Alloy.Globals.Data.setProfiles(Alloy.Globals.Data.profiles.map(function(profile) {
+				if (profile.lat && profile.lon){
+					profile.distanza = GeoUtils.calculateDistance({"latitude": profile.lat, "longitude": profile.lon}, e.coords);
 				}
-				return locale;
-			});
+				return profile;
+			}), true);
 			defer.resolve();
 		} else {
 			defer.reject(e.error);

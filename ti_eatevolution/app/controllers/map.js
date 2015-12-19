@@ -72,7 +72,7 @@ populateMap = function(params){
 	
 	Alloy.Globals.loading.show();
 	
-	data = ProfileRepository.filter(Alloy.Globals.Data.locali, Alloy.Globals.Data.filters);
+	data = ProfileRepository.filter(Alloy.Globals.Data.profiles, Alloy.Globals.Data.filters);
 	annotations = data.map(dataToAnnotation);
 	
 	if (mapView.annotations && mapView.annotations.length){

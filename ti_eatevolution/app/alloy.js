@@ -7,13 +7,31 @@ Alloy.Globals.justInstalled = false;
 Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
 Alloy.Globals.Data = {};
-Alloy.Globals.Data.locali = {};
+Alloy.Globals.Data.profiles = [];
 Alloy.Globals.Data.filters = {};
+Alloy.Globals.Data.cities = [];
 Alloy.Globals.Data.orderByDistance = false;
 Alloy.Globals.Data.setFilters = function(filters){
 	Alloy.Globals.Data.filters = filters;
 	
 	Ti.App.fireEvent("filterschanged");
+};
+Alloy.Globals.Data.setProfiles = function(profiles, skipCitiesMapping){
+	Alloy.Globals.Data.profiles = profiles;
+	
+	if (!skipCitiesMapping){
+		Alloy.Globals.Data.cities = _.chain(profiles)
+			.map(function(profile){
+				return {
+					"name": profile.loc,
+					"province": profile.prov,
+					"zipCode": profile.cap
+				};
+			})
+			.uniq(function(city){ return city.name + city.zipCode; })
+			.sortBy(function(city){ return city.name; })
+			.value();
+	}
 };
 
 Alloy.Globals.Icons = {};

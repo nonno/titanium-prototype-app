@@ -72,32 +72,32 @@ populateList = function(params){
 		Alloy.Globals.loading.show();
 	}
 	
-	var locali, indexes, sections, groups, section;
+	var profiles, indexes, sections, groups, section;
 	
-	locali = ProfileRepository.filter(Alloy.Globals.Data.locali, Alloy.Globals.Data.filters);
+	profiles = ProfileRepository.filter(Alloy.Globals.Data.profiles, Alloy.Globals.Data.filters);
 	
-	$.listFooterLabelContainer.visible = !locali.length;
+	$.listFooterLabelContainer.visible = !profiles.length;
 	
 	if (Alloy.Globals.Data.orderByDistance){
 		Ti.API.debug("Ordering by distance");
 		
-		locali = locali.sort(sortProfilesByDistance);
+		profiles = profiles.sort(sortProfilesByDistance);
 		
 		section = Ti.UI.createListSection();
-		section.items = preprocessForListView(locali);
+		section.items = preprocessForListView(profiles);
 		
 		$.listView.sections = [section];
 	} else {
 		Ti.API.debug("Ordering by name");
 		
-		locali = locali.sort(sortProfilesByName);
+		profiles = profiles.sort(sortProfilesByName);
 		
 		indexes = [];
 		sections = [];
 		groups = null;
 		
 		// Group the data by first letter of last name to make it easier to create sections.
-		groups = _.groupBy(locali, function(item){
+		groups = _.groupBy(profiles, function(item){
 			return item.nome.charAt(0);
 		});
 

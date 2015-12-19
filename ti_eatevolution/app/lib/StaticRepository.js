@@ -15,7 +15,7 @@ exports.create = function(params){
 		
 		if (params.itemFindFunction){
 			_.each(params.items, function(item){
-				if (Boolean(_.find(Alloy.Globals.Data.locali, params.itemFindFunction(item)))){
+				if (Boolean(_.find(Alloy.Globals.Data.profiles, params.itemFindFunction(item)))){
 					filteredItems.push(item);
 				};
 			});
