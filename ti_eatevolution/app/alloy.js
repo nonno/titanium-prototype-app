@@ -6,11 +6,15 @@ Alloy.Globals.trackerGA = require("ti.ga").createTracker({
 Alloy.Globals.justInstalled = false;
 Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
+Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_LOW;
+Ti.Geolocation.distanceFilter = 100;
+
 Alloy.Globals.Data = {};
 Alloy.Globals.Data.profiles = [];
 Alloy.Globals.Data.filters = {};
 Alloy.Globals.Data.cities = [];
 Alloy.Globals.Data.orderByDistance = false;
+
 Alloy.Globals.Data.setFilters = function(filters){
 	Alloy.Globals.Data.filters = filters;
 	

@@ -268,6 +268,7 @@ filter = function(profiles, params){
 	params.tipiCibi = params.tipiCibi;
 	params.categorieCibi = params.categorieCibi;
 	params.coordinate = params.coordinate;
+	params.distanzaMassima = params.distanzaMassima;
 	
 	if (!_.isUndefined(params.nome)){
 		profiles = profiles.filter(function(profile){
@@ -328,6 +329,13 @@ filter = function(profiles, params){
 		profiles = profiles.filter(function(profile){
 			var open = isTodayOpen(profile);
 			return (params.aperto && open) || (!params.aperto && !open);
+		});
+	}
+	if (params.coordinate && params.distanzaMassima){
+		profiles = profiles.filter(function(profile){
+			var pointA = {latitude: profile.lat, longitude: profile.lon};
+			
+			return GeoUtils.calculateDistance(pointA, params.coordinate) <= params.distanzaMassima;
 		});
 	}
 	
