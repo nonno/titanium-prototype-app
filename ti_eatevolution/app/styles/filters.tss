@@ -9,6 +9,9 @@
 "#nameField":{
 	color: Alloy.CFG.gui.baseTextColor
 },
+"#cityField":{
+	color: Alloy.CFG.gui.baseTextColor
+},
 ".squareFiltersContainer":{
 },
 ".squareFiltersContainer[platform=ios]":{

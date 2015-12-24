@@ -1,11 +1,16 @@
 <Alloy>
 	<ScrollView id="mainContainer" class="vgroup buffer">
 		<View class="hgroup hfill vsize top-buffer">
-			<Label text="L('lblNameFilter')" class="filterLabel hbuffer vsize" platform="ios" />
-			<TextField id="nameField" class="hfill" platform="ios" clearButtonMode="Ti.UI.INPUT_BUTTONMODE_ONFOCUS" />
+			<TextField id="nameField" class="hfill" platform="ios" hintText="L('lblNameFilter')" clearButtonMode="Ti.UI.INPUT_BUTTONMODE_ONFOCUS" />
 			
 			<TextField id="nameField" class="hfill" platform="android" hintText="L('lblNameFilter')" softKeyboardOnFocus="Ti.UI.Android.SOFT_KEYBOARD_HIDE_ON_FOCUS" />
 		</View>
+		
+		<View class="hfill vsize top-buffer">
+			<TextField id="cityField" class="hfill" hintText="L('lblCityFilter')" />
+			<View id="cityOverlay" class="hfill" height="40" />
+		</View>
+		<View class="separator" platform="android" />
 		
 		<View class="hgroup hfill vsize top-buffer">
 			<Label text="L('lblShowOnlyFavoritesFilter')" class="filterLabel hbuffer vsize" /> <Switch id="favoritesSwitch" />

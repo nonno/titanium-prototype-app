@@ -2,6 +2,8 @@
 <resources>
 	<string name="app_name">Eat Evolution</string>
 	
+	<string name="autocomplete.msgEmpty">No results</string>
+	
 	<string name="lblYes">Yes</string>
 	<string name="lblNo">No</string>
 	<string name="lblOk">Ok</string>
@@ -29,7 +31,8 @@
 	<string name="lblTodayOpen">Today open</string>
 	<string name="lblTodayOpenFilter">Today open: </string>
 	<string name="lblTodayClose">Today close</string>
-	<string name="lblNameFilter">Search by name: </string>
+	<string name="lblNameFilter">Search by name</string>
+	<string name="lblCityFilter">Search by location</string>
 	<string name="lblProfileTypes">Types</string>
 	<string name="lblMealTypes">You can find</string>
 	<string name="lblMealCategories">For your needs</string>

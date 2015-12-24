@@ -2,8 +2,9 @@
 	"global": {
 		"gui": {
 			"primaryColor": "#98c10f",
-			"baseTextColor": "#666",
+			"baseTextColor": "#555",
 			"neutralGreyColor": "#ccc",
+			"baseFontFamily": "Helvetica Neue",
 			"advertisementBannerHeight": 50,
 			"advertisementBannerHeightTablet": 90
 		},
@@ -36,6 +37,7 @@
 	},
 	"os:android": {},
 	"dependencies": {
-		"nl.fokkezb.loading":"*"
+		"nl.fokkezb.loading":"*",
+		"no.leitom.autocomplete":"*"
 	}
 }

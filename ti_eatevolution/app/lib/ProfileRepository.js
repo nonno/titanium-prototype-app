@@ -255,6 +255,7 @@ filterForMealCategories = function(profiles, mealCategories){
 filter = function(profiles, params){
 	params = params || {};
 	params.nome = params.nome;
+	params.citta = params.citta;
 	params.asporto = params.asporto;
 	params.sedere = params.sedere;
 	params.disabili = params.disabili;
@@ -271,6 +272,15 @@ filter = function(profiles, params){
 	if (!_.isUndefined(params.nome)){
 		profiles = profiles.filter(function(profile){
 			return profile.nome.toLowerCase().indexOf(params.nome.toLowerCase()) !== -1;
+		});
+	}
+	if (!_.isUndefined(params.citta)){
+		profiles = profiles.filter(function(profile){
+			return (
+				profile.loc.toLowerCase().indexOf(params.citta.name.toLowerCase()) !== -1
+				&&
+				profile.cap === params.citta.zipCode
+			);
 		});
 	}
 	if (!_.isUndefined(params.asporto)){

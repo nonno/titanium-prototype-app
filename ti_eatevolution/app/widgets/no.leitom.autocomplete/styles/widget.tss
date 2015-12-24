@@ -1,0 +1,15 @@
+".acContainer": {
+
+	layout: 'vertical',
+	width: Ti.UI.FILL,
+	height: 'auto',
+	visible: false,
+	backgroundColor: '#eeeeee'
+
+}
+
+"#autoCompleteTableView": {
+
+	color: '#000000'
+
+}

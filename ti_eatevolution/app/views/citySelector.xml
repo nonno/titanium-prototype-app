@@ -1,0 +1,19 @@
+<Alloy>
+	<View id="mainContainer" class="hsize vgroup">
+		<TextField
+			id="nameField"
+			platform="android"
+			class="hfill"
+			hintText="L('lblNameFilter')"
+		/>
+		<TextField
+			id="nameField"
+			platform="ios"
+			class="hfill"
+			hintText="L('lblNameFilter')"
+			clearButtonMode="Ti.UI.INPUT_BUTTONMODE_ONFOCUS"
+		/>
+		
+		<Widget id="selector" src="no.leitom.autocomplete" />
+	</View>
+</Alloy>

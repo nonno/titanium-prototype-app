@@ -5,7 +5,8 @@ var ProfileTypeRepository = require("ProfileTypeRepository"),
 	MealTypeRepository = require("MealTypeRepository"),
 	MealCategoryRepository = require("MealCategoryRepository");
 
-var getFilters, setFilters, sortFilters, profileTypeControllers, mealTypeControllers, mealCategoryControllers;
+var getFilters, setFilters, sortFilters, profileTypeControllers, mealTypeControllers,
+	mealCategoryControllers, onCityClick, modalWindowCity, selectedCity;
 
 profileTypeControllers = [];
 mealTypeControllers = [];
@@ -14,6 +15,8 @@ mealCategoryControllers = [];
 ProfileTypeRepository.preProcessItems();
 MealTypeRepository.preProcessItems();
 MealCategoryRepository.preProcessItems();
+
+selectedCity = null;
 
 getFilters = function(){
 	var filters,
@@ -38,6 +41,7 @@ getFilters = function(){
 	
 	filters = {
 		"nome": Boolean($.nameField.value) ? $.nameField.value : undefined,
+		"citta": Boolean(selectedCity) ? selectedCity : undefined,
 		"aperto": $.openSwitch.value === true ? true : undefined,
 		"preferiti": $.favoritesSwitch.value === true ? true : undefined,
 		"asporto": $.takeAwaySwitch.value === true ? true : undefined,
@@ -78,6 +82,8 @@ setFilters = function(filters){
 	var profileTypes, mealTypes, mealCategories;
 	
 	$.nameField.value = filters.nome;
+	selectedCity = filters.citta;
+	if (filters.citta){ $.cityField.value = filters.citta.name; }
 	$.openSwitch.value = Boolean(filters.aperto);
 	$.favoritesSwitch.value = Boolean(filters.preferiti);
 	$.takeAwaySwitch.value = Boolean(filters.asporto);
@@ -130,6 +136,38 @@ setFilters = function(filters){
 	});
 	$.mealCategoriesLabelContainer.visible = Boolean($.mealCategoriesContainer.children.length);
 };
+
+onCityClick = function(){
+	var citySelectorController = Alloy.createController("citySelector");
+	
+	modalWindowCity = Alloy.createController("modalWindow", {
+		"innerController": citySelectorController,
+		"leftNav": [
+			{
+				"button": Alloy.Globals.createModalWindowHeaderButton({"title": L("lblCancel")}),
+				"listener": function(){ modalWindowCity.close(); }
+			}
+		],
+		"rightNav": [
+			{
+				"button": Alloy.Globals.createModalWindowHeaderButton({"title": OS_IOS ? L("lblDone") : L("lblConfirm")}),
+				"listener": function(){
+					selectedCity = citySelectorController.getSelectedValue();
+					$.cityField.setValue(Boolean(selectedCity) ? selectedCity.name : (OS_ANDROID ? undefined : ""));
+					modalWindowCity.close();
+				}
+			}
+		]
+	});
+	citySelectorController.setOnSelection(function(){
+		selectedCity = citySelectorController.getSelectedValue();
+		$.cityField.setValue(Boolean(selectedCity) ? selectedCity.name : (OS_ANDROID ? undefined : ""));
+		modalWindowCity.close();
+	});
+	
+	modalWindowCity.open();
+};
+$.cityOverlay.addEventListener("singletap", onCityClick);
 
 setFilters(filters);
 

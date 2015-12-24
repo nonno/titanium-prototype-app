@@ -20,16 +20,22 @@ Alloy.Globals.Data.setProfiles = function(profiles, skipCitiesMapping){
 	Alloy.Globals.Data.profiles = profiles;
 	
 	if (!skipCitiesMapping){
+		var countBy = _.countBy(profiles, function(profile) {
+			return profile.loc + profile.cap;
+		});
+		
 		Alloy.Globals.Data.cities = _.chain(profiles)
 			.map(function(profile){
 				return {
 					"name": profile.loc,
 					"province": profile.prov,
-					"zipCode": profile.cap
+					"zipCode": profile.cap,
+					"count": 1
 				};
 			})
 			.uniq(function(city){ return city.name + city.zipCode; })
 			.sortBy(function(city){ return city.name; })
+			.each(function(city){ city.count = countBy[city.name + city.zipCode]; })
 			.value();
 	}
 };

@@ -1,0 +1,6 @@
+"#nameField":{
+	color: Alloy.CFG.gui.baseTextColor
+},
+"#nameField[platform=android]":{
+	softKeyboardOnFocus: Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS
+}

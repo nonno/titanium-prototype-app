@@ -1,0 +1,5 @@
+<Alloy>
+	<View id="autoCompleteContainer" class="acContainer">
+		<TableView id="autoCompleteTableView" onClick="setValue" />
+	</View>
+</Alloy>
