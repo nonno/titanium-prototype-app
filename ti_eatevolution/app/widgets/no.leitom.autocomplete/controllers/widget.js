@@ -47,7 +47,9 @@ function positionAutoCompleteContainer(){
 }
 
 function changeListener(_e) {
-	if(_e.value.length >= options.minChars) {
+	var value = _e.source.value || _e.value || "";
+	
+	if (value.length >= options.minChars) {
 		show();
 	} else {
 		hide();

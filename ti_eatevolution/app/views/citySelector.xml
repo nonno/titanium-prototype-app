@@ -1,18 +1,18 @@
 <Alloy>
 	<View id="mainContainer" class="hsize vgroup">
-		<TextField
+		<SearchView
 			id="nameField"
-			platform="android"
+			ns="Ti.UI.Android" platform="android"
 			class="hfill"
 			hintText="L('lblNameFilter')"
 		/>
-		<TextField
+		<SearchBar
 			id="nameField"
 			platform="ios"
 			class="hfill"
 			hintText="L('lblNameFilter')"
-			clearButtonMode="Ti.UI.INPUT_BUTTONMODE_ONFOCUS"
 		/>
+		<View class="separator" platform="ios" top="0" />
 		
 		<Widget id="selector" src="no.leitom.autocomplete" />
 	</View>

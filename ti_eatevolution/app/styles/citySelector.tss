@@ -1,6 +1,14 @@
 "#nameField":{
 	color: Alloy.CFG.gui.baseTextColor
 },
+"#nameField[platform=ios]":{
+	backgroundImage: "/images/alpha.png"
+},
 "#nameField[platform=android]":{
-	softKeyboardOnFocus: Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS
+	color: "white",
+	backgroundColor: Alloy.CFG.gui.primaryColor,
+	softKeyboardOnFocus: Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
+	iconified: false,
+	iconifiedByDefault: false,
+	focusable: true
 }
