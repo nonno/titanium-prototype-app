@@ -57,7 +57,7 @@
         </plist>
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
-        <manifest android:versionCode="9">
+        <manifest android:versionCode="10">
             <uses-sdk android:minSdkVersion="14"/>
             <application android:theme="@style/nutrizionisti">
                 <!-- Replace "PASTE YOUR GOOGLE MAPS API KEY HERE" with the Google API key you obtained -->
