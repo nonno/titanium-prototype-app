@@ -210,6 +210,12 @@ if (profile.web){
 	hideInfoContainer($.webContainer);
 }
 
+if (profile.des){
+	$.descrizione.text = profile.des;
+} else {
+	hideInfoContainer($.descrizioneContainer);
+}
+
 (function(){
 	var aperturaText, todayOpen, todayTimetable;
 	
@@ -270,8 +276,12 @@ if (profile.costo){
 
 configFlag(profile.asporto, $.asporto, $.asportoContainer);
 configFlag(profile.sedere, $.sedere, $.sedereContainer);
+configFlag(profile.sedere_fuori, $.sedereFuori, $.sedereFuoriContainer);
 configFlag(profile.disabili, $.disabili, $.disabiliContainer);
 configFlag(profile.pos, $.pos, $.posContainer);
+configFlag(profile.pren, $.prenotazioni, $.prenotazioniContainer);
+configFlag(profile.pren_obb, $.prenotazioneObb, $.prenotazioneObbContainer);
+configFlag(profile.catering, $.catering, $.cateringContainer);
 
 // map section
 (function(){

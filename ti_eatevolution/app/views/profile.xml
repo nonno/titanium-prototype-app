@@ -20,9 +20,15 @@
 				<Button id="addFavoriteBtn" class="icon icon-btn icon-star" onClick="toggleFavorite" />
 			</View>
 			
-			<View class='separator' />
+			<View class="hbuffer vgroup size" id="descrizioneContainer">
+				<View height="10" />
+				
+				<Label id="descrizione" class="h5 gray no-touch size no-autolink" />
+			</View>
 			
-			<View class='hbuffer vgroup size'>
+			<View class="separator" />
+			
+			<View class="hbuffer vgroup size">
 				<View id="aperturaContainer" class="hgroup hfill vsize left-buffer vbuffer">
 					<Label class="h3 icon icon-calendar icon-small primary-color left top" />
 					<Label id="apertura" class="h6 gray left-buffer right-buffer" />
@@ -41,7 +47,7 @@
 				</View>
 			</View>
 
-			<View class='separator' />
+			<View class="separator" />
 			
 			<View id="infoCibiContainer" class="vgroup top size hbuffer">
 				<View id="tipiCibiContainer" class="vgroup hfill vbuffer vsize">
@@ -54,28 +60,44 @@
 				</View>
 			</View>
 			
-			<View id="infoCibiSeparator" class='separator' />
+			<View id="infoCibiSeparator" class="separator" />
 			
 			<View id="flagsContainer" class="vgroup top size hbuffer">
-				<View id="costoContainer" class='hgroup size left-buffer'>
+				<View id="costoContainer" class="hgroup size left-buffer">
 					<Label id="costoLabel" class="h5 gray left top flags-column" text="L('lblPriceCategory')" />
 					<Label id="costo" class="icon h6 primary-color left-buffer" />
 				</View>
-				<View id="asportoContainer" class='hgroup size left-buffer'>
+				<View id="asportoContainer" class="hgroup size left-buffer">
 					<Label id="asportoLabel" class="h5 gray left top flags-column" text="L('lblTakeAway')" />
 					<Label id="asporto" class="icon h6 gray left-buffer" />
 				</View>
-				<View id="sedereContainer" class='hgroup size left-buffer'>
+				<View id="sedereContainer" class="hgroup size left-buffer">
 					<Label id="sedereLabel" class="h5 gray left top flags-column" text="L('lblSeating')" />
 					<Label id="sedere" class="icon h6 gray left-buffer" />
 				</View>
-				<View id="disabiliContainer" class='hgroup size left-buffer'>
+				<View id="sedereFuoriContainer" class="hgroup size left-buffer">
+					<Label id="sedereFuoriLabel" class="h5 gray left top flags-column" text="L('lblSeatingOutside')" />
+					<Label id="sedereFuori" class="icon h6 gray left-buffer" />
+				</View>
+				<View id="disabiliContainer" class="hgroup size left-buffer">
 					<Label id="disabiliLabel" class="h5 gray left top flags-column" text="L('lblForDisabled')" />
 					<Label id="disabili" class="icon h6 gray left-buffer" />
 				</View>
-				<View id="posContainer" class='hgroup size left-buffer'>
+				<View id="posContainer" class="hgroup size left-buffer">
 					<Label id="posLabel" class="h5 gray left top flags-column" text="L('lblPos')" />
 					<Label id="pos" class="icon h6 gray left-buffer" />
+				</View>
+				<View id="prenotazioniContainer" class="hgroup size left-buffer">
+					<Label id="prenotazioniLabel" class="h5 gray left top flags-column" text="L('lblReservations')" />
+					<Label id="prenotazioni" class="icon h6 gray left-buffer" />
+				</View>
+				<View id="prenotazioneObbContainer" class="hgroup size left-buffer">
+					<Label id="prenotazioneObbLabel" class="h5 gray left top flags-column" text="L('lblReservationNeeded')" />
+					<Label id="prenotazioneObb" class="icon h6 gray left-buffer" />
+				</View>
+				<View id="cateringContainer" class="hgroup size left-buffer">
+					<Label id="cateringLabel" class="h5 gray left top flags-column" text="L('lblCatering')" />
+					<Label id="catering" class="icon h6 gray left-buffer" />
 				</View>
 			</View>
 			

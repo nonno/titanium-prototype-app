@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"description": "Formato del file usato dall'app Eat Evolution, versione 1.0.1",
+	"description": "Formato del file usato dall'app Eat Evolution, versione 1.0.3",
 	"type": "object",
 	"properties": {
 		"currentIosVersion": {
@@ -31,6 +31,9 @@
 						"type": "integer"
 					},
 					"nome": {
+						"type": "string"
+					},
+					"des": {
 						"type": "string"
 					},
 					"ind": {
@@ -96,7 +99,11 @@
 						"type": "boolean"
 					},
 					"sedere": {
-						"description": "E' possibile sedersi",
+						"description": "E' possibile sedersi all'interno",
+						"type": "boolean"
+					},
+					"sedere_fuori": {
+						"description": "E' possibile sedersi all'esterno",
 						"type": "boolean"
 					},
 					"disabili": {
@@ -109,6 +116,18 @@
 					},
 					"dormire": {
 						"description": "E' possibile pernottare nel locale",
+						"type": "boolean"
+					},
+					"pren": {
+						"description": "E' possibile prenotare",
+						"type": "boolean"
+					},
+					"pren_obb": {
+						"description": "La prenotazione è obbligatoria",
+						"type": "boolean"
+					},
+					"catering": {
+						"description": "Il locale effettua servizio catering",
 						"type": "boolean"
 					},
 					"chiuso": {

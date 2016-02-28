@@ -39,9 +39,13 @@
 	<string name="lblReportProfileMailSubject">Profile report</string>
 	<string name="lblPriceCategory">Price category: </string>
 	<string name="lblTakeAway">Take-away: </string>
-	<string name="lblSeating">Seating: </string>
+	<string name="lblSeating">Seating inside: </string>
+	<string name="lblSeatingOutside">Seating outside: </string>
 	<string name="lblForDisabled">Facilities for disabled: </string>
 	<string name="lblPos">Payment with card: </string>
+	<string name="lblReservations">Reservations: </string>
+	<string name="lblReservationNeeded">Need reservation: </string>
+	<string name="lblCatering">Catering: </string>
 	<string name="lblOrderByName">Order by name</string>
 	<string name="lblOrderByDistance">Order by distance</string>
 	<string name="lblNoResults">No results for the current search</string>

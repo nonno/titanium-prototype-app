@@ -40,9 +40,13 @@
 	<string name="lblReportProfileMailSubject">Segnalazione locale</string>
 	<string name="lblPriceCategory">Fascia di prezzo: </string>
 	<string name="lblTakeAway">Da asporto: </string>
-	<string name="lblSeating">Posti a sedere: </string>
+	<string name="lblSeating">Posti a sedere al chiuso: </string>
+	<string name="lblSeatingOutside">Posti a sedere all'aperto: </string>
 	<string name="lblForDisabled">Strutture per disabili: </string>
 	<string name="lblPos">Pagamento con carta: </string>
+	<string name="lblReservations">Possibile prenotare: </string>
+	<string name="lblReservationNeeded">Prenotazione obbligatoria: </string>
+	<string name="lblCatering">Catering: </string>
 	<string name="lblOrderByName">Ordina per nome</string>
 	<string name="lblOrderByDistance">Ordina per distanza</string>
 	<string name="lblNoResults">Nessun risultato per la ricerca corrente</string>
