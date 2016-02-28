@@ -4,13 +4,13 @@
 			id="nameField"
 			ns="Ti.UI.Android" platform="android"
 			class="hfill"
-			hintText="L('lblNameFilter')"
+			hintText="L('lblCityFilter')"
 		/>
 		<SearchBar
 			id="nameField"
 			platform="ios"
 			class="hfill"
-			hintText="L('lblNameFilter')"
+			hintText="L('lblCityFilter')"
 		/>
 		<View class="separator" platform="ios" top="0" />
 		

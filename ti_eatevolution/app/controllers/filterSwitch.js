@@ -25,5 +25,5 @@ if (repository && repositoryKey){
 setEnabled(enabled);
 
 exports.getRepositoryKey = function(){ return repositoryKey; };
-exports.isEnabled = function(){ return enabled };
+exports.isEnabled = function(){ return enabled; };
 exports.setEnabled = setEnabled;
