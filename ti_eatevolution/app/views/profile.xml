@@ -21,7 +21,7 @@
 			</View>
 			
 			<View class="hbuffer vgroup size" id="descrizioneContainer">
-				<View height="10" />
+				<View class="hfill" height="10" />
 				
 				<Label id="descrizione" class="h5 gray no-touch size no-autolink" />
 			</View>
@@ -29,19 +29,19 @@
 			<View class="separator" />
 			
 			<View class="hbuffer vgroup size">
-				<View id="aperturaContainer" class="hgroup hfill vsize left-buffer vbuffer">
+				<View id="aperturaContainer" class="hgroup size left-buffer vbuffer">
 					<Label class="h3 icon icon-calendar icon-small primary-color left top" />
-					<Label id="apertura" class="h6 gray left-buffer right-buffer" />
+					<Label id="apertura" class="h6 gray left-buffer" />
 				</View>
-				<View id="telefonoContainer" class="hgroup hfill vsize left-buffer vbuffer">
+				<View id="telefonoContainer" class="hgroup size left-buffer vbuffer">
 					<Label class="h3 icon icon-phone icon-small primary-color left top" />
 					<Label id="telefono" class="h6 gray left-buffer no-autolink" />
 				</View>
-				<View id="webContainer" class="hgroup hfill vsize left-buffer vbuffer">
+				<View id="webContainer" class="hgroup size left-buffer vbuffer">
 					<Label class="h3 icon icon-cloud icon-small primary-color left top" />
 					<Label id="web" class="h6 gray left-buffer hsize ellipsize-end no-autolink" />
 				</View>
-				<View id="emailContainer" class="hgroup hfill vsize left-buffer vbuffer">
+				<View id="emailContainer" class="hgroup size left-buffer vbuffer">
 					<Label class="h3 icon icon-email icon-small primary-color left top" />
 					<Label id="email" class="h6 gray left-buffer hsize ellipsize-end no-autolink" />
 				</View>
