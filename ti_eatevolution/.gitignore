@@ -8,3 +8,5 @@ npm-debug.log
 tmp
 .map
 Thumbs.db
+i18n
+platform
