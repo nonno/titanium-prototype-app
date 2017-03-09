@@ -16,8 +16,7 @@ mapView = TiMap.createView({
 		animate: true
 	},
 	animate: true,
-	regionFit: true,
-	userLocation: true
+	regionFit: true
 });
 $.mapContainer.add(mapView);
 
@@ -122,6 +121,8 @@ onFiltersClick = function(){
 };
 
 centerMapOnCurrentPosition = function(){
+	if (!mapView.userLocation){ return; }
+	
 	Ti.Geolocation.getCurrentPosition(function(e){
 		var coords;
 		
@@ -195,12 +196,26 @@ if (OS_IOS){
 	}());
 }
 
-centerMapOnCurrentPosition();
-
 populateMap();
 
+if (OS_ANDROID && require("UtilsLib").getOSMajorVersion() > 5){
+	if (!Ti.Geolocation.hasLocationPermissions()){
+		Ti.Geolocation.requestLocationPermissions(function(result){
+			if (result.success){
+				mapView.userLocation = true;
+				
+				centerMapOnCurrentPosition();
+			}
+		});
+	}
+} else {
+	mapView.userLocation = true;
+	
+	centerMapOnCurrentPosition();
+}
+
 exports.showAdvertisement = function(show){
-	if (show){
+	if (show && OS_IOS){ // TODO
 		$.advContainer.height = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
 		$.mapContainer.bottom = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
 		

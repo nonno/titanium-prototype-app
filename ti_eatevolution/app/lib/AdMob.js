@@ -1,8 +1,10 @@
-var Admob = require("ti.admob");
+var Admob = OS_IOS ? require("ti.admob") : null; // TODO ti.admob module doesn't work on Android with SDK >= 6.0
 
 var create = function(params) {
 	params = params || {};
 	params.unitId = params.unitId;
+	
+	if (!Admob){ return; }
 	
 	var adMobArgs, eventReceived, eventFail, adMobView;
 	

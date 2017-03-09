@@ -64,7 +64,7 @@ function hideInfoContainer(container){
 }
 
 function showAdvertisement(show){
-	if (show){
+	if (show && OS_IOS){ // TODO
 		$.advContainer.height = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
 		$.contactInfo.bottom = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
 		

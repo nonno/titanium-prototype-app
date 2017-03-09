@@ -345,7 +345,7 @@ exports.setTab = function(tab){
 	currentTab = tab;
 };
 exports.showAdvertisement = function(show){
-	if (show){
+	if (show && OS_IOS){ // TODO
 		$.advContainer.height = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
 		$.listView.bottom = Alloy.isTablet ? Alloy.CFG.gui.advertisementBannerHeightTablet : Alloy.CFG.gui.advertisementBannerHeight;
 		
