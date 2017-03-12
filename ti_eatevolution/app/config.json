@@ -9,19 +9,19 @@
 			"advertisementBannerHeightTablet": 90
 		},
 		"companyReferences": {
-			"address": "Via Rossini, 51 - 60035 Jesi (AN)",
-			"phone": "+39 0731 720322",
-			"mobilePhone": "+39 380 6468882",
-			"taxCode": "92034660420",
-			"email": "info@nutrizionistisenzafrontiere.org",
-			"web": "http://www.nutrizionistisenzafrontiere.org",
-			"campaign": "http://www.nutrizionistisenzafrontiere.org/campagna-eat-evolution/"
+			"address": "Via Lorem Ipsum, 51 - 70135 Resi (AN)",
+			"phone": "+39 0731 345323",
+			"mobilePhone": "+39 380 223532",
+			"taxCode": "0000000000",
+			"email": "info@boh.org",
+			"web": "http://www.google.com",
+			"campaign": "http://www.google.com"
 		},
 		"dataUrl": "https://dl.dropbox.com/s/w44fxm225y1p9a6/data.json",
 		"dataTestUrl": "https://dl.dropbox.com/s/w44fxm225y1p9a6/data.json",
 		"syncronizationInterval": 0,
-		"gaTrackingId": "UA-63543213-2",
-		"googleMapsKey": "AIzaSyD1y5-w94SxFHvyssJ8godURb90SkyBcC8",
+		"gaTrackingId": "UA-XXXXXXXX-2",
+		"googleMapsKey": "XXXXXXXXXX-w94SxFHvyssJ8godURb90SkyBcC8",
 		"staticMapOnDetail": false,
 		"mapOverlayOnDetail": true,
 		"development": false
